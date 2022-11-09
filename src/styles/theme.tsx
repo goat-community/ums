@@ -1,5 +1,4 @@
 import React from "react";
-import { purple } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 interface PaletteProps {
@@ -9,10 +8,10 @@ interface PaletteProps {
 const theme = createTheme({
   palette: {
     primary: {
-      main: purple[500],
+      main: "#6750a4",
     },
     secondary: {
-      main: "#11cb5f",
+      main: "#6750a414",
     },
   },
 });
