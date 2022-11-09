@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 /** Another Providers */
 import { ErrorBoundary, NotifierWrapper } from "@components";
 import { store } from "@context";
+import { Palette } from "@styles/theme";
 
 import router from "./Router";
 
@@ -16,8 +17,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
       <Provider store={store}>
-        <NotifierWrapper />
-        <RouterProvider router={router} />
+        <Palette>
+          <NotifierWrapper />
+          <RouterProvider router={router} />
+        </Palette>
       </Provider>
     </ErrorBoundary>
   </React.StrictMode>
