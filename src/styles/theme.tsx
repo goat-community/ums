@@ -22,18 +22,39 @@ const theme = createTheme({
     },
     h2: {
       color: "#6750a4",
+      fontSize: 24,
     },
     h3: {
       color: "#6750a4",
+      fontSize: 20,
     },
     h4: {
       color: "#6750a4",
+      fontSize: 16,
     },
     h5: {
       color: "#6750a4",
+      fontSize: 14,
     },
     h6: {
       color: "#6750a4",
+      fontSize: 12,
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant && {
+            borderRadius: 100,
+            fontSize: "14px",
+            fontWeight: "lighter",
+            textTransform: "none",
+            minWidth: 105,
+            minHeight: 40,
+          }),
+        }),
+      },
     },
   },
 });
