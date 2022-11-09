@@ -1,0 +1,10 @@
+@mixin all-center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin no-overflow {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}

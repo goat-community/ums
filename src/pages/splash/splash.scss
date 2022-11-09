@@ -1,0 +1,22 @@
+@import "@styles/variables.scss";
+@import "@styles/mixins.scss";
+
+.splash-background {
+  @include all-center-flex;
+  @include no-overflow;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: $light-primary;
+  flex-direction: column;
+}
+
+.logo-container {
+  @include all-center-flex;
+  padding: 45px;
+  border-radius: 50%;
+  background-color: $primary-color;
+  margin-bottom: 23px;
+}

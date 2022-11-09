@@ -14,6 +14,28 @@ const theme = createTheme({
       main: "#6750a414",
     },
   },
+  typography: {
+    h1: {
+      color: "#6750a4",
+      fontSize: 32,
+      fontWeight: 700,
+    },
+    h2: {
+      color: "#6750a4",
+    },
+    h3: {
+      color: "#6750a4",
+    },
+    h4: {
+      color: "#6750a4",
+    },
+    h5: {
+      color: "#6750a4",
+    },
+    h6: {
+      color: "#6750a4",
+    },
+  },
 });
 
 export function Palette(props: PaletteProps) {

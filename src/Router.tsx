@@ -1,12 +1,12 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 /** Pages */
-import { Sample } from "@pages/sample/Sample";
+import { Splash } from "@pages/splash/Splash";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Sample />,
+    element: <Splash />,
   },
 ]);
 
