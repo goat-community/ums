@@ -7,7 +7,7 @@ let router: ReturnType<typeof createBrowserRouter>;
 // Mobile
 if (window.screen.width <= 780) {
   // pages
-  const Splash: any = lazy(() => import("@pages/mobile/splash/Splash"));
+  const Splash = lazy(() => import("@pages/mobile/splash/Splash"));
 
   // construct the router
   router = createBrowserRouter([
