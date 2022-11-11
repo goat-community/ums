@@ -3,13 +3,9 @@ import React, { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 let router: ReturnType<typeof createBrowserRouter>;
-
 // Mobile
 if (window.screen.width <= 780) {
-  // pages
   const Splash = lazy(() => import("@pages/mobile/splash/Splash"));
-
-  // construct the router
   router = createBrowserRouter([
     {
       path: "/",
