@@ -15,6 +15,9 @@ const MAX_COORDS = 20000;
 // Previously we used `debug`
 const logError = createLogError();
 
+// TODO: GeoJson is not defined name space
+type GeoJson = any;
+
 /**
  * Create a JSON isoline. Surface is a (possibly typed) array, width and height
  * are its width and height, and cutoff is the cutoff. It is possible to disable
@@ -28,7 +31,7 @@ export default function jsolines({
   interpolation = true,
   surface,
   width,
-}): GeoJSON.Feature<GeoJSON.MultiPolygon> {
+}): GeoJson {
   // First, create the contour grid.
   const contour = getContour({ surface, width, height, cutoff });
   const cWidth = width - 1;
