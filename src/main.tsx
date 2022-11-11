@@ -1,11 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-/** Store Providers */
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-/** Another Providers */
 import { ErrorBoundary, NotifierWrapper } from "@components";
 import { store } from "@context";
+import { CircularProgress } from "@mui/material";
 import { Palette } from "@styles/theme";
 
 import router from "./Router";
@@ -19,7 +18,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Provider store={store}>
         <Palette>
           <NotifierWrapper />
-          <RouterProvider router={router} />
+          <Suspense fallback={<CircularProgress />}>
+            <RouterProvider router={router} />
+          </Suspense>
         </Palette>
       </Provider>
     </ErrorBoundary>

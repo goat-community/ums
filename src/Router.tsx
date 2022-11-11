@@ -1,13 +1,29 @@
-import React from "react";
+import React, { lazy } from "react";
+/** Components */
 import { createBrowserRouter } from "react-router-dom";
-/** Pages */
-import { Splash } from "@pages/splash/Splash";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Splash />,
-  },
-]);
+let router: ReturnType<typeof createBrowserRouter>;
+
+// Mobile
+if (window.screen.width <= 780) {
+  // pages
+  const Splash: any = lazy(() => import("@pages/mobile/splash/Splash"));
+
+  // construct the router
+  router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Splash />,
+    },
+  ]);
+} else {
+  // Desktop and bigger
+  router = createBrowserRouter([
+    {
+      path: "/",
+      element: <>{window.screen.width}</>,
+    },
+  ]);
+}
 
 export default router;

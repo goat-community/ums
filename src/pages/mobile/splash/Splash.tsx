@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 
 import "./splash.scss";
 
-export function Splash() {
+export default function Splash() {
   return (
     <section className="splash-background">
       <div className="logo-container">
