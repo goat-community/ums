@@ -22,15 +22,16 @@ const theme = createTheme({
     },
     h2: {
       color: "#6750a4",
-      fontSize: 24,
+      fontSize: 26,
     },
     h3: {
       color: "#6750a4",
-      fontSize: 20,
+      fontSize: 22,
+      lineHeight: "28px",
     },
     h4: {
       color: "#6750a4",
-      fontSize: 16,
+      fontSize: 18,
     },
     h5: {
       color: "#6750a4",
@@ -48,10 +49,11 @@ const theme = createTheme({
           ...(ownerState.variant && {
             borderRadius: 100,
             fontSize: "14px",
-            fontWeight: "lighter",
+            fontWeight: 500,
             textTransform: "none",
             minWidth: 105,
             minHeight: 40,
+            boxShadow: "none",
           }),
         }),
       },
