@@ -1,12 +1,13 @@
 import React, { lazy } from "react";
 /** Components */
 import { createBrowserRouter } from "react-router-dom";
+import Splash from "@pages/mobile/splash/Splash";
 
 let router: ReturnType<typeof createBrowserRouter>;
 // Mobile
 if (window.screen.width <= 780) {
-  const Splash = lazy(() => import("@pages/mobile/splash/Splash"));
   const Flower = lazy(() => import("@pages/mobile/flower/Flower"));
+  const Map = lazy(() => import("@pages/mobile/map/Map"));
   router = createBrowserRouter([
     {
       path: "/",
@@ -15,6 +16,10 @@ if (window.screen.width <= 780) {
     {
       path: "/flower",
       element: <Flower />,
+    },
+    {
+      path: "/map",
+      element: <Map />,
     },
   ]);
 } else {

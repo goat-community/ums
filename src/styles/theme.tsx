@@ -1,5 +1,5 @@
 import React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 interface PaletteProps {
   children: React.ReactNode;
@@ -38,7 +38,6 @@ const theme = createTheme({
       fontSize: 14,
     },
     h6: {
-      color: "#6750a4",
       fontSize: 12,
     },
   },
