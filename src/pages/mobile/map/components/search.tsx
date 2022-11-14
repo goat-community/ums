@@ -30,6 +30,7 @@ const styles: { [key: string]: CSSProperties } = {
     borderBottom: `1px solid ${D.THIRD_DARK_COLOR}`,
     backgroundColor: D.WHITE_COLOR,
     marginTop: "17px",
+    boxShadow: "none",
   },
   inputBase: {
     marginLeft: 1,

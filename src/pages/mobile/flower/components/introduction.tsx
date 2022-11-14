@@ -17,7 +17,7 @@ export default function Introduction() {
         How does you flower look like?
       </Typography>
       <Margin margin="35px 0 0 0" />
-      <Link to="/">
+      <Link to="/map">
         <Button variant="contained">Continue</Button>
       </Link>
     </Box>
