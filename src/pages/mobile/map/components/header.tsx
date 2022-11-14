@@ -1,7 +1,10 @@
 import React, { type CSSProperties } from "react";
+import { Margin } from "@components/common";
 import Icon from "@images/icon.png";
 import { Button, Stack, Typography } from "@mui/material";
 
+import { LayerSelector } from "./layer-selector";
+import { LocationSelector } from "./location-selector";
 import { SearchInput } from "./search";
 
 export function Header() {
@@ -21,6 +24,14 @@ export function Header() {
 
       {/** Search bar */}
       <SearchInput />
+
+      {/** Selector buttons */}
+      <Margin margin="28px 0px 0px 0px" />
+      <Stack direction="row" spacing={1}>
+        <LayerSelector />
+        <Margin margin="0px 5px" />
+        <LocationSelector />
+      </Stack>
     </>
   );
 }
