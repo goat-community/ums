@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import { Link, useLocation } from "react-router-dom";
 import * as DesignConstants from "@constants/design";
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -37,11 +37,13 @@ const styles: { [key: string]: CSSProperties } = {
     left: 0,
     right: 0,
     height: DesignConstants.BOTTOM_BAR_HEIGHT,
-    backgroundColor: DesignConstants.SECONDARY_COLOR,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+    zIndex: 2,
+    background:
+      "linear-gradient(0deg, rgba(103, 80, 164, 0.08), rgba(103, 80, 164, 0.08)), #FFFBFE",
   },
   navigationItem: {
     display: "flex",
@@ -54,6 +56,7 @@ const styles: { [key: string]: CSSProperties } = {
   navigationIcon: {
     fontSize: "24px",
     marginBottom: "8px",
+    color: DesignConstants.SECONDARY_DARK_COLOR,
   },
   navigationIconActive: {
     color: DesignConstants.PRIMARY_COLOR,
