@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import { Link, useLocation } from "react-router-dom";
-import * as DesignConstants from "@constants/design";
+import * as D from "@constants/design";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { Typography } from "@mui/material";
@@ -36,7 +36,7 @@ const styles: { [key: string]: CSSProperties } = {
     bottom: 0,
     left: 0,
     right: 0,
-    height: DesignConstants.BOTTOM_BAR_HEIGHT,
+    height: D.BOTTOM_BAR_HEIGHT,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
@@ -51,16 +51,16 @@ const styles: { [key: string]: CSSProperties } = {
     alignItems: "center",
     justifyContent: "center",
     textDecoration: "none",
-    color: DesignConstants.BLACK_COLOR,
+    color: D.BLACK_COLOR,
   },
   navigationIcon: {
     fontSize: "24px",
     marginBottom: "8px",
-    color: DesignConstants.SECONDARY_DARK_COLOR,
+    color: D.SECONDARY_DARK_COLOR,
   },
   navigationIconActive: {
-    color: DesignConstants.PRIMARY_COLOR,
-    backgroundColor: DesignConstants.HOVER_COLOR,
+    color: D.PRIMARY_COLOR,
+    backgroundColor: D.HOVER_COLOR,
     width: "64px",
     padding: "4px 0",
     borderRadius: "16px",

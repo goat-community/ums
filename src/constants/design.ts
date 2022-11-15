@@ -12,3 +12,4 @@ export const LIGHT_PRIMARY = "#EADDFF";
 
 /** Sizing */
 export const BOTTOM_BAR_HEIGHT = 80;
+export const SIDE_BAR_WIDTH = 80;
