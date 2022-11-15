@@ -29,11 +29,11 @@ if (window.screen.width <= 780) {
     },
   ]);
 } else {
-  // Desktop and bigger
+  const Map = lazy(() => import("@pages/desktop/map/Map"));
   router = createBrowserRouter([
     {
       path: "/",
-      element: <>{window.screen.width}</>,
+      element: <Map />,
     },
     {
       path: "*",
