@@ -1,4 +1,5 @@
 @import "@styles/mixins.scss";
+@import "@styles/variables.scss";
 
 .flower-form-container {
   @include full-height;
@@ -7,4 +8,26 @@
   align-items: center;
   justify-content: center;
   padding: 0 53px;
+}
+
+.survey-form-container {
+  @include full-height;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 24px;
+}
+
+.survey-question {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.sub-title {
+  text-align: center;
+  max-width: 257px;
+  color: $primary-color;
 }
