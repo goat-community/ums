@@ -1,6 +1,6 @@
 /** Layout with bottom bar included */
 import React, { type CSSProperties } from "react";
-import { SideBar } from "@components/desktop/side-bar";
+import { SideBar } from "@components/desktop";
 import { BOTTOM_BAR_HEIGHT } from "@constants/design";
 
 interface SidebarLayoutProps {

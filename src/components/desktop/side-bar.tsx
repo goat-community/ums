@@ -1,16 +1,29 @@
-import React, { type CSSProperties } from "react";
+import React, { type CSSProperties, useState } from "react";
 import * as D from "@constants/design";
 import Icon from "@images/icon.png";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import { Drawer } from "./drawer";
+
 export function SideBar() {
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+
+  function toggleDrawer() {
+    setDrawerOpen((prevState) => !prevState);
+  }
+
   return (
-    <section style={styles.navigationContainer}>
-      <MenuIcon sx={styles.menuIcon} />
-      <button style={styles.buttonHug}>
-        <img src={Icon} alt="icon" width="24" height="24" />
-      </button>
-    </section>
+    <>
+      <section style={styles.navigationContainer}>
+        <MenuIcon sx={styles.menuIcon} onClick={toggleDrawer} />
+        <button style={styles.buttonHug}>
+          <img src={Icon} alt="icon" width="24" height="24" />
+        </button>
+      </section>
+      <Drawer open={drawerOpen} toggleDrawer={toggleDrawer}>
+        <p>whoops</p>
+      </Drawer>
+    </>
   );
 }
 
@@ -32,6 +45,7 @@ const styles: { [key: string]: CSSProperties } = {
   },
   menuIcon: {
     color: D.BLACK_COLOR,
+    cursor: "pointer",
   },
   buttonHug: {
     border: "none",
