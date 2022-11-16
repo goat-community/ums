@@ -63,6 +63,7 @@ const Section = styled.section`
   bottom: 0;
   left: 0;
   right: 0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   display: flex;
   flex-direction: row;
   justify-content: space-around;

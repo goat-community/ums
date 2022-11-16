@@ -14,16 +14,18 @@ export function FloatingFlower() {
 }
 
 const Button = styled.button`
-  border: none;
+  position: fixed;
   width: 56px;
   height: 56px;
+  right: 10px;
   background-color: ${D.LIGHT_PRIMARY};
   bottom: calc(${D.BOTTOM_BAR_HEIGHT}px + 20px);
+  padding-right: env(safe-area-inset-right, 10px);
+  padding-bottom: env(safe-area-inset-bottom, 100px);
   border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  right: 10px;
+  border: none;
   box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
 `;
