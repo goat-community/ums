@@ -1,7 +1,10 @@
 /** Layout with bottom bar included */
-import React, { type CSSProperties } from "react";
-import { SideBar } from "@components/desktop";
+import React from "react";
+import styled from "styled-components";
+
 import { BOTTOM_BAR_HEIGHT } from "@constants/design";
+
+import { SideBar } from "@components/desktop";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -10,15 +13,13 @@ interface SidebarLayoutProps {
 export function SideBarLayout(props: SidebarLayoutProps) {
   return (
     <>
-      <div style={styles.content}>{props.children}</div>
+      <Section>{props.children}</Section>
       <SideBar />
     </>
   );
 }
 
-const styles: { [key: string]: CSSProperties } = {
-  content: {
-    marginBottom: BOTTOM_BAR_HEIGHT,
-    zIndex: 1,
-  },
-};
+const Section = styled.section`
+  margin-bottom: ${BOTTOM_BAR_HEIGHT}px;
+  z-index: 1;
+`;

@@ -1,10 +1,12 @@
 import * as React from "react";
-import * as D from "@constants/design";
+
 import FormControl from "@mui/material/FormControl";
 import InputBase from "@mui/material/InputBase";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { styled } from "@mui/material/styles";
+
+import * as D from "@constants/design";
 
 interface SelectorProps {
   label: string;
@@ -20,6 +22,7 @@ export function Selector(props: SelectorProps) {
         <Select
           value={props.value}
           onChange={props.handleChange}
+          displayEmpty
           input={<BootstrapInput />}
           renderValue={() => {
             if (!props.value) {
@@ -28,7 +31,6 @@ export function Selector(props: SelectorProps) {
               return props.value;
             }
           }}
-          displayEmpty
         >
           <MenuItem disabled value="">
             <em>{props.label}</em>
@@ -44,6 +46,8 @@ export function Selector(props: SelectorProps) {
   );
 }
 
+/** Except case for styling pattern */
+/** Customized the material style */
 const BootstrapInput = styled(InputBase)(() => ({
   "& .MuiInputBase-input": {
     borderRadius: 8,
@@ -58,8 +62,5 @@ const BootstrapInput = styled(InputBase)(() => ({
       border: "none !important",
       outline: "none !important",
     },
-  },
-  ".MuiList-root": {
-    display: "none",
   },
 }));

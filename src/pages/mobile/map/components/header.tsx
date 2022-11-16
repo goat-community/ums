@@ -1,13 +1,18 @@
-import React, { type CSSProperties } from "react";
-import { Margin } from "@components/common";
-import Icon from "@images/icon.png";
+import React from "react";
+
 import { Button, Stack, Typography } from "@mui/material";
+
+import { Margin } from "@components/common";
+
+import Icon from "@images/icon.png";
 
 import { LayerSelector } from "./layer-selector";
 import { LocationSelector } from "./location-selector";
 import { SearchInput } from "./search";
 
 export function Header() {
+  const icon_style = { marginTop: -2 };
+
   return (
     <>
       {/** Title and my profile button */}
@@ -15,7 +20,7 @@ export function Header() {
         <Typography variant="h1">Where to be?</Typography>
 
         <Button variant="contained">
-          <img src={Icon} width="18" height="18" alt="icon" style={styles.icon} />
+          <img src={Icon} width="18" height="18" alt="icon" style={icon_style} />
           <Typography variant="h6" ml={1}>
             My Profile
           </Typography>
@@ -35,9 +40,3 @@ export function Header() {
     </>
   );
 }
-
-const styles: { [key: string]: CSSProperties } = {
-  icon: {
-    marginTop: -2,
-  },
-};

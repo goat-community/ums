@@ -1,6 +1,8 @@
 import React from "react";
-import { BottomBarLayout } from "@layouts/mobile";
+
 import Container from "@mui/material/Container";
+
+import { BottomBarLayout } from "@layouts/mobile";
 
 import { FloatingFlower } from "./components/floating-flower";
 import { Header } from "./components/header";

@@ -27,8 +27,28 @@
         "groups": [
           // Packages `react` related packages come first.
           ["^react", "^@?\\w"],
-          // Internal packages.
-          ["^(@|components)(/.*|$)"],
+          // Mui.
+          ["^(@mui)(/.*|$)"],
+          // api.
+          ["^(@api)(/.*|$)"],
+          // types.
+          ["^(@types)(/.*|$)"],
+          // utils.
+          ["^(@utils)(/.*|$)"],
+          // hooks.
+          ["^(@hooks)(/.*|$)"],
+          // context.
+          ["^(@context)(/.*|$)"],
+          // Constants.
+          ["^(@constants)(/.*|$)"],
+          // Internal Components.
+          ["^(@components)(/.*|$)"],
+          // layouts.
+          ["^(@layouts)(/.*|$)"],
+          // pages.
+          ["^(@pages)(/.*|$)"],
+          // images.
+          ["^(@images)(/.*|$)"],
           // Side effect imports.
           ["^\\u0000"],
           // Parent imports. Put `..` last.
@@ -41,7 +61,6 @@
       }
     ],
     "simple-import-sort/exports": "error",
-    "@typescript-eslint/no-explicit-any": "off",
     "no-restricted-imports": [
       "error",
       {
