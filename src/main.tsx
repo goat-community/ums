@@ -2,10 +2,13 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-import { ErrorBoundary, NotifierWrapper } from "@components/common";
-import { store } from "@context";
-import Splash from "@pages/mobile/splash/Splash";
 import { Palette } from "@styles/theme";
+
+import { store } from "@context";
+
+import { ErrorBoundary, NotifierWrapper } from "@components/common";
+
+import Splash from "@pages/mobile/splash/Splash";
 
 import router from "./Router";
 

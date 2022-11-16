@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import * as D from "@constants/design";
+import styled from "styled-components";
+
 import BarChartIcon from "@mui/icons-material/BarChart";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { Typography } from "@mui/material";
-import styled from "styled-components";
+
+import * as D from "@constants/design";
 
 export function BottomBar() {
   const location = useLocation().pathname;

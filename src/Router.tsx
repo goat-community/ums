@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 /** Components */
 import { createBrowserRouter } from "react-router-dom";
+
 import Notfound from "@pages/common/404/404";
 
 let router: ReturnType<typeof createBrowserRouter>;

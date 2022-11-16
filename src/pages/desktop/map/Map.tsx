@@ -1,6 +1,8 @@
 import React from "react";
-import FakeMap from "@images/fakemapdesktop.png";
+
 import { SideBarLayout } from "@layouts/desktop";
+
+import FakeMap from "@images/fakemapdesktop.png";
 
 export default function Map() {
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useAppSelector } from "@hooks/context";
 
 export function NotifierWrapper() {

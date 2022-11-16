@@ -1,9 +1,11 @@
 import React from "react";
-import * as D from "@constants/design";
+
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import Paper from "@mui/material/Paper";
+
+import * as D from "@constants/design";
 
 export function SearchInput() {
   const paper_style = {

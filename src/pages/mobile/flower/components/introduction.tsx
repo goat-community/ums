@@ -1,7 +1,9 @@
 import React from "react";
-import { Margin } from "@components/common";
-import { Button, Typography } from "@mui/material";
 import styled from "styled-components";
+
+import { Button, Typography } from "@mui/material";
+
+import { Margin } from "@components/common";
 
 interface IntroductionProps {
   onClickContinue: () => void;

@@ -1,6 +1,7 @@
 import React from "react";
-import { type CSSProperties } from "@types";
 import styled from "styled-components";
+
+import { type CSSProperties } from "@types";
 
 interface MarginProps {
   margin: string;

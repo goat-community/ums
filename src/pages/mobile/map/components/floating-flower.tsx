@@ -1,7 +1,9 @@
 import React from "react";
-import * as D from "@constants/design";
-import PurpleIcon from "@images/purple_icon.png";
 import styled from "styled-components";
+
+import * as D from "@constants/design";
+
+import PurpleIcon from "@images/purple_icon.png";
 
 export function FloatingFlower() {
   return (

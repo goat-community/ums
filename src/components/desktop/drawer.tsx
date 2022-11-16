@@ -1,6 +1,7 @@
 import React from "react";
-import * as D from "@constants/design";
 import styled, { keyframes } from "styled-components";
+
+import * as D from "@constants/design";
 
 interface DrawerProps {
   open: boolean;

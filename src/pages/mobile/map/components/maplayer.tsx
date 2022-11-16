@@ -1,5 +1,6 @@
 // Fake map layer to shown in background of the app
 import React from "react";
+
 import FakeMapImage from "@images/fakemap.png";
 
 export function MapLayer() {

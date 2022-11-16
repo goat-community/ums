@@ -1,10 +1,12 @@
 import * as React from "react";
-import * as D from "@constants/design";
+
 import FormControl from "@mui/material/FormControl";
 import InputBase from "@mui/material/InputBase";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { styled } from "@mui/material/styles";
+
+import * as D from "@constants/design";
 
 interface SelectorProps {
   label: string;

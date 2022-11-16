@@ -1,6 +1,8 @@
 import React from "react";
-import logo from "@images/logo.png";
+
 import { CircularProgress, Typography } from "@mui/material";
+
+import logo from "@images/logo.png";
 
 import "./splash.scss";
 

@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Margin } from "@components/common";
-import * as D from "@constants/design";
-import Flower from "@images/flower.png";
-import { Button, FormControlLabel, Radio, Stack, Typography } from "@mui/material";
 import styled from "styled-components";
+
+import { Button, FormControlLabel, Radio, Stack, Typography } from "@mui/material";
+
+import * as D from "@constants/design";
+
+import { Margin } from "@components/common";
+
+import Flower from "@images/flower.png";
 
 const SURVEY_OPTIONS = [5, 15, 30];
 const SURVEY_QUESTIONS = [

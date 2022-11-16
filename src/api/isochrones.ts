@@ -1,6 +1,7 @@
 import type { IsochroneParams } from "@types";
-import { instance } from "@utils";
 import type { AxiosError } from "axios";
+
+import { instance } from "@utils";
 
 export function getIsochrone(data: IsochroneParams): Promise<string> | null {
   return instance

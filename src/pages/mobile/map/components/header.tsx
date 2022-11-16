@@ -1,7 +1,10 @@
 import React from "react";
-import { Margin } from "@components/common";
-import Icon from "@images/icon.png";
+
 import { Button, Stack, Typography } from "@mui/material";
+
+import { Margin } from "@components/common";
+
+import Icon from "@images/icon.png";
 
 import { LayerSelector } from "./layer-selector";
 import { LocationSelector } from "./location-selector";
