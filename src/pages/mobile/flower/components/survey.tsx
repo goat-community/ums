@@ -79,49 +79,42 @@ export default function Survey() {
 
   return (
     <Box>
-      <Container>
-        <img src={Flower} width="160" height="133" alt="flower" />
+      <img src={Flower} width="160" height="133" alt="flower" />
 
-        <Margin margin="10px 0 0 0" />
+      <Margin margin="30px 0 0 0" />
 
-        <Typography variant="h3" sx={{ color: D.LIGHT_GREEN }}>
-          ENTERTAINMENT
+      <Typography variant="h3" sx={{ color: D.LIGHT_GREEN }}>
+        ENTERTAINMENT
+      </Typography>
+
+      <Margin margin="12px 0 0 0" />
+
+      <TypoGraphyContainer>
+        <Typography variant="h6">
+          Make a selection of the distance in minutes for the locations that are relevant
+          to you
         </Typography>
+      </TypoGraphyContainer>
 
-        <Margin margin="12px 0 0 0" />
+      <Margin margin="55px 0 0 0" />
 
-        <TypoGraphyContainer>
-          <Typography variant="h6">
-            Make a selection of the distance in minutes for the locations that are
-            relevant to you
-          </Typography>
-        </TypoGraphyContainer>
+      <SurveyQuestions />
 
-        <Margin margin="55px 0 0 0" />
+      <Margin margin="32px 0 0 0" />
 
-        <SurveyQuestions />
-
-        <Margin margin="32px 0 0 0" />
-
-        <Link to="/map">
-          <Button variant="contained">Continue</Button>
-        </Link>
-      </Container>
+      <Link to="/map">
+        <Button variant="contained">Continue</Button>
+      </Link>
     </Box>
   );
 }
 
 const Box = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-`;
-
-const Container = styled.div`
-  padding: 30px 24px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 70px 24px;
 `;
 
 const TypoGraphyContainer = styled.div`
