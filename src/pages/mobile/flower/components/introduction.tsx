@@ -1,8 +1,7 @@
 import React from "react";
 import { Margin } from "@components/common";
-import { Box, Button, Typography } from "@mui/material";
-
-import "../flower.scss";
+import { Button, Typography } from "@mui/material";
+import styled from "styled-components";
 
 interface IntroductionProps {
   onClickContinue: () => void;
@@ -10,7 +9,7 @@ interface IntroductionProps {
 
 export default function Introduction(props: IntroductionProps) {
   return (
-    <Box className="flower-form-container">
+    <Box>
       <Typography variant="h3">
         The &apos;Proximity Flower&apos; helps map people&apos;s preferred city ammenities
         in relation to the distance to their homes
@@ -26,3 +25,12 @@ export default function Introduction(props: IntroductionProps) {
     </Box>
   );
 }
+
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 53px;
+  height: 100vh;
+`;

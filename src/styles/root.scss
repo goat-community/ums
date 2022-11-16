@@ -28,16 +28,3 @@ button {
 button:active {
   opacity: 0.9;
 }
-
-.left-animation {
-  animation: left-animation 0.3s;
-}
-
-@keyframes left-animation {
-  0% {
-    left: -$side-bar-width;
-  }
-  100% {
-    left: $side-bar-width;
-  }
-}

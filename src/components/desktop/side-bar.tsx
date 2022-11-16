@@ -1,7 +1,8 @@
-import React, { type CSSProperties, useState } from "react";
+import React, { useState } from "react";
 import * as D from "@constants/design";
 import Icon from "@images/icon.png";
 import MenuIcon from "@mui/icons-material/Menu";
+import styled from "styled-components";
 
 import { Drawer } from "./drawer";
 
@@ -12,14 +13,15 @@ export function SideBar() {
     setDrawerOpen((prevState) => !prevState);
   }
 
+  const menu_icon_style = { color: D.BLACK_COLOR, cursor: "pointer" };
   return (
     <>
-      <section style={styles.navigationContainer}>
-        <MenuIcon sx={styles.menuIcon} onClick={toggleDrawer} />
-        <button style={styles.buttonHug}>
+      <Section>
+        <MenuIcon sx={menu_icon_style} onClick={toggleDrawer} />
+        <Button>
           <img src={Icon} alt="icon" width="24" height="24" />
-        </button>
-      </section>
+        </Button>
+      </Section>
       <Drawer open={drawerOpen} toggleDrawer={toggleDrawer}>
         <p>whoops</p>
       </Drawer>
@@ -27,34 +29,29 @@ export function SideBar() {
   );
 }
 
-const styles: { [key: string]: CSSProperties } = {
-  navigationContainer: {
-    width: D.SIDE_BAR_WIDTH,
-    padding: "44px 0",
-    height: "100vh",
-    position: "fixed",
-    top: 0,
-    left: 0,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    zIndex: 2,
-    gap: "22px",
-    background:
-      "linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), #FFFBFE",
-  },
-  menuIcon: {
-    color: D.BLACK_COLOR,
-    cursor: "pointer",
-  },
-  buttonHug: {
-    border: "none",
-    width: 56,
-    height: 56,
-    backgroundColor: D.PRIMARY_COLOR,
-    borderRadius: 16,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-};
+const Section = styled.section`
+  width: ${D.SIDE_BAR_WIDTH}px;
+  padding: 44px 0;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  gap: 22px;
+  background: linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)),
+    #fffbfe;
+`;
+
+const Button = styled.button`
+  background-color: ${D.PRIMARY_COLOR};
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

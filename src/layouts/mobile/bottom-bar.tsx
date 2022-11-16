@@ -1,7 +1,8 @@
 /** Layout with bottom bar included */
-import React, { type CSSProperties } from "react";
+import React from "react";
 import { BottomBar } from "@components/mobile";
 import { BOTTOM_BAR_HEIGHT } from "@constants/design";
+import styled from "styled-components";
 
 interface BottomBarLayoutProps {
   children: React.ReactNode;
@@ -10,15 +11,13 @@ interface BottomBarLayoutProps {
 export function BottomBarLayout(props: BottomBarLayoutProps) {
   return (
     <>
-      <div style={styles.content}>{props.children}</div>
+      <Section>{props.children}</Section>
       <BottomBar />
     </>
   );
 }
 
-const styles: { [key: string]: CSSProperties } = {
-  content: {
-    marginBottom: BOTTOM_BAR_HEIGHT,
-    zIndex: 1,
-  },
-};
+const Section = styled.section`
+  margin-bottom: ${BOTTOM_BAR_HEIGHT}px;
+  z-index: 1;
+`;

@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "@images/logo.png";
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 
 import "./splash.scss";
 
@@ -11,6 +11,7 @@ export default function Splash() {
         <img src={logo} alt="logo" width="68" height="74" />
       </div>
       <Typography variant="h1">Where to be?</Typography>
+      <CircularProgress />
     </section>
   );
 }

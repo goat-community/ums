@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import { ErrorBoundary, NotifierWrapper } from "@components/common";
 import { store } from "@context";
-import { CircularProgress } from "@mui/material";
+import Splash from "@pages/mobile/splash/Splash";
 import { Palette } from "@styles/theme";
 
 import router from "./Router";
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Provider store={store}>
         <Palette>
           <NotifierWrapper />
-          <Suspense fallback={<CircularProgress />}>
+          <Suspense fallback={<Splash />}>
             <RouterProvider router={router} />
           </Suspense>
         </Palette>
