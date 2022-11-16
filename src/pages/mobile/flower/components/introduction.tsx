@@ -1,11 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Margin } from "@components/common";
 import { Box, Button, Typography } from "@mui/material";
 
 import "../flower.scss";
 
-export default function Introduction() {
+interface IntroductionProps {
+  onClickContinue: () => void;
+}
+
+export default function Introduction(props: IntroductionProps) {
   return (
     <Box className="flower-form-container">
       <Typography variant="h3">
@@ -17,9 +20,9 @@ export default function Introduction() {
         How does you flower look like?
       </Typography>
       <Margin margin="35px 0 0 0" />
-      <Link to="/map">
-        <Button variant="contained">Continue</Button>
-      </Link>
+      <Button variant="contained" onClick={props.onClickContinue}>
+        Continue
+      </Button>
     </Box>
   );
 }
