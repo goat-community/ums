@@ -67,6 +67,14 @@ export default defineConfig({
         find: "@images",
         replacement: path.resolve(__dirname, "src/images"),
       },
+      {
+        find: "@layouts",
+        replacement: path.resolve(__dirname, "src/layouts"),
+      },
+      {
+        find: "@constants",
+        replacement: path.resolve(__dirname, "src/constants"),
+      },
     ],
   },
 });

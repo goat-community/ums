@@ -1,6 +1,8 @@
 import * as Api from "@api/isochrones";
-import { networkStateHandler } from "@context/base/network";
+
 import { IsochroneParams } from "@types";
+
+import { networkStateHandler } from "@context/base/network";
 
 import { setIsochrone } from "./isochrones-reducer";
 

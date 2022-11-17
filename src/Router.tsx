@@ -2,27 +2,37 @@ import React, { lazy } from "react";
 /** Components */
 import { createBrowserRouter } from "react-router-dom";
 
+import Notfound from "@pages/common/404/404";
+
 let router: ReturnType<typeof createBrowserRouter>;
 // Mobile
 if (window.screen.width <= 780) {
-  const Splash = lazy(() => import("@pages/mobile/splash/Splash"));
   const Flower = lazy(() => import("@pages/mobile/flower/Flower"));
+  const Map = lazy(() => import("@pages/mobile/map/Map"));
   router = createBrowserRouter([
     {
       path: "/",
-      element: <Splash />,
+      element: <Flower />,
     },
     {
-      path: "/flower",
-      element: <Flower />,
+      path: "/map",
+      element: <Map />,
+    },
+    {
+      path: "*",
+      element: <Notfound />,
     },
   ]);
 } else {
-  // Desktop and bigger
+  const Map = lazy(() => import("@pages/desktop/map/Map"));
   router = createBrowserRouter([
     {
       path: "/",
-      element: <>{window.screen.width}</>,
+      element: <Map />,
+    },
+    {
+      path: "*",
+      element: <Notfound />,
     },
   ]);
 }

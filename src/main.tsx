@@ -2,10 +2,13 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-import { ErrorBoundary, NotifierWrapper } from "@components";
-import { store } from "@context";
-import { CircularProgress } from "@mui/material";
 import { Palette } from "@styles/theme";
+
+import { store } from "@context";
+
+import { ErrorBoundary, NotifierWrapper } from "@components/common";
+
+import Splash from "@pages/mobile/splash/Splash";
 
 import router from "./Router";
 
@@ -18,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Provider store={store}>
         <Palette>
           <NotifierWrapper />
-          <Suspense fallback={<CircularProgress />}>
+          <Suspense fallback={<Splash />}>
             <RouterProvider router={router} />
           </Suspense>
         </Palette>

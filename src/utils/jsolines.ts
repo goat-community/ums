@@ -3,6 +3,7 @@
  * Uses the Marching Squares algorithm, with code ported from
  * https://github.com/conveyal/r5/blob/master/src/main/java/com/conveyal/r5/analyst/IsochroneFeature.java
  * @author mattwigway
+ *
  */
 
 import inside from "@turf/boolean-point-in-polygon";
@@ -40,7 +41,7 @@ export default function jsolines({
   const found = new Uint8Array((width - 1) * (height - 1));
 
   // DEBUG, comment out to save memory
-  const indices: any[] = [];
+  const indices: number[] = [];
 
   // We'll sort out what shell goes with what hole in a bit.
   const shells: any[] = [];
