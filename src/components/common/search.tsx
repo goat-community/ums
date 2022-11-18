@@ -16,7 +16,6 @@ export function SearchInput() {
     borderRadius: "4px 4px 0 0",
     borderBottom: `1px solid ${D.THIRD_DARK_COLOR}`,
     backgroundColor: D.WHITE_COLOR,
-    marginTop: "17px",
     boxShadow: "none",
   };
   const input_base_style = {

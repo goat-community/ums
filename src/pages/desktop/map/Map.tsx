@@ -4,9 +4,12 @@ import { SideBarLayout } from "@layouts/desktop";
 
 import FakeMap from "@images/fakemapdesktop.png";
 
+import { Header } from "./components/header";
+
 export default function Map() {
   return (
     <SideBarLayout>
+      <Header />
       <img
         src={FakeMap}
         style={{
@@ -16,6 +19,7 @@ export default function Map() {
           bottom: 0,
           width: "100vw",
           position: "fixed",
+          zIndex: -1,
         }}
         alt="fakemap"
         draggable={false}

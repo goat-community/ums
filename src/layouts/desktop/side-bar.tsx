@@ -2,7 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { BOTTOM_BAR_HEIGHT } from "@constants/design";
+import { SIDE_BAR_WIDTH } from "@constants/design";
 
 import { SideBar } from "@components/desktop";
 
@@ -13,13 +13,13 @@ interface SidebarLayoutProps {
 export function SideBarLayout(props: SidebarLayoutProps) {
   return (
     <>
-      <Section>{props.children}</Section>
       <SideBar />
+      <Section>{props.children}</Section>
     </>
   );
 }
 
 const Section = styled.section`
-  margin-bottom: ${BOTTOM_BAR_HEIGHT}px;
+  margin-left: ${SIDE_BAR_WIDTH}px;
   z-index: 1;
 `;

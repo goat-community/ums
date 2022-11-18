@@ -2,13 +2,12 @@ import React from "react";
 
 import { Button, Stack, Typography } from "@mui/material";
 
-import { Margin } from "@components/common";
+import { Margin, SearchInput } from "@components/common";
 
 import Icon from "@images/icon.png";
 
 import { LayerSelector } from "./layer-selector";
 import { LocationSelector } from "./location-selector";
-import { SearchInput } from "./search";
 
 export function Header() {
   const icon_style = { marginTop: -2 };
