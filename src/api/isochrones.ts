@@ -3,7 +3,7 @@ import type { AxiosError } from "axios";
 
 import { instance } from "@utils";
 
-export function getIsochrone(data: IsochroneParams): Promise<string> | null {
+export function get_isochrone(data: IsochroneParams): Promise<string> | null {
   return instance
     .post("isochrones", data)
     .then((response) => response.data)
