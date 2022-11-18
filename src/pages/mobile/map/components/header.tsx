@@ -27,7 +27,8 @@ export function Header() {
       </Stack>
 
       {/** Search bar */}
-      <SearchInput />
+      <Margin margin="17px 0px 0px" />
+      <SearchInput variant="filled" />
 
       {/** Selector buttons */}
       <Margin margin="28px 0px 0px 0px" />

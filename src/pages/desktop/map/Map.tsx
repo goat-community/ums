@@ -4,11 +4,12 @@ import { SideBarLayout } from "@layouts/desktop";
 
 import FakeMap from "@images/fakemapdesktop.png";
 
+import { DrawerContent } from "./components/drawer_content";
 import { Header } from "./components/header";
 
 export default function Map() {
   return (
-    <SideBarLayout>
+    <SideBarLayout drawer_content={<DrawerContent />}>
       <Header />
       <img
         src={FakeMap}

@@ -7,7 +7,11 @@ import Paper from "@mui/material/Paper";
 
 import * as D from "@constants/design";
 
-export function SearchInput() {
+interface SearchInputProps {
+  variant: "filled" | "outlined";
+}
+
+export function SearchInput(props: SearchInputProps) {
   const paper_style = {
     height: 56,
     padding: "0 4px",
@@ -15,7 +19,7 @@ export function SearchInput() {
     alignItems: "center",
     borderRadius: "4px 4px 0 0",
     borderBottom: `1px solid ${D.THIRD_DARK_COLOR}`,
-    backgroundColor: D.WHITE_COLOR,
+    backgroundColor: props.variant === "outlined" ? "transparent" : D.WHITE_COLOR,
     boxShadow: "none",
   };
   const input_base_style = {

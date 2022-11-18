@@ -11,8 +11,8 @@ import * as D from "@constants/design";
 interface SelectorProps {
   label: string;
   value: string | number;
-  items: { label: string; value: number | string }[];
-  handleChange: (e: { target: { value: string | number } }) => void;
+  items: { label: string; value: SelectorProps["value"] }[];
+  handleChange: (e: { target: { value: SelectorProps["value"] } }) => void;
 }
 
 export function Selector(props: SelectorProps) {

@@ -8,12 +8,13 @@ import { SideBar } from "@components/desktop";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
+  drawer_content?: React.ReactNode;
 }
 
 export function SideBarLayout(props: SidebarLayoutProps) {
   return (
     <>
-      <SideBar />
+      <SideBar>{props.drawer_content}</SideBar>
       <Section>{props.children}</Section>
     </>
   );
