@@ -10,7 +10,7 @@ import { ErrorBoundary, NotifierWrapper } from "@components/common";
 
 import Splash from "@pages/mobile/splash/Splash";
 
-import "./i18n/index";
+import "@i18n";
 
 import router from "./Router";
 
