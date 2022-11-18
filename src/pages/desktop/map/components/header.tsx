@@ -9,7 +9,7 @@ export function Header() {
     <Stack width={350} padding="53px 39px 0">
       <Typography variant="h1">Where to be?</Typography>
       <Margin margin="30px 0 0" />
-      <SearchInput />
+      <SearchInput variant="filled" />
     </Stack>
   );
 }
