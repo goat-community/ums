@@ -1,14 +1,8 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-type NotifierState = "info" | "success" | "warning" | "error";
-
 /** Reducer */
 const initialState = {
-  msg: "",
-  type: "info",
-} as {
-  msg: string;
-  type: NotifierState;
+  msg: "" as string,
 };
 
 export const notifier = createSlice({
@@ -20,11 +14,9 @@ export const notifier = createSlice({
       action: PayloadAction<typeof initialState>
     ) => {
       state.msg = action.payload.msg;
-      state.type = action.payload.type;
     },
     resetNotify: (state: typeof initialState) => {
       state.msg = initialState.msg;
-      state.type = initialState.type;
     },
   },
 });
@@ -33,15 +25,14 @@ export const { setNotify, resetNotify } = notifier.actions;
 export default notifier.reducer;
 
 /** Actions  */
-//  This HOF will handle network state changes
-const NOTIFY_DISAPPEAR_TIME = 4000;
-export function notify(msg: string, type: NotifierState) {
+export function notify(msg: string) {
   return (dispatch: CallableFunction) => {
-    dispatch(setNotify({ msg, type }));
+    dispatch(setNotify({ msg }));
+  };
+}
 
-    setTimeout(() => {
-      // reset the notify state
-      dispatch(resetNotify());
-    }, NOTIFY_DISAPPEAR_TIME);
+export function close_notify() {
+  return (dispatch: CallableFunction) => {
+    dispatch(resetNotify());
   };
 }

@@ -4,8 +4,8 @@ import { Stack, Typography } from "@mui/material";
 
 import { Margin, SearchInput } from "@components/common";
 
-import { FlowerModifier } from "./flower_modifier";
-import { PersonalScore } from "./pesonal_score";
+import { FlowerModifier } from "./flower-modifier";
+import { PersonalScore } from "./pesonal-score";
 
 export function DrawerContent() {
   return (
