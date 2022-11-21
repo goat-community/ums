@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const get_all_translations = () => {
+export function get_all_translations() {
   const languages = ["en", "de"];
   const messages = {};
   languages.forEach((language) => {
