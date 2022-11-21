@@ -19,14 +19,14 @@ export function Header() {
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography variant="h1">Where to be?</Typography>
 
-        <Button variant="contained">
-          <img src={Icon} width="18" height="18" alt="icon" style={icon_style} />
-          <Link to="/profile">
+        <Link to="/profile">
+          <Button variant="contained">
+            <img src={Icon} width="18" height="18" alt="icon" style={icon_style} />
             <Typography variant="h6" ml={1}>
               My Profile
             </Typography>
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </Stack>
 
       {/** Search bar */}

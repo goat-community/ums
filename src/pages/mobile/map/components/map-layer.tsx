@@ -8,6 +8,8 @@ import { pick_point } from "@context/map";
 import FakeMapImage from "@images/fakemap.png";
 import FakePickedMapImage from "@images/fakepickedmap.jpg";
 
+import { FlowerModifier } from "./flower-modifier";
+
 export function MapLayer() {
   const dispatch = useAppDispatch();
   const map_selector = useAppSelector((state) => state.map);
@@ -15,13 +17,23 @@ export function MapLayer() {
   // Picked stat
   if (map_selector.picked_point) {
     return (
-      <img
-        src={FakePickedMapImage}
-        alt="fake map"
-        width="100%"
-        height="100%"
-        style={{ zIndex: -1, position: "absolute", top: 0, bottom: 0, right: 0, left: 0 }}
-      />
+      <>
+        <img
+          src={FakePickedMapImage}
+          alt="fake map"
+          width="100%"
+          height="100%"
+          style={{
+            zIndex: -1,
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 0,
+          }}
+        />
+        <FlowerModifier />
+      </>
     );
   }
 

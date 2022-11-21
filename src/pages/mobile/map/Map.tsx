@@ -11,11 +11,11 @@ import { MapLayer } from "./components/map-layer";
 export default function Map() {
   return (
     <BottomBarLayout>
-      <MapLayer />
       <Container sx={{ position: "fixed", top: 20 }}>
         <Header />
         <FloatingFlower />
       </Container>
+      <MapLayer />
     </BottomBarLayout>
   );
 }
