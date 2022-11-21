@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { Button, Stack, Typography } from "@mui/material";
 
@@ -20,9 +21,11 @@ export function Header() {
 
         <Button variant="contained">
           <img src={Icon} width="18" height="18" alt="icon" style={icon_style} />
-          <Typography variant="h6" ml={1}>
-            My Profile
-          </Typography>
+          <Link to="/profile">
+            <Typography variant="h6" ml={1}>
+              My Profile
+            </Typography>
+          </Link>
         </Button>
       </Stack>
 
