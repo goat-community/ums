@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Selector } from "@components/mobile";
 
 export function LayerSelector() {
-  const [location, setLocation] = useState<string | number>();
+  const [location, setLocation] = useState<string | number>("");
 
   return (
     <Selector
