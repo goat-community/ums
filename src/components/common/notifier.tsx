@@ -14,9 +14,9 @@ export function NotifierWrapper() {
 
   const snack_bar_style = {
     bottom: { xs: D.BOTTOM_BAR_HEIGHT + 20, sm: 0 },
-    maxWidth: "80%",
+    maxWidth: "75%",
   };
-  const button_style = { color: "#D0BCFF" };
+  const button_style = { color: "#D0BCFF", minWidth: "auto" };
 
   function close_notification() {
     dispatch(close_notify());
