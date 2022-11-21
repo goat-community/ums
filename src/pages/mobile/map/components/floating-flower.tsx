@@ -1,13 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
+import { useAppDispatch } from "@hooks/context";
+
+import { notify } from "@context/base/notifier";
+
 import * as D from "@constants/design";
 
 import PurpleIcon from "@images/purple_icon.png";
 
 export function FloatingFlower() {
+  const dispatch = useAppDispatch();
+
   return (
-    <Button>
+    <Button onClick={() => dispatch(notify("Tap a location on the map"))}>
       <img src={PurpleIcon} alt="icon" width="24" height="24" />
     </Button>
   );
