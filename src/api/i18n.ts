@@ -15,4 +15,4 @@ export function get_all_translations() {
       });
   });
   return messages;
-};
+}
