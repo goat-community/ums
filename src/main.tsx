@@ -8,7 +8,7 @@ import { store } from "@context";
 
 import { ErrorBoundary, NotifierWrapper } from "@components/common";
 
-import Splash from "@pages/mobile/splash/Splash";
+import Splash from "@pages/common/splash";
 
 import router from "./Router";
 

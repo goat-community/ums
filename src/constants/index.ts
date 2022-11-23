@@ -9,7 +9,8 @@ export type PageKey = keyof typeof PAGES;
  * Map
  */
 
-export const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
+export const MAPBOX_TOKEN =
+  "pk.eyJ1IjoibWFqa3Noa3VydGkiLCJhIjoiY2w5YWpqM3ZlMGE2ZDQ1bGVqaG9tNzJnayJ9._IU92hy-v_e4vckpDNFyAQ";
 export const DEFAULT_ZOOM = 16;
 export const DEFAULT_LATITUDE = 48.1351;
 export const DEFAULT_LONGITUDE = 11.582;

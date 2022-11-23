@@ -44,7 +44,9 @@ export default function jsolines({
   const indices: number[] = [];
 
   // We'll sort out what shell goes with what hole in a bit.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const shells: any[] = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const holes: any[] = [];
 
   // Find a cell that has a line in it, then follow that line, keeping filled

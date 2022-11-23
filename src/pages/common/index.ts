@@ -1,1 +1,2 @@
-export * from "./404/404";
+export * from "./404";
+export * from "./splash";
