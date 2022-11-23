@@ -2,6 +2,8 @@ import React from "react";
 
 import { createTheme, ThemeProvider } from "@mui/material";
 
+import * as D from "@constants/design";
+
 interface PaletteProps {
   children: React.ReactNode;
 }
@@ -54,6 +56,23 @@ const theme = createTheme({
             minWidth: 105,
             minHeight: 40,
             boxShadow: "none",
+          }),
+        }),
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.color == "default" && {
+            backgroundColor: D.WHITE_COLOR,
+            borderRadius: "8px",
+            boxShadow:
+              "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
+          }),
+          ...(ownerState.color == "primary" && {
+            borderRadius: "8px",
+            boxShadow:
+              "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
           }),
         }),
       },

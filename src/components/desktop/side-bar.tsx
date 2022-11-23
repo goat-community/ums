@@ -9,14 +9,16 @@ import Icon from "@images/icon.png";
 
 import { Drawer } from "./drawer";
 
-export function SideBar() {
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+interface SideBarProps {
+  children?: React.ReactNode;
+}
 
+export function SideBar(props: SideBarProps) {
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const menu_icon_style = { color: D.BLACK_COLOR, cursor: "pointer" };
   function toggleDrawer() {
     setDrawerOpen((prevState) => !prevState);
   }
-
-  const menu_icon_style = { color: D.BLACK_COLOR, cursor: "pointer" };
   return (
     <>
       <Section>
@@ -26,7 +28,7 @@ export function SideBar() {
         </Button>
       </Section>
       <Drawer open={drawerOpen} toggleDrawer={toggleDrawer}>
-        <p>whoops</p>
+        {props.children || <></>}
       </Drawer>
     </>
   );

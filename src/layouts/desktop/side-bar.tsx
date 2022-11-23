@@ -2,24 +2,25 @@
 import React from "react";
 import styled from "styled-components";
 
-import { BOTTOM_BAR_HEIGHT } from "@constants/design";
+import { SIDE_BAR_WIDTH } from "@constants/design";
 
 import { SideBar } from "@components/desktop";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
+  drawer_content?: React.ReactNode;
 }
 
 export function SideBarLayout(props: SidebarLayoutProps) {
   return (
     <>
+      <SideBar>{props.drawer_content}</SideBar>
       <Section>{props.children}</Section>
-      <SideBar />
     </>
   );
 }
 
 const Section = styled.section`
-  margin-bottom: ${BOTTOM_BAR_HEIGHT}px;
+  margin-left: ${SIDE_BAR_WIDTH}px;
   z-index: 1;
 `;

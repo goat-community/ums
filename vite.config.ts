@@ -75,6 +75,10 @@ export default defineConfig({
         find: "@constants",
         replacement: path.resolve(__dirname, "src/constants"),
       },
+      {
+        find: "@i18n",
+        replacement: path.resolve(__dirname, "src/i18n"),
+      },
     ],
   },
 });

@@ -10,7 +10,7 @@ export function getIsochrone(isochrone: IsochroneParams) {
   return (dispatch: CallableFunction) =>
     dispatch(
       networkStateHandler(async () => {
-        const response = await Api.getIsochrone(isochrone);
+        const response = await Api.get_isochrone(isochrone);
         if (response) {
           dispatch(setIsochrone(response));
         }

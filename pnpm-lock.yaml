@@ -30,6 +30,7 @@ specifiers:
   eslint-plugin-react: ^7.31.10
   eslint-plugin-simple-import-sort: ^8.0.0
   husky: ^8.0.1
+  i18next: ^22.0.5
   lint-staged: ^13.0.3
   localforage: ^1.10.0
   mapbox-gl: ^2.10.0
@@ -37,6 +38,7 @@ specifiers:
   prettier: 2.7.1
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-i18next: ^12.0.0
   react-map-gl: ^7.0.19
   react-redux: ^8.0.4
   react-router-dom: ^6.4.2
@@ -60,14 +62,16 @@ dependencies:
   "@types/mapbox__mapbox-gl-geocoder": 4.7.3
   "@types/styled-components": 5.1.26
   axios: 1.1.3
+  i18next: 22.0.6
   localforage: 1.10.0
   mapbox-gl: 2.10.0
   match-sorter: 6.3.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-map-gl: 7.0.19_mapbox-gl@2.10.0+react@18.2.0
-  react-redux: 8.0.4_ed28c0204bb8461c8200289612f9802f
-  react-router-dom: 6.4.2_react-dom@18.2.0+react@18.2.0
+  react-i18next: 12.0.0_nger6pvrp5hnzeykouhwqmsdti
+  react-map-gl: 7.0.19_6nlej2sgzao4w63iqaban4rulm
+  react-redux: 8.0.4_yfr4m6wk75wdra335rld4tkrbu
+  react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
   sort-by: 0.0.2
   styled-components: 5.3.6_react-dom@18.2.0+react@18.2.0
 
@@ -492,8 +496,8 @@ packages:
     dependencies:
       "@babel/types": 7.19.4
 
-  /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/7.18.6_@babel+core@7.19.3:
-    resolution:
+  ? /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/7.18.6_@babel+core@7.19.3
+  : resolution:
       {
         integrity: sha512-Dgxsyg54Fx1d4Nge8UnvTrED63vrwOdPmyvPzlNN/boaliRP54pm3pGzZD1SJUwrBA+Cs/xdG8kXX6Mn/RfISQ==,
       }
@@ -505,8 +509,8 @@ packages:
       "@babel/helper-plugin-utils": 7.19.0
     dev: true
 
-  /@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/7.18.9_@babel+core@7.19.3:
-    resolution:
+  ? /@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/7.18.9_@babel+core@7.19.3
+  : resolution:
       {
         integrity: sha512-AHrP9jadvH7qlOj6PINbgSuphjQUAK7AOT7DPjBo9EHoLhQTnnK5u45e1Hd4DbSQEO9nqPWtQ89r+XEOWFScKg==,
       }
@@ -613,8 +617,8 @@ packages:
       "@babel/plugin-syntax-json-strings": 7.8.3_@babel+core@7.19.3
     dev: true
 
-  /@babel/plugin-proposal-logical-assignment-operators/7.18.9_@babel+core@7.19.3:
-    resolution:
+  ? /@babel/plugin-proposal-logical-assignment-operators/7.18.9_@babel+core@7.19.3
+  : resolution:
       {
         integrity: sha512-128YbMpjCrP35IOExw2Fq+x55LMP42DzhOhX2aNNIdI9avSWl2PI0yuBWarr3RYpZBSPtabfadkH2yeRiMD61Q==,
       }
@@ -1215,8 +1219,8 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/plugin-transform-named-capturing-groups-regex/7.19.1_@babel+core@7.19.3:
-    resolution:
+  ? /@babel/plugin-transform-named-capturing-groups-regex/7.19.1_@babel+core@7.19.3
+  : resolution:
       {
         integrity: sha512-oWk9l9WItWBQYS4FgXD4Uyy5kq898lvkXpXQxoJEY1RnvPk4R/Dvu2ebXU9q8lP+rlMwUQTFf2Ok6d78ODa0kw==,
       }
@@ -5346,22 +5350,13 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
-  /http-cache-semantics/4.1.0:
+  /html-parse-stringify/3.0.1:
     resolution:
       {
-        integrity: sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==,
+        integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==,
       }
-    dev: false
-
-  /http2-wrapper/1.0.3:
-    resolution:
-      {
-        integrity: sha512-V+23sDMr12Wnz7iTcDeJr3O6AIxlnvT/bmaAAAP/Xda35C90p9599p0F1eHR/N1KILWSoWVAiOMFjBBXaXSMxg==,
-      }
-    engines: { node: ">=10.19.0" }
     dependencies:
-      quick-lru: 5.1.1
-      resolve-alpn: 1.2.1
+      void-elements: 3.1.0
     dev: false
 
   /human-signals/2.1.0:
@@ -5388,6 +5383,15 @@ packages:
     engines: { node: ">=14" }
     hasBin: true
     dev: true
+
+  /i18next/22.0.6:
+    resolution:
+      {
+        integrity: sha512-RlreNGoPIdDP4QG+qSA9PxZKGwlzmcozbI9ObI6+OyUa/Rp0EjZZA9ubyBjw887zVNZsC+7FI3sXX8oiTzAfig==,
+      }
+    dependencies:
+      "@babel/runtime": 7.19.4
+    dev: false
 
   /idb/7.1.0:
     resolution:
@@ -6894,6 +6898,29 @@ packages:
       scheduler: 0.23.0
     dev: false
 
+  /react-i18next/12.0.0_nger6pvrp5hnzeykouhwqmsdti:
+    resolution:
+      {
+        integrity: sha512-/O7N6aIEAl1FaWZBNvhdIo9itvF/MO/nRKr9pYqRc9LhuC1u21SlfwpiYQqvaeNSEW3g3qUXLREOWMt+gxrWbg==,
+      }
+    peerDependencies:
+      i18next: ">= 19.0.0"
+      react: ">= 16.8.0"
+      react-dom: "*"
+      react-native: "*"
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      "@babel/runtime": 7.19.4
+      html-parse-stringify: 3.0.1
+      i18next: 22.0.6
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /react-is/16.13.1:
     resolution:
       {
@@ -8325,6 +8352,14 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /void-elements/3.1.0:
+    resolution:
+      {
+        integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==,
+      }
+    engines: { node: ">=0.10.0" }
+    dev: false
 
   /vt-pbf/3.1.3:
     resolution:

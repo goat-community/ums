@@ -9,6 +9,9 @@ let router: ReturnType<typeof createBrowserRouter>;
 if (window.screen.width <= 780) {
   const Flower = lazy(() => import("@pages/mobile/flower/Flower"));
   const Map = lazy(() => import("@pages/mobile/map/Map"));
+  const Profile = lazy(() => import("@pages/mobile/profile/Profile"));
+  const Insights = lazy(() => import("@pages/mobile/insights/Insights"));
+
   router = createBrowserRouter([
     {
       path: "/",
@@ -17,6 +20,14 @@ if (window.screen.width <= 780) {
     {
       path: "/map",
       element: <Map />,
+    },
+    {
+      path: "/profile",
+      element: <Profile />,
+    },
+    {
+      path: "/insights",
+      element: <Insights />,
     },
     {
       path: "*",

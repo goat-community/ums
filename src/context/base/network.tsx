@@ -43,7 +43,7 @@ export function networkStateHandler(req: CallableFunction) {
         })
       );
       // notify error message
-      dispatch(notify("Error occured!", "error"));
+      dispatch(notify("Error occured!"));
     }
   };
 }

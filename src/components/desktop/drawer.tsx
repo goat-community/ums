@@ -33,7 +33,6 @@ const Section = styled.section`
   top: 0;
   z-index: 1;
   height: 100vh;
-  padding: 44px 0;
   position: absolute;
   display: flex;
   flex-direction: column;
