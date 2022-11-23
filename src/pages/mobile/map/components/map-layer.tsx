@@ -18,20 +18,20 @@ export function MapLayer() {
   if (map_selector.picked_point) {
     return (
       <>
-        <img
-          src={FakePickedMapImage}
-          alt="fake map"
-          width="100%"
-          height="100%"
+        <div
           style={{
+            backgroundImage: `url(${FakePickedMapImage})`,
             zIndex: -1,
-            position: "absolute",
+            position: "fixed",
             top: 0,
             bottom: 0,
             right: 0,
             left: 0,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100% 100%",
+            backgroundPosition: "center",
           }}
-        />
+        ></div>
         <FlowerModifier />
       </>
     );
@@ -40,25 +40,39 @@ export function MapLayer() {
   // Picking state
   if (map_selector.picking_mode === true) {
     return (
-      <img
-        src={FakeMapImage}
-        alt="fake map"
-        width="100%"
-        height="100%"
+      <div
         onClick={() => dispatch(pick_point({ lat: 1, lng: 1 }))}
-        style={{ zIndex: -1, position: "absolute", top: 0, bottom: 0, right: 0, left: 0 }}
-      />
+        style={{
+          backgroundImage: `url(${FakeMapImage})`,
+          zIndex: -1,
+          position: "fixed",
+          top: 0,
+          bottom: 0,
+          right: 0,
+          left: 0,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
+          backgroundPosition: "center",
+        }}
+      ></div>
     );
   }
 
   // NOT PICKED ANY POINTS
   return (
-    <img
-      src={FakeMapImage}
-      alt="fake map"
-      width="100%"
-      height="100%"
-      style={{ zIndex: -1, position: "absolute", top: 0, bottom: 0, right: 0, left: 0 }}
-    />
+    <div
+      style={{
+        backgroundImage: `url(${FakeMapImage})`,
+        zIndex: -1,
+        position: "fixed",
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100% 100%",
+        backgroundPosition: "center",
+      }}
+    ></div>
   );
 }

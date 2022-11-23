@@ -9,10 +9,10 @@ export function LocationSelector() {
     <Selector
       label="Locations"
       items={[
-        { label: "Germany", value: "Germany" },
-        { label: "Albania", value: "Albania" },
-        { label: "Turkey", value: "Turkey" },
-        { label: "United states", value: "United states" },
+        { label: "Commerce", value: "Commerce" },
+        { label: "Food & Drink", value: "Food & Drink" },
+        { label: "Education", value: "Education" },
+        { label: "Health", value: "Health" },
       ]}
       value={location}
       handleChange={(e) => setLocation(e.target.value)}
