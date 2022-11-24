@@ -79,6 +79,10 @@ export default defineConfig({
         find: "@i18n",
         replacement: path.resolve(__dirname, "src/i18n"),
       },
+      {
+        find: "@containers",
+        replacement: path.resolve(__dirname, "src/containers"),
+      },
     ],
   },
 });

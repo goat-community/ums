@@ -1,6 +1,5 @@
 import React from "react";
-
-import MapComponent from "@components/common/map";
+import { MapContainer } from "@containers/map/map-container";
 
 // import { SideBarLayout } from "@layouts/desktop";
 // import { DrawerContent } from "./components/drawer-content";
@@ -10,6 +9,6 @@ export default function Map() {
   return (
     // <SideBarLayout>
     // </SideBarLayout>
-    <MapComponent />
+    <MapContainer />
   );
 }
