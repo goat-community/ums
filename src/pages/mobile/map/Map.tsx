@@ -5,12 +5,12 @@ import { MapContainer } from "@containers/map/map-container";
 import { BottomBarLayout } from "@layouts/mobile";
 
 import { FloatingFlower } from "./components/floating-flower";
-import { Header } from "./components/header";
+import { MapHeader } from "./components/header";
 
 export default function Map() {
   return (
     <BottomBarLayout>
-      <Header />
+      <MapHeader />
       <FloatingFlower />
       <MapContainer />
     </BottomBarLayout>

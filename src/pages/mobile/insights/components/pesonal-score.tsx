@@ -22,7 +22,6 @@ export function PersonalScore() {
 }
 
 const Section = styled.section`
-  background-color: red;
   margin-top: 28px;
   padding: 31px 23px;
   background: linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)),
