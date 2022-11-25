@@ -2,13 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Button, FormControlLabel, Radio, Stack, Typography } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {
+  Button,
+  FormControlLabel,
+  IconButton,
+  Radio,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import * as D from "@constants/design";
 
 import { Margin } from "@components/common";
 
 import Flower from "@images/flower.png";
+
+interface SurveyProps {
+  onClickBack: () => void;
+}
 
 const SURVEY_OPTIONS = [5, 15, 30];
 const SURVEY_QUESTIONS = [
@@ -21,7 +33,7 @@ const SURVEY_QUESTIONS = [
   "Place of worship",
 ];
 
-export default function Survey() {
+export default function Survey(props: SurveyProps) {
   const form_control_label_style = {
     padding: 0,
     margin: 0,
@@ -78,34 +90,41 @@ export default function Survey() {
   }
 
   return (
-    <Box>
-      <img src={Flower} width="160" height="133" alt="flower" />
+    <>
+      <IconButton onClick={props.onClickBack}>
+        <ArrowBackIcon sx={{ padding: 1 }} />
+      </IconButton>
+      <Box>
+        <img src={Flower} width="130" height="110" alt="flower" />
 
-      <Margin margin="30px 0 0 0" />
+        <Margin margin="30px 0 0 0" />
 
-      <Typography variant="h3" sx={{ color: D.LIGHT_GREEN }}>
-        ENTERTAINMENT
-      </Typography>
-
-      <Margin margin="12px 0 0 0" />
-
-      <TypoGraphyContainer>
-        <Typography variant="h6">
-          Make a selection of the distance in minutes for the locations that are relevant
-          to you
+        <Typography variant="h3" sx={{ color: D.LIGHT_GREEN }}>
+          ENTERTAINMENT
         </Typography>
-      </TypoGraphyContainer>
 
-      <Margin margin="55px 0 0 0" />
+        <Margin margin="12px 0 0 0" />
 
-      <SurveyQuestions />
+        <TypoGraphyContainer>
+          <Typography variant="h6">
+            Make a selection of the distance in minutes for the locations that are
+            relevant to you
+          </Typography>
+        </TypoGraphyContainer>
 
-      <Margin margin="32px 0 0 0" />
+        <Margin margin="55px 0 0 0" />
 
-      <Link to="/map">
-        <Button variant="contained">Continue</Button>
-      </Link>
-    </Box>
+        <SurveyQuestions />
+
+        <Margin margin="32px 0 0 0" />
+
+        <Link to="/">
+          <Button variant="contained" sx={{ width: "90vw" }}>
+            Continue
+          </Button>
+        </Link>
+      </Box>
+    </>
   );
 }
 
@@ -114,7 +133,12 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 70px 24px;
+  padding: 20px 24px;
+  position: fixed;
+  top: 40px;
+  bottom: 0;
+  right: 0;
+  left: 0;
 `;
 
 const TypoGraphyContainer = styled.div`
