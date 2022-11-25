@@ -27,9 +27,9 @@ export function BottomBar() {
 
   const navigation_items = [
     {
-      path: "/map",
+      path: "/",
       name: "Map",
-      icon: <FmdGoodIcon sx={location === "/map" ? icon_style_active : icon_style} />,
+      icon: <FmdGoodIcon sx={location === "/" ? icon_style_active : icon_style} />,
     },
     {
       path: "/insights",

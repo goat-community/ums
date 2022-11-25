@@ -15,11 +15,11 @@ if (window.screen.width <= 780) {
   router = createBrowserRouter([
     {
       path: "/",
-      element: <Flower />,
+      element: <Map />,
     },
     {
-      path: "/map",
-      element: <Map />,
+      path: "/flower",
+      element: <Flower />,
     },
     {
       path: "/profile",
