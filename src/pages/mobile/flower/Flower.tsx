@@ -7,7 +7,7 @@ export default function Flower() {
   const [pageIndex, setPageIndex] = useState<0 | 1>(0);
   const pages = [
     <Introduction key={"introduction"} onClickContinue={() => setPageIndex(1)} />,
-    <Survey key="survey" />,
+    <Survey key="survey" onClickBack={() => setPageIndex(0)} />,
   ];
 
   return pages[pageIndex];

@@ -23,23 +23,30 @@ export function FlowerModifier() {
     paddingBottom: "30px",
     paddingRight: "30px",
   };
-  const typography_style = { fontSize: "11px", width: 130 };
+  const typography_style = { fontSize: "11px" };
 
   return (
     <Section>
-      <Stack direction="row" maxWidth={250} alignItems="center">
+      <Stack direction="row" maxWidth={250} alignItems="center" spacing={3}>
         <Typography variant="h6" sx={typography_style}>
           Distance (min.)
         </Typography>
         <Slider defaultValue={5} max={15} valueLabelDisplay="auto" />
       </Stack>
-      <SegmentedSection>
-        {["walking", "running", "driving"].map((i) => (
-          <SegementedButton key={i} active={mode === i} onClick={() => setMode(i)}>
-            <Typography variant="h6">{i}</Typography>
-          </SegementedButton>
-        ))}
-      </SegmentedSection>
+
+      <Stack direction="row" alignItems="center" spacing={3} maxWidth={300}>
+        <Typography variant="h6" sx={typography_style}>
+          Modality
+        </Typography>
+        <SegmentedSection>
+          {["walking", "running", "driving"].map((i) => (
+            <SegementedButton key={i} active={mode === i} onClick={() => setMode(i)}>
+              <Typography variant="h6">{i}</Typography>
+            </SegementedButton>
+          ))}
+        </SegmentedSection>
+      </Stack>
+
       <Stack
         direction="row"
         width={"90vw"}
@@ -72,12 +79,12 @@ const Section = styled.section`
 `;
 
 const SegmentedSection = styled.section`
-  border-radius: 12px;
+  border-radius: 50px;
   background-color: ${D.LIGHT_PRIMARY};
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 75%;
+  width: 100%;
   height: 28px;
 `;
 
@@ -91,12 +98,12 @@ const SegementedButton = styled.button<{ active: boolean }>`
   background-color: ${(props) => (props.active ? D.LIGHT_PRIMARY : D.WHITE_COLOR)};
 
   &:nth-child(1) {
-    border-radius: 12px 0 0 12px;
+    border-radius: 50px 0 0 50px;
     border-right: none;
   }
 
   &:nth-child(3) {
-    border-radius: 0 12px 12px 0;
+    border-radius: 0 50px 50px 0;
     border-left: none;
   }
 `;

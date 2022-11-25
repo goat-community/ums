@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Button, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 
 import { Margin } from "@components/common";
 
@@ -21,9 +22,21 @@ export default function Introduction(props: IntroductionProps) {
         How does you flower look like?
       </Typography>
       <Margin margin="35px 0 0 0" />
-      <Button variant="contained" onClick={props.onClickContinue}>
-        Continue
-      </Button>
+      <Stack
+        justifyContent="space-between"
+        alignItems="center"
+        direction="row"
+        spacing={3}
+      >
+        <Link to="/">
+          <Button variant="outlined" onClick={props.onClickContinue}>
+            Go back
+          </Button>
+        </Link>
+        <Button variant="contained" onClick={props.onClickContinue}>
+          Create Flower
+        </Button>
+      </Stack>
     </Box>
   );
 }

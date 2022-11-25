@@ -11,25 +11,11 @@ import * as D from "@constants/design";
 export function BottomBar() {
   const location = useLocation().pathname;
 
-  /** Inlince styles of buttons */
-  const icon_style = {
-    fontSize: "24px",
-    marginBottom: "8px",
-    color: "currentColor",
-  };
-  const icon_style_active = {
-    color: D.PRIMARY_COLOR,
-    backgroundColor: D.HOVER_COLOR,
-    width: "64px",
-    padding: "4px 0",
-    borderRadius: "16px",
-  };
-
   const navigation_items = [
     {
-      path: "/map",
+      path: "/",
       name: "Map",
-      icon: <FmdGoodIcon sx={location === "/map" ? icon_style_active : icon_style} />,
+      icon: <FmdGoodIcon sx={location === "/" ? icon_style_active : icon_style} />,
     },
     {
       path: "/insights",
@@ -80,4 +66,22 @@ const NavigationItem = styled.div`
   justify-content: center;
   text-decoration: none;
   color: ${D.BLACK_COLOR};
+  width: 64px;
+  padding: 4px 0;
 `;
+
+/** Inlince styles of buttons */
+const icon_style = {
+  fontSize: "24px",
+  color: "currentColor",
+  width: "64px",
+  padding: "4px 0",
+};
+
+const icon_style_active = {
+  color: D.PRIMARY_COLOR,
+  backgroundColor: D.HOVER_COLOR,
+  width: "64px",
+  padding: "4px 0",
+  borderRadius: "16px",
+};
