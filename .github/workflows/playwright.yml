@@ -35,7 +35,7 @@ jobs:
       - name: Install packages
         run: pnpm i
       - name: Install Playwright
-        run: npx playwright@1.27.1 install --with-deps
+        run: npx playwright@1.28.1 install --with-deps
       - name: Run tests
         run: pnpm dlx playwright test
         env:
