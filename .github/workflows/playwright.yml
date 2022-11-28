@@ -33,7 +33,7 @@ jobs:
         with:
           version: 7.17.1
       - name: Install packages
-        run: pnpm i
+        run: pnpm install --no-frozen-lockfile
       - name: Install Playwright
         run: npx playwright@1.28.1 install --with-deps
       - name: Run tests
