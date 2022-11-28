@@ -9,6 +9,7 @@ import * as D from "@constants/design";
 import { SearchInput } from "@components/common";
 
 import Icon from "@images/icon.png";
+import Logo from "@images/m4c.png";
 
 export function Header() {
   const icon_style = { marginTop: -2 };
@@ -22,7 +23,8 @@ export function Header() {
         alignItems="center"
         padding="24px 10px 18px"
       >
-        <Typography variant="h1">Where to be?</Typography>
+        {/* <Typography variant="h1">Where to be?</Typography> */}
+        <img src={Logo} width="50%" height="auto" alt="logo" />
 
         <Link to="/profile">
           <Button variant="contained">
