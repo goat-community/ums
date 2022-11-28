@@ -30,6 +30,8 @@ jobs:
           node-version: "lts/*"
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7.17.1
       - name: Install packages
         run: pnpm i
       - name: Install Playwright
