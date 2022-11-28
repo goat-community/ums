@@ -1,29 +1,42 @@
 name: Playwright Tests
 on:
-  push:
-    branches: [main, master]
   pull_request:
-    branches: [main, master]
+    branches:
+      - master
+
 jobs:
-  test:
-    timeout-minutes: 60
+  test_setup:
+    name: Test setup
+    runs-on: ubuntu-latest
+    outputs:
+      preview_url: ${{ steps.waitForVercelPreviewDeployment.outputs.url }}
+    steps:
+      - name: Wait for Vercel preview deployment to be ready
+        uses: patrickedqvist/wait-for-vercel-preview@master
+        id: waitForVercelPreviewDeployment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 300
+  test_e2e:
+    needs: test_setup
+    name: Playwright tests
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 6.32.9
-      - uses: actions/setup-node@v3
+      - name: Prepare testing env
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: "lts/*"
           cache: "pnpm"
-      - run: pnpm i
-      - name: Install Playwright Browsers
+      - name: Install packages
+        run: pnpm i
+      - name: Install Playwright
         run: npx playwright install --with-deps
-      - name: Run the react app
-        run: pnpm dev
-      - name: Run Playwright tests
+      - name: Run tests
         run: pnpm dlx playwright test
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: ${{ needs.test_setup.outputs.preview_url }}
       - uses: actions/upload-artifact@v3
         if: always()
         with:
