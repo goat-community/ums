@@ -12,7 +12,7 @@ specifiers:
   "@mapbox/mapbox-gl-geocoder": ^5.0.1
   "@mui/icons-material": ^5.10.9
   "@mui/material": ^5.10.9
-  "@playwright/test": ^1.27.1
+  "@playwright/test": ^1.28.1
   "@reduxjs/toolkit": ^1.8.6
   "@turf/boolean-point-in-polygon": ^6.5.0
   "@turf/helpers": ^6.5.0
@@ -79,7 +79,7 @@ devDependencies:
   "@babel/core": 7.19.3
   "@commitlint/cli": 17.1.2
   "@commitlint/config-conventional": 17.1.0
-  "@playwright/test": 1.27.1
+  "@playwright/test": 1.28.1
   "@types/react": 18.0.21
   "@types/react-dom": 18.0.6
   "@typescript-eslint/eslint-plugin": 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
@@ -2548,16 +2548,16 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@playwright/test/1.27.1:
+  /@playwright/test/1.28.1:
     resolution:
       {
-        integrity: sha512-mrL2q0an/7tVqniQQF6RBL2saskjljXzqNcCOVMUjRIgE6Y38nCNaP+Dc2FBW06bcpD3tqIws/HT9qiMHbNU0A==,
+        integrity: sha512-xN6spdqrNlwSn9KabIhqfZR7IWjPpFK1835tFNgjrlysaSezuX8PYUwaz38V/yI8TJLG9PkAMEXoHRXYXlpTPQ==,
       }
     engines: { node: ">=14" }
     hasBin: true
     dependencies:
       "@types/node": 14.18.32
-      playwright-core: 1.27.1
+      playwright-core: 1.28.1
     dev: true
 
   /@popperjs/core/2.11.6:
@@ -6717,10 +6717,10 @@ packages:
     hasBin: true
     dev: true
 
-  /playwright-core/1.27.1:
+  /playwright-core/1.28.1:
     resolution:
       {
-        integrity: sha512-9EmeXDncC2Pmp/z+teoVYlvmPWUC6ejSSYZUln7YaP89Z6lpAaiaAnqroUt/BoLo8tn7WYShcfaCh+xofZa44Q==,
+        integrity: sha512-3PixLnGPno0E8rSBJjtwqTwJe3Yw72QwBBBxNoukIj3lEeBNXwbNiKrNuB1oyQgTBw5QHUhNO3SteEtHaMK6ag==,
       }
     engines: { node: ">=14" }
     hasBin: true
