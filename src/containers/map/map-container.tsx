@@ -3,6 +3,8 @@ import ReactMapGL from "react-map-gl";
 
 import { MAPBOX_TOKEN } from "@constants";
 
+import { GeocoderControl } from "@components/common";
+
 import "mapbox-gl/dist/mapbox-gl.css";
 // import { GeocoderControl } from "@components/common";
 
@@ -13,6 +15,7 @@ interface IProps {} // TODO: add props
 export function MapContainer({}: IProps) {
   return (
     <ReactMapGL
+      id="map"
       mapboxAccessToken={MAPBOX_TOKEN}
       initialViewState={{
         latitude: 48.13,
@@ -24,11 +27,11 @@ export function MapContainer({}: IProps) {
       style={{ top: 0, left: 0, bottom: 0, right: 0, zIndex: -1, position: "fixed" }}
       mapStyle="mapbox://styles/mapbox/light-v11"
     >
-      {/* <GeocoderControl
+      <GeocoderControl
         mapboxAccessToken={MAPBOX_TOKEN}
         marker={true}
-        position="top-left"
-      /> */}
+        position="top-right"
+      />
     </ReactMapGL>
   );
 }
