@@ -4,15 +4,16 @@ import { IsochroneParams } from "@types";
 
 import { networkStateHandler } from "@context/base/network";
 
-import { setIsochrone } from "./isochrones-reducer";
+import { setTravelTimeSurface } from "./isochrones-reducer";
 
-export function getIsochrone(isochrone: IsochroneParams) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getIsochrone(isochrone: IsochroneParams): any {
   return (dispatch: CallableFunction) =>
     dispatch(
       networkStateHandler(async () => {
-        const response = await Api.get_isochrone(isochrone);
+        const response = await Api.getIsochrone(isochrone);
         if (response) {
-          dispatch(setIsochrone(response));
+          dispatch(setTravelTimeSurface(response));
         }
       })
     );

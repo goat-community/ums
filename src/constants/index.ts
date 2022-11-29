@@ -25,7 +25,11 @@ export const CYCLING = "cycling";
 export const TRANSIT = "transit";
 
 export const ALL_ROUTING_MODES = [WALKING, CYCLING, TRANSIT];
-
+/**
+ * Percentiles of travel time to request from the backend. This is for
+ * TRAVEL_TIME_SURFACE requests.
+ */
+export const TRAVEL_TIME_PERCENTILES = [5, 25, 50, 75, 95];
 /**
  * Isochrone Request Default
  */
@@ -34,5 +38,5 @@ export const ISOCHRONE_REQUEST_DEFAULTS = {
   settings: { travel_time: 20, speed: 5, walking_profile: "standard" },
   starting_point: { input: [{ lat: 48.142755739044816, lon: 11.51517168901437 }] },
   scenario: { id: 0, modus: "default" },
-  output: { type: "grid", resolution: 12 },
+  output: { type: "grid", resolution: 13 },
 };

@@ -3,10 +3,12 @@ import type { AxiosError } from "axios";
 
 import { instance } from "@utils";
 
-export function get_isochrone(data: IsochroneParams): Promise<string> | null {
+export function getIsochrone(data: IsochroneParams): Promise<ArrayBuffer> | null {
   return instance
-    .post("isochrones", data)
-    .then((response) => response.data)
+    .post("isochrones", data, { responseType: "arraybuffer" })
+    .then((response) => {
+      return response.data;
+    })
     .catch((err: AxiosError) => {
       throw err;
     });

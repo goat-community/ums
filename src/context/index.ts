@@ -12,6 +12,10 @@ export const store = configureStore({
     notifier: notifierReducer,
     map: mapReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

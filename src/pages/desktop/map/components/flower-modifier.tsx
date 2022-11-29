@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Chip, Slider, Stack } from "@mui/material";
+
+import {
+  selectMaxTripDurationMinutes,
+  setMaxTripDurationMinutes,
+} from "@context/isochrones";
 
 import { Selector } from "@components/mobile";
 
@@ -10,6 +16,8 @@ import tree from "@images/tree.png";
 
 export function FlowerModifier() {
   const [mode, setMode] = useState<string | number>("walk");
+  const maxTripDurationMinutes = useSelector(selectMaxTripDurationMinutes);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -23,7 +31,13 @@ export function FlowerModifier() {
           value={mode}
           handleChange={(e) => setMode(e.target.value)}
         />
-        <Slider defaultValue={5} max={15} valueLabelDisplay="auto" />
+        <Slider
+          defaultValue={1}
+          value={maxTripDurationMinutes}
+          onChange={(e, value) => dispatch(setMaxTripDurationMinutes(value as number))}
+          max={15}
+          valueLabelDisplay="auto"
+        />
       </Stack>
       <Stack direction="row" marginTop="30px" width={230} spacing={1} alignItems="center">
         <Chip
