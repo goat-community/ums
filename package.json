@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.9",
     "@reduxjs/toolkit": "^1.8.6",
+    "@turf/bbox": "^6.5.0",
     "@turf/boolean-point-in-polygon": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@types/mapbox__mapbox-gl-geocoder": "^4.7.3",

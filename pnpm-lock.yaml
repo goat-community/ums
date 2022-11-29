@@ -14,6 +14,7 @@ specifiers:
   '@mui/material': ^5.10.9
   '@playwright/test': ^1.28.1
   '@reduxjs/toolkit': ^1.8.6
+  '@turf/bbox': ^6.5.0
   '@turf/boolean-point-in-polygon': ^6.5.0
   '@turf/helpers': ^6.5.0
   '@types/mapbox__mapbox-gl-geocoder': ^4.7.3
@@ -57,6 +58,7 @@ dependencies:
   '@mui/icons-material': 5.10.9_f52498bf787b72e09e1be8c56aa633db
   '@mui/material': 5.10.9_4284650dafe05bb899f3031b309c2ef9
   '@reduxjs/toolkit': 1.8.6_react-redux@8.0.4+react@18.2.0
+  '@turf/bbox': 6.5.0
   '@turf/boolean-point-in-polygon': 6.5.0
   '@turf/helpers': 6.5.0
   '@types/mapbox__mapbox-gl-geocoder': 4.7.3
@@ -2141,6 +2143,13 @@ packages:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
 
+  /@turf/bbox/6.5.0:
+    resolution: {integrity: sha512-RBbLaao5hXTYyyg577iuMtDB8ehxMlUqHEJiMs8jT1GHkFhr6sYre3lmLsPeYEi/ZKj5TP5tt7fkzNdJ4GIVyw==}
+    dependencies:
+      '@turf/helpers': 6.5.0
+      '@turf/meta': 6.5.0
+    dev: false
+
   /@turf/boolean-point-in-polygon/6.5.0:
     resolution: {integrity: sha512-DtSuVFB26SI+hj0SjrvXowGTUCHlgevPAIsukssW6BG5MlNSBQAo70wpICBNJL6RjukXg8d2eXaAWuD/CqL00A==}
     dependencies:
@@ -2154,6 +2163,12 @@ packages:
 
   /@turf/invariant/6.5.0:
     resolution: {integrity: sha512-Wv8PRNCtPD31UVbdJE/KVAWKe7l6US+lJItRR/HOEW3eh+U/JwRCSUl/KZ7bmjM/C+zLNoreM2TU6OoLACs4eg==}
+    dependencies:
+      '@turf/helpers': 6.5.0
+    dev: false
+
+  /@turf/meta/6.5.0:
+    resolution: {integrity: sha512-RrArvtsV0vdsCBegoBtOalgdSOfkBrTJ07VkpiCnq/491W67hnMWmDu7e6Ztw0C3WldRYTXkg3SumfdzZxLBHA==}
     dependencies:
       '@turf/helpers': 6.5.0
     dev: false

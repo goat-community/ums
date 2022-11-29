@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
-import ReactMapGL, { FillLayer, Layer, Source } from "react-map-gl";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useRef } from "react";
+import ReactMapGL, { MapRef } from "react-map-gl";
 
-import { getIsochrone, setMaxTripDurationMinutes } from "@context/isochrones";
-import selectIsochrone from "@context/isochrones/isochrones-selector";
-
-import { ISOCHRONE_REQUEST_DEFAULTS, MAPBOX_TOKEN } from "@constants";
+import { MAPBOX_TOKEN } from "@constants";
 
 import { GeocoderControl } from "@components/common";
+import Isochrones from "@components/common/map/isochrones";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 // import { GeocoderControl } from "@components/common";
@@ -15,25 +12,14 @@ import "mapbox-gl/dist/mapbox-gl.css";
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface IProps {} // TODO: add props
 
-const dataLayer: FillLayer = {
-  id: "data",
-  type: "fill",
-  paint: {
-    "fill-color": "#6750A4",
-    "fill-opacity": 0.8,
-  },
-};
-
 // eslint-disable-next-line no-empty-pattern
 export function MapContainer({}: IProps) {
-  const dispatch = useDispatch();
-  const isochrone = useSelector(selectIsochrone);
-  useEffect(() => {
-    dispatch(getIsochrone(ISOCHRONE_REQUEST_DEFAULTS));
-  }, [dispatch]);
+  const mapRef = useRef<MapRef>();
+
   return (
     <ReactMapGL
       id="map"
+      ref={mapRef}
       mapboxAccessToken={MAPBOX_TOKEN}
       initialViewState={{
         latitude: 48.13,
@@ -49,10 +35,11 @@ export function MapContainer({}: IProps) {
         mapboxAccessToken={MAPBOX_TOKEN}
         marker={true}
         position="top-right"
+        onResult={(result) => {
+          console.log(result);
+        }}
       />
-      <Source type="geojson" data={isochrone || null}>
-        <Layer {...dataLayer} />
-      </Source>
+      <Isochrones></Isochrones>
     </ReactMapGL>
   );
 }
