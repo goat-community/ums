@@ -25,7 +25,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       manifest: {
         name: "Map4Citizens",
-        short_name: "M4C",
+        short_name: "Map4Citizens",
         description: "Map4Citizens",
         theme_color: "#fafafa",
         background_color: "#283648",
