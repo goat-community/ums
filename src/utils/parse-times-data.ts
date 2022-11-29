@@ -10,7 +10,7 @@ const TIMES_GRID_TYPE = "ACCESSGR";
 /**
  * Parse a grid header created by a GridResultWriter
  */
-export function parseGridHeader(ab: ArrayBuffer): AccessGridHeader {
+export function parse_grid_header(ab: ArrayBuffer): AccessGridHeader {
   const headerData = new Int8Array(ab, 0, TIMES_GRID_TYPE.length);
   const headerType: string = String.fromCharCode.apply(null, [...headerData]);
   if (headerType !== TIMES_GRID_TYPE) {
@@ -42,8 +42,8 @@ export function parseGridHeader(ab: ArrayBuffer): AccessGridHeader {
 /**
  * Parse the ArrayBuffer from a `*_times.dat` file for a point in a network.
  */
-export function parseTimesData(ab: ArrayBuffer): AccessGrid {
-  const header = parseGridHeader(ab);
+export function parse_times_data(ab: ArrayBuffer): AccessGrid {
+  const header = parse_grid_header(ab);
   const gridSize = header.width * header.height;
 
   // skip the header
@@ -68,7 +68,7 @@ export function parseTimesData(ab: ArrayBuffer): AccessGrid {
     (HEADER_LENGTH + header.width * header.height * header.depth) *
       Int32Array.BYTES_PER_ELEMENT
   );
-  const metadata: Record<string, unknown> = decodeMetadata(rawMetadata);
+  const metadata: Record<string, unknown> = decode_metadata(rawMetadata);
 
   function contains(x: number, y: number, z: number) {
     return (
@@ -95,17 +95,18 @@ export function parseTimesData(ab: ArrayBuffer): AccessGrid {
   };
 }
 
-function decodeMetadata(rawMetadata) {
-  const decoder = getDecoder();
-  return JSON.parse(decoder.decode(rawMetadata));
+function decode_metadata(raw_metadata) {
+  const decoder = get_decoder();
+  return JSON.parse(decoder.decode(raw_metadata));
 }
 
-function getDecoder() {
-  if (window === undefined || typeof window.TextDecoder !== "function") {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const util = require("util");
-    return new util.TextDecoder("utf-8");
-  } else {
-    return new window.TextDecoder("utf-8");
-  }
+function get_decoder() {
+  // if (window === undefined || typeof window.TextDecoder !== "function") {
+  //   // eslint-disable-next-line @typescript-eslint/no-var-requires
+  //   // TODO: what is util here?
+  //   // const util = require("util");
+  //   return true;
+  // } else {
+  return new window.TextDecoder("utf-8");
+  // }
 }

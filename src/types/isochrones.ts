@@ -1,5 +1,16 @@
+export enum TRAVEL_MODES {
+  walking = "walking",
+  cycling = "cycling",
+  transit = "transit",
+}
+
+export type TRAVEL_MODE =
+  | TRAVEL_MODES.walking
+  | TRAVEL_MODES.cycling
+  | TRAVEL_MODES.transit;
+
 export interface IsochroneParams {
-  mode: string;
+  mode: TRAVEL_MODE;
   settings: {
     travel_time: number;
     speed: number;

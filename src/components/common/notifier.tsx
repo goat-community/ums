@@ -16,7 +16,7 @@ export function NotifierWrapper() {
     bottom: { xs: D.BOTTOM_BAR_HEIGHT + 20, sm: 0 },
     maxWidth: "75%",
   };
-  const button_style = { color: "#D0BCFF", minWidth: "auto" };
+  const button_style = { color: D.WHITE_COLOR, minWidth: "auto" };
 
   function close_notification() {
     dispatch(close_notify());
