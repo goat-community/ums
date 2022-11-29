@@ -1,8 +1,9 @@
-import { type LatandLang } from "@types";
+import { MapView } from "@types";
 
 import { notify, resetNotify } from "@context/base/notifier";
+import { clearIsochrone } from "@context/isochrones";
 
-import { setPickedPoint, setPickingMode } from "./maps-reducer";
+import { setMapView, setPickedPoint, setPickingMode } from "./maps-reducer";
 
 export function close_picking_mode() {
   return (dispatch: CallableFunction) => {
@@ -13,7 +14,10 @@ export function close_picking_mode() {
 
 export function remove_picked_point() {
   return (dispatch: CallableFunction) => {
+    // remove the picked point
     dispatch(setPickedPoint(null));
+    // remove the current fetched isochrone
+    dispatch(clearIsochrone());
   };
 }
 
@@ -32,11 +36,8 @@ export function set_picking_mode(picking_mode: boolean) {
   };
 }
 
-export function pick_point(picked_point: LatandLang) {
+export function set_map_view(view: MapView) {
   return (dispatch: CallableFunction) => {
-    // dispatch picking point to reducer
-    dispatch(setPickedPoint(picked_point));
-    // remove the picking hint notify
-    dispatch(resetNotify());
+    dispatch(setMapView(view));
   };
 }

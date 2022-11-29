@@ -46,8 +46,7 @@ const Section = styled.section`
   align-items: center;
   z-index: 2;
   gap: 22px;
-  background: linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)),
-    #fffbfe;
+  background: #fafafa;
 `;
 
 const Button = styled.button`

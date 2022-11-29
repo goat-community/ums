@@ -55,8 +55,7 @@ const Section = styled.section`
   justify-content: space-around;
   align-items: center;
   z-index: 2;
-  background: linear-gradient(0deg, rgba(103, 80, 164, 0.08), rgba(103, 80, 164, 0.08)),
-    #fffbfe;
+  background: ${D.WHITE_COLOR};
 `;
 
 const NavigationItem = styled.div`

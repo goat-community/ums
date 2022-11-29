@@ -1,58 +1,32 @@
-import React, { useEffect } from "react";
-import ReactMapGL, { FillLayer, Layer, Source } from "react-map-gl";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { type LngLat } from "react-map-gl";
+import { useSelector } from "react-redux";
 
-import { getIsochrone, setMaxTripDurationMinutes } from "@context/isochrones";
-import selectIsochrone from "@context/isochrones/isochrones-selector";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { ISOCHRONE_REQUEST_DEFAULTS, MAPBOX_TOKEN } from "@constants";
+import { get_point_isochrone } from "@context/isochrones";
+import { isochrones_selector } from "@context/isochrones/isochrones-selector";
+import { map_view_selector, picked_point_selector } from "@context/map/map-selector";
 
-import { GeocoderControl } from "@components/common";
+import { MemoiezedMap } from "./components/map";
 
-import "mapbox-gl/dist/mapbox-gl.css";
-// import { GeocoderControl } from "@components/common";
+export function MapContainer() {
+  const dispatch = useAppDispatch();
+  const isochrone = useSelector(isochrones_selector);
+  const map_view = useAppSelector(map_view_selector);
+  const picked_point = useAppSelector(picked_point_selector);
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface IProps {} // TODO: add props
+  /* Container Methods */
+  const on_click_point = useCallback((latlng: LngLat) => {
+    dispatch(get_point_isochrone(latlng));
+  }, []);
 
-const dataLayer: FillLayer = {
-  id: "data",
-  type: "fill",
-  paint: {
-    "fill-color": "#6750A4",
-    "fill-opacity": 0.8,
-  },
-};
-
-// eslint-disable-next-line no-empty-pattern
-export function MapContainer({}: IProps) {
-  const dispatch = useDispatch();
-  const isochrone = useSelector(selectIsochrone);
-  useEffect(() => {
-    dispatch(getIsochrone(ISOCHRONE_REQUEST_DEFAULTS));
-  }, [dispatch]);
   return (
-    <ReactMapGL
-      id="map"
-      mapboxAccessToken={MAPBOX_TOKEN}
-      initialViewState={{
-        latitude: 48.13,
-        longitude: 11.58,
-        zoom: 12,
-        bearing: 0,
-        pitch: 0,
-      }}
-      style={{ top: 0, left: 0, bottom: 0, right: 0, zIndex: -1, position: "fixed" }}
-      mapStyle="mapbox://styles/mapbox/light-v11"
-    >
-      <GeocoderControl
-        mapboxAccessToken={MAPBOX_TOKEN}
-        marker={true}
-        position="top-right"
-      />
-      <Source type="geojson" data={isochrone || null}>
-        <Layer {...dataLayer} />
-      </Source>
-    </ReactMapGL>
+    <MemoiezedMap
+      view={map_view}
+      isochrone={isochrone}
+      picked_point={picked_point}
+      on_click_point={on_click_point}
+    />
   );
 }

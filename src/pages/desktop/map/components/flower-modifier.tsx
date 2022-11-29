@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Chip, Slider, Stack } from "@mui/material";
 
 import {
-  selectMaxTripDurationMinutes,
+  select_max_trip_duration_minutes,
   setMaxTripDurationMinutes,
 } from "@context/isochrones";
 
@@ -16,7 +16,7 @@ import tree from "@images/tree.png";
 
 export function FlowerModifier() {
   const [mode, setMode] = useState<string | number>("walk");
-  const maxTripDurationMinutes = useSelector(selectMaxTripDurationMinutes);
+  const max_trip_duration_minutes = useSelector(select_max_trip_duration_minutes);
   const dispatch = useDispatch();
 
   return (
@@ -33,7 +33,7 @@ export function FlowerModifier() {
         />
         <Slider
           defaultValue={1}
-          value={maxTripDurationMinutes}
+          value={max_trip_duration_minutes}
           onChange={(e, value) => dispatch(setMaxTripDurationMinutes(value as number))}
           max={15}
           valueLabelDisplay="auto"
