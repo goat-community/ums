@@ -13,10 +13,12 @@ import PurpleIcon from "@images/purple_icon.png";
 export function FloatingFlower() {
   const dispatch = useAppDispatch();
   const is_picking = useAppSelector((state) => state.map.picking_mode);
-  const is_picked = useAppSelector((state) => state.map.picked_point);
   const is_loading = useAppSelector((state) => state.network.loading);
+  const travel_time_surface = useAppSelector(
+    (state) => state.isochrones.travel_time_surface
+  );
 
-  const isochrone_shown = Boolean(!is_loading && is_picked);
+  const isochrone_shown = Boolean(!is_loading && travel_time_surface);
   const icon = is_picking ? LightIcon : PurpleIcon;
 
   return (
