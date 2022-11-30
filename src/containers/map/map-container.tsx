@@ -1,45 +1,38 @@
-import React, { useRef } from "react";
-import ReactMapGL, { MapRef } from "react-map-gl";
+import React, { useCallback } from "react";
+import { type LngLat } from "react-map-gl";
+import { useSelector } from "react-redux";
 
-import { MAPBOX_TOKEN } from "@constants";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { GeocoderControl } from "@components/common";
-import Isochrones from "@components/common/map/isochrones";
+import { get_point_isochrone } from "@context/isochrones";
+import { isochrones_selector } from "@context/isochrones/isochrones-selector";
+import {
+  map_view_selector,
+  picked_point_selector,
+  view_bounds_selector,
+} from "@context/map/map-selector";
 
-import "mapbox-gl/dist/mapbox-gl.css";
-// import { GeocoderControl } from "@components/common";
+import { MemoiezedMap } from "./components/map";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface IProps {} // TODO: add props
+export function MapContainer() {
+  const dispatch = useAppDispatch();
+  const isochrone = useSelector(isochrones_selector);
+  const map_view = useAppSelector(map_view_selector);
+  const viewBounds = useAppSelector(view_bounds_selector);
+  const picked_point = useAppSelector(picked_point_selector);
 
-// eslint-disable-next-line no-empty-pattern
-export function MapContainer({}: IProps) {
-  const mapRef = useRef<MapRef>();
+  /* Container Methods */
+  const on_click_point = useCallback((latlng: LngLat) => {
+    dispatch(get_point_isochrone(latlng));
+  }, []);
 
   return (
-    <ReactMapGL
-      id="map"
-      ref={mapRef}
-      mapboxAccessToken={MAPBOX_TOKEN}
-      initialViewState={{
-        latitude: 48.13,
-        longitude: 11.58,
-        zoom: 12,
-        bearing: 0,
-        pitch: 0,
-      }}
-      style={{ top: 0, left: 0, bottom: 0, right: 0, zIndex: -1, position: "fixed" }}
-      mapStyle="mapbox://styles/mapbox/light-v11"
-    >
-      <GeocoderControl
-        mapboxAccessToken={MAPBOX_TOKEN}
-        marker={true}
-        position="top-right"
-        onResult={(result) => {
-          console.log(result);
-        }}
-      />
-      <Isochrones></Isochrones>
-    </ReactMapGL>
+    <MemoiezedMap
+      view={map_view}
+      isochrone={isochrone}
+      picked_point={picked_point}
+      on_click_point={on_click_point}
+      viewBounds={viewBounds}
+    />
   );
 }

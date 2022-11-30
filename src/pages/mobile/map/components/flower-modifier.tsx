@@ -3,6 +3,13 @@ import styled from "styled-components";
 
 import { Chip, Slider, Stack, Typography } from "@mui/material";
 
+import { useAppDispatch, useAppSelector } from "@hooks/context";
+
+import {
+  select_max_trip_duration_minutes,
+  setMaxTripDurationMinutes,
+} from "@context/isochrones";
+
 import * as D from "@constants/design";
 
 import artistpallete from "@images/artist-palette.png";
@@ -16,26 +23,26 @@ const POI_LIST = [
 ];
 
 export function FlowerModifier() {
+  const dispatch = useAppDispatch();
+  const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const [mode, setMode] = useState<string>("walking");
-
-  const segmented_section_style = {
-    overflowX: "scroll",
-    paddingBottom: "30px",
-    paddingRight: "30px",
-  };
-  const typography_style = { fontSize: "11px" };
 
   return (
     <Section>
-      <Stack direction="row" maxWidth={250} alignItems="center" spacing={3}>
-        <Typography variant="h6" sx={typography_style}>
-          Distance (min.)
+      <Stack direction="row" alignItems="center" spacing={2} maxWidth={240}>
+        <Typography p={1} variant="h6" sx={typography_style} width={70}>
+          Distance <br /> ({max_trip_duration_minutes} min.)
         </Typography>
-        <Slider defaultValue={5} max={15} valueLabelDisplay="auto" />
+        <Slider
+          value={max_trip_duration_minutes}
+          onChange={(_, value) => dispatch(setMaxTripDurationMinutes(value as number))}
+          max={15}
+          valueLabelDisplay="auto"
+        />
       </Stack>
 
-      <Stack direction="row" alignItems="center" spacing={3} maxWidth={300}>
-        <Typography variant="h6" sx={typography_style}>
+      <Stack direction="row" alignItems="center" spacing={2} maxWidth={300}>
+        <Typography p={1} variant="h6" sx={typography_style}>
           Modality
         </Typography>
         <SegmentedSection>
@@ -107,3 +114,10 @@ const SegementedButton = styled.button<{ active: boolean }>`
     border-left: none;
   }
 `;
+
+const segmented_section_style = {
+  overflowX: "scroll",
+  paddingBottom: "30px",
+  paddingRight: "30px",
+};
+const typography_style = { fontSize: "11px" };

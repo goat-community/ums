@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { FillLayer, Layer, Source, useMap } from "react-map-gl";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import bbox from "@turf/bbox";
 
 import { RootState } from "@context";
-import { getIsochrone } from "@context/isochrones";
-import selectIsochrone from "@context/isochrones/isochrones-selector";
-
-import { ISOCHRONE_REQUEST_DEFAULTS } from "@constants";
+import { isochrones_selector } from "@context/isochrones/isochrones-selector";
 
 const isochroneStyle: FillLayer = {
   id: "data",
@@ -19,15 +16,11 @@ const isochroneStyle: FillLayer = {
 };
 
 export default function Isochrones() {
-  const dispatch = useDispatch();
-  const isochrone = useSelector(selectIsochrone);
+  const isochrone = useSelector(isochrones_selector);
   const mapRef = useMap();
   const travelTimeSurface = useSelector(
-    (state: RootState) => state.isochrones.travelTimeSurface
+    (state: RootState) => state.isochrones.travel_time_surface
   );
-  useEffect(() => {
-    dispatch(getIsochrone(ISOCHRONE_REQUEST_DEFAULTS));
-  }, [dispatch]);
   // Zoom to the bounding box of the isochrone
   useEffect(() => {
     if (isochrone) {
@@ -41,6 +34,27 @@ export default function Isochrones() {
       );
     }
   }, [travelTimeSurface]);
+  useEffect(() => {
+    // check if layer bounds exeeds map bounds
+    if (isochrone) {
+      const [minLng, minLat, maxLng, maxLat] = bbox(isochrone);
+      const mapBounds = mapRef.current.getBounds();
+      if (
+        minLng < mapBounds.getSouthWest().lng ||
+        minLat < mapBounds.getSouthWest().lat ||
+        maxLng > mapBounds.getNorthEast().lng ||
+        maxLat > mapBounds.getNorthEast().lat
+      ) {
+        mapRef.current.fitBounds(
+          [
+            [minLng, minLat],
+            [maxLng, maxLat],
+          ],
+          { padding: 40, duration: 1000 }
+        );
+      }
+    }
+  }, [isochrone]);
   return (
     <Source type="geojson" data={isochrone || null}>
       <Layer {...isochroneStyle} />

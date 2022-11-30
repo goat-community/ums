@@ -11,33 +11,33 @@ interface PaletteProps {
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#6750a4",
+      main: "#283648",
     },
     secondary: {
-      main: "#6750a414",
+      main: "#283648",
     },
   },
   typography: {
     h1: {
-      color: "#6750a4",
+      color: "#283648",
       fontSize: 32,
       fontWeight: 700,
     },
     h2: {
-      color: "#6750a4",
+      color: "#283648",
       fontSize: 26,
     },
     h3: {
-      color: "#6750a4",
+      color: "#283648",
       fontSize: 22,
       lineHeight: "28px",
     },
     h4: {
-      color: "#6750a4",
+      color: "#283648",
       fontSize: 18,
     },
     h5: {
-      color: "#6750a4",
+      color: "#283648",
       fontSize: 16,
     },
     h6: {

@@ -1,13 +1,19 @@
-export type LatandLang = { lat: number; lng: number };
+import { FitBoundsOptions, LngLatBoundsLike } from "mapbox-gl";
 
-export type LonLatOutput = {
+export interface LatandLang {
+  lat: number;
+  lng: number;
+}
+
+export interface LonLatOutput {
   lat: number;
   lon: number;
-};
-export type Point = {
+}
+
+export interface Point {
   x: number;
   y: number;
-};
+}
 
 export type LeafletLatLng =
   | {
@@ -15,3 +21,13 @@ export type LeafletLatLng =
       latitude: number;
     }
   | { lat: number; lng: number };
+
+export interface MapView {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  bearing?: number;
+  pitch?: number;
+  bounds?: LngLatBoundsLike;
+  fitBoundsOptions?: FitBoundsOptions;
+}

@@ -35,8 +35,8 @@ export const TRAVEL_TIME_PERCENTILES = [5, 25, 50, 75, 95];
  */
 export const ISOCHRONE_REQUEST_DEFAULTS = {
   mode: WALKING,
-  settings: { travel_time: 20, speed: 5, walking_profile: "standard" },
-  starting_point: { input: [{ lat: 48.142755739044816, lon: 11.51517168901437 }] },
+  settings: { travel_time: 15, speed: 5, walking_profile: "standard" },
+  starting_point: { input: [{ lat: 48.13, lon: 11.58 }] },
   scenario: { id: 0, modus: "default" },
   output: { type: "grid", resolution: 13 },
 };
