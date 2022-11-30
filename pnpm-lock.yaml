@@ -496,8 +496,8 @@ packages:
     dependencies:
       "@babel/types": 7.19.4
 
-  ? /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/7.18.6_@babel+core@7.19.3
-  : resolution:
+  /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/7.18.6_@babel+core@7.19.3:
+    resolution:
       {
         integrity: sha512-Dgxsyg54Fx1d4Nge8UnvTrED63vrwOdPmyvPzlNN/boaliRP54pm3pGzZD1SJUwrBA+Cs/xdG8kXX6Mn/RfISQ==,
       }
@@ -509,8 +509,8 @@ packages:
       "@babel/helper-plugin-utils": 7.19.0
     dev: true
 
-  ? /@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/7.18.9_@babel+core@7.19.3
-  : resolution:
+  /@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/7.18.9_@babel+core@7.19.3:
+    resolution:
       {
         integrity: sha512-AHrP9jadvH7qlOj6PINbgSuphjQUAK7AOT7DPjBo9EHoLhQTnnK5u45e1Hd4DbSQEO9nqPWtQ89r+XEOWFScKg==,
       }
@@ -617,8 +617,8 @@ packages:
       "@babel/plugin-syntax-json-strings": 7.8.3_@babel+core@7.19.3
     dev: true
 
-  ? /@babel/plugin-proposal-logical-assignment-operators/7.18.9_@babel+core@7.19.3
-  : resolution:
+  /@babel/plugin-proposal-logical-assignment-operators/7.18.9_@babel+core@7.19.3:
+    resolution:
       {
         integrity: sha512-128YbMpjCrP35IOExw2Fq+x55LMP42DzhOhX2aNNIdI9avSWl2PI0yuBWarr3RYpZBSPtabfadkH2yeRiMD61Q==,
       }
@@ -1219,8 +1219,8 @@ packages:
       - supports-color
     dev: true
 
-  ? /@babel/plugin-transform-named-capturing-groups-regex/7.19.1_@babel+core@7.19.3
-  : resolution:
+  /@babel/plugin-transform-named-capturing-groups-regex/7.19.1_@babel+core@7.19.3:
+    resolution:
       {
         integrity: sha512-oWk9l9WItWBQYS4FgXD4Uyy5kq898lvkXpXQxoJEY1RnvPk4R/Dvu2ebXU9q8lP+rlMwUQTFf2Ok6d78ODa0kw==,
       }
@@ -7388,7 +7388,9 @@ packages:
       {
         integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==,
       }
-    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+    deprecated:
+      This package has been deprecated and is no longer maintained. Please use
+      @rollup/plugin-terser
     peerDependencies:
       rollup: ^2.0.0
     dependencies:
@@ -8113,7 +8115,9 @@ packages:
       }
     engines: { node: ">= 6" }
     peerDependencies:
-      typescript: ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"
+      typescript:
+        ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >=
+        3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"
     dependencies:
       tslib: 1.14.1
       typescript: 4.8.4
