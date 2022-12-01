@@ -3,6 +3,8 @@ import Map, { type LngLat, Marker } from "react-map-gl";
 
 import { LatandLang, MapView } from "@types";
 
+import { token } from "@utils";
+
 import { isochrones_selector } from "@context/isochrones/isochrones-selector";
 
 import { MAPBOX_TOKEN } from "@constants";
@@ -15,7 +17,6 @@ import Isochrones from "./isochrones";
 import Layers from "./layers";
 import MaskLayer from "./mask";
 
-import "mapbox-gl/dist/mapbox-gl.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 interface MapProps {
@@ -37,15 +38,23 @@ function MapComponent(props: MapProps) {
       mapStyle="mapbox://styles/mapbox/light-v11"
       style={{ top: 0, left: 0, bottom: 0, right: 0, zIndex: -1, position: "fixed" }}
       onClick={(e) => props.on_click_point(e.lngLat as LngLat)}
+      transformRequest={(url) => {
+        if (url.startsWith("http://localhost")) {
+          return {
+            url: url,
+            headers: { Authorization: "Bearer " + token },
+          };
+        }
+      }}
     >
       <GeocoderControl
         mapboxAccessToken={MAPBOX_TOKEN}
         marker={true}
         position="top-right"
       />
-      <Isochrones></Isochrones>
       <MaskLayer></MaskLayer>
-      {/* <Layers></Layers> */}
+      <Layers></Layers>
+      <Isochrones></Isochrones>
       {props.isochrone && (
         <Marker
           longitude={props.picked_point.lng}
