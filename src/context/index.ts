@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import networkReducer from "./base/network";
 import notifierReducer from "./base/notifier";
+import flowersReducer from "./flower/flowers-reducer";
 import isochronesReducer from "./isochrones/isochrones-reducer";
 import mapReducer from "./map/maps-reducer";
 
@@ -11,6 +12,7 @@ export const store = configureStore({
     network: networkReducer,
     notifier: notifierReducer,
     map: mapReducer,
+    flower: flowersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

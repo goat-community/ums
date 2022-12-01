@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { type LngLat } from "react-map-gl";
 import { useSelector } from "react-redux";
 
@@ -20,6 +20,13 @@ export function MapContainer() {
   const map_view = useAppSelector(map_view_selector);
   const viewBounds = useAppSelector(view_bounds_selector);
   const picked_point = useAppSelector(picked_point_selector);
+  const travel_time_surface = useAppSelector(
+    (state) => state.isochrones.travel_time_surface
+  );
+
+  useEffect(() => {
+    console.log(travel_time_surface);
+  }, [travel_time_surface]);
 
   /* Container Methods */
   const on_click_point = useCallback((latlng: LngLat) => {

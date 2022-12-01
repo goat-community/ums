@@ -22,10 +22,10 @@ export default function Insights() {
           <CenteredTabs />
         </>
       ) : (
-        <Stack padding={5}>
+        <Stack padding={4}>
           <Typography variant="h4" textAlign="center">
             Please go back to the map section and pick an map point with clicking on the
-            flower button on the bottom right!
+            flower button on the bottom!
           </Typography>
         </Stack>
       )}

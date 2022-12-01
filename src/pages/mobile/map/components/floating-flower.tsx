@@ -52,6 +52,6 @@ const Button = styled.button<{
   background-color: ${(props) => (props.is_picking ? D.PRIMARY_COLOR : D.LIGHT_PRIMARY)};
   bottom: calc(
     ${(props) =>
-        props.isochrone_shown ? D.BOTTOM_BAR_HEIGHT + 130 : D.BOTTOM_BAR_HEIGHT}px + 20px
+        props.isochrone_shown ? D.BOTTOM_BAR_HEIGHT + 70 : D.BOTTOM_BAR_HEIGHT}px + 20px
   );
 `;
