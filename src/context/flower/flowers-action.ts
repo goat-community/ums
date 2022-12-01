@@ -7,7 +7,10 @@ import { setAmenities, setSurveyDone } from "./flowers-reducer";
 export function get_amenities() {
   return (dispatch: CallableFunction) => {
     const amenities = JSON.parse(localStorage.getItem(AMENITIES)) || {};
-    dispatch(setAmenities(amenities as Amenities));
+    if (amenities) {
+      dispatch(setAmenities(amenities as Amenities));
+      dispatch(setSurveyDone());
+    }
   };
 }
 
