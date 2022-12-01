@@ -1,10 +1,5 @@
 import { FitBoundsOptions, LngLatBoundsLike } from "mapbox-gl";
 
-export interface LatandLang {
-  lat: number;
-  lng: number;
-}
-
 export interface LonLatOutput {
   lat: number;
   lon: number;

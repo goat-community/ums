@@ -9,7 +9,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_point_isochrone } from "@context/isochrones";
-import { set_picking_mode } from "@context/map";
+import { setPickedPoint } from "@context/map";
 import { view_bounds_selector } from "@context/map/map-selector";
 
 import { MAPBOX_TOKEN } from "@constants";
@@ -26,7 +26,7 @@ export function Header() {
       lng: result.center[0],
       lat: result.center[1],
     } as LngLat;
-    dispatch(set_picking_mode(true));
+    dispatch(setPickedPoint(point));
     dispatch(get_point_isochrone(point));
   };
 

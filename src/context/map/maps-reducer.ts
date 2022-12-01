@@ -1,11 +1,12 @@
+import { LngLat } from "react-map-gl";
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { LatandLang, MapView } from "@types";
+import { MapView } from "@types";
 
 /** Reducer */
 const initialState = {
   picking_mode: false as boolean,
-  picked_point: null as LatandLang | null,
+  picked_point: null as LngLat | null,
   current_point_address: "" as string,
   view: {
     bounds: [
@@ -301,7 +302,7 @@ export const map = createSlice({
     },
     setPickedPoint: (
       state: typeof initialState,
-      action: PayloadAction<LatandLang | null>
+      action: PayloadAction<LngLat | null>
     ) => {
       state.picked_point = action.payload;
     },

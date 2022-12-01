@@ -1,6 +1,8 @@
+import { LngLat } from "mapbox-gl";
+
 import * as Api from "@api/map";
 
-import { LatandLang, MapView } from "@types";
+import { MapView } from "@types";
 
 import { networkStateHandler } from "@context/base/network";
 import { notify, resetNotify } from "@context/base/notifier";
@@ -64,7 +66,7 @@ export function getStudyArea() {
 }
 
 // TODO: change return to dispatch
-export function coords_to_address(coords: LatandLang) {
+export function coords_to_address(coords: LngLat) {
   return (dispatch: CallableFunction) =>
     dispatch(
       networkStateHandler(async () => {

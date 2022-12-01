@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import Map, { type LngLat, Marker } from "react-map-gl";
 
-import { LatandLang, MapView } from "@types";
+import { MapView } from "@types";
 
 import { token } from "@utils";
 
@@ -22,7 +22,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 interface MapProps {
   view: MapView;
   isochrone: ReturnType<typeof isochrones_selector>;
-  picked_point: LatandLang;
+  picked_point: LngLat;
   viewBounds: [number, number, number, number] | null;
   on_click_point: (e: LngLat) => void;
 }

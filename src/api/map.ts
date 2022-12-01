@@ -1,7 +1,6 @@
 import type { AxiosError } from "axios";
 import axios from "axios";
-
-import { LatandLang } from "@types";
+import { LngLat } from "mapbox-gl";
 
 import { instance } from "@utils";
 
@@ -16,7 +15,7 @@ export function getStudyArea(): Promise<GeoJSON.FeatureCollection> {
 
 // TODO: implcipt type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function geocode_coords(coords: LatandLang): Promise<any> {
+export function geocode_coords(coords: LngLat): Promise<any> {
   return axios
     .get(
       `https://api.locationiq.com/v1/reverse.php?key=ca068d7840bca4&lat=${coords.lat}&lon=${coords.lng}&format=json`

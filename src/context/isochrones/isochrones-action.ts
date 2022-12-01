@@ -32,7 +32,7 @@ export function get_point_isochrone(picked_point: LngLat | null) {
     if (picked_point && state.map.picked_point === null) {
       dispatch(setPickedPoint(picked_point));
     }
-    if (state.map.picking_mode && state.map.picked_point) {
+    if (state.map.picked_point) {
       // remove the picking hint notify
       dispatch(resetNotify());
       // Fetch the new point of the Isochrone
