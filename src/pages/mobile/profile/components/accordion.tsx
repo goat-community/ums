@@ -9,6 +9,8 @@ import MuiAccordionSummary, {
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
+import { convert_to_pascal } from "@utils";
+
 export function CustomizedAccordions(props: { titles: string[]; values: string[] }) {
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
@@ -26,7 +28,7 @@ export function CustomizedAccordions(props: { titles: string[]; values: string[]
           onChange={handleChange(title)}
         >
           <AccordionSummary aria-controls={`${title}-content`} id={`${title}-header`}>
-            <Typography>{title}</Typography>
+            <Typography>{convert_to_pascal(title)}</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>Want to reach in {props.values[index]} minutes</Typography>
