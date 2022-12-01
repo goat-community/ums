@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import { Chip, Slider, Stack, Typography } from "@mui/material";
+import { Slider, Stack, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
+import { batch } from "react-redux";
 
 import {
   get_point_isochrone,
@@ -14,25 +15,30 @@ import {
 } from "@context/isochrones";
 
 import * as D from "@constants/design";
+import CheckIcon from "@mui/icons-material/Check";
 
-import artistpallete from "@images/artist-palette.png";
-import Icon from "@images/icon.png";
-import tree from "@images/tree.png";
+// import artistpallete from "@images/artist-palette.png";
+// import Icon from "@images/icon.png";
+// import tree from "@images/tree.png";
+import type { TRAVEL_MODE } from "@types";
 
-const POI_LIST = [
-  { label: "Personal", icon: <img src={Icon} width="18" height="18" /> },
-  { label: "Nature lover", icon: <img src={tree} width="18" height="18" /> },
-  { label: "Creative spirit", icon: <img src={artistpallete} width="18" height="18" /> },
-];
+// const POI_LIST = [
+//   { label: "Personal", icon: <img src={Icon} width="18" height="18" /> },
+//   { label: "Nature lover", icon: <img src={tree} width="18" height="18" /> },
+//   { label: "Creative spirit", icon: <img src={artistpallete} width="18" height="18" /> },
+// ];
 
 export function FlowerModifier() {
   const dispatch = useAppDispatch();
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const selectedIsochroneMode = useAppSelector(select_isochrone_mode);
-  const selectIsochroneMode = (mode: string) => {
-    dispatch(setIsochroneMode(mode));
-    dispatch(get_point_isochrone(null));
-  };
+
+  function set_isochrone_mode(mode: TRAVEL_MODE) {
+    batch(() => {
+      dispatch(setIsochroneMode(mode));
+      dispatch(get_point_isochrone(null));
+    });
+  }
 
   return (
     <Section>
@@ -48,24 +54,34 @@ export function FlowerModifier() {
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" spacing={2} maxWidth={300}>
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing={2}
+        maxWidth={300}
+        width={"90vw"}
+      >
         <Typography p={1} variant="h6" sx={typography_style}>
           Modality
         </Typography>
         <SegmentedSection>
-          {["walking", "cycling", "transit"].map((i) => (
+          {["walking", "cycling", "transit"].map((isochrone_mode) => (
             <SegementedButton
-              key={i}
-              active={selectedIsochroneMode === i}
-              onClick={() => selectIsochroneMode(i)}
+              key={isochrone_mode}
+              onClick={() => set_isochrone_mode(isochrone_mode as TRAVEL_MODE)}
             >
-              <Typography variant="h6">{i}</Typography>
+              {selectedIsochroneMode === isochrone_mode && (
+                <span>
+                  <CheckIcon fontSize="small" />
+                </span>
+              )}
+              <Typography variant="h6">{isochrone_mode}</Typography>
             </SegementedButton>
           ))}
         </SegmentedSection>
       </Stack>
 
-      <Stack
+      {/* <Stack
         direction="row"
         width={"90vw"}
         spacing={1}
@@ -81,7 +97,7 @@ export function FlowerModifier() {
             color={index === 0 ? "primary" : "default"}
           />
         ))}
-      </Stack>
+      </Stack> */}
     </Section>
   );
 }
@@ -106,23 +122,24 @@ const SegmentedSection = styled.section`
   height: 28px;
 `;
 
-const SegementedButton = styled.button<{ active: boolean }>`
+const SegementedButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
   width: 100%;
   border: 1px solid black;
-  background-color: ${(props) => (props.active ? D.LIGHT_PRIMARY : D.WHITE_COLOR)};
 
   &:nth-child(1) {
     border-radius: 50px 0 0 50px;
+  }
+
+  &:nth-child(2) {
     border-right: none;
+    border-left: none;
   }
 
   &:nth-child(3) {
     border-radius: 0 50px 50px 0;
-    border-left: none;
   }
 `;
 
