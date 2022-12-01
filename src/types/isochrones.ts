@@ -10,7 +10,7 @@ export type TRAVEL_MODE =
   | TRAVEL_MODES.transit;
 
 export interface IsochroneParams {
-  mode: TRAVEL_MODE;
+  mode: string;
   settings: {
     travel_time: number;
     speed: number;

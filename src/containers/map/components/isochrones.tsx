@@ -10,8 +10,8 @@ const isochroneStyle: FillLayer = {
   id: "data",
   type: "fill",
   paint: {
-    "fill-color": "#6750A4",
-    "fill-opacity": 0.8,
+    "fill-color": "#a9afb6",
+    "fill-opacity": 0.7,
   },
 };
 

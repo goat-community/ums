@@ -82,6 +82,7 @@ const single_valued_surface = createSelector(
   selectravel_time_percentile,
   compute_single_valued_surface
 );
+export const select_isochrone_mode = (state: RootState) => state.isochrones.mode;
 
 export const isochrones_selector = createSelector(
   single_valued_surface,

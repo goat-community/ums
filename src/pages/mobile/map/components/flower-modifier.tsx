@@ -6,7 +6,10 @@ import { Chip, Slider, Stack, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import {
+  get_point_isochrone,
+  select_isochrone_mode,
   select_max_trip_duration_minutes,
+  setIsochroneMode,
   setMaxTripDurationMinutes,
 } from "@context/isochrones";
 
@@ -25,7 +28,11 @@ const POI_LIST = [
 export function FlowerModifier() {
   const dispatch = useAppDispatch();
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
-  const [mode, setMode] = useState<string>("walking");
+  const selectedIsochroneMode = useAppSelector(select_isochrone_mode);
+  const selectIsochroneMode = (mode: string) => {
+    dispatch(setIsochroneMode(mode));
+    dispatch(get_point_isochrone(null));
+  };
 
   return (
     <Section>
@@ -46,8 +53,12 @@ export function FlowerModifier() {
           Modality
         </Typography>
         <SegmentedSection>
-          {["walking", "running", "driving"].map((i) => (
-            <SegementedButton key={i} active={mode === i} onClick={() => setMode(i)}>
+          {["walking", "cycling", "transit"].map((i) => (
+            <SegementedButton
+              key={i}
+              active={selectedIsochroneMode === i}
+              onClick={() => selectIsochroneMode(i)}
+            >
               <Typography variant="h6">{i}</Typography>
             </SegementedButton>
           ))}
