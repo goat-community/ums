@@ -1,7 +1,4 @@
-export interface LatandLang {
-  lat: number;
-  lng: number;
-}
+import { FitBoundsOptions, LngLatBoundsLike } from "mapbox-gl";
 
 export interface LonLatOutput {
   lat: number;
@@ -26,4 +23,6 @@ export interface MapView {
   zoom: number;
   bearing?: number;
   pitch?: number;
+  bounds?: LngLatBoundsLike;
+  fitBoundsOptions?: FitBoundsOptions;
 }

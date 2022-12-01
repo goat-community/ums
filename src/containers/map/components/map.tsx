@@ -1,7 +1,9 @@
 import React, { memo } from "react";
-import Map, { type FillLayer, type LngLat, Layer, Marker, Source } from "react-map-gl";
+import Map, { type LngLat, Marker } from "react-map-gl";
 
-import { LatandLang, MapView } from "@types";
+import { MapView } from "@types";
+
+import { token } from "@utils";
 
 import { isochrones_selector } from "@context/isochrones/isochrones-selector";
 
@@ -11,22 +13,17 @@ import { GeocoderControl } from "@components/common";
 
 import PinIcon from "@images/pin.png";
 
-import "mapbox-gl/dist/mapbox-gl.css";
-import "mapbox-gl/dist/mapbox-gl.css";
+import Isochrones from "./isochrones";
+import Layers from "./layers";
+import MaskLayer from "./mask";
 
-const dataLayer: FillLayer = {
-  id: "data",
-  type: "fill",
-  paint: {
-    "fill-color": "#a9afb6",
-    "fill-opacity": 0.3,
-  },
-};
+import "mapbox-gl/dist/mapbox-gl.css";
 
 interface MapProps {
   view: MapView;
   isochrone: ReturnType<typeof isochrones_selector>;
-  picked_point: LatandLang;
+  picked_point: LngLat;
+  viewBounds: [number, number, number, number] | null;
   on_click_point: (e: LngLat) => void;
 }
 
@@ -36,20 +33,28 @@ function MapComponent(props: MapProps) {
     <Map
       id="map"
       initialViewState={props.view}
+      maxBounds={props.viewBounds}
       mapboxAccessToken={MAPBOX_TOKEN}
       mapStyle="mapbox://styles/mapbox/light-v11"
       style={{ top: 0, left: 0, bottom: 0, right: 0, zIndex: -1, position: "fixed" }}
       onClick={(e) => props.on_click_point(e.lngLat as LngLat)}
+      transformRequest={(url) => {
+        if (url.startsWith("https://goat") || url.startsWith("http://localhost")) {
+          return {
+            url: url,
+            headers: { Authorization: "Bearer " + token },
+          };
+        }
+      }}
     >
       <GeocoderControl
         mapboxAccessToken={MAPBOX_TOKEN}
         marker={true}
         position="top-right"
       />
-      <Source type="geojson" data={props.isochrone || null}>
-        <Layer {...dataLayer} />
-      </Source>
-
+      <MaskLayer></MaskLayer>
+      <Layers />
+      <Isochrones></Isochrones>
       {props.isochrone && (
         <Marker
           longitude={props.picked_point.lng}

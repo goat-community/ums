@@ -34,9 +34,39 @@ export const TRAVEL_TIME_PERCENTILES = [5, 25, 50, 75, 95];
  * Isochrone Request Default
  */
 export const ISOCHRONE_REQUEST_DEFAULTS = {
-  mode: WALKING,
-  settings: { travel_time: 5, speed: 5, walking_profile: "standard" },
-  starting_point: { input: [{ lat: 48.13, lon: 11.58 }] },
-  scenario: { id: 0, modus: "default" },
-  output: { type: "grid", resolution: 13 },
+  walking: {
+    mode: "walking",
+    settings: { travel_time: 15, speed: 5, walking_profile: "standard" },
+    starting_point: { input: [{ lat: 48.13, lon: 11.58 }] },
+    scenario: { id: 0, modus: "default" },
+    output: { type: "grid", resolution: 13 },
+  },
+  cycling: {
+    mode: "cycling",
+    settings: { travel_time: 15, speed: 15, cycling_profile: "standard" },
+    starting_point: { input: [{ lat: 48.13, lon: 11.58 }] },
+    scenario: { id: 0, modus: "default" },
+    output: { type: "grid", resolution: 13 },
+  },
+  transit: {
+    mode: "transit",
+    settings: {
+      travel_time: 60,
+      transit_modes: ["bus", "tram", "subway", "rail"],
+      weekday: 0, // Monday`
+      access_mode: "walk",
+      egress_mode: "walk",
+      bike_traffic_stress: 4,
+      from_time: 25200, // 7am
+      to_time: 32400, // 9am
+      max_rides: 4,
+      max_bike_time: 20,
+      max_walk_time: 20,
+      percentiles: [5, 25, 50, 75, 95],
+      monte_carlo_draws: 200,
+    },
+    starting_point: { input: [{ lat: 48.14134178167768, lon: 11.591070826353457 }] },
+    scenario: { id: 0, modus: "default" },
+    output: { type: "grid", resolution: 9 },
+  },
 };

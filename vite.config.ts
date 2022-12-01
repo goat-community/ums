@@ -7,6 +7,7 @@ import { VitePWA } from "vite-plugin-pwa";
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
+    port: 1024,
     proxy: {
       "/api": {
         target: "https://goat-dev.plan4better.de/api/v1",
