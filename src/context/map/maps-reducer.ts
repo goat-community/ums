@@ -6,6 +6,7 @@ import { LatandLang, MapView } from "@types";
 const initialState = {
   picking_mode: false as boolean,
   picked_point: null as LatandLang | null,
+  current_point_address: "" as string,
   view: {
     bounds: [
       11.327192290815145, 48.03915718648435, 11.756388821971976, 48.27059464660387,
@@ -327,6 +328,9 @@ export const map = createSlice({
       const visibility = layer.visibility;
       layer.visibility = visibility === "visible" ? "none" : "visible";
     },
+    setAddress: (state: typeof initialState, action: PayloadAction<string>) => {
+      state.current_point_address = action.payload;
+    },
   },
 });
 
@@ -337,5 +341,6 @@ export const {
   setStudyArea,
   toggleLayer,
   toggleOffAllLayers,
+  setAddress,
 } = map.actions;
 export default map.reducer;
