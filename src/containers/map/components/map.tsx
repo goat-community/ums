@@ -39,7 +39,7 @@ function MapComponent(props: MapProps) {
       style={{ top: 0, left: 0, bottom: 0, right: 0, zIndex: -1, position: "fixed" }}
       onClick={(e) => props.on_click_point(e.lngLat as LngLat)}
       transformRequest={(url) => {
-        if (url.startsWith("http://localhost")) {
+        if (url.startsWith("https://goat") || url.startsWith("http://localhost")) {
           return {
             url: url,
             headers: { Authorization: "Bearer " + token },
@@ -53,7 +53,7 @@ function MapComponent(props: MapProps) {
         position="top-right"
       />
       <MaskLayer></MaskLayer>
-      <Layers></Layers>
+      <Layers />
       <Isochrones></Isochrones>
       {props.isochrone && (
         <Marker

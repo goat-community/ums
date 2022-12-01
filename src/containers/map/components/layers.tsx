@@ -7,7 +7,7 @@ import { map_layers_selector } from "@context/map/map-selector";
 
 export default function Layers() {
   const mapLayers = useAppSelector(map_layers_selector);
-  return Object.keys(mapLayers).map((layerKey) => {
+  const layers = Object.keys(mapLayers).map((layerKey) => {
     const layer = mapLayers[layerKey];
     if (layer.visibility === "none") return null;
     const layers = [];
@@ -20,4 +20,5 @@ export default function Layers() {
       </Source>
     );
   });
+  return <>{layers}</>;
 }

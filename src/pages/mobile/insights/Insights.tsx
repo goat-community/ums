@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Stack, Typography } from "@mui/material";
+
 import { Header } from "@components/mobile";
 
 import { BottomBarLayout } from "@layouts/mobile";
@@ -7,7 +9,6 @@ import { BottomBarLayout } from "@layouts/mobile";
 import { InsightsSection } from "./components/insights-section";
 import { ScoreList } from "./components/score-list";
 import { CenteredTabs } from "./components/tabs";
-import { Stack, Typography } from "@mui/material";
 
 export default function Insights() {
   const has_isochrone_result = false;

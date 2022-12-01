@@ -1,10 +1,15 @@
 import React from "react";
+import { batch } from "react-redux";
+// import artistpallete from "@images/artist-palette.png";
+// import Icon from "@images/icon.png";
+// import tree from "@images/tree.png";
+import type { TRAVEL_MODE } from "@types";
 import styled from "styled-components";
 
+import CheckIcon from "@mui/icons-material/Check";
 import { Slider, Stack, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
-import { batch } from "react-redux";
 
 import {
   get_point_isochrone,
@@ -15,12 +20,6 @@ import {
 } from "@context/isochrones";
 
 import * as D from "@constants/design";
-import CheckIcon from "@mui/icons-material/Check";
-
-// import artistpallete from "@images/artist-palette.png";
-// import Icon from "@images/icon.png";
-// import tree from "@images/tree.png";
-import type { TRAVEL_MODE } from "@types";
 
 // const POI_LIST = [
 //   { label: "Personal", icon: <img src={Icon} width="18" height="18" /> },
@@ -143,9 +142,9 @@ const SegementedButton = styled.button`
   }
 `;
 
-const segmented_section_style = {
-  overflowX: "scroll",
-  paddingBottom: "30px",
-  paddingRight: "30px",
-};
+// const segmented_section_style = {
+//   overflowX: "scroll",
+//   paddingBottom: "30px",
+//   paddingRight: "30px",
+// };
 const typography_style = { fontSize: "11px" };
