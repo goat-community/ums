@@ -127,6 +127,8 @@ const SegementedButton = styled.button`
   justify-content: center;
   width: 100%;
   border: 1px solid black;
+  color: black;
+  text-decoration: none;
 
   &:nth-child(1) {
     border-radius: 50px 0 0 50px;
