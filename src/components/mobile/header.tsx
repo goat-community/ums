@@ -1,18 +1,34 @@
 import React from "react";
+import { LngLat } from "react-map-gl";
+import MatGeocoder from "react-mui-mapbox-geocoder";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Button, Stack, Typography } from "@mui/material";
 
-import * as D from "@constants/design";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { SearchInput } from "@components/common";
+import { get_point_isochrone } from "@context/isochrones";
+import { set_picking_mode } from "@context/map";
+import { view_bounds_selector } from "@context/map/map-selector";
+
+import { MAPBOX_TOKEN } from "@constants";
+import * as D from "@constants/design";
 
 import Icon from "@images/icon.png";
 import Logo from "@images/m4c.png";
-
 export function Header() {
   const icon_style = { marginTop: -2 };
+  const viewBounds = useAppSelector(view_bounds_selector);
+  const dispatch = useAppDispatch();
+  const onSelectHandler = (result) => {
+    const point = {
+      lng: result.center[0],
+      lat: result.center[1],
+    } as LngLat;
+    dispatch(set_picking_mode(true));
+    dispatch(get_point_isochrone(point));
+  };
 
   return (
     <Section>
@@ -36,8 +52,14 @@ export function Header() {
         </Link>
       </Stack>
 
-      {/** Search bar */}
-      <SearchInput variant="outlined" />
+      <MatGeocoder
+        inputPlaceholder="Search Address"
+        accessToken={MAPBOX_TOKEN}
+        onSelect={onSelectHandler}
+        showLoader={true}
+        country="de"
+        bbox={viewBounds}
+      />
     </Section>
   );
 }

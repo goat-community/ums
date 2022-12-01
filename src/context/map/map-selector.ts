@@ -20,9 +20,11 @@ export const map_layers_selector = createSelector(
 export const map_layers_list_selector = createSelector(
   (state: RootState) => state.map.layers,
   (view) => {
-    return Object.keys(view).map((key) => {
+    const layerList = Object.keys(view).map((key) => {
       return { value: key, label: view[key].title || key };
     });
+    layerList.unshift({ value: "none", label: "None" });
+    return layerList;
   }
 );
 
