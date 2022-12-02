@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { LngLat } from "react-map-gl";
 import MatGeocoder from "react-mui-mapbox-geocoder";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_point_isochrone } from "@context/isochrones";
-import { setPickedPoint } from "@context/map";
+import { setAddress, setPickedPoint } from "@context/map";
 import { view_bounds_selector } from "@context/map/map-selector";
 
 import { MAPBOX_TOKEN } from "@constants";
@@ -18,6 +18,7 @@ import * as D from "@constants/design";
 import Icon from "@images/icon.png";
 import Logo from "@images/m4c.png";
 export function Header() {
+  const [keyIndex, setKeyIndex] = useState(0);
   const icon_style = { marginTop: -2 };
   const viewBounds = useAppSelector(view_bounds_selector);
   const dispatch = useAppDispatch();
@@ -28,6 +29,8 @@ export function Header() {
     } as LngLat;
     dispatch(setPickedPoint(point));
     dispatch(get_point_isochrone(point));
+    dispatch(setAddress(result.place_name));
+    setKeyIndex(keyIndex + 1);
   };
 
   return (
@@ -53,6 +56,7 @@ export function Header() {
       </Stack>
 
       <MatGeocoder
+        key={keyIndex}
         inputPlaceholder="Search Address"
         accessToken={MAPBOX_TOKEN}
         onSelect={onSelectHandler}

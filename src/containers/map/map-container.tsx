@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_point_isochrone } from "@context/isochrones";
 import { isochrones_selector } from "@context/isochrones/isochrones-selector";
-import { coords_to_address } from "@context/map";
+import { coords_to_address, setPickedPoint } from "@context/map";
 import {
   map_view_selector,
   picked_point_selector,
@@ -24,6 +24,7 @@ export function MapContainer() {
 
   /* Container Methods */
   const on_click_point = useCallback((latlng: LngLat) => {
+    dispatch(setPickedPoint(latlng));
     dispatch(get_point_isochrone(latlng));
     dispatch(coords_to_address(latlng));
   }, []);
