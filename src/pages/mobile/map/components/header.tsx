@@ -13,7 +13,7 @@ export function MapHeader() {
     <Section>
       <Header />
       {/** Selector buttons */}
-      <Stack direction="row" spacing={2} padding="28px 22px">
+      <Stack direction="row" spacing={1} padding="10px 16px">
         <LayerSelector />
         <LocationSelector />
       </Stack>

@@ -1,34 +1,32 @@
 import React, { memo } from "react";
-import Map, { type LngLat, Marker } from "react-map-gl";
+import Map, { type LngLat } from "react-map-gl";
 
 import { MapView } from "@types";
 
 import { token } from "@utils";
 
-import { isochrones_selector } from "@context/isochrones/isochrones-selector";
-
+// import { isochrones_selector } from "@context/isochrones/isochrones-selector";
 import { MAPBOX_TOKEN } from "@constants";
 
 import { GeocoderControl } from "@components/common";
 
-import PinIcon from "@images/pin.png";
-
+// import PinIcon from "@images/pin.png";
 import Isochrones from "./isochrones";
 import Layers from "./layers";
 import MaskLayer from "./mask";
+import Pois from "./pois";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
 interface MapProps {
   view: MapView;
-  isochrone: ReturnType<typeof isochrones_selector>;
-  picked_point: LngLat;
   viewBounds: [number, number, number, number] | null;
   on_click_point: (e: LngLat) => void;
 }
 
 function MapComponent(props: MapProps) {
-  // console.log("MapComponent was rendered at", new Date().toLocaleTimeString());
+  // TODO: remove
+  console.log("MapComponent was rendered at", new Date().toLocaleTimeString());
   return (
     <Map
       id="map"
@@ -47,23 +45,22 @@ function MapComponent(props: MapProps) {
         }
       }}
     >
+      {/** Geocoding */}
       <GeocoderControl
         mapboxAccessToken={MAPBOX_TOKEN}
         marker={true}
         position="top-right"
       />
-      <MaskLayer></MaskLayer>
+
+      {/** Layers */}
       <Layers />
-      <Isochrones></Isochrones>
-      {props.isochrone && (
-        <Marker
-          longitude={props.picked_point.lng}
-          latitude={props.picked_point.lat}
-          anchor="bottom"
-        >
-          <img src={PinIcon} width="16" height="20" alt="pin" />
-        </Marker>
-      )}
+      <MaskLayer />
+
+      {/** POIS */}
+      <Pois />
+
+      {/** Isochrones */}
+      <Isochrones />
     </Map>
   );
 }

@@ -46,7 +46,12 @@ export function PersonalScore() {
   return (
     <Section>
       <Stack direction="row" justifyContent="space-around" alignItems="center">
-        <CircularProgress variant="determinate" value={score * 10 || 0} size="70px" />
+        <CircularProgress
+          variant="determinate"
+          value={score * 10 || 0}
+          size="70px"
+          color="secondary"
+        />
         <Stack justifyContent="space-between" alignItems="center">
           <Typography variant="h6" fontSize="14px">
             Personal scrore

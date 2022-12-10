@@ -2,26 +2,26 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import BarChartIcon from "@mui/icons-material/BarChart";
-import FmdGoodIcon from "@mui/icons-material/FmdGood";
+import MapIcon from "@mui/icons-material/Map";
+import TableChartOutlinedIcon from "@mui/icons-material/TableChartOutlined";
 import { Typography } from "@mui/material";
 
 import * as D from "@constants/design";
 
 export function BottomBar() {
-  const location = useLocation().pathname;
+  const path = useLocation().pathname;
 
   const navigation_items = [
     {
       path: "/",
       name: "Map",
-      icon: <FmdGoodIcon sx={location === "/" ? icon_style_active : icon_style} />,
+      icon: <MapIcon sx={path === "/" ? icon_active : icon_style} />,
     },
     {
       path: "/insights",
       name: "Insights",
       icon: (
-        <BarChartIcon sx={location === "/insights" ? icon_style_active : icon_style} />
+        <TableChartOutlinedIcon sx={path === "/insights" ? icon_active : icon_style} />
       ),
     },
   ];
@@ -77,9 +77,9 @@ const icon_style = {
   padding: "4px 0",
 };
 
-const icon_style_active = {
-  color: D.PRIMARY_COLOR,
-  backgroundColor: D.HOVER_COLOR,
+const icon_active = {
+  color: D.BLACK_COLOR,
+  backgroundColor: D.GREEN_PRIMARY_LIGHT,
   width: "64px",
   padding: "4px 0",
   borderRadius: "16px",

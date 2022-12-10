@@ -28,3 +28,8 @@ button {
 button:active {
   opacity: 0.9;
 }
+
+.MuiDialog-container .MuiPaper-root {
+  box-shadow: none;
+  border-radius: 28px;
+}

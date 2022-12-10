@@ -5,6 +5,7 @@ import notifierReducer from "./base/notifier";
 import flowersReducer from "./flower/flowers-reducer";
 import isochronesReducer from "./isochrones/isochrones-reducer";
 import mapReducer from "./map/maps-reducer";
+import poisReducer from "./pois/pois-reducer";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     notifier: notifierReducer,
     map: mapReducer,
     flower: flowersReducer,
+    poi: poisReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
