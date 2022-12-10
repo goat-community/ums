@@ -70,3 +70,6 @@ export const ISOCHRONE_REQUEST_DEFAULTS = {
     output: { type: "grid", resolution: 9 },
   },
 };
+
+export const POIS = "POIS";
+export const PERSISTANCE_DATE = "PERSISTANCE_DATE";
