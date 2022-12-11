@@ -11,14 +11,18 @@ import { AMENITIES_LIST } from "@constants/flower";
 
 import { setPersistanceDate, setPoiFeatures } from "./pois-reducer";
 
+const POIS_PERSIST_TIME = 24;
 export function get_pois_aois() {
   return (dispatch: CallableFunction) => {
     // check for last persisted date
     const persistanced_date = new Date(localStorage.getItem(PERSISTANCE_DATE)) || null;
     const persistanced_pois = JSON.parse(localStorage.getItem(POIS)) || [];
-    // check the time passed more than 1 hours from last persistance
+    // check the time passed more than 24 hours from last persistance
     // if not passed then we return the cached pois
-    if (Math.abs(persistanced_date.getTime() - new Date().getTime()) / 36e5 < 1) {
+    if (
+      Math.abs(persistanced_date.getTime() - new Date().getTime()) / 36e5 <
+      POIS_PERSIST_TIME
+    ) {
       return dispatch(setPoiFeatures(persistanced_pois));
     }
 
