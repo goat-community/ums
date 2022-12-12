@@ -1,9 +1,10 @@
 import React from "react";
 import { batch } from "react-redux";
-import type { TRAVEL_MODE } from "@types";
 import styled from "styled-components";
 
 import { Slider, Stack, Typography } from "@mui/material";
+
+import { SCORE_MODE, TRAVEL_MODE } from "@types";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -13,6 +14,7 @@ import {
   select_max_trip_duration_minutes,
   setIsochroneMode,
   setMaxTripDurationMinutes,
+  setScoreMode,
 } from "@context/isochrones";
 import { picked_point_selector } from "@context/map/map-selector";
 
@@ -29,6 +31,7 @@ import TriangleWhiteIcon from "@images/triangle-white.png";
 
 export function IsochroneModifier() {
   const dispatch = useAppDispatch();
+  const score_mode = useAppSelector((state) => state.isochrones.score_mode);
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const selectedIsochroneMode = useAppSelector(select_isochrone_mode);
   const picked_point = useAppSelector(picked_point_selector);
@@ -49,7 +52,7 @@ export function IsochroneModifier() {
         <Slider
           value={max_trip_duration_minutes}
           onChange={(_, value) => dispatch(setMaxTripDurationMinutes(value as number))}
-          max={15}
+          max={30}
           valueLabelDisplay="auto"
           color="secondary"
         />
@@ -87,9 +90,13 @@ export function IsochroneModifier() {
           Score
         </Typography>
         <SegmentedSection>
-          {["Personal", "Standard"].map((score_mode) => (
-            <SegementedButtonTwo key={score_mode} active={"Standard" === score_mode}>
-              {"Standard" === score_mode ? (
+          {[SCORE_MODE.personal, SCORE_MODE.standard].map((i) => (
+            <SegementedButtonTwo
+              key={i}
+              active={score_mode === i}
+              onClick={() => dispatch(setScoreMode(i))}
+            >
+              {i === score_mode ? (
                 <span>
                   <img src={TriangleWhiteIcon} alt="triangle" width={18} height={18} />
                 </span>
@@ -98,8 +105,7 @@ export function IsochroneModifier() {
                   <img src={TriangleIcon} alt="triangle" width={18} height={18} />
                 </span>
               )}
-
-              <Typography variant="h6">{score_mode}</Typography>
+              <Typography variant="h6">{i}</Typography>
             </SegementedButtonTwo>
           ))}
         </SegmentedSection>

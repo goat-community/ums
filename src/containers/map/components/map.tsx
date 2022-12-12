@@ -8,8 +8,7 @@ import { token } from "@utils";
 // import { isochrones_selector } from "@context/isochrones/isochrones-selector";
 import { MAPBOX_TOKEN } from "@constants";
 
-import { GeocoderControl } from "@components/common";
-
+// import { GeocoderControl } from "@components/common";
 // import PinIcon from "@images/pin.png";
 import Isochrones from "./isochrones";
 import Layers from "./layers";
@@ -26,8 +25,6 @@ interface MapProps {
 }
 
 function MapComponent(props: MapProps) {
-  // TODO: remove
-  console.log("MapComponent was rendered at", new Date().toLocaleTimeString());
   return (
     <Map
       id="map"
@@ -47,11 +44,13 @@ function MapComponent(props: MapProps) {
       }}
     >
       {/** Geocoding */}
-      <GeocoderControl
+      {/* <GeocoderControl
         mapboxAccessToken={MAPBOX_TOKEN}
-        marker={true}
-        position="top-right"
-      />
+        onError={() => {}}
+        onResult={(e) => console.log(e)}
+        onResults={(e) => console.log(e)}
+        position="top-left"
+      /> */}
 
       {/** Layers */}
       <Layers />

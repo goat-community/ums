@@ -4,13 +4,47 @@ import styled from "styled-components";
 
 import { Button, Stack, Typography } from "@mui/material";
 
+import { useAppSelector } from "@hooks/context";
+
 import { Margin } from "@components/common";
+
+import FlowerImage from "@images/flower.jpg";
 
 interface IntroductionProps {
   onClickContinue: () => void;
 }
 
 export default function Introduction(props: IntroductionProps) {
+  const surevey_has_done = useAppSelector((state) => state.flower.survey_done_already);
+
+  if (surevey_has_done) {
+    return (
+      <Box>
+        <img src={FlowerImage} width="184" height="154" alt="flower" />
+        <Margin margin="25px 0 0 0" />
+        <Typography variant="h3">
+          Do you want to edit your personal mobility flower?
+        </Typography>
+        <Margin margin="25px 0 0 0" />
+        <Stack
+          justifyContent="space-between"
+          alignItems="center"
+          direction="row"
+          spacing={3}
+        >
+          <Link to="/">
+            <Button variant="outlined" onClick={props.onClickContinue}>
+              Go back
+            </Button>
+          </Link>
+          <Button variant="contained" onClick={props.onClickContinue}>
+            Edit Flower
+          </Button>
+        </Stack>
+      </Box>
+    );
+  }
+
   return (
     <Box>
       <Typography variant="h3">

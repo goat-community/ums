@@ -131,7 +131,7 @@ const initialState = {
       ],
     },
     landuse_atkis: {
-      title: "Landuse",
+      title: "Landuse Atkis",
       visibility: "none",
       source: {
         type: "vector",
@@ -326,6 +326,7 @@ export const map = createSlice({
     },
     toggleLayer: (state: typeof initialState, action: PayloadAction<string | number>) => {
       const layer = state.layers[action.payload];
+      console.log(layer);
       const visibility = layer.visibility;
       layer.visibility = visibility === "visible" ? "none" : "visible";
     },

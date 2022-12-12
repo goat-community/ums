@@ -30,7 +30,9 @@ export function GeocoderControl(props: GeocoderControlProps) {
         accessToken: props.mapboxAccessToken,
       });
       ctrl.on("loading", props.onLoading);
-      ctrl.on("results", props.onResults);
+      ctrl.on("results", () => {
+        console.log("here");
+      });
       ctrl.on("result", (evt) => {
         props.onResult(evt);
 
@@ -111,12 +113,8 @@ export function GeocoderControl(props: GeocoderControlProps) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {};
+// const noop = () => {};
 
 GeocoderControl.defaultProps = {
   marker: true,
-  onLoading: noop,
-  onResults: noop,
-  onResult: noop,
-  onError: noop,
 };
