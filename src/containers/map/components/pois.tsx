@@ -110,14 +110,14 @@ export default function Pois() {
             key={`poi-layer-${index}`}
             id={`poi-layer-${index}`}
             type="geojson"
-            cluster={true}
-            clusterMaxZoom={14}
-            clusterMinPoints={4}
-            clusterRadius={50}
+            // cluster={true}
+            // clusterMaxZoom={14}
+            // clusterMinPoints={4}
+            // clusterRadius={50}
             data={poi_feature_group.data as GeoJSON.FeatureCollection}
           >
-            <Layer {...clusterLayer(`poi-layer-${index}`)} />
-            <Layer {...clusterCountLayer(`poi-layer-${index}`)} />
+            {/* <Layer {...clusterLayer(`poi-layer-${index}`)} />
+            <Layer {...clusterCountLayer(`poi-layer-${index}`)} /> */}
             <Layer
               {...unclusteredPointLayer(`poi-layer-${index}`, poi_feature_group.group)}
             />

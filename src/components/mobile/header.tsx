@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LngLat } from "react-map-gl";
 import MatGeocoder from "react-mui-mapbox-geocoder";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { Button, Stack, Typography } from "@mui/material";
@@ -9,7 +9,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_point_isochrone } from "@context/isochrones";
-import { setAddress, setPickedPoint } from "@context/map";
+import { setAddress, setPickingMode } from "@context/map";
 import { view_bounds_selector } from "@context/map/map-selector";
 
 import { MAPBOX_TOKEN } from "@constants";
@@ -18,19 +18,27 @@ import * as D from "@constants/design";
 import Icon from "@images/icon.png";
 import Logo from "@images/m4c.png";
 export function Header() {
-  const [keyIndex, setKeyIndex] = useState(0);
+  const navigate = useNavigate();
+  const survey_has_done = useAppSelector((state) => state.flower.survey_done_already);
+  const [keyIndex] = useState(0);
   const icon_style = { marginTop: -2 };
   const viewBounds = useAppSelector(view_bounds_selector);
   const dispatch = useAppDispatch();
+
   const onSelectHandler = (result) => {
-    const point = {
-      lng: result.center[0],
-      lat: result.center[1],
-    } as LngLat;
-    dispatch(setPickedPoint(point));
-    dispatch(get_point_isochrone(point));
-    dispatch(setAddress(result.place_name));
-    setKeyIndex(keyIndex + 1);
+    if (survey_has_done) {
+      const point = {
+        lng: result.center[0],
+        lat: result.center[1],
+      } as LngLat;
+      // dispatch(setPickedPoint(point));
+      dispatch(setPickingMode(true));
+      dispatch(get_point_isochrone(point));
+      dispatch(setAddress(result?.place_name));
+      // setKeyIndex(keyIndex + 1);
+    } else {
+      navigate("/flower");
+    }
   };
 
   return (

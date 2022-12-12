@@ -29,8 +29,7 @@ export default function Insights() {
       ) : (
         <Stack padding={4}>
           <Typography variant="h4" textAlign="center">
-            Please go back to the map section and pick an map point with clicking on the
-            flower button on the bottom!
+            Search for an address to get your analyses started!
           </Typography>
         </Stack>
       )}
