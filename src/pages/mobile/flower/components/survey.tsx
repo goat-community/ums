@@ -4,15 +4,7 @@ import type { Amenities, FlowerMinutes } from "@types";
 import styled from "styled-components";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import {
-  Button,
-  FormControlLabel,
-  IconButton,
-  Radio,
-  RadioGroup,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Button, IconButton, Slider, Stack, Typography } from "@mui/material";
 
 import { convert_to_pascal } from "@utils";
 
@@ -30,79 +22,38 @@ interface SurveyProps {
   onClickBack: () => void;
 }
 
-function SurveyOptions(props: { index: number; on_change_value: (e: number) => void }) {
-  const form_control_label_style = {
-    padding: 0,
-    margin: 0,
-    marginRight: "14px",
-    marginTop: "-20px",
-  };
-  const radio_button_style = { marginRight: "14px" };
-  const typography_style = { color: D.PRIMARY_COLOR };
-  return (
-    <>
-      {FLOWER_PROXIMITY.map((minutes) => {
-        if (props.index !== 0) {
-          return (
-            <Radio
-              key={minutes + props.index}
-              value={minutes}
-              sx={radio_button_style}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                props.on_change_value(parseInt(event.target.value))
-              }
-            />
-          );
-        }
-        return (
-          <FormControlLabel
-            key={minutes + props.index}
-            sx={form_control_label_style}
-            control={
-              <Radio
-                value={minutes}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  props.on_change_value(parseInt(event.target.value))
-                }
-              />
-            }
-            labelPlacement="top"
-            label={
-              <Typography variant="h6" sx={typography_style}>
-                {minutes} min
-              </Typography>
-            }
-          />
-        );
-      })}
-    </>
-  );
-}
-
 function SurveyQuestions(props: {
-  step: number;
   amentities_list: Amenities;
   amentities_filtered: string[];
   on_change: (e: Record<string, FlowerMinutes>) => void;
 }) {
   return (
     <>
+      <SurveyQuestionsContainer>
+        <Typography variant="h6" sx={{ width: 300 }}></Typography>
+        <Stack direction="row" justifyContent="space-between" sx={{ width: "100%" }}>
+          {FLOWER_PROXIMITY.map((proximity) => (
+            <Typography key={proximity} variant="h6">
+              {proximity}
+            </Typography>
+          ))}
+        </Stack>
+      </SurveyQuestionsContainer>
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
-          <Typography variant="h6">{convert_to_pascal(key)}</Typography>
-          <RadioGroup
-            defaultValue={props.amentities_list[key]}
+          <Typography variant="h6" sx={{ width: 300 }}>
+            {convert_to_pascal(key)}
+          </Typography>
+          <Slider
             value={props.amentities_list[key]}
-          >
-            <Stack direction="row">
-              <SurveyOptions
-                index={index}
-                on_change_value={(new_value) =>
-                  props.on_change({ [key]: new_value } as Record<string, FlowerMinutes>)
-                }
-              />
-            </Stack>
-          </RadioGroup>
+            onChange={(_, value) =>
+              props.on_change({ [key]: value } as Record<string, FlowerMinutes>)
+            }
+            min={5}
+            max={30}
+            valueLabelDisplay="auto"
+            color={"secondary"}
+          />
         </SurveyQuestionsContainer>
       ))}
     </>
@@ -154,7 +105,6 @@ export default function Survey(props: SurveyProps) {
         </TypoGraphyContainer>
         <Margin margin="55px 0 0 0" />
         <SurveyQuestions
-          step={step}
           amentities_filtered={amentities_filtered}
           amentities_list={amentities_list}
           on_change={(changed_proximity) => {

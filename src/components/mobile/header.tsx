@@ -45,11 +45,11 @@ export function Header() {
         {/* <Typography variant="h1">Where to be?</Typography> */}
         <img src={Logo} width="50%" height="auto" alt="logo" />
 
-        <Link to="/profile">
+        <Link to="/flower">
           <Button variant="contained">
             <img src={Icon} width="18" height="18" alt="icon" style={icon_style} />
             <Typography variant="h6" ml={1}>
-              My Profile
+              My Flower
             </Typography>
           </Button>
         </Link>
