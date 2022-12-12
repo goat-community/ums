@@ -8,7 +8,7 @@ import { useAppSelector } from "@hooks/context";
 
 import { AMENITIES_GROUP, AMENITIES_LIST } from "@constants/flower";
 
-export const clusterLayer = (id): LayerProps => {
+export const clusterLayer = (id: string): LayerProps => {
   return {
     id: "clusters " + id,
     type: "circle",
@@ -29,7 +29,7 @@ export const clusterLayer = (id): LayerProps => {
   };
 };
 
-export const clusterCountLayer = (id): LayerProps => {
+export const clusterCountLayer = (id: string): LayerProps => {
   return {
     id: "cluster-count " + id,
     type: "symbol",
@@ -43,7 +43,10 @@ export const clusterCountLayer = (id): LayerProps => {
   };
 };
 
-export const unclusteredPointLayer = (id, poi_feature_group): LayerProps => {
+export const unclusteredPointLayer = (
+  id: string,
+  poi_feature_group: string
+): LayerProps => {
   return {
     id: id,
     type: "symbol",
@@ -63,10 +66,17 @@ export default function Pois() {
 
   useEffect(() => {
     AMENITIES_LIST.forEach(async (name_of_amenity) => {
-      const svg_icon = await import("../../../images/icons/" + name_of_amenity + ".svg");
-      const image = new Image();
-      image.src = "data:image/svg+xml;charset=utf-8;base64," + btoa(svg_icon);
-      mapRef.current.addImage(name_of_amenity, image);
+      await import(
+        /* @vite-ignore */ "../../../images/amenities/" + name_of_amenity + ".svg"
+      ).then((svg_icon) => {
+        if (mapRef.current.hasImage(name_of_amenity)) {
+          return false;
+        }
+
+        const img = new Image(10, 10);
+        img.onload = () => mapRef.current.addImage(name_of_amenity, img);
+        img.src = svg_icon.default;
+      });
     });
   }, []);
 

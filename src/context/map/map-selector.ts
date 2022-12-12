@@ -21,9 +21,13 @@ export const map_layers_list_selector = createSelector(
   (state: RootState) => state.map.layers,
   (view) => {
     const layerList = Object.keys(view).map((key) => {
-      return { value: key, label: view[key].title || key };
+      return {
+        value: key,
+        label: view[key].title || key,
+        visibility: view[key].visibility,
+      };
     });
-    layerList.unshift({ value: "none", label: "None" });
+    // layerList.unshift({ value: "none", label: "None" });
     return layerList;
   }
 );

@@ -35,7 +35,7 @@ export function FlowerModifier() {
           defaultValue={1}
           value={max_trip_duration_minutes}
           onChange={(e, value) => dispatch(setMaxTripDurationMinutes(value as number))}
-          max={15}
+          max={30}
           valueLabelDisplay="auto"
         />
       </Stack>

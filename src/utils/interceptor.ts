@@ -8,7 +8,7 @@ import { base_url } from "./base-url";
 // }
 
 export const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzEwOTYxOTAsInN1YiI6IjE1Iiwic2NvcGVzIjpbXX0._Xth_rBdSb4nEdrrLjGMfOhdWLSM-ibsp0lG5tWlR1c";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzExNzQwNDIsInN1YiI6IjE0MiIsInNjb3BlcyI6W119.qpyQK5JkcE1_uA1w9CW2k73qnvRVDylv6TSB-HNQKMU";
 export const instance = axios.create({
   baseURL: base_url(),
   headers: {

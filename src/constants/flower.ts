@@ -1,6 +1,6 @@
 export const AMENITIES = "AMENITIES";
 
-export const FLOWER_PROXIMITY = [5, 10, 15];
+export const FLOWER_PROXIMITY = [5, 15, 30];
 
 export const AMENITIES_LIST = [
   "Mobilitaetspunkte",
