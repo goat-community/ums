@@ -66,12 +66,17 @@ export default function Pois() {
 
   useEffect(() => {
     AMENITIES_LIST.forEach(async (name_of_amenity) => {
-      const svg_icon = await import(
-        /* @vite-ignore */ "../../../images/icons/" + name_of_amenity + ".svg"
-      );
-      const image = new Image();
-      image.src = "data:image/svg+xml;charset=utf-8;base64," + btoa(svg_icon);
-      mapRef.current.addImage(name_of_amenity, image);
+      await import(
+        /* @vite-ignore */ "../../../images/amenities/" + name_of_amenity + ".svg"
+      ).then((svg_icon) => {
+        if (mapRef.current.hasImage(name_of_amenity)) {
+          return false;
+        }
+
+        const img = new Image(10, 10);
+        img.onload = () => mapRef.current.addImage(name_of_amenity, img);
+        img.src = svg_icon.default;
+      });
     });
   }, []);
 

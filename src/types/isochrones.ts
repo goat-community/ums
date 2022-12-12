@@ -101,3 +101,8 @@ export interface Accessibilities {
   supermarket: Tuple<number, 15>[];
   tram_stop: Tuple<number, 15>[];
 }
+
+export enum SCORE_MODE {
+  personal = "personal",
+  standard = "standard",
+}

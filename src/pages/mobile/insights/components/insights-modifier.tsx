@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { Slider, Stack, Typography } from "@mui/material";
 
-import { TRAVEL_MODE } from "@types";
+import { SCORE_MODE, TRAVEL_MODE } from "@types";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -14,6 +14,7 @@ import {
   select_max_trip_duration_minutes,
   setIsochroneMode,
   setMaxTripDurationMinutes,
+  setScoreMode,
 } from "@context/isochrones";
 import { picked_point_selector } from "@context/map/map-selector";
 
@@ -25,22 +26,12 @@ import { Selector } from "@components/mobile";
 import TriangleIcon from "@images/triangle.png";
 import TriangleWhiteIcon from "@images/triangle-white.png";
 
-// const POI_LIST = [
-//   { label: "Personal", icon: <img src={Icon} width="18" height="18" /> },
-//   { label: "Nature lover", icon: <img src={tree} width="18" height="18" /> },
-//   { label: "Creative spirit", icon: <img src={artistpallete} width="18" height="18" /> },
-// ];
-
 export function InsightsModifier() {
   const dispatch = useAppDispatch();
+  const score_mode = useAppSelector((state) => state.isochrones.score_mode);
   const selected_isochrone_mode = useAppSelector(select_isochrone_mode);
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const picked_point = useAppSelector(picked_point_selector);
-
-  // const segmented_section_style = {
-  //   overflowX: "scroll",
-  //   paddingBottom: "10px",
-  // };
 
   function set_isochrone_mode(mode: TRAVEL_MODE) {
     batch(() => {
@@ -64,17 +55,22 @@ export function InsightsModifier() {
         />
         <Slider
           value={max_trip_duration_minutes}
-          onChange={(_, value) => dispatch(setMaxTripDurationMinutes(value))}
-          max={15}
+          onChange={(_, value) => dispatch(setMaxTripDurationMinutes(value as number))}
+          max={30}
           valueLabelDisplay="auto"
           color={"secondary"}
+          disabled={score_mode === SCORE_MODE.personal}
         />
       </Stack>
       <Margin margin="20px 0 0" />
       <SegmentedSection>
-        {["Personal", "Standard"].map((score_mode) => (
-          <SegementedButton key={score_mode} active={"Standard" === score_mode}>
-            {"Standard" === score_mode ? (
+        {[SCORE_MODE.personal, SCORE_MODE.standard].map((i) => (
+          <SegementedButton
+            key={i}
+            active={score_mode === i}
+            onClick={() => dispatch(setScoreMode(i))}
+          >
+            {i === score_mode ? (
               <span>
                 <img src={TriangleWhiteIcon} alt="triangle" width={18} height={18} />
               </span>
@@ -83,8 +79,7 @@ export function InsightsModifier() {
                 <img src={TriangleIcon} alt="triangle" width={18} height={18} />
               </span>
             )}
-
-            <Typography variant="h6">{score_mode}</Typography>
+            <Typography variant="h6">{i}</Typography>
           </SegementedButton>
         ))}
       </SegmentedSection>
