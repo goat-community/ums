@@ -22,7 +22,7 @@ import { convert_to_pascal } from "@utils";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { get_pois_aois, setActivePois } from "@context/pois";
+import { setActivePois } from "@context/pois";
 
 import { AMENITIES_GROUP } from "@constants/flower";
 
@@ -38,7 +38,41 @@ function BuildingButton(props: { onClick: () => void }) {
   );
 }
 
-export function LocationSelector() {
+function AmenitiesGroupList(props: {
+  handleToggle: (group: string) => void;
+  active_pois: string[];
+}) {
+  return (
+    <>
+      {Object.keys(AMENITIES_GROUP)
+        .slice(0, 4)
+        .map((group: string) => {
+          const labelId = `label-${group}`;
+          return (
+            <ListItem
+              key={group}
+              disablePadding
+              secondaryAction={
+                <Checkbox
+                  edge="end"
+                  onChange={() => props.handleToggle(group)}
+                  defaultChecked={props.active_pois.includes(group)}
+                  inputProps={{ "aria-labelledby": labelId }}
+                />
+              }
+              sx={{ marginTop: 1 }}
+            >
+              <ListItemButton>
+                <ListItemText id={labelId} primary={convert_to_pascal(group)} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
+    </>
+  );
+}
+
+export function PoisSelector() {
   const dispatch = useAppDispatch();
   const active_pois = useAppSelector((state) => state.poi.active_pois);
 
@@ -53,7 +87,7 @@ export function LocationSelector() {
     setOpen(false);
   };
 
-  const handleToggle = (value: string) => () => {
+  const handleToggle = (value: string) => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -67,8 +101,6 @@ export function LocationSelector() {
   };
 
   const handleApply = () => {
-    // fetch pois
-    dispatch(get_pois_aois());
     dispatch(setActivePois(checked));
     setOpen(false);
   };
@@ -81,30 +113,10 @@ export function LocationSelector() {
           <DialogTitle variant="h4">Locations</DialogTitle>
           <DialogContent sx={{ padding: 0, maxHeight: 200 }}>
             <List dense sx={{ width: "100%" }}>
-              {Object.keys(AMENITIES_GROUP)
-                .slice(0, 4)
-                .map((group: string) => {
-                  const labelId = `label-${group}`;
-                  return (
-                    <ListItem
-                      key={group}
-                      disablePadding
-                      secondaryAction={
-                        <Checkbox
-                          edge="end"
-                          onChange={handleToggle(group)}
-                          defaultChecked={active_pois.includes(group)}
-                          inputProps={{ "aria-labelledby": labelId }}
-                        />
-                      }
-                      sx={{ marginTop: 1 }}
-                    >
-                      <ListItemButton>
-                        <ListItemText id={labelId} primary={convert_to_pascal(group)} />
-                      </ListItemButton>
-                    </ListItem>
-                  );
-                })}
+              <AmenitiesGroupList
+                active_pois={active_pois}
+                handleToggle={(group) => handleToggle(group)}
+              />
             </List>
           </DialogContent>
           <DialogActions>

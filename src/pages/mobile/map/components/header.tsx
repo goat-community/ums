@@ -6,7 +6,7 @@ import { Stack } from "@mui/material";
 import { Header } from "@components/mobile";
 
 import { LayerSelector } from "./layer-selector";
-import { LocationSelector } from "./location-selector";
+import { PoisSelector } from "./pois-selector";
 
 export function MapHeader() {
   return (
@@ -15,7 +15,7 @@ export function MapHeader() {
       {/** Selector buttons */}
       <Stack direction="row" spacing={1} padding="10px 16px">
         <LayerSelector />
-        <LocationSelector />
+        <PoisSelector />
       </Stack>
     </Section>
   );
