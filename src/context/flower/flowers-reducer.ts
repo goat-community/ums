@@ -46,6 +46,7 @@ const initialState = {
     tram_stop: 5,
   } as Amenities,
   survey_done_already: false as boolean,
+  score_layer_mode: "none" as "personal" | "standard" | "none", //TODO: Move to type
 };
 
 export const flower = createSlice({
@@ -67,8 +68,15 @@ export const flower = createSlice({
     setSurveyDone: (state: typeof initialState) => {
       state.survey_done_already = true;
     },
+    setScoreLayerMode: (
+      state: typeof initialState,
+      action: PayloadAction<"personal" | "standard" | "none">
+    ) => {
+      state.score_layer_mode = action.payload;
+    },
   },
 });
 
-export const { setAmenities, clearAmenities, setSurveyDone } = flower.actions;
+export const { setAmenities, clearAmenities, setSurveyDone, setScoreLayerMode } =
+  flower.actions;
 export default flower.reducer;

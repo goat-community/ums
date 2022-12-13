@@ -12,7 +12,7 @@ export const LIGHT_PRIMARY = "#FDFCFF";
 export const LIGHT_GREEN = "#99E1BE";
 export const GREEN_PRIMARY_LIGHT = "#7DFAC2";
 export const GREEN_PRIMARY = "#2BB381";
-
+export const RED_PRIMARY = "#F95F62";
 /** Sizing */
 export const BOTTOM_BAR_HEIGHT = 80;
 export const SIDE_BAR_WIDTH = 80;
