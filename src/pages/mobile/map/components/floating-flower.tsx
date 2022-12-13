@@ -1,70 +1,101 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+
+import FilterVintageIcon from "@mui/icons-material/FilterVintage";
+import PersonIcon from "@mui/icons-material/Person";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import SpeedDial from "@mui/material/SpeedDial";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { get_amenities } from "@context/flower";
+import { setScoreLayerMode } from "@context/flower";
 
 import * as D from "@constants/design";
 
-import LightIcon from "@images/icon.png";
-import PurpleIcon from "@images/purple_icon.png";
+const actions = [
+  { icon: <PersonIcon />, name: "Personalized", value: "personal" },
+  { icon: <FilterVintageIcon />, name: "Standard", value: "standard" },
+];
 
 export function FloatingFlowerButton() {
+  // set mode to personal or standard or not active
+  const mode = useAppSelector((state) => state.flower.score_layer_mode);
   const dispatch = useAppDispatch();
-  const is_picking = useAppSelector((state) => state.map.picking_mode);
-  const is_loading = useAppSelector((state) => state.network.loading);
-  const travel_time_surface = useAppSelector(
-    (state) => state.isochrones.travel_time_surface
-  );
-
-  const isochrone_shown = Boolean(!is_loading && travel_time_surface);
-  const icon = is_picking ? LightIcon : PurpleIcon;
-  // User should done the flower before picking isochrone
-  // const button_action = () =>
-  //   is_done_survey ? dispatch(set_picking_mode(!is_picking)) : navigate("/flower");
-
-  // fetch survey from localstorage
-  // to state the filling status
+  // set icon based on mode (personal -> PersonIcon, standard -> FilterVintageIcon, none -> FilterVintageIcon)
+  const [icon, setIcon] = useState<JSX.Element>(<FilterVintageIcon />);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-    dispatch(get_amenities());
-  }, []);
+    mode === "personal" ? setIcon(<PersonIcon />) : setIcon(<FilterVintageIcon />);
+  }, [mode]);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = (action) => () => {
+    dispatch(setScoreLayerMode(action.value));
+    setOpen(false);
+  };
+
+  const handleClick = () => {
+    open ? setOpen(false) : setOpen(true);
+  };
 
   return (
-    <Button
-      is_picking={is_picking}
-      isochrone_shown={isochrone_shown}
-      // onClick={button_action}
+    <SpeedDial
+      ariaLabel="15 Min Score Layer"
+      direction={"left"}
+      onOpen={handleOpen}
+      open={open}
+      onClick={handleClick}
+      sx={{
+        position: "absolute",
+        bottom: 100,
+        right: 10,
+      }}
+      FabProps={{
+        style: {
+          borderRadius: "16px",
+        },
+        sx: {
+          color: mode === "none" ? D.PRIMARY_COLOR : D.WHITE_COLOR,
+          backgroundColor: mode === "none" ? D.WHITE_COLOR : D.GREEN_PRIMARY,
+          "&:hover": {
+            backgroundColor: mode === "none" ? D.WHITE_COLOR : D.GREEN_PRIMARY,
+          },
+        },
+      }}
+      icon={icon}
     >
-      <img src={icon} alt="icon" width="24" height="24" />
-    </Button>
+      {actions.map(
+        (action) =>
+          mode !== action.value && (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={handleClose(action)}
+              FabProps={{
+                style: {
+                  borderRadius: "12px",
+                },
+              }}
+            />
+          )
+      )}
+      {/* Close SpeedDial only if mode is not none */}
+      {mode !== "none" && (
+        <SpeedDialAction
+          key={"close"}
+          icon={<VisibilityOffIcon />}
+          tooltipTitle={"Close"}
+          FabProps={{
+            style: {
+              borderRadius: "12px",
+            },
+          }}
+          onClick={handleClose({ value: "none" })}
+        />
+      )}
+    </SpeedDial>
   );
 }
-
-const Button = styled.button<{
-  is_picking: boolean;
-  isochrone_shown: boolean;
-}>`
-  z-index: 2;
-  position: fixed;
-  width: 56px;
-  height: 56px;
-  right: 10px;
-  padding-right: env(safe-area-inset-right, 10px);
-  padding-bottom: env(safe-area-inset-bottom, 100px);
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: white;
-  font-size: 11px;
-  align-items: center;
-  border: none;
-  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
-  background-color: ${(props) => (props.is_picking ? D.GREEN_PRIMARY : D.WHITE_COLOR)};
-  bottom: calc(
-    ${(props) =>
-        props.isochrone_shown ? D.BOTTOM_BAR_HEIGHT + 5 : D.BOTTOM_BAR_HEIGHT}px + 20px
-  );
-`;

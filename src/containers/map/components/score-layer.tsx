@@ -37,22 +37,20 @@ export default function ScoreLayer() {
   const allAmenities = useAppSelector((state) => state.flower.amenities);
   // Active amenities are the ones that have a value > 0 in the flower state
   const activeAmenities = useAppSelector(active_amenities_selector);
-  const [showPersonalScore, setShowPersonalScore] = useState(true);
-  const [isVisible, setIsVisible] = useState(true);
-
+  const mode = useAppSelector((state) => state.flower.score_layer_mode);
   const scoreLayer = new MVTLayer({
     data: TILESET_URL,
-    visible: isVisible,
+    visible: mode !== "none",
     minZoom: 0,
     maxZoom: 17,
     getLineWidth: 0,
     getFillColor: (d) => {
       let nrAmenitiesReached = 0;
-      const amenities = showPersonalScore ? activeAmenities : allAmenities;
+      const amenities = mode === "personal" ? activeAmenities : allAmenities;
       const nrTotalAmenities = Object.keys(amenities).length;
       Object.keys(d.properties).forEach((amenity) => {
         if (amenities[amenity]) {
-          const maxTime = showPersonalScore ? amenities[amenity] : 15;
+          const maxTime = mode === "personal" ? amenities[amenity] : 15;
           if (d.properties[amenity] <= maxTime) {
             nrAmenitiesReached++;
           }
@@ -62,7 +60,7 @@ export default function ScoreLayer() {
       return COLORS[score] || [168, 168, 168];
     },
     updateTriggers: {
-      getFillColor: [showPersonalScore],
+      getFillColor: [mode],
     },
   });
 
