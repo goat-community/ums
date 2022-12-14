@@ -14,6 +14,7 @@ import Isochrones from "./isochrones";
 import Layers from "./layers";
 import MaskLayer from "./mask";
 import Pois from "./pois";
+import ScoreLayer from "./score-layer";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -58,6 +59,8 @@ function MapComponent(props: MapProps) {
       {/** POIS */}
       <Pois />
 
+      {/** Score Layer */}
+      <ScoreLayer />
       {/** Isochrones */}
       <Isochrones />
     </Map>
