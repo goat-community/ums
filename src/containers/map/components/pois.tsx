@@ -54,7 +54,7 @@ export const unclusteredPointLayer = (
     filter: ["!", ["has", "point_count"]],
     layout: {
       "icon-image": poi_feature_group,
-      "icon-size": 1,
+      "icon-size": 0.02,
     },
   };
 };
@@ -66,17 +66,21 @@ export default function Pois() {
 
   useEffect(() => {
     AMENITIES_LIST.forEach(async (name_of_amenity) => {
-      await import(
-        /* @vite-ignore */ "../../../images/amenities/" + name_of_amenity + ".svg"
-      ).then((svg_icon) => {
-        // if (mapRef.current.hasImage(name_of_amenity)) {
-        //   return false;
-        // }
+      // await import(
+      //   /* @vite-ignore */ "../../../images/amenities/" + name_of_amenity + ".svg"
+      // ).then((svg_icon) => {
+      // if (mapRef.current.hasImage(name_of_amenity)) {
+      //   return false;
+      // }
+      mapRef.current.loadImage(
+        `https://raw.githubusercontent.com/cinaaaa/reado/main/${name_of_amenity}.svg.png`,
+        (error, image) => {
+          if (error) console.log(error);
 
-        const img = new Image(10, 10);
-        img.onload = () => mapRef.current.addImage(name_of_amenity, img);
-        img.src = svg_icon.default;
-      });
+          mapRef.current.addImage(name_of_amenity, image);
+        }
+      );
+      // });
     });
   }, []);
 

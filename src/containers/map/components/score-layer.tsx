@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useControl } from "react-map-gl";
 import { DeckProps } from "@deck.gl/core/typed";
 import { MVTLayer } from "@deck.gl/geo-layers/typed";
