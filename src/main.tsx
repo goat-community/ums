@@ -6,7 +6,7 @@ import { Palette } from "@styles/theme";
 
 import { store } from "@context";
 
-import { ErrorBoundary, LoadingWrapper, NotifierWrapper } from "@components/common";
+import { ErrorBoundary, NotifierWrapper } from "@components/common";
 
 import Splash from "@pages/common/splash";
 
@@ -23,7 +23,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Provider store={store}>
         <Palette>
           <NotifierWrapper />
-          <LoadingWrapper />
           <Suspense fallback={<Splash />}>
             <RouterProvider router={router} />
           </Suspense>

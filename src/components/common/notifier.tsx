@@ -12,11 +12,11 @@ export function NotifierWrapper() {
   const notifierReducer = useAppSelector((state) => state.notifier);
   const dispatch = useAppDispatch();
 
+  const button_style = { color: D.WHITE_COLOR, minWidth: "auto" };
   const snack_bar_style = {
-    bottom: { xs: D.BOTTOM_BAR_HEIGHT + 20, sm: 0 },
+    bottom: { xs: D.BOTTOM_BAR_HEIGHT + 20, sm: 20, xl: 20, md: 20 },
     maxWidth: "75%",
   };
-  const button_style = { color: D.WHITE_COLOR, minWidth: "auto" };
 
   function close_notification() {
     dispatch(close_notify());
@@ -26,7 +26,7 @@ export function NotifierWrapper() {
     return (
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        key={"bottom" + "center"}
+        key={"bottom" + "right"}
         open={true}
         message={notifierReducer.msg.toString()}
         sx={snack_bar_style}
@@ -38,7 +38,7 @@ export function NotifierWrapper() {
             sx={button_style}
             onClick={close_notification}
           >
-            Undo
+            Close
           </Button>
         }
       />
