@@ -3,15 +3,14 @@ import React, { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import Notfound from "@pages/common/404";
+import Flower from "@pages/mobile/flower/Flower";
+import Insights from "@pages/mobile/insights/Insights";
+import Map from "@pages/mobile/map/Map";
+import Profile from "@pages/mobile/profile/Profile";
 
 let router: ReturnType<typeof createBrowserRouter>;
 // Mobile
 if (window.screen.width <= 780) {
-  const Flower = lazy(() => import("@pages/mobile/flower/Flower"));
-  const Map = lazy(() => import("@pages/mobile/map/Map"));
-  const Profile = lazy(() => import("@pages/mobile/profile/Profile"));
-  const Insights = lazy(() => import("@pages/mobile/insights/Insights"));
-
   router = createBrowserRouter([
     {
       path: "/",

@@ -69,9 +69,9 @@ export default function Pois() {
       await import(
         /* @vite-ignore */ "../../../images/amenities/" + name_of_amenity + ".svg"
       ).then((svg_icon) => {
-        if (mapRef.current.hasImage(name_of_amenity)) {
-          return false;
-        }
+        // if (mapRef.current.hasImage(name_of_amenity)) {
+        //   return false;
+        // }
 
         const img = new Image(10, 10);
         img.onload = () => mapRef.current.addImage(name_of_amenity, img);
