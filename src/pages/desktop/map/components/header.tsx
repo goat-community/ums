@@ -51,7 +51,7 @@ export function Header(props: { position?: string }) {
       <Margin margin="13px 0 0" />
       <MatGeocoder
         key={0}
-        inputPlaceholder="Location"
+        inputPlaceholder="Search for address..."
         accessToken={MAPBOX_TOKEN}
         onSelect={onSelectHandler}
         showLoader={true}
