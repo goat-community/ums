@@ -2,16 +2,18 @@ import React from "react";
 import { MapProvider } from "react-map-gl";
 import { MapContainer } from "@containers/map/map-container";
 
-import { SideBarLayout } from "@layouts/desktop";
+import { FloatingActions } from "./components/floating-actions";
+import { Header } from "./components/header";
 
-import { DrawerContent } from "./components/drawer-content";
+// import { SideBarLayout } from "@layouts/desktop";
+
+// import { DrawerContent } from "./components/drawer-content";
 
 export default function Map() {
   return (
     <MapProvider>
-      <SideBarLayout drawer_content={<DrawerContent />}>
-        <div></div>
-      </SideBarLayout>
+      <Header />
+      <FloatingActions />
       <MapContainer />
     </MapProvider>
   );
