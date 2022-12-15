@@ -43,15 +43,6 @@ function MapComponent(props: MapProps) {
         }
       }}
     >
-      {/** Geocoding */}
-      {/* <GeocoderControl
-        mapboxAccessToken={MAPBOX_TOKEN}
-        onError={() => {}}
-        onResult={(e) => console.log(e)}
-        onResults={(e) => console.log(e)}
-        position="top-left"
-      /> */}
-
       {/** Layers */}
       <Layers />
       <MaskLayer />

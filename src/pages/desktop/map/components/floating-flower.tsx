@@ -43,10 +43,12 @@ export function FlowerButton() {
   return (
     <SpeedDial
       ariaLabel="15 Min Score Layer"
-      direction={"down"}
+      sx={{ zIndex: 1 }}
+      direction={"right"}
       onOpen={handleOpen}
       open={open}
       onClick={handleClick}
+      icon={icon}
       FabProps={{
         style: {
           borderRadius: "16px",
@@ -59,7 +61,6 @@ export function FlowerButton() {
           },
         },
       }}
-      icon={icon}
     >
       {actions.map(
         (action) =>

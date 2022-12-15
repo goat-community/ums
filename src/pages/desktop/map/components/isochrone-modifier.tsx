@@ -45,7 +45,7 @@ export function IsochroneModifier() {
 
   return (
     <Section>
-      <Stack direction="row" alignItems="center" spacing={2} maxWidth={240}>
+      <Stack direction="row" alignItems="center" spacing={2}>
         <Typography p={1} variant="h6" sx={typography_style} width={70}>
           Distance <br /> ({max_trip_duration_minutes} min.)
         </Typography>
@@ -115,13 +115,8 @@ export function IsochroneModifier() {
 }
 
 const Section = styled.section`
-  position: fixed;
-  left: 5px;
-  bottom: calc(${D.BOTTOM_BAR_HEIGHT}px + 20px);
-  padding-left: env(safe-area-inset-left, 20px);
-  padding-bottom: env(safe-area-inset-bottom, 100px);
-  border-radius: 16px;
-  z-index: -1;
+  width: 90%;
+  margin-top: 20px;
 `;
 
 const SegmentedSection = styled.section`

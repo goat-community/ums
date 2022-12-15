@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import bbox from "@turf/bbox";
 import styled from "styled-components";
 
-import { useCalculateSingleScore } from "@hooks";
+import { useCalculateSingleScore, useIsMobile } from "@hooks";
 import { useAppSelector } from "@hooks/context";
 
 import { RootState } from "@context";
@@ -24,12 +24,15 @@ const isochroneStyle: FillLayer = {
 
 export default function Isochrones() {
   const mapRef = useMap();
+  const is_mobile = useIsMobile();
   const isochrone_score = useCalculateSingleScore();
   const isochrone = useSelector(isochrones_selector);
   const picked_point = useAppSelector(picked_point_selector);
   const travelTimeSurface = useSelector(
     (state: RootState) => state.isochrones.travel_time_surface
   );
+
+  const flying_padding = is_mobile ? 40 : 200;
 
   // Zoom to the bounding box of the isochrone
   useEffect(() => {
@@ -40,7 +43,7 @@ export default function Isochrones() {
           [minLng, minLat],
           [maxLng, maxLat],
         ],
-        { padding: 40, duration: 1000 }
+        { padding: flying_padding, duration: 1000 }
       );
     }
   }, [travelTimeSurface]);

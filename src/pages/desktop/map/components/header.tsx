@@ -21,7 +21,7 @@ import M4CLOGO from "@images/m4c-big.png";
 import { FlowerButton } from "./floating-flower";
 import { IsochroneButton } from "./isochrone-button";
 
-export function Header() {
+export function Header(props: { position?: string }) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -43,44 +43,49 @@ export function Header() {
   };
 
   return (
-    <Section>
+    <Section position={props.position || "fixed"}>
       <img src={M4CLOGO} height="25px" />
       <Typography variant="h6">
         How does your city score in terms of accessibility?
       </Typography>
       <Margin margin="13px 0 0" />
-      <Stack spacing={1} direction="row">
-        <FlowerButton />
+      <MatGeocoder
+        key={0}
+        inputPlaceholder="Location"
+        accessToken={MAPBOX_TOKEN}
+        onSelect={onSelectHandler}
+        showLoader={true}
+        country="de"
+        bbox={viewBounds}
+        inputPaperProps={{
+          style: {
+            width: "355px",
+            padding: "0 10px",
+            minHeight: "56px",
+            height: "56px",
+            boxShadow: "none",
+            borderRadius: "4px 4px 0 0",
+            borderBottom: "1px solid black",
+            backgroundColor: "white",
+          },
+        }}
+        suggestionsPaperProps={{
+          style: {
+            zIndex: 2,
+          },
+        }}
+      />
+      <Stack spacing={1} direction="row" mt={2} mb={2}>
         <IsochroneButton />
-        <MatGeocoder
-          key={0}
-          inputPlaceholder="Location"
-          accessToken={MAPBOX_TOKEN}
-          onSelect={onSelectHandler}
-          showLoader={true}
-          country="de"
-          bbox={viewBounds}
-          inputPaperProps={{
-            style: {
-              width: "235px",
-              padding: "0 10px",
-              minHeight: "56px",
-              height: "56px",
-              boxShadow: "none",
-              borderRadius: "4px 4px 0 0",
-              borderBottom: "1px solid black",
-              backgroundColor: "white",
-            },
-          }}
-        />
+        <FlowerButton />
       </Stack>
     </Section>
   );
 }
 
-const Section = styled.section`
-  z-index: 2;
-  position: fixed;
+const Section = styled.section<{ position: string }>`
+  position: ${(props) => props.position};
+  margin: ${(props) => (props.position != "fixed" ? "50px 50px 0" : "0")};
   padding-left: env(safe-area-inset-right, 50px);
   padding-top: env(safe-area-inset-bottom, 50px);
   top: 50px;
