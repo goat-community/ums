@@ -18,7 +18,7 @@ export function PersonalScore() {
         />
         <Stack justifyContent="space-between" alignItems="center">
           <Typography variant="h6" fontSize="14px">
-            Personal scrore
+            Personal Score
           </Typography>
           <Typography variant="h1" fontSize="46px" fontWeight="400">
             {score} / 10

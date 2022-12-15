@@ -56,7 +56,7 @@ export function InsightsModifier() {
         <Slider
           value={max_trip_duration_minutes}
           onChange={(_, value) => dispatch(setMaxTripDurationMinutes(value as number))}
-          max={30}
+          max={15}
           valueLabelDisplay="auto"
           color={"secondary"}
           disabled={score_mode === SCORE_MODE.personal}

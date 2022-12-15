@@ -1,6 +1,6 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { notify } from "./notifier";
+import { notify, resetNotify } from "./notifier";
 
 /** Reducer */
 const initialState = {
@@ -34,7 +34,10 @@ export function networkStateHandler(req: CallableFunction) {
   return async (dispatch: CallableFunction) => {
     dispatch(setNetworkState({ loading: true }));
     try {
+      dispatch(notify("Loading, please wait..."));
       await req();
+      // Request is done, resetting the notifiers
+      dispatch(resetNotify());
       dispatch(resetNetworkState());
     } catch (e) {
       dispatch(

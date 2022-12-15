@@ -1,22 +1,19 @@
 import React from "react";
 
-import { CircularProgress, Typography } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 import { Margin } from "@components/common";
 
-import logo from "@images/logo.png";
+import logo from "@images/m4c.png";
 
 import "./splash.scss";
 
 export default function Splash() {
   return (
     <section className="splash-background">
-      <div className="logo-container">
-        <img src={logo} alt="logo" width="68" height="74" />
-      </div>
-      <Typography variant="h1">Map4Citizens</Typography>
+      <img src={logo} alt="logo" width="200" height="auto" />
       <Margin margin="20px 0" />
-      <CircularProgress />
+      <CircularProgress variant="indeterminate" disableShrink size={30} />
     </section>
   );
 }

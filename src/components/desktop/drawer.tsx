@@ -6,7 +6,6 @@ import * as D from "@constants/design";
 interface DrawerProps {
   open: boolean;
   children: React.ReactNode;
-  toggleDrawer: () => void;
 }
 
 export function Drawer(props: DrawerProps) {
@@ -19,23 +18,24 @@ export function Drawer(props: DrawerProps) {
 
 const drawer_animation = keyframes`
   from {
-    left: 0;
+    width: 0;
   }
   to {
-    left: ${D.SIDE_BAR_WIDTH}px;
+    width: ${D.DRAWER_WIDTH}px;
   }
 `;
 
 const Section = styled.section`
   width: ${D.DRAWER_WIDTH}px;
-  left: ${D.SIDE_BAR_WIDTH}px;
   background-color: ${D.WHITE_COLOR};
-  top: 0;
-  z-index: 1;
-  height: 100vh;
   position: absolute;
+  padding: 0 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
   animation: ${drawer_animation} 0.2s;
 `;
