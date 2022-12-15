@@ -28,11 +28,14 @@ const drawer_animation = keyframes`
 const Section = styled.section`
   width: ${D.DRAWER_WIDTH}px;
   background-color: ${D.WHITE_COLOR};
-  height: 100vh;
-  position: fixed;
+  position: absolute;
   padding: 0 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
   animation: ${drawer_animation} 0.2s;
 `;

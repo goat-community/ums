@@ -59,7 +59,7 @@ export function Header(props: { position?: string }) {
         bbox={viewBounds}
         inputPaperProps={{
           style: {
-            width: "355px",
+            width: "290px",
             padding: "0 10px",
             minHeight: "56px",
             height: "56px",

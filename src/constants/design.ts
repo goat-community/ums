@@ -16,4 +16,4 @@ export const RED_PRIMARY = "#F95F62";
 /** Sizing */
 export const BOTTOM_BAR_HEIGHT = 80;
 export const SIDE_BAR_WIDTH = 80;
-export const DRAWER_WIDTH = 400;
+export const DRAWER_WIDTH = 340;
