@@ -4,6 +4,7 @@ import { MapContainer } from "@containers/map/map-container";
 
 import { FloatingActions } from "./components/floating-actions";
 import { Header } from "./components/header";
+import { ProfileButton } from "./components/profile-button";
 
 // import { SideBarLayout } from "@layouts/desktop";
 
@@ -13,6 +14,7 @@ export default function Map() {
   return (
     <MapProvider>
       <Header />
+      <ProfileButton />
       <FloatingActions />
       <MapContainer />
     </MapProvider>
