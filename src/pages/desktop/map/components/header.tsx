@@ -1,11 +1,15 @@
 import React from "react";
+import { type LngLat } from "react-map-gl";
 import MatGeocoder from "react-mui-mapbox-geocoder";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { Stack, Typography } from "@mui/material";
 
-import { useAppSelector } from "@hooks/context";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
 
+import { get_point_isochrone } from "@context/isochrones";
+import { setAddress, setPickingMode } from "@context/map";
 import { view_bounds_selector } from "@context/map/map-selector";
 
 import { MAPBOX_TOKEN } from "@constants";
@@ -18,7 +22,25 @@ import { FlowerButton } from "./floating-flower";
 import { IsochroneButton } from "./isochrone-button";
 
 export function Header() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const viewBounds = useAppSelector(view_bounds_selector);
+  const survey_has_done = useAppSelector((state) => state.flower.survey_done_already);
+
+  const onSelectHandler = (result) => {
+    if (survey_has_done) {
+      const point = {
+        lng: result.center[0],
+        lat: result.center[1],
+      } as LngLat;
+      dispatch(setPickingMode(true));
+      dispatch(get_point_isochrone(point));
+      dispatch(setAddress(result?.place_name));
+    } else {
+      navigate("/flower");
+    }
+  };
 
   return (
     <Section>
@@ -34,9 +56,7 @@ export function Header() {
           key={0}
           inputPlaceholder="Location"
           accessToken={MAPBOX_TOKEN}
-          onSelect={() => {
-            console.log("todo");
-          }}
+          onSelect={onSelectHandler}
           showLoader={true}
           country="de"
           bbox={viewBounds}

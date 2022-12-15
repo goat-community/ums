@@ -20,11 +20,11 @@ import Logo from "@images/m4c.png";
 
 export function Header() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const survey_has_done = useAppSelector((state) => state.flower.survey_done_already);
   const [keyIndex] = useState(0);
   const icon_style = { marginTop: -2 };
   const viewBounds = useAppSelector(view_bounds_selector);
-  const dispatch = useAppDispatch();
 
   const onSelectHandler = (result) => {
     if (survey_has_done) {
