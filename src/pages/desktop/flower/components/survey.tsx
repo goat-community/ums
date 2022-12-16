@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 import { get_amenities, persist_amenities, set_amenity } from "@context/flower";
 
 import * as D from "@constants/design";
-import { AMENITIES_GROUP, AMENITIES_LIST, FLOWER_PROXIMITY } from "@constants/flower";
+import { AMENITIES_GROUP, FLOWER_PROXIMITY } from "@constants/flower";
 
 import { Margin } from "@components/common";
 import { LinearProgressBar } from "@components/mobile/linear-progress";
