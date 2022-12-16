@@ -72,6 +72,22 @@ export function Header() {
         showLoader={true}
         country="de"
         bbox={viewBounds}
+        inputPaperProps={{
+          style: {
+            padding: "0 10px",
+            minHeight: "56px",
+            height: "56px",
+            boxShadow: "none",
+            borderRadius: 0,
+            borderBottom: "1px solid black",
+            backgroundColor: D.WHITE_COLOR,
+          },
+        }}
+        suggestionsPaperProps={{
+          style: {
+            zIndex: 2,
+          },
+        }}
       />
     </Section>
   );
