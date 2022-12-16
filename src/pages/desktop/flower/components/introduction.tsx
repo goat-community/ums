@@ -53,7 +53,7 @@ export default function Introduction(props: IntroductionProps) {
       </Typography>
       <Margin margin="25px 0 0 0" />
       <Typography variant="h3" fontWeight="bold">
-        How does you flower look like?
+        How does your flower looks like?
       </Typography>
       <Margin margin="35px 0 0 0" />
       <Stack

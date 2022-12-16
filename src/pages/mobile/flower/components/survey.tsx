@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 import { get_amenities, persist_amenities, set_amenity } from "@context/flower";
 
 import * as D from "@constants/design";
-import { AMENITIES_LIST, FLOWER_PROXIMITY } from "@constants/flower";
+import { AMENITIES_GROUP, FLOWER_PROXIMITY } from "@constants/flower";
 
 import { Margin } from "@components/common";
 import { LinearProgressBar } from "@components/mobile/linear-progress";
@@ -50,7 +50,7 @@ function SurveyQuestions(props: {
               props.on_change({ [key]: value } as Record<string, FlowerMinutes>)
             }
             min={5}
-            max={30}
+            max={15}
             valueLabelDisplay="auto"
             color={"secondary"}
           />
@@ -79,15 +79,19 @@ export default function Survey(props: SurveyProps) {
   }
 
   function continue_clicked() {
-    if (step === 5) {
+    if (step === Object.keys(AMENITIES_GROUP).length - 1) {
       dispatch(persist_amenities(amentities_list as Amenities));
       return navigate("/");
     }
     return setStep((currentStep) => currentStep + 1);
   }
 
-  const step_multiplied = step * 8;
-  const amentities_filtered = AMENITIES_LIST.slice(step_multiplied - 8, step_multiplied);
+  const amenity_group = Object.keys(AMENITIES_GROUP)[step];
+  const amentities_filtered = AMENITIES_GROUP[amenity_group];
+  const percentage_completed: number = Math.round(
+    (step / Object.keys(AMENITIES_GROUP).length) * 100
+  );
+
   return (
     <>
       <IconButton onClick={on_back_clicked}>
@@ -95,15 +99,20 @@ export default function Survey(props: SurveyProps) {
       </IconButton>
 
       <Box>
-        <LinearProgressBar value={step * 20} />
+        <LinearProgressBar value={percentage_completed} />
         <Margin margin="30px 0 0 0" />
         <TypoGraphyContainer>
           <Typography variant="h6">
             Make a selection of the distance in minutes for the locations that are
-            relevant to you
+            relevant for you (create your ideal city). The travel times are
+            mode-independent
           </Typography>
         </TypoGraphyContainer>
-        <Margin margin="55px 0 0 0" />
+        <Margin margin="25px 0 0 0" />
+        <Typography variant="h3" fontWeight="bold">
+          {convert_to_pascal(amenity_group)}
+        </Typography>
+        <Margin margin="20px 0 0 0" />
         <SurveyQuestions
           amentities_filtered={amentities_filtered}
           amentities_list={amentities_list}
