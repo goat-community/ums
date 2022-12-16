@@ -1,14 +1,9 @@
 import axios from "axios";
 
+import { API_TOKEN } from "@constants";
+
 import { base_url } from "./base-url";
 
-// function getLocalAccessToken(): string | null {
-//   const accessToken = localStorage.getItem("access_token") || null;
-//   return accessToken;
-// }
-
-export const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzExNzQwNDIsInN1YiI6IjE0MiIsInNjb3BlcyI6W119.qpyQK5JkcE1_uA1w9CW2k73qnvRVDylv6TSB-HNQKMU";
 export const instance = axios.create({
   baseURL: base_url(),
   headers: {
@@ -22,7 +17,7 @@ instance.interceptors.request.use(
     // if (token && config.headers) {
     //   config.headers["Authorization"] = `bearer ${token}`;
     // }
-    config.headers["Authorization"] = `bearer ${token}`;
+    config.headers["Authorization"] = `bearer ${API_TOKEN}`;
     return config;
   },
   (error) => {

@@ -3,10 +3,8 @@ import Map, { type LngLat } from "react-map-gl";
 
 import { MapView } from "@types";
 
-import { token } from "@utils";
-
 // import { isochrones_selector } from "@context/isochrones/isochrones-selector";
-import { MAPBOX_TOKEN } from "@constants";
+import { API_TOKEN, MAPBOX_TOKEN } from "@constants";
 
 // import { GeocoderControl } from "@components/common";
 // import PinIcon from "@images/pin.png";
@@ -38,7 +36,7 @@ function MapComponent(props: MapProps) {
         if (url.startsWith("https://goat") || url.startsWith("http://localhost")) {
           return {
             url: url,
-            headers: { Authorization: "Bearer " + token },
+            headers: { Authorization: "Bearer " + API_TOKEN },
           };
         }
       }}
