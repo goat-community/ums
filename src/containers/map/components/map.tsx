@@ -41,6 +41,8 @@ function MapComponent(props: MapProps) {
         }
       }}
     >
+      {/** Isochrones */}
+      <Isochrones />
       {/** Layers */}
       <Layers />
       <MaskLayer />
@@ -50,8 +52,6 @@ function MapComponent(props: MapProps) {
 
       {/** Score Layer */}
       <ScoreLayer />
-      {/** Isochrones */}
-      <Isochrones />
     </Map>
   );
 }
