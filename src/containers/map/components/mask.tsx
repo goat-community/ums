@@ -1,13 +1,13 @@
 // create mapbox mask layer
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { FillLayer, Layer, Source } from "react-map-gl";
 import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "@hooks/context";
 
 import { getStudyArea } from "@context/map";
-import { study_area_selector } from "@context/map/map-selector";
+import { study_area_selector } from "@context/map/maps-selector";
 
 const maskFillStyle: FillLayer = {
   id: "isochrone-fill",

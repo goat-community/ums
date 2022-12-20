@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import LayersOutlinedIcon from "@mui/icons-material/LayersOutlined";
 import {
@@ -17,12 +17,10 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-import { convert_from_pascal } from "@utils";
-
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { toggleLayer, toggleOffAllLayers } from "@context/map";
-import { map_layers_list_selector } from "@context/map/map-selector";
+import { map_layers_list_selector } from "@context/map/maps-selector";
 
 function LayersList(props: {
   layers_list: ReturnType<typeof map_layers_list_selector>;
@@ -36,17 +34,17 @@ function LayersList(props: {
       onChange={(e) => props.on_change(e.target.value)}
     >
       {props.layers_list.map((i) => {
-        const labelId = `label-${i.label}`;
+        const labelId = `label-${i.value}`;
         return (
           <ListItem
-            key={i.label}
+            key={i.value}
             disablePadding
             secondaryAction={
               <Radio
                 edge="end"
                 inputProps={{ "aria-labelledby": labelId }}
-                value={i.label}
-                onClick={() => props.radio_clicked(i.label)}
+                value={i.value}
+                onClick={() => props.radio_clicked(i.value)}
               />
             }
             sx={{ marginTop: 1 }}
@@ -72,8 +70,7 @@ export function LayerSelector() {
   const handleChange = () => {
     dispatch(toggleOffAllLayers());
     if (checked) {
-      console.log(convert_from_pascal(checked));
-      dispatch(toggleLayer(convert_from_pascal(checked)));
+      dispatch(toggleLayer(checked));
     }
     setOpen(false);
   };

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Box, LinearProgress, LinearProgressProps } from "@mui/material";
 
 export function LinearProgressBar(props: LinearProgressProps & { value: number }) {

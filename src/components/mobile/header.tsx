@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { LngLat } from "react-map-gl";
 import MatGeocoder from "react-mui-mapbox-geocoder";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_point_isochrone } from "@context/isochrones";
 import { setAddress, setPickingMode } from "@context/map";
-import { view_bounds_selector } from "@context/map/map-selector";
+import { view_bounds_selector } from "@context/map/maps-selector";
 
 import { MAPBOX_TOKEN } from "@constants";
 import * as D from "@constants/design";

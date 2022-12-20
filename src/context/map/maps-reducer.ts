@@ -1,7 +1,7 @@
 import { LngLat } from "react-map-gl";
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { MapView } from "@types";
+import { IndicatorConfig, MapView } from "@types";
 
 /** Reducer */
 const initialState = {
@@ -17,13 +17,32 @@ const initialState = {
   } as MapView,
   viewBounds: null, // defined by study area when fetched
   layers: {
-    noise_levels: {
-      title: "Noise Levels",
+    noise_levels_day: {
+      title: "Noise Levels (Day)",
       visibility: "none",
       source: {
         type: "raster",
         tiles: [
           "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadlden&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
+        ],
+        tileSize: 256,
+      },
+      layers: [
+        {
+          type: "raster",
+          paint: {
+            "raster-opacity": 0.8,
+          },
+        },
+      ],
+    },
+    noise_levels_night: {
+      title: "Noise Levels (Night)",
+      visibility: "none",
+      source: {
+        type: "raster",
+        tiles: [
+          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadln&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
         ],
         tileSize: 256,
       },
@@ -288,9 +307,125 @@ const initialState = {
         },
       ],
     },
-    // pt_oev_gueteklassen: {},
+    pt_oev_gueteklassen: {
+      title: "ÖV-Güteklassen (Monday 7:00AM - 9:00AM)",
+      visibility: "none",
+      source: {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
+      },
+      layers: [
+        {
+          filter: ["all", ["==", "class", "A"]],
+          id: "A",
+          type: "fill",
+          paint: {
+            "fill-opacity": 0.65,
+            "fill-color": "#1a9641",
+            "fill-outline-color": "rgba(0, 0, 255, 0.0)",
+          },
+        },
+        {
+          filter: ["all", ["==", "class", "B"]],
+          id: "B",
+          type: "fill",
+          paint: {
+            "fill-opacity": 0.65,
+            "fill-color": "#8acc62",
+            "fill-outline-color": "rgba(0, 0, 255, 0.0)",
+          },
+        },
+        {
+          filter: ["all", ["==", "class", "C"]],
+          id: "C",
+          type: "fill",
+          paint: {
+            "fill-opacity": 0.65,
+            "fill-color": "#dcf09e",
+            "fill-outline-color": "rgba(0, 0, 255, 0.0)",
+          },
+        },
+        {
+          filter: ["all", ["==", "class", "D"]],
+          id: "D",
+          type: "fill",
+          paint: {
+            "fill-opacity": 0.65,
+            "fill-color": "#ffdf9a",
+            "fill-outline-color": "rgba(0, 0, 255, 0.0)",
+          },
+        },
+        {
+          filter: ["all", ["==", "class", "E"]],
+          id: "E",
+          type: "fill",
+          paint: {
+            "fill-opacity": 0.65,
+            "fill-color": "#f69053",
+            "fill-outline-color": "rgba(0, 0, 255, 0.0)",
+          },
+        },
+        {
+          filter: ["all", ["==", "class", "F"]],
+          id: "F",
+          type: "fill",
+          paint: {
+            "fill-opacity": 0.65,
+            "fill-color": "#d7191c",
+            "fill-outline-color": "rgba(0, 0, 255, 0.0)",
+          },
+        },
+      ],
+    },
   },
   studyArea: null as GeoJSON.FeatureCollection | null,
+  indicators: {
+    pt_oev_gueteklassen: {
+      payload: {
+        start_time: 25200,
+        end_time: 32400,
+        weekday: 1,
+        return_type: "geobuf",
+        station_config: {
+          groups: {
+            "0": "B",
+            "1": "A",
+            "2": "A",
+            "3": "C",
+            "4": "B",
+            "5": "B",
+            "6": "B",
+            "7": "B",
+            "11": "B",
+            "12": "B",
+          },
+          time_frequency: [0, 4, 10, 19, 39, 60, 119],
+          categories: [
+            { A: 1, B: 1, C: 2 },
+            { A: 1, B: 2, C: 3 },
+            { A: 2, B: 3, C: 4 },
+            { A: 3, B: 4, C: 5 },
+            { A: 4, B: 5, C: 6 },
+            { A: 5, B: 6, C: 6 },
+          ],
+          classification: {
+            "1": { "300": "A", "500": "A", "750": "B", "1000": "C" },
+            "2": { "300": "A", "500": "B", "750": "C", "1000": "D" },
+            "3": { "300": "B", "500": "C", "750": "D", "1000": "E" },
+            "4": { "300": "C", "500": "D", "750": "E", "1000": "F" },
+            "5": { "300": "D", "500": "E", "750": "F" },
+            "6": { "300": "E", "500": "F" },
+            "7": { "300": "F" },
+          },
+        },
+      },
+      requestMethod: "POST",
+      url: "pt-oev-gueteklassen",
+    } as IndicatorConfig,
+  },
 };
 
 export const map = createSlice({
@@ -319,6 +454,12 @@ export const map = createSlice({
       state.studyArea = action.payload;
       state.viewBounds = action.payload.features[0].properties.bounds;
     },
+    setIndicator: (
+      state: typeof initialState,
+      action: PayloadAction<{ features: unknown; layer: string } | null>
+    ) => {
+      state.layers[action.payload.layer].source.data.features = action.payload.features;
+    },
     toggleOffAllLayers: (state: typeof initialState) => {
       Object.keys(state.layers).forEach((key) => {
         state.layers[key].visibility = "none";
@@ -326,7 +467,6 @@ export const map = createSlice({
     },
     toggleLayer: (state: typeof initialState, action: PayloadAction<string | number>) => {
       const layer = state.layers[action.payload];
-      console.log(layer);
       const visibility = layer.visibility;
       layer.visibility = visibility === "visible" ? "none" : "visible";
     },
@@ -341,6 +481,7 @@ export const {
   setPickedPoint,
   setMapView,
   setStudyArea,
+  setIndicator,
   toggleLayer,
   toggleOffAllLayers,
   setAddress,

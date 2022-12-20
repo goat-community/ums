@@ -1,6 +1,6 @@
 import { type LngLat } from "react-map-gl";
 
-import * as Api from "@api/isochrones";
+import * as Api from "@api/indicators";
 
 import { IsochroneParams } from "@types";
 

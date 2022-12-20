@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import { lazy } from "react";
 /** Components */
 import { createBrowserRouter } from "react-router-dom";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { batch } from "react-redux";
 import styled from "styled-components";
 
@@ -16,7 +15,7 @@ import {
   setMaxTripDurationMinutes,
   setScoreMode,
 } from "@context/isochrones";
-import { picked_point_selector } from "@context/map/map-selector";
+import { picked_point_selector } from "@context/map/maps-selector";
 
 import * as D from "@constants/design";
 

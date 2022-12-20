@@ -1,4 +1,3 @@
-import React from "react";
 import { MapProvider } from "react-map-gl";
 import { MapContainer } from "@containers/map/map-container";
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { MapContainer } from "@containers/map/map-container";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";

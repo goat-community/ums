@@ -1,5 +1,3 @@
-import React from "react";
-
 import { BottomBarLayout } from "@layouts/mobile";
 
 import { FloatingFlowerButton } from "./components/floating-flower";

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import Map, { type LngLat } from "react-map-gl";
 
 import { MapView } from "@types";
