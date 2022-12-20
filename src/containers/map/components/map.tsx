@@ -41,6 +41,8 @@ function MapComponent(props: MapProps) {
         }
       }}
     >
+      {/** Score Layer */}
+      <ScoreLayer />
       {/** Isochrones */}
       <Isochrones />
       {/** Layers */}
@@ -49,9 +51,6 @@ function MapComponent(props: MapProps) {
 
       {/** POIS */}
       <Pois />
-
-      {/** Score Layer */}
-      <ScoreLayer />
     </Map>
   );
 }
