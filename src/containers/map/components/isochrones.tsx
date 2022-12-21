@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { FillLayer, Layer, Marker, Source, useMap } from "react-map-gl";
 import { useSelector } from "react-redux";
 import bbox from "@turf/bbox";
@@ -9,7 +9,7 @@ import { useAppSelector } from "@hooks/context";
 
 import { RootState } from "@context";
 import { isochrones_selector } from "@context/isochrones/isochrones-selector";
-import { picked_point_selector } from "@context/map/map-selector";
+import { picked_point_selector } from "@context/map/maps-selector";
 
 import PinIcon from "@images/pin.png";
 

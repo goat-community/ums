@@ -1,4 +1,3 @@
-import React from "react";
 import { useControl } from "react-map-gl";
 import { DeckProps } from "@deck.gl/core/typed";
 import { MVTLayer } from "@deck.gl/geo-layers/typed";
@@ -25,7 +24,9 @@ const COLORS = {
 const TILESET_URL = `https://api.mapbox.com/v4/majkshkurti.cn7oycg5/{z}/{x}/{y}.mvt?access_token=${MAPBOX_TOKEN}`;
 
 function DeckGLOverlay(props: DeckProps) {
-  const deck = useControl<MapboxOverlay>(() => new MapboxOverlay({ ...props }));
+  const deck = useControl<MapboxOverlay>(
+    () => new MapboxOverlay({ ...props, interleaved: true })
+  );
   deck.setProps(props);
   return null;
 }

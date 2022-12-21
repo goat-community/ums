@@ -1,9 +1,8 @@
-import React from "react";
 import { Layer, Source } from "react-map-gl";
 
 import { useAppSelector } from "@hooks/context";
 
-import { map_layers_selector } from "@context/map/map-selector";
+import { map_layers_selector } from "@context/map/maps-selector";
 
 export default function Layers() {
   const mapLayers = useAppSelector(map_layers_selector);

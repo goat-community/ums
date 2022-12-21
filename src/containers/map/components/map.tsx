@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import Map, { type LngLat } from "react-map-gl";
 
 import { MapView } from "@types";
@@ -41,6 +41,8 @@ function MapComponent(props: MapProps) {
         }
       }}
     >
+      {/** Score Layer */}
+      <ScoreLayer />
       {/** Isochrones */}
       <Isochrones />
       {/** Layers */}
@@ -49,9 +51,6 @@ function MapComponent(props: MapProps) {
 
       {/** POIS */}
       <Pois />
-
-      {/** Score Layer */}
-      <ScoreLayer />
     </Map>
   );
 }

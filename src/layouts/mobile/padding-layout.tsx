@@ -1,5 +1,4 @@
 /** Layout with bottom bar included */
-import React from "react";
 import styled from "styled-components";
 
 import { type CSSProperties } from "@types";

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Layer, LayerProps, Source, useMap } from "react-map-gl";
 import { point } from "@turf/turf";
 

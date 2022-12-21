@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Button, Snackbar } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";

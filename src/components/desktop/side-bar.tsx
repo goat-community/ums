@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Drawer } from "./drawer";
 
 interface SideBarProps {

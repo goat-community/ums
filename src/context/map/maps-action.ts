@@ -1,8 +1,10 @@
+import geobuf from "geobuf";
 import { LngLat } from "mapbox-gl";
+import Pbf from "pbf";
 
 import * as Api from "@api/map";
 
-import { MapView } from "@types";
+import { IndicatorConfig, MapView } from "@types";
 
 import { networkStateHandler } from "@context/base/network";
 import { notify, resetNotify } from "@context/base/notifier";
@@ -10,6 +12,7 @@ import { clearIsochrone } from "@context/isochrones";
 
 import {
   setAddress,
+  setIndicator,
   setMapView,
   setPickedPoint,
   setPickingMode,
@@ -73,4 +76,24 @@ export function coords_to_address(coords: LngLat) {
       dispatch(setAddress(response.display_name));
     }
   };
+}
+
+export function getIndicator(config: IndicatorConfig, layer: string) {
+  return (dispatch: CallableFunction) =>
+    dispatch(
+      networkStateHandler(async () => {
+        const response = await Api.getIndicator(config);
+        console.log(response);
+        if (response) {
+          const geobufDecoded = geobuf.decode(new Pbf(response));
+          const features = geobufDecoded.features;
+          dispatch(
+            setIndicator({
+              features,
+              layer,
+            })
+          );
+        }
+      })
+    );
 }

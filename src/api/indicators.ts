@@ -5,7 +5,12 @@ import { instance } from "@utils";
 
 export function getIsochrone(data: IsochroneParams): Promise<ArrayBuffer> | null {
   return instance
-    .post("isochrones", data, { responseType: "arraybuffer" })
+    .post("isochrones", data, {
+      responseType: "arraybuffer",
+      headers: {
+        Accept: "application/pbf",
+      },
+    })
     .then((response) => response.data)
     .catch((err: AxiosError) => {
       throw err;

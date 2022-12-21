@@ -1,5 +1,3 @@
-import React from "react";
-
 import { CircularProgress } from "@mui/material";
 
 import { Margin } from "@components/common";

@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { type LngLat } from "react-map-gl";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_point_isochrone } from "@context/isochrones";
-import { map_view_selector, view_bounds_selector } from "@context/map/map-selector";
+import { map_view_selector, view_bounds_selector } from "@context/map/maps-selector";
 
 import { MemoiezedMap } from "./components/map";
 

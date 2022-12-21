@@ -17,6 +17,11 @@ export const map_layers_selector = createSelector(
   (view) => view
 );
 
+export const map_indicators_selector = createSelector(
+  (state: RootState) => state.map.indicators,
+  (view) => view
+);
+
 export const map_layers_list_selector = createSelector(
   (state: RootState) => state.map.layers,
   (view) => {
