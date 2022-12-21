@@ -323,7 +323,7 @@ const initialState = {
           id: "A",
           type: "fill",
           paint: {
-            "fill-opacity": 0.65,
+            "fill-opacity": 0.4,
             "fill-color": "#1a9641",
             "fill-outline-color": "rgba(0, 0, 255, 0.0)",
           },
@@ -333,7 +333,7 @@ const initialState = {
           id: "B",
           type: "fill",
           paint: {
-            "fill-opacity": 0.65,
+            "fill-opacity": 0.4,
             "fill-color": "#8acc62",
             "fill-outline-color": "rgba(0, 0, 255, 0.0)",
           },
@@ -343,7 +343,7 @@ const initialState = {
           id: "C",
           type: "fill",
           paint: {
-            "fill-opacity": 0.65,
+            "fill-opacity": 0.4,
             "fill-color": "#dcf09e",
             "fill-outline-color": "rgba(0, 0, 255, 0.0)",
           },
@@ -353,7 +353,7 @@ const initialState = {
           id: "D",
           type: "fill",
           paint: {
-            "fill-opacity": 0.65,
+            "fill-opacity": 0.4,
             "fill-color": "#ffdf9a",
             "fill-outline-color": "rgba(0, 0, 255, 0.0)",
           },
@@ -363,7 +363,7 @@ const initialState = {
           id: "E",
           type: "fill",
           paint: {
-            "fill-opacity": 0.65,
+            "fill-opacity": 0.4,
             "fill-color": "#f69053",
             "fill-outline-color": "rgba(0, 0, 255, 0.0)",
           },
@@ -373,7 +373,7 @@ const initialState = {
           id: "F",
           type: "fill",
           paint: {
-            "fill-opacity": 0.65,
+            "fill-opacity": 0.4,
             "fill-color": "#d7191c",
             "fill-outline-color": "rgba(0, 0, 255, 0.0)",
           },
