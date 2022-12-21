@@ -24,9 +24,7 @@ const COLORS = {
 const TILESET_URL = `https://api.mapbox.com/v4/majkshkurti.cn7oycg5/{z}/{x}/{y}.mvt?access_token=${MAPBOX_TOKEN}`;
 
 function DeckGLOverlay(props: DeckProps) {
-  const deck = useControl<MapboxOverlay>(
-    () => new MapboxOverlay({ ...props, interleaved: true })
-  );
+  const deck = useControl<MapboxOverlay>(() => new MapboxOverlay({ ...props }));
   deck.setProps(props);
   return null;
 }
