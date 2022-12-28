@@ -4,14 +4,12 @@ import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import {
   Box,
   Checkbox,
-  IconButton,
+  Fab,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-// import { get_pois_aois } from "@context/pois";
-// import { useAppDispatch } from "@hooks/context";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -24,17 +22,18 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { setActivePois } from "@context/pois";
 
+import * as D from "@constants/design";
 import { AMENITIES_GROUP } from "@constants/flower";
 
 function BuildingButton(props: { onClick: () => void }) {
   return (
-    <IconButton
-      color="primary"
-      sx={{ backgroundColor: "white" }}
+    <Fab
+      size="small"
+      sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
       onClick={() => props.onClick()}
     >
       <HomeWorkOutlinedIcon />
-    </IconButton>
+    </Fab>
   );
 }
 

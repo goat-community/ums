@@ -7,14 +7,9 @@ import { useAppDispatch } from "@hooks/context";
 
 import { get_amenities } from "@context/flower";
 
-import { BaseMapSelector } from "../../../mobile/map/components/base-map-selector";
-
-// import { FlowerButton } from "./floating-flower";
-import { LayerSelector } from "./layer-selector";
-import { PoisSelector } from "./pois-selector";
-
-// import LightIcon from "@images/icon.png";
-// import PurpleIcon from "@images/purple_icon.png";
+import { BaseMapSelector } from "@pages/common/map/base-map-selector";
+import { LayerSelector } from "@pages/common/map/layer-selector";
+import { PoisSelector } from "@pages/common/map/pois-selector";
 
 export function FloatingActions() {
   const dispatch = useAppDispatch();

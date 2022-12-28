@@ -4,9 +4,9 @@ import { Stack } from "@mui/material";
 
 import { Header } from "@components/mobile";
 
-import { BaseMapSelector } from "./base-map-selector";
-import { LayerSelector } from "./layer-selector";
-import { PoisSelector } from "./pois-selector";
+import { BaseMapSelector } from "@pages/common/map/base-map-selector";
+import { LayerSelector } from "@pages/common/map/layer-selector";
+import { PoisSelector } from "@pages/common/map/pois-selector";
 
 export function MapHeader() {
   return (

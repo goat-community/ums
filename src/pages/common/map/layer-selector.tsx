@@ -8,7 +8,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  IconButton,
+  Fab,
   List,
   ListItem,
   ListItemButton,
@@ -19,8 +19,14 @@ import {
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { toggleLayer, toggleOffAllLayers } from "@context/map";
-import { map_layers_list_selector } from "@context/map/maps-selector";
+import { getIndicator, toggleLayer, toggleOffAllLayers } from "@context/map";
+import {
+  map_indicators_selector,
+  map_layers_list_selector,
+  map_layers_selector,
+} from "@context/map/maps-selector";
+
+import * as D from "@constants/design";
 
 function LayersList(props: {
   layers_list: ReturnType<typeof map_layers_list_selector>;
@@ -61,16 +67,21 @@ function LayersList(props: {
 
 export function LayerSelector() {
   const dispatch = useAppDispatch();
+  const layers = useAppSelector(map_layers_selector);
   const layersList = useAppSelector(map_layers_list_selector);
+  const indicatorsList = useAppSelector(map_indicators_selector);
   const [open, setOpen] = useState<boolean>(false);
   const [checked, setChecked] = useState<string>(
-    () => layersList.find((i) => i.visibility != "none")?.label || ""
+    () => layersList.find((i) => i.visibility != "none")?.value || ""
   );
 
   const handleChange = () => {
     dispatch(toggleOffAllLayers());
     if (checked) {
       dispatch(toggleLayer(checked));
+      if (indicatorsList[checked] && layers[checked].source.data.features.length === 0) {
+        dispatch(getIndicator(indicatorsList[checked], checked));
+      }
     }
     setOpen(false);
   };
@@ -85,13 +96,13 @@ export function LayerSelector() {
 
   return (
     <>
-      <IconButton
-        color="primary"
-        sx={{ backgroundColor: "white" }}
+      <Fab
+        size="small"
+        sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
         onClick={handleClickOpen}
       >
         <LayersOutlinedIcon />
-      </IconButton>
+      </Fab>
       <Dialog open={open} onClose={handleClose} maxWidth="xl" sx={{ marginTop: 2 }}>
         <Box p={1}>
           <DialogTitle variant="h4">Layers</DialogTitle>
