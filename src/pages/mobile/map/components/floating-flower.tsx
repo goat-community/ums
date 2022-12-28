@@ -1,10 +1,4 @@
-import { useEffect, useState } from "react";
-
-import FilterVintageIcon from "@mui/icons-material/FilterVintage";
-import PersonIcon from "@mui/icons-material/Person";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
+import styled from "styled-components";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -12,90 +6,39 @@ import { setScoreLayerMode } from "@context/flower";
 
 import * as D from "@constants/design";
 
-const actions = [
-  { icon: <PersonIcon />, name: "Personalized", value: "personal" },
-  { icon: <FilterVintageIcon />, name: "Standard", value: "standard" },
-];
+import LightIcon from "@images/icon.png";
+import PurpleIcon from "@images/purple_icon.png";
 
-export function FloatingFlowerButton() {
-  // set mode to personal or standard or not active
-  const mode = useAppSelector((state) => state.flower.score_layer_mode);
+export function FlowerButton() {
   const dispatch = useAppDispatch();
-  // set icon based on mode (personal -> PersonIcon, standard -> FilterVintageIcon, none -> FilterVintageIcon)
-  const [icon, setIcon] = useState<JSX.Element>(<FilterVintageIcon />);
-  const [open, setOpen] = useState(false);
-  useEffect(() => {
-    mode === "personal" ? setIcon(<PersonIcon />) : setIcon(<FilterVintageIcon />);
-  }, [mode]);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = (action) => () => {
-    dispatch(setScoreLayerMode(action.value));
-    setOpen(false);
-  };
-
-  const handleClick = () => {
-    open ? setOpen(false) : setOpen(true);
-  };
+  const layerVisibility = useAppSelector((state) => state.flower.score_layer_visible);
+  const icon = layerVisibility ? LightIcon : PurpleIcon;
 
   return (
-    <SpeedDial
-      ariaLabel="15 Min Score Layer"
-      direction={"left"}
-      onOpen={handleOpen}
-      open={open}
-      onClick={handleClick}
-      sx={{
-        position: "absolute",
-        bottom: 100,
-        right: 10,
-      }}
-      FabProps={{
-        style: {
-          borderRadius: "16px",
-        },
-        sx: {
-          color: mode === "none" ? D.PRIMARY_COLOR : D.WHITE_COLOR,
-          backgroundColor: mode === "none" ? D.WHITE_COLOR : D.GREEN_PRIMARY,
-          "&:hover": {
-            backgroundColor: mode === "none" ? D.WHITE_COLOR : D.GREEN_PRIMARY,
-          },
-        },
-      }}
-      icon={icon}
+    <Button
+      is_picking={layerVisibility}
+      is_picked={layerVisibility}
+      onClick={() => dispatch(setScoreLayerMode(!layerVisibility))}
     >
-      {actions.map(
-        (action) =>
-          mode !== action.value && (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={handleClose(action)}
-              FabProps={{
-                style: {
-                  borderRadius: "12px",
-                },
-              }}
-            />
-          )
-      )}
-      {/* Close SpeedDial only if mode is not none */}
-      {mode !== "none" && (
-        <SpeedDialAction
-          key={"close"}
-          icon={<VisibilityOffIcon />}
-          tooltipTitle={"Close"}
-          FabProps={{
-            style: {
-              borderRadius: "12px",
-            },
-          }}
-          onClick={handleClose({ value: "none" })}
-        />
-      )}
-    </SpeedDial>
+      <img src={icon} alt="icon" width="24" height="24" />
+    </Button>
   );
 }
+
+const Button = styled.button<{ is_picking: boolean; is_picked }>`
+  z-index: 2;
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  right: 10px;
+  background-color: ${(props) => (props.is_picking ? D.PRIMARY_COLOR : D.LIGHT_PRIMARY)};
+  padding-right: env(safe-area-inset-right, 10px);
+  padding-bottom: env(safe-area-inset-bottom, 100px);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  bottom: calc(${D.BOTTOM_BAR_HEIGHT}px + 20px);
+`;

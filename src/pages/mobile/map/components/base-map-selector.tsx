@@ -1,4 +1,4 @@
-import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
+import MapIcon from "@mui/icons-material/Map";
 import {
   //   Box,
   //   Button,
@@ -87,7 +87,7 @@ export function BaseMapSelector() {
   return (
     <>
       <IconButton color="primary" sx={{ backgroundColor: "white" }}>
-        <BrushOutlinedIcon />
+        <MapIcon />
       </IconButton>
       {/* <Dialog open={open} onClose={handleClose} maxWidth="xl" sx={{ marginTop: 2 }}>
         <Box p={1}>

@@ -34,22 +34,23 @@ export default function ScoreLayer() {
   // For the score to be correct the amenities in redux should be the same as the ones in the vector tile feature props.
   // TODO: Make sure that the amenities in the vector tile are the same as the ones in the redux store
   const allAmenities = useAppSelector((state) => state.flower.amenities);
+  const surveyCompleted = useAppSelector((state) => state.flower.survey_done_already);
+  const scoreLayerVisible = useAppSelector((state) => state.flower.score_layer_visible);
   // Active amenities are the ones that have a value > 0 in the flower state
   const activeAmenities = useAppSelector(active_amenities_selector);
-  const mode = useAppSelector((state) => state.flower.score_layer_mode);
   const scoreLayer = new MVTLayer({
     data: TILESET_URL,
-    visible: mode !== "none",
+    visible: scoreLayerVisible,
     minZoom: 0,
     maxZoom: 17,
     getLineWidth: 0,
     getFillColor: (d) => {
       let nrAmenitiesReached = 0;
-      const amenities = mode === "personal" ? activeAmenities : allAmenities;
+      const amenities = surveyCompleted ? activeAmenities : allAmenities;
       const nrTotalAmenities = Object.keys(amenities).length;
       Object.keys(d.properties).forEach((amenity) => {
         if (amenities[amenity]) {
-          const maxTime = mode === "personal" ? amenities[amenity] : 15;
+          const maxTime = surveyCompleted ? amenities[amenity] : 15;
           if (d.properties[amenity] <= maxTime) {
             nrAmenitiesReached++;
           }
@@ -59,7 +60,7 @@ export default function ScoreLayer() {
       return COLORS[score] || [168, 168, 168];
     },
     updateTriggers: {
-      getFillColor: [mode],
+      getFillColor: [surveyCompleted],
     },
   });
 
