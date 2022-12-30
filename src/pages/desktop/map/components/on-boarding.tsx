@@ -38,9 +38,9 @@ export function Onboarding() {
     {
       title: "Welcome to Map4Citizens!",
       text: "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
-      image: BrandingImage,
-      radius: "5%",
-      shadow: true,
+      image: M4CImage,
+      radius: 0,
+      shadow: false,
     },
     {
       title: "Customized 15-min-city",
@@ -59,8 +59,9 @@ export function Onboarding() {
     {
       title: "Ready to use?",
       text: "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
-      image: M4CImage,
-      shadow: false,
+      image: BrandingImage,
+      radius: "5%",
+      shadow: true,
     },
   ];
 
@@ -88,7 +89,7 @@ export function Onboarding() {
           {pages[page_index].title}
         </Typography>
         <Margin margin="20px 0" />
-        <Typography variant="h5" color="white">
+        <Typography variant="h4" color="white">
           {pages[page_index].text}
         </Typography>
 
@@ -148,8 +149,8 @@ const Section = styled.section`
   right: 30%;
   left: 30%;
   bottom: 0;
-  height: 250px;
+  height: 300px;
   background-color: ${D.PRIMARY_COLOR};
-  padding: 20px 20px 0;
+  padding: 30px 20px 0;
   border-radius: 28px 28px 0 0;
 `;

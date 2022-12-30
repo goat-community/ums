@@ -37,7 +37,7 @@ export function Onboarding() {
     {
       title: "Welcome to Map4Citizens!",
       text: "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
-      image: BrandingImage,
+      image: M4CImage,
       radius: 0,
     },
     {
@@ -55,7 +55,7 @@ export function Onboarding() {
     {
       title: "Ready to use?",
       text: "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
-      image: M4CImage,
+      image: BrandingImage,
       radius: 0,
     },
   ];
