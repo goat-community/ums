@@ -290,9 +290,9 @@ export default function PoiLayer() {
     iconMapping: ICON_MAPPING,
     getIcon: (d) => d.category,
     getPosition: (d) => d.coordinates,
-    sizeScale: 50,
+    sizeScale: 35,
     pickable: true,
-    // beforeId: "study-area-mask",
+    beforeId: "study-area-mask",
   });
 
   return <DeckGLOverlay useDevicePixels={false} layers={[poiLayer]} />;
