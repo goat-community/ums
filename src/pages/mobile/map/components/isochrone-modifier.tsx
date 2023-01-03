@@ -5,6 +5,8 @@ import { Slider, Stack, Typography } from "@mui/material";
 
 import { SCORE_MODE, TRAVEL_MODE } from "@types";
 
+import { convert_to_pascal } from "@utils";
+
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import {
@@ -46,7 +48,7 @@ export function IsochroneModifier() {
     <Section>
       <Stack direction="row" alignItems="center" spacing={2} maxWidth={240}>
         <Typography p={1} variant="h6" sx={typography_style} width={70}>
-          Distance <br /> ({max_trip_duration_minutes} min.)
+          Travel time <br /> ({max_trip_duration_minutes} min.)
         </Typography>
         <Slider
           value={max_trip_duration_minutes}
@@ -59,7 +61,7 @@ export function IsochroneModifier() {
 
       <Stack direction="row" alignItems="center" maxWidth={260} width={"90vw"} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
-          Modality
+          Mode
         </Typography>
         <SegmentedSection>
           {["walking", "cycling", "transit"].map((isochrone_mode) => (
@@ -78,7 +80,11 @@ export function IsochroneModifier() {
                 </span>
               )}
 
-              <Typography variant="h6">{isochrone_mode}</Typography>
+              <Typography fontSize={9}>
+                {isochrone_mode === "transit"
+                  ? "Public Transport"
+                  : convert_to_pascal(isochrone_mode)}
+              </Typography>
             </SegementedButton>
           ))}
         </SegmentedSection>
@@ -104,7 +110,7 @@ export function IsochroneModifier() {
                   <img src={TriangleIcon} alt="triangle" width={18} height={18} />
                 </span>
               )}
-              <Typography variant="h6">{i}</Typography>
+              <Typography variant="h6">{convert_to_pascal(i)}</Typography>
             </SegementedButtonTwo>
           ))}
         </SegmentedSection>
@@ -137,7 +143,7 @@ const SegementedButton = styled.button<{ active: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  padding: 0 5px;
   border: 1px solid #73777f;
   text-decoration: none;
   height: 28px;

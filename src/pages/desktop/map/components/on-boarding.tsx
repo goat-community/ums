@@ -11,7 +11,7 @@ import { Margin } from "@components/common";
 import FifteenMinute from "@images/15-min.jpg";
 import BrandingImage from "@images/branding.jpg";
 import FakeMapDesktopImage from "@images/fakemapdesktop.png";
-import IsochroneImage from "@images/isochrone.png";
+import IsochroneImage from "@images/isochrone.jpg";
 import M4CImage from "@images/m4c-big.png";
 
 const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
@@ -38,9 +38,9 @@ export function Onboarding() {
     {
       title: "Welcome to Map4Citizens!",
       text: "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
-      image: BrandingImage,
-      radius: "5%",
-      shadow: true,
+      image: M4CImage,
+      radius: 0,
+      shadow: false,
     },
     {
       title: "Customized 15-min-city",
@@ -53,14 +53,15 @@ export function Onboarding() {
       title: "Isochrones",
       text: "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
       image: IsochroneImage,
-      radius: "5%",
-      shadow: true,
+      radius: "0%",
+      shadow: false,
     },
     {
       title: "Ready to use?",
       text: "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
-      image: M4CImage,
-      shadow: false,
+      image: BrandingImage,
+      radius: "5%",
+      shadow: true,
     },
   ];
 
@@ -74,7 +75,7 @@ export function Onboarding() {
       <img
         src={pages[page_index].image}
         alt="onboard"
-        width="35%"
+        width="40%"
         style={{
           borderRadius: pages[page_index].radius || 0,
           boxShadow: pages[page_index].shadow
@@ -88,7 +89,7 @@ export function Onboarding() {
           {pages[page_index].title}
         </Typography>
         <Margin margin="20px 0" />
-        <Typography variant="h5" color="white">
+        <Typography variant="h4" color="white">
           {pages[page_index].text}
         </Typography>
 
@@ -148,8 +149,8 @@ const Section = styled.section`
   right: 30%;
   left: 30%;
   bottom: 0;
-  height: 250px;
+  height: 300px;
   background-color: ${D.PRIMARY_COLOR};
-  padding: 20px 20px 0;
+  padding: 30px 20px 0;
   border-radius: 28px 28px 0 0;
 `;

@@ -10,7 +10,7 @@ import { Margin } from "@components/common";
 
 import FifteenMinute from "@images/15-min.jpg";
 import BrandingImage from "@images/branding.jpg";
-import IsochroneImage from "@images/isochrone.png";
+import IsochroneImage from "@images/isochrone.jpg";
 import M4CImage from "@images/m4c-big.png";
 
 const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
@@ -37,23 +37,26 @@ export function Onboarding() {
     {
       title: "Welcome to Map4Citizens!",
       text: "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
-      image: BrandingImage,
+      image: M4CImage,
+      radius: 0,
     },
     {
       title: "Customized 15-min-city",
       text: "This is strongly linked to the concept of the 15-min-city. To assist you in finding your perfect 15-min-city location, which fulfills all your needs, you can create your personal “flower-of-proximity”. The application then shows you how well different locations in the city can serve your needs.",
       image: FifteenMinute,
+      radius: 0,
     },
     {
       title: "Isochrones",
       text: "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
       image: IsochroneImage,
-      radius: "30%",
+      radius: "10%",
     },
     {
       title: "Ready to use?",
       text: "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
-      image: M4CImage,
+      image: BrandingImage,
+      radius: 0,
     },
   ];
 
@@ -61,8 +64,8 @@ export function Onboarding() {
     <Box visible={open}>
       <img
         src={pages[page_index].image}
-        alt="onboard"
-        width="120%"
+        alt={pages[page_index].title}
+        width="320px"
         style={{ borderRadius: pages[page_index].radius || 0 }}
       />
       <Margin margin="140px 0" />
@@ -128,7 +131,7 @@ const Section = styled.section`
   right: 0;
   left: 0;
   bottom: 0;
-  height: 35vh;
+  height: 280px;
   background-color: ${D.PRIMARY_COLOR};
   padding: 60px 20px 0;
   border-radius: 28px 28px 0 0;
