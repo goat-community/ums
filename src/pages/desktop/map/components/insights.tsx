@@ -7,6 +7,8 @@ import { convert_to_pascal } from "@utils";
 import { useCalculateSingleScore } from "@hooks";
 import { useAppSelector } from "@hooks/context";
 
+import { ScoreHighLighter } from "@components/common";
+
 import { ScoreList } from "./score-list";
 
 export default function Insights() {
@@ -22,7 +24,7 @@ export default function Insights() {
         </Typography>
         <br />
         <Typography variant="h6" fontWeight="400" color="black">
-          Munich {address.split("Munich")[1] || "..."}
+          Munich {address.split("Munich")?.[1] || "..."}
         </Typography>
         <Section>
           <Stack direction="row" justifyContent="space-around" alignItems="center">
@@ -37,7 +39,7 @@ export default function Insights() {
                 {convert_to_pascal(isochrone_mode)} Score
               </Typography>
               <Typography fontSize="34px" fontWeight="400">
-                {score} / 10
+                <ScoreHighLighter isochrone_score={score} large />
               </Typography>
             </Stack>
           </Stack>

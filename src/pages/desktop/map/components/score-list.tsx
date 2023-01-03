@@ -2,11 +2,15 @@ import styled from "styled-components";
 
 import { Stack, Typography } from "@mui/material";
 
+import { convert_to_pascal } from "@utils";
+
 import { useCalculateStandardScore } from "@hooks";
 
 // import { useAppSelector } from "@hooks/context";
 import * as D from "@constants/design";
 import { AMENITIES_GROUP } from "@constants/flower";
+
+import { ScoreHighLighter } from "@components/common";
 
 export function ScoreList() {
   const standard_score = useCalculateStandardScore();
@@ -16,10 +20,10 @@ export function ScoreList() {
       {Object.keys(AMENITIES_GROUP).map((group) => (
         <ScoreItem key={group}>
           <Typography variant="h5" color="black">
-            {group}
+            {convert_to_pascal(group)}
           </Typography>
           <Typography variant="h6" color="#49454F">
-            {standard_score[group]}
+            <ScoreHighLighter isochrone_score={standard_score[group]} />
           </Typography>
         </ScoreItem>
       ))}

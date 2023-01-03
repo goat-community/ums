@@ -5,6 +5,8 @@ import { Slider, Stack, Typography } from "@mui/material";
 
 import { SCORE_MODE, TRAVEL_MODE } from "@types";
 
+import { convert_to_pascal } from "@utils";
+
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import {
@@ -57,7 +59,7 @@ export function IsochroneModifier() {
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" maxWidth={260} width={"90vw"} p={1}>
+      <Stack direction="row" alignItems="center" maxWidth={360} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
           Modality
         </Typography>
@@ -68,23 +70,17 @@ export function IsochroneModifier() {
               active={selectedIsochroneMode === isochrone_mode}
               onClick={() => set_isochrone_mode(isochrone_mode as TRAVEL_MODE)}
             >
-              {selectedIsochroneMode === isochrone_mode ? (
-                <span>
-                  <img src={TriangleWhiteIcon} alt="triangle" width={18} height={18} />
-                </span>
-              ) : (
-                <span>
-                  <img src={TriangleIcon} alt="triangle" width={18} height={18} />
-                </span>
-              )}
-
-              <Typography variant="h6">{isochrone_mode}</Typography>
+              <Typography variant="h6">
+                {isochrone_mode === "transit"
+                  ? "Public Transport"
+                  : convert_to_pascal(isochrone_mode)}
+              </Typography>
             </SegementedButton>
           ))}
         </SegmentedSection>
       </Stack>
 
-      <Stack direction="row" alignItems="center" maxWidth={250} width={"90vw"} p={1}>
+      <Stack direction="row" alignItems="center" maxWidth={280} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
           Score
         </Typography>
@@ -104,7 +100,7 @@ export function IsochroneModifier() {
                   <img src={TriangleIcon} alt="triangle" width={18} height={18} />
                 </span>
               )}
-              <Typography variant="h6">{i}</Typography>
+              <Typography variant="h6">{convert_to_pascal(i)}</Typography>
             </SegementedButtonTwo>
           ))}
         </SegmentedSection>
@@ -123,8 +119,7 @@ const SegmentedSection = styled.section`
   background-color: ${D.WHITE_COLOR};
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  width: 100%;
+  justify-content: space-between;
   height: 28px;
 `;
 
@@ -132,8 +127,8 @@ const SegementedButton = styled.button<{ active: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   border: 1px solid #73777f;
+  padding: 0 10px;
   text-decoration: none;
   height: 28px;
   font-size: 11px;
@@ -160,6 +155,7 @@ const SegementedButtonTwo = styled.button<{ active: boolean }>`
   justify-content: center;
   width: 100%;
   border: 1px solid #73777f;
+  padding: 0 10px;
   text-decoration: none;
   height: 28px;
   font-size: 11px;

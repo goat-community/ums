@@ -4,6 +4,8 @@ import { CircularProgress, Stack, Typography } from "@mui/material";
 
 import { useCalculateSingleScore } from "@hooks";
 
+import { ScoreHighLighter } from "@components/common";
+
 export function PersonalScore() {
   const score = useCalculateSingleScore();
   return (
@@ -20,7 +22,7 @@ export function PersonalScore() {
             Personal Score
           </Typography>
           <Typography variant="h1" fontSize="46px" fontWeight="400">
-            {score} / 10
+            <ScoreHighLighter isochrone_score={score} large />
           </Typography>
         </Stack>
       </Stack>
