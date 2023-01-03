@@ -46,7 +46,7 @@ export function InsightsModifier() {
           items={[
             { label: "walking", value: "walking" },
             { label: "cycling", value: "cycling" },
-            { label: "transit", value: "transit" },
+            { label: "public transport", value: "transit" },
           ]}
           label={"Mode"}
           value={selected_isochrone_mode as TRAVEL_MODE}
