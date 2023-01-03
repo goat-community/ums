@@ -10,7 +10,7 @@ import { Margin } from "@components/common";
 
 import FifteenMinute from "@images/15-min.jpg";
 import BrandingImage from "@images/branding.jpg";
-import IsochroneImage from "@images/isochrone.png";
+import IsochroneImage from "@images/isochrone.jpg";
 import M4CImage from "@images/m4c-big.png";
 
 const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
@@ -50,7 +50,7 @@ export function Onboarding() {
       title: "Isochrones",
       text: "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
       image: IsochroneImage,
-      radius: "30%",
+      radius: "10%",
     },
     {
       title: "Ready to use?",

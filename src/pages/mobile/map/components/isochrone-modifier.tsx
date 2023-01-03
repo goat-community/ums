@@ -48,7 +48,7 @@ export function IsochroneModifier() {
     <Section>
       <Stack direction="row" alignItems="center" spacing={2} maxWidth={240}>
         <Typography p={1} variant="h6" sx={typography_style} width={70}>
-          Distance <br /> ({max_trip_duration_minutes} min.)
+          Travel time <br /> ({max_trip_duration_minutes} min.)
         </Typography>
         <Slider
           value={max_trip_duration_minutes}
@@ -61,7 +61,7 @@ export function IsochroneModifier() {
 
       <Stack direction="row" alignItems="center" maxWidth={260} width={"90vw"} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
-          Modality
+          Mode
         </Typography>
         <SegmentedSection>
           {["walking", "cycling", "transit"].map((isochrone_mode) => (
