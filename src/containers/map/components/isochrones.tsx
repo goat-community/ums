@@ -72,11 +72,11 @@ export default function Isochrones() {
 
   return (
     <>
-      <Source type="geojson" data={isochrone || null}>
-        <Layer {...isochroneStyle} />
-      </Source>
       {isochrone && isochrone_score && (
         <>
+          <Source type="geojson" data={isochrone || null}>
+            <Layer {...isochroneStyle} />
+          </Source>
           <Marker
             longitude={picked_point.lng}
             latitude={picked_point.lat}

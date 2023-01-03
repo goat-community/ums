@@ -36,5 +36,6 @@ const Section = styled.section`
   top: 0;
   bottom: 0;
   overflow-y: scroll;
+  overflow-x: hidden;
   animation: ${drawer_animation} 0.2s;
 `;
