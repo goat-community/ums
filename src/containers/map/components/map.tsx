@@ -11,7 +11,7 @@ import { API_TOKEN, MAPBOX_TOKEN } from "@constants";
 import Isochrones from "./isochrones";
 import Layers from "./layers";
 import MaskLayer from "./mask";
-import Pois from "./pois";
+import PoiLayer from "./pois";
 import ScoreLayer from "./score-layer";
 
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -23,6 +23,11 @@ interface MapProps {
 }
 
 function MapComponent(props: MapProps) {
+  // console every time zoom changes
+  // useEffect(() => {
+  //   console.log("zoom", mapRef.current.getZoom());
+  // }, [mapRef.current.getZoom()]);
+
   return (
     <Map
       id="map"
@@ -47,10 +52,10 @@ function MapComponent(props: MapProps) {
       <Isochrones />
       {/** Layers */}
       <Layers />
-      <MaskLayer />
 
       {/** POIS */}
-      <Pois />
+      <PoiLayer />
+      <MaskLayer />
     </Map>
   );
 }

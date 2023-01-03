@@ -10,7 +10,7 @@ import { getStudyArea } from "@context/map";
 import { study_area_selector } from "@context/map/maps-selector";
 
 const maskFillStyle: FillLayer = {
-  id: "isochrone-fill",
+  id: "study-area-mask",
   type: "fill",
   paint: {
     "fill-color": "#606062",
