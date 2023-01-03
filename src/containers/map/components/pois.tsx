@@ -1,133 +1,299 @@
-import { useEffect, useMemo } from "react";
-import { Layer, LayerProps, Source, useMap } from "react-map-gl";
-import { point } from "@turf/turf";
-
-import { object_is_empty } from "@utils";
+import { useControl } from "react-map-gl";
+import { DeckProps } from "@deck.gl/core/typed";
+import { IconLayer } from "@deck.gl/layers";
+import { MapboxOverlay } from "@deck.gl/mapbox/typed";
 
 import { useAppSelector } from "@hooks/context";
 
-import { AMENITIES_GROUP, AMENITIES_LIST } from "@constants/flower";
+import { get_poi_features } from "@context/pois/pois-selector";
 
-export const clusterLayer = (id: string): LayerProps => {
-  return {
-    id: "clusters " + id,
-    type: "circle",
-    source: "clusters " + id,
-    filter: ["has", "point_count"],
-    paint: {
-      "circle-color": [
-        "step",
-        ["get", "point_count"],
-        "#51bbd6",
-        100,
-        "#f1f075",
-        750,
-        "#f28cb1",
-      ],
-      "circle-radius": ["step", ["get", "point_count"], 20, 100, 30, 750, 40],
-    },
-  };
+const ICON_MAPPING = {
+  atm: {
+    x: 0,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  bakery: {
+    x: 61,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  bank: {
+    x: 122,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  bar: {
+    x: 183,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  bike_sharing: {
+    x: 244,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  bus_stop: {
+    x: 305,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  butcher: {
+    x: 366,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  cafe: {
+    x: 427,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  car_sharing: {
+    x: 0,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  charging_station: {
+    x: 61,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  cinema: {
+    x: 122,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  convenience: {
+    x: 183,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  dentist: {
+    x: 244,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  discount_gym: {
+    x: 305,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  discount_supermarket: {
+    x: 366,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  fast_food: {
+    x: 427,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  fuel: {
+    x: 0,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  general_practitioner: {
+    x: 61,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  grundschule: {
+    x: 122,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  gym: {
+    x: 183,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  gymnasium: {
+    x: 244,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  hauptschule_mittelschule: {
+    x: 305,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  hotel: {
+    x: 366,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  hypermarket: {
+    x: 427,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  kindergarten: {
+    x: 0,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
+  marketplace: {
+    x: 61,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
+  museum: {
+    x: 122,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
+  nightclub: {
+    x: 183,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
+  nursery: {
+    x: 244,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
+  organic_supermarket: {
+    x: 305,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
+  pharmacy: {
+    x: 366,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
+  playground: {
+    x: 427,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
+  post_box: {
+    x: 0,
+    y: 368,
+    width: 61,
+    height: 92,
+  },
+  post_office: {
+    x: 61,
+    y: 368,
+    width: 61,
+    height: 92,
+  },
+  pub: {
+    x: 122,
+    y: 368,
+    width: 61,
+    height: 92,
+  },
+  rail_station: {
+    x: 183,
+    y: 368,
+    width: 61,
+    height: 92,
+  },
+  realschule: {
+    x: 244,
+    y: 368,
+    width: 61,
+    height: 92,
+  },
+  recycling: {
+    x: 305,
+    y: 368,
+    width: 61,
+    height: 92,
+  },
+  restaurant: {
+    x: 366,
+    y: 368,
+    width: 62,
+    height: 92,
+  },
+  subway_entrance: {
+    x: 428,
+    y: 368,
+    width: 61,
+    height: 92,
+  },
+  supermarket: {
+    x: 488,
+    y: 0,
+    width: 61,
+    height: 92,
+  },
+  swimming_pool_outdoor: {
+    x: 488,
+    y: 92,
+    width: 61,
+    height: 92,
+  },
+  tram_stop: {
+    x: 488,
+    y: 184,
+    width: 61,
+    height: 92,
+  },
+  yoga: {
+    x: 488,
+    y: 276,
+    width: 61,
+    height: 92,
+  },
 };
+function DeckGLOverlay(props: DeckProps) {
+  const deck = useControl<MapboxOverlay>(() => new MapboxOverlay({ ...props }));
+  deck.setProps(props);
+  return null;
+}
 
-export const clusterCountLayer = (id: string): LayerProps => {
-  return {
-    id: "cluster-count " + id,
-    type: "symbol",
-    source: "cluster-count " + id,
-    filter: ["has", "point_count"],
-    layout: {
-      "text-field": "{point_count_abbreviated}",
-      "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-      "text-size": 12,
-    },
-  };
-};
+export default function PoiLayer() {
+  const poiFeatures = useAppSelector(get_poi_features);
+  const poiLayer = new IconLayer({
+    data: poiFeatures,
+    iconAtlas: "https://i.imgur.com/br0ZLlr.png",
+    visible: true,
+    minZoom: 13,
+    maxZoom: 16,
+    iconMapping: ICON_MAPPING,
+    getIcon: (d) => d.category,
+    getPosition: (d) => d.coordinates,
+    sizeScale: 40,
+    pickable: true,
+    beforeId: "study-area-mask",
+  });
 
-export const unclusteredPointLayer = (
-  id: string,
-  poi_feature_group: string
-): LayerProps => {
-  return {
-    id: id,
-    type: "symbol",
-    source: id,
-    filter: ["!", ["has", "point_count"]],
-    layout: {
-      "icon-image": poi_feature_group,
-      "icon-size": 0.02,
-    },
-  };
-};
-
-export default function Pois() {
-  const mapRef = useMap();
-  const pois = useAppSelector((state) => state.poi.poi_features);
-  const active_pois = useAppSelector((state) => state.poi.active_pois);
-
-  useEffect(() => {
-    AMENITIES_LIST.forEach(async (name_of_amenity) => {
-      // await import(
-      //   /* @vite-ignore */ "../../../images/amenities/" + name_of_amenity + ".svg"
-      // ).then((svg_icon) => {
-      // if (mapRef.current.hasImage(name_of_amenity)) {
-      //   return false;
-      // }
-      mapRef.current.loadImage(
-        `https://raw.githubusercontent.com/cinaaaa/reado/main/${name_of_amenity}.svg.png`,
-        (error, image) => {
-          if (error) console.log(error);
-
-          mapRef.current.addImage(name_of_amenity, image);
-        }
-      );
-      // });
-    });
-  }, []);
-
-  const memomiezed_pois = useMemo(() => {
-    if (active_pois.length && !object_is_empty(pois)) {
-      let poi_sub_groups = [];
-
-      active_pois.forEach((poi_group) => {
-        poi_sub_groups = [...poi_sub_groups, ...AMENITIES_GROUP[poi_group]];
-      });
-
-      return poi_sub_groups.map((poi_sub_group) => {
-        return {
-          group: poi_sub_group,
-          data: {
-            type: "FeatureCollection",
-            features: pois[poi_sub_group].map((poi_features) =>
-              point(poi_features.coordinates, poi_features)
-            ),
-          },
-        };
-      });
-    }
-  }, [pois, active_pois]);
-
-  return (
-    <>
-      {memomiezed_pois?.map((poi_feature_group, index) => {
-        return (
-          <Source
-            key={`poi-layer-${index}`}
-            id={`poi-layer-${index}`}
-            type="geojson"
-            // cluster={true}
-            // clusterMaxZoom={14}
-            // clusterMinPoints={4}
-            // clusterRadius={50}
-            data={poi_feature_group.data as GeoJSON.FeatureCollection}
-          >
-            {/* <Layer {...clusterLayer(`poi-layer-${index}`)} />
-            <Layer {...clusterCountLayer(`poi-layer-${index}`)} /> */}
-            <Layer
-              {...unclusteredPointLayer(`poi-layer-${index}`, poi_feature_group.group)}
-            />
-          </Source>
-        );
-      })}
-    </>
-  );
+  return <DeckGLOverlay useDevicePixels={false} layers={[poiLayer]} />;
 }

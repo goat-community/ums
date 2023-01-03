@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -6,6 +7,8 @@ import { Button, Typography } from "@mui/material";
 import Icon from "@images/icon.png";
 
 export function ProfileButton() {
+  const { t } = useTranslation();
+
   return (
     <Section>
       <Link to="/flower">
@@ -18,7 +21,7 @@ export function ProfileButton() {
             style={{ marginBottom: -2 }}
           />
           <Typography variant="h6" ml={1}>
-            My Flower
+            {t("actions.flower")}
           </Typography>
         </Button>
       </Link>

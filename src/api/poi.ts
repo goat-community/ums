@@ -1,7 +1,17 @@
 import type { AxiosError } from "axios";
 
+import { CustomizationConfig } from "@types";
+
 import { instance } from "@utils";
-// import axios from "axios";
+
+export function fetch_pois_config(): Promise<CustomizationConfig> {
+  return instance
+    .get("customizations/me")
+    .then((response) => response.data)
+    .catch((err: AxiosError) => {
+      throw err;
+    });
+}
 
 export function fetch_pois_aios(): Promise<ArrayBuffer> {
   return instance

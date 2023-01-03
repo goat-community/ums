@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import LayersOutlinedIcon from "@mui/icons-material/LayersOutlined";
 import {
@@ -34,6 +35,8 @@ function LayersList(props: {
   radio_clicked: (layer_name: string) => void;
   on_change: (e: string) => void;
 }) {
+  const { t } = useTranslation();
+
   return (
     <RadioGroup
       value={props.current_layer}
@@ -56,7 +59,7 @@ function LayersList(props: {
             sx={{ marginTop: 1 }}
           >
             <ListItemButton>
-              <ListItemText id={labelId} primary={i.label} />
+              <ListItemText id={labelId} primary={t(`layers.${i.label}`)} />
             </ListItemButton>
           </ListItem>
         );
@@ -74,6 +77,7 @@ export function LayerSelector() {
   const [checked, setChecked] = useState<string>(
     () => layersList.find((i) => i.visibility != "none")?.value || ""
   );
+  const { t } = useTranslation();
 
   const handleChange = () => {
     dispatch(toggleOffAllLayers());
@@ -121,8 +125,8 @@ export function LayerSelector() {
             </List>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleChange}>Apply</Button>
+            <Button onClick={handleClose}>{t("actions.cancel")}</Button>
+            <Button onClick={handleChange}>{t("actions.apply")}</Button>
           </DialogActions>
         </Box>
       </Dialog>

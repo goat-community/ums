@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -9,16 +10,17 @@ import * as D from "@constants/design";
 
 export function BottomBar() {
   const path = useLocation().pathname;
+  const { t } = useTranslation();
 
   const navigation_items = [
     {
       path: "/",
-      name: "Map",
+      name: t("bars.map"),
       icon: <MapIcon sx={path === "/" ? icon_active : icon_style} />,
     },
     {
       path: "/insights",
-      name: "Insights",
+      name: t("bars.insights"),
       icon: (
         <TableChartOutlinedIcon sx={path === "/insights" ? icon_active : icon_style} />
       ),

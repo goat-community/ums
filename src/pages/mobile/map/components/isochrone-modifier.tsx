@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import { batch } from "react-redux";
 import styled from "styled-components";
 
 import { Slider, Stack, Typography } from "@mui/material";
 
 import { SCORE_MODE, TRAVEL_MODE } from "@types";
+
+import { convert_to_pascal } from "@utils";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -35,6 +38,8 @@ export function IsochroneModifier() {
   const selectedIsochroneMode = useAppSelector(select_isochrone_mode);
   const picked_point = useAppSelector(picked_point_selector);
 
+  const { t } = useTranslation();
+
   function set_isochrone_mode(mode: TRAVEL_MODE) {
     batch(() => {
       dispatch(setIsochroneMode(mode));
@@ -46,7 +51,7 @@ export function IsochroneModifier() {
     <Section>
       <Stack direction="row" alignItems="center" spacing={2} maxWidth={240}>
         <Typography p={1} variant="h6" sx={typography_style} width={70}>
-          Distance <br /> ({max_trip_duration_minutes} min.)
+          {t("isochrone.distance")} <br /> ({max_trip_duration_minutes} min.)
         </Typography>
         <Slider
           value={max_trip_duration_minutes}
@@ -59,7 +64,7 @@ export function IsochroneModifier() {
 
       <Stack direction="row" alignItems="center" maxWidth={260} width={"90vw"} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
-          Modality
+          {t("isochrone.modality")}
         </Typography>
         <SegmentedSection>
           {["walking", "cycling", "transit"].map((isochrone_mode) => (
@@ -78,7 +83,9 @@ export function IsochroneModifier() {
                 </span>
               )}
 
-              <Typography variant="h6">{isochrone_mode}</Typography>
+              <Typography variant="h6">
+                {t(`isochrone.modalityModes.${isochrone_mode}`)}
+              </Typography>
             </SegementedButton>
           ))}
         </SegmentedSection>
@@ -86,7 +93,7 @@ export function IsochroneModifier() {
 
       <Stack direction="row" alignItems="center" maxWidth={250} width={"90vw"} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
-          Score
+          {t("isochrone.score")}
         </Typography>
         <SegmentedSection>
           {[SCORE_MODE.personal, SCORE_MODE.standard].map((i) => (
@@ -104,7 +111,7 @@ export function IsochroneModifier() {
                   <img src={TriangleIcon} alt="triangle" width={18} height={18} />
                 </span>
               )}
-              <Typography variant="h6">{i}</Typography>
+              <Typography variant="h6">{t(`isochrone.modes.${i}`)}</Typography>
             </SegementedButtonTwo>
           ))}
         </SegmentedSection>
@@ -137,7 +144,7 @@ const SegementedButton = styled.button<{ active: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  padding: 0 5px;
   border: 1px solid #73777f;
   text-decoration: none;
   height: 28px;

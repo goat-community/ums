@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import { Palette } from "@styles/theme";
 
 import { store } from "@context";
+import { get_pois_config } from "@context/pois";
 
 import { ErrorBoundary, NotifierWrapper } from "@components/common";
 
@@ -16,6 +17,8 @@ import router from "./Router";
 
 import "@styles/variables.scss";
 import "@styles/root.scss";
+
+store.dispatch(get_pois_config());
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

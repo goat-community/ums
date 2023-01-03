@@ -18,7 +18,7 @@ const initialState = {
   viewBounds: null, // defined by study area when fetched
   layers: {
     noise_levels_day: {
-      title: "Noise Levels (Day)",
+      title: "noise_levels_day",
       visibility: "none",
       source: {
         type: "raster",
@@ -37,7 +37,7 @@ const initialState = {
       ],
     },
     noise_levels_night: {
-      title: "Noise Levels (Night)",
+      title: "noise_levels_night",
       visibility: "none",
       source: {
         type: "raster",
@@ -56,7 +56,7 @@ const initialState = {
       ],
     },
     population_density: {
-      title: "Population Density",
+      title: "population_density",
       visibility: "none",
       source: {
         type: "geojson",
@@ -150,7 +150,7 @@ const initialState = {
       ],
     },
     landuse_atkis: {
-      title: "Landuse Atkis",
+      title: "landuseAktis",
       visibility: "none",
       source: {
         type: "vector",
@@ -308,7 +308,7 @@ const initialState = {
       ],
     },
     pt_oev_gueteklassen: {
-      title: "ÖV-Güteklassen (Monday 7:00AM - 9:00AM)",
+      title: "ov_guteklassen",
       visibility: "none",
       source: {
         type: "geojson",

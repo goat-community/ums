@@ -15,7 +15,7 @@ export function InsightsSection() {
       </Typography>
       <br />
       <Typography variant="h6" fontWeight="400" color="black">
-        Munich {address.split("Munich")[1] || "..."}
+        Munich {address.split("Munich")?.[1] || "..."}
       </Typography>
       <InsightsModifier />
       <PersonalScore />

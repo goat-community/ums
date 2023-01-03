@@ -1,4 +1,5 @@
 import geobuf from "geobuf";
+import i18n from "i18next";
 import { LngLat } from "mapbox-gl";
 import Pbf from "pbf";
 
@@ -38,7 +39,7 @@ export function remove_picked_point() {
 export function set_picking_mode(picking_mode: boolean) {
   return (dispatch: CallableFunction) => {
     if (picking_mode === true) {
-      dispatch(notify("Tap a location on the map"));
+      dispatch(notify(i18n.t("messages.tapLocation")));
       // Turn on picking mode
       dispatch(setPickingMode(picking_mode));
     }
