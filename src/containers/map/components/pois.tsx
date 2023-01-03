@@ -290,7 +290,7 @@ export default function PoiLayer() {
     iconMapping: ICON_MAPPING,
     getIcon: (d) => d.category,
     getPosition: (d) => d.coordinates,
-    sizeScale: 35,
+    sizeScale: 45,
     pickable: true,
     beforeId: "study-area-mask",
   });
