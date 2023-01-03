@@ -22,9 +22,9 @@ import { convert_to_pascal } from "@utils";
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { setActivePois } from "@context/pois";
+import { get_poi_groups } from "@context/pois/pois-selector";
 
 import * as D from "@constants/design";
-import { AMENITIES_GROUP } from "@constants/flower";
 
 function BuildingButton(props: { onClick: () => void }) {
   return (
@@ -40,49 +40,53 @@ function BuildingButton(props: { onClick: () => void }) {
 
 function AmenitiesGroupList(props: {
   handleToggle: (group: string) => void;
-  active_pois: string[];
+  active_poi_groups: string[];
+  poi_groups: {
+    [key: string]: {
+      icon: string;
+      color: string;
+    };
+  };
 }) {
   const { t } = useTranslation();
 
   return (
     <>
-      {Object.keys(AMENITIES_GROUP)
-        .slice(0, 4)
-        .map((group: string) => {
-          const labelId = `label-${group}`;
-          return (
-            <ListItem
-              key={group}
-              disablePadding
-              secondaryAction={
-                <Checkbox
-                  edge="end"
-                  onChange={() => props.handleToggle(group)}
-                  defaultChecked={props.active_pois.includes(group)}
-                  inputProps={{ "aria-labelledby": labelId }}
-                />
-              }
-              sx={{ marginTop: 1 }}
-            >
-              <ListItemButton>
-                <ListItemText
-                  id={t("amenities.labelId")}
-                  primary={convert_to_pascal(group)}
-                />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
+      {Object.keys(props.poi_groups).map((group: string) => {
+        const labelId = `label-${group}`;
+        return (
+          <ListItem
+            key={group}
+            disablePadding
+            secondaryAction={
+              <Checkbox
+                edge="end"
+                onChange={() => props.handleToggle(group)}
+                defaultChecked={props.active_poi_groups.includes(group)}
+                inputProps={{ "aria-labelledby": labelId }}
+              />
+            }
+            sx={{ marginTop: 1 }}
+          >
+            <ListItemButton>
+              <ListItemText
+                id={t("amenities.labelId")}
+                primary={convert_to_pascal(group)}
+              />
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
     </>
   );
 }
 
 export function PoisSelector() {
   const dispatch = useAppDispatch();
-  const active_pois = useAppSelector((state) => state.poi.active_pois);
-
+  const active_poi_groups = useAppSelector((state) => state.poi.active_poi_groups);
+  const poi_groups = useAppSelector(get_poi_groups);
   const [open, setOpen] = useState<boolean>(false);
-  const [checked, setChecked] = useState<string[]>(() => active_pois);
+  const [checked, setChecked] = useState<string[]>(() => active_poi_groups);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -121,7 +125,8 @@ export function PoisSelector() {
           <DialogContent sx={{ padding: 0, maxHeight: 200 }}>
             <List dense sx={{ width: "100%" }}>
               <AmenitiesGroupList
-                active_pois={active_pois}
+                active_poi_groups={active_poi_groups}
+                poi_groups={poi_groups}
                 handleToggle={(group) => handleToggle(group)}
               />
             </List>

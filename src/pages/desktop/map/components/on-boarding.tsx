@@ -12,7 +12,7 @@ import { Margin } from "@components/common";
 import FifteenMinute from "@images/15-min.jpg";
 import BrandingImage from "@images/branding.jpg";
 import FakeMapDesktopImage from "@images/fakemapdesktop.png";
-import IsochroneImage from "@images/isochrone.png";
+import IsochroneImage from "@images/isochrone.jpg";
 import M4CImage from "@images/m4c-big.png";
 
 const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
@@ -56,8 +56,8 @@ export function Onboarding() {
       title: t("tutorial.isochrones"),
       text: t("tutorial.isochronesDesc"),
       image: IsochroneImage,
-      radius: "5%",
-      shadow: true,
+      radius: "0%",
+      shadow: false,
     },
     {
       title: t("tutorial.readyToUse"),
@@ -78,7 +78,7 @@ export function Onboarding() {
       <img
         src={pages[page_index].image}
         alt="onboard"
-        width="35%"
+        width="40%"
         style={{
           borderRadius: pages[page_index].radius || 0,
           boxShadow: pages[page_index].shadow

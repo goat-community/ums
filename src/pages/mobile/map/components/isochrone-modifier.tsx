@@ -6,6 +6,8 @@ import { Slider, Stack, Typography } from "@mui/material";
 
 import { SCORE_MODE, TRAVEL_MODE } from "@types";
 
+import { convert_to_pascal } from "@utils";
+
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import {
@@ -142,7 +144,7 @@ const SegementedButton = styled.button<{ active: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  padding: 0 5px;
   border: 1px solid #73777f;
   text-decoration: none;
   height: 28px;

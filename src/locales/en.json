@@ -100,10 +100,10 @@
     "modalityModes": {
       "walking": "Walking",
       "cycling": "Cycling",
-      "transit": "Transit"
+      "transit": "Public Transport"
     },
     "distance": "Distance",
-    "modality": "Modality",
+    "modality": "Mode",
     "score": "Score"
   },
   "tutorial": {
