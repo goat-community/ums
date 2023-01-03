@@ -19,13 +19,17 @@ import "mapbox-gl/dist/mapbox-gl.css";
 interface MapProps {
   view: MapView;
   viewBounds: [number, number, number, number] | null;
+  picking_mode: boolean;
   on_click_point: (e: LngLat) => void;
 }
 
 function MapComponent(props: MapProps) {
+  const cursor_mode = props.picking_mode ? "crosshair" : "default";
+  console.log("Component re-rendered + " + props.picking_mode);
   return (
     <Map
       id="map"
+      cursor={cursor_mode}
       initialViewState={props.view}
       maxBounds={props.viewBounds}
       mapboxAccessToken={MAPBOX_TOKEN}

@@ -12,6 +12,7 @@ export function MapContainer() {
   const dispatch = useAppDispatch();
   const map_view = useAppSelector(map_view_selector);
   const viewBounds = useAppSelector(view_bounds_selector);
+  const picking_mode = useAppSelector((state) => state.map.picking_mode);
 
   /* Container Methods */
   const on_click_point = useCallback((latlng: LngLat) => {
@@ -21,8 +22,9 @@ export function MapContainer() {
   return (
     <MemoiezedMap
       view={map_view}
-      on_click_point={on_click_point}
       viewBounds={viewBounds}
+      picking_mode={picking_mode}
+      on_click_point={on_click_point}
     />
   );
 }
