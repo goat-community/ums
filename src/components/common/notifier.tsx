@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { Button, Snackbar } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
@@ -9,6 +11,7 @@ import * as D from "@constants/design";
 export function NotifierWrapper() {
   const notifierReducer = useAppSelector((state) => state.notifier);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const button_style = { color: D.WHITE_COLOR, minWidth: "auto" };
   const snack_bar_style = {
@@ -37,7 +40,7 @@ export function NotifierWrapper() {
             sx={button_style}
             onClick={close_notification}
           >
-            Close
+            {t("actions.close")}
           </Button>
         }
       />

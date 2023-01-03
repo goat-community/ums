@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { type LngLat } from "react-map-gl";
 import MatGeocoder from "react-mui-mapbox-geocoder";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,7 @@ import { IsochroneButton } from "./isochrone-button";
 export function Header(props: { position?: string }) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const viewBounds = useAppSelector(view_bounds_selector);
   const survey_has_done = useAppSelector((state) => state.flower.survey_done_already);
@@ -50,7 +52,7 @@ export function Header(props: { position?: string }) {
       <Margin margin="13px 0 0" />
       <MatGeocoder
         key={0}
-        inputPlaceholder="Search for address..."
+        inputPlaceholder={t("placeholders.addressSearch")}
         accessToken={MAPBOX_TOKEN}
         onSelect={onSelectHandler}
         showLoader={true}

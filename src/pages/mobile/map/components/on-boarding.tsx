@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -17,6 +18,7 @@ const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
 
 export function Onboarding() {
   const [open, set_open] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const [user_seen_onboarding] = useState<string | null>(
     () => localStorage.getItem(USER_SEEN_ONBOARDING) || null
@@ -35,28 +37,28 @@ export function Onboarding() {
   const [page_index, set_page_index] = useState<number>(0);
   const pages = [
     {
-      title: "Welcome to Map4Citizens!",
-      text: "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
+      title: t("tutorial.welcomeMap4Citizens"),
+      text: t("tutorial.Map4CitizensminuteDesc"),
       image: M4CImage,
       radius: 0,
     },
     {
-      title: "Customized 15-min-city",
-      text: "This is strongly linked to the concept of the 15-min-city. To assist you in finding your perfect 15-min-city location, which fulfills all your needs, you can create your personal “flower-of-proximity”. The application then shows you how well different locations in the city can serve your needs.",
+      title: t("tutorial.15-minCity"),
+      text: t("tutorial.15-minCityDesc"),
       image: FifteenMinute,
-      radius: 0,
+      radius: "5%",
     },
     {
-      title: "Isochrones",
-      text: "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
+      title: t("tutorial.isochrones"),
+      text: t("tutorial.isochronesDesc"),
       image: IsochroneImage,
-      radius: "30%",
+      radius: "5%",
     },
     {
-      title: "Ready to use?",
-      text: "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
+      title: t("tutorial.readyToUse"),
+      text: t("tutorial.readyToUseDesc"),
       image: BrandingImage,
-      radius: 0,
+      radius: "5%",
     },
   ];
 

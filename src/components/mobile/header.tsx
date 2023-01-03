@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { LngLat } from "react-map-gl";
 import MatGeocoder from "react-mui-mapbox-geocoder";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,6 +22,7 @@ import Logo from "@images/m4c.png";
 export function Header() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const survey_has_done = useAppSelector((state) => state.flower.survey_done_already);
   const [keyIndex] = useState(0);
   const icon_style = { marginTop: -2 };
@@ -58,7 +60,7 @@ export function Header() {
           <Button variant="contained">
             <img src={Icon} width="18" height="18" alt="icon" style={icon_style} />
             <Typography variant="h6" ml={1}>
-              My Flower
+              {t("actions.flower")}
             </Typography>
           </Button>
         </Link>
@@ -66,7 +68,7 @@ export function Header() {
 
       <MatGeocoder
         key={keyIndex}
-        inputPlaceholder="Search Address"
+        inputPlaceholder={t("placeholders.addressSearch")}
         accessToken={MAPBOX_TOKEN}
         onSelect={onSelectHandler}
         showLoader={true}

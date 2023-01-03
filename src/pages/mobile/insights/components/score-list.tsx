@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { Stack, Typography } from "@mui/material";
@@ -10,13 +11,14 @@ import { AMENITIES_GROUP } from "@constants/flower";
 
 export function ScoreList() {
   const standard_score = useCalculateStandardScore();
+  const { t } = useTranslation();
 
   return (
     <Stack padding="0 23px" margin="auto">
       {Object.keys(AMENITIES_GROUP).map((group) => (
         <ScoreItem key={group}>
           <Typography variant="h5" color="black">
-            {group}
+            {t(`amenitiesGroup.${group}`)}
           </Typography>
           <Typography variant="h6" color="#49454F">
             {standard_score[group]}

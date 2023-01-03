@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import {
@@ -41,6 +42,8 @@ function AmenitiesGroupList(props: {
   handleToggle: (group: string) => void;
   active_pois: string[];
 }) {
+  const { t } = useTranslation();
+
   return (
     <>
       {Object.keys(AMENITIES_GROUP)
@@ -62,7 +65,10 @@ function AmenitiesGroupList(props: {
               sx={{ marginTop: 1 }}
             >
               <ListItemButton>
-                <ListItemText id={labelId} primary={convert_to_pascal(group)} />
+                <ListItemText
+                  id={t("amenities.labelId")}
+                  primary={convert_to_pascal(group)}
+                />
               </ListItemButton>
             </ListItem>
           );
@@ -104,6 +110,8 @@ export function PoisSelector() {
     setOpen(false);
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <BuildingButton onClick={handleClickOpen} />
@@ -119,8 +127,8 @@ export function PoisSelector() {
             </List>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleApply}>Apply</Button>
+            <Button onClick={handleClose}>{t("actions.cancel")}</Button>
+            <Button onClick={handleApply}>{t("actions.apply")}</Button>
           </DialogActions>
         </Box>
       </Dialog>
