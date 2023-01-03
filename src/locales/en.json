@@ -20,7 +20,9 @@
     "nature": "Nature",
     "tourism": "Tourism",
     "shop": "Shop",
-    "education": "Education"
+    "education": "Education",
+    "tourismandleisure": "Tourism and Leisure",
+    "foodanddrink": "Food and Drink"
   },
   "amenities": {
     "Mobilitaetspunkte": "Mobilitaetspunkte",

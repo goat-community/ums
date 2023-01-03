@@ -69,10 +69,7 @@ function AmenitiesGroupList(props: {
             sx={{ marginTop: 1 }}
           >
             <ListItemButton>
-              <ListItemText
-                id={t("amenities.labelId")}
-                primary={convert_to_pascal(group)}
-              />
+              <ListItemText id={labelId} primary={t(`amenitiesGroup.${group}`)} />
             </ListItemButton>
           </ListItem>
         );
