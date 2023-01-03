@@ -274,9 +274,7 @@ const ICON_MAPPING = {
   },
 };
 function DeckGLOverlay(props: DeckProps) {
-  const deck = useControl<MapboxOverlay>(
-    () => new MapboxOverlay({ ...props, interleaved: true })
-  );
+  const deck = useControl<MapboxOverlay>(() => new MapboxOverlay({ ...props }));
   deck.setProps(props);
   return null;
 }
@@ -294,7 +292,7 @@ export default function PoiLayer() {
     getPosition: (d) => d.coordinates,
     sizeScale: 50,
     pickable: true,
-    beforeId: "study-area-mask",
+    // beforeId: "study-area-mask",
   });
 
   return <DeckGLOverlay useDevicePixels={false} layers={[poiLayer]} />;
