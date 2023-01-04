@@ -8,7 +8,6 @@ export function get_all_translations() {
   };
 
   const messages = {};
-  console.log(englishFile);
   for (const language in languagesSorted) {
     messages[language] = { translation: languagesSorted[language] };
   }

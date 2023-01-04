@@ -31,6 +31,7 @@
     "deck.gl": "^8.8.20",
     "geobuf": "^3.0.2",
     "i18next": "^22.0.5",
+    "i18next-browser-languagedetector": "^7.0.1",
     "localforage": "^1.10.0",
     "mapbox-gl": "^2.10.0",
     "match-sorter": "^6.3.1",
