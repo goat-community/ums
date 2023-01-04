@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { batch } from "react-redux";
 import styled from "styled-components";
 
@@ -32,6 +33,8 @@ export function InsightsModifier() {
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const picked_point = useAppSelector(picked_point_selector);
 
+  const { t } = useTranslation();
+
   function set_isochrone_mode(mode: TRAVEL_MODE) {
     batch(() => {
       dispatch(setIsochroneMode(mode));
@@ -44,9 +47,9 @@ export function InsightsModifier() {
       <Stack direction="row" marginTop="30px" width={280} spacing={3} alignItems="center">
         <Selector
           items={[
-            { label: "walking", value: "walking" },
-            { label: "cycling", value: "cycling" },
-            { label: "transit", value: "transit" },
+            { label: t("isochrone.modalityModes.walking"), value: "walking" },
+            { label: t("isochrone.modalityModes.cycling"), value: "cycling" },
+            { label: t("isochrone.modalityModes.transit"), value: "transit" },
           ]}
           label={"Mode"}
           value={selected_isochrone_mode as TRAVEL_MODE}
@@ -78,7 +81,7 @@ export function InsightsModifier() {
                 <img src={TriangleIcon} alt="triangle" width={18} height={18} />
               </span>
             )}
-            <Typography variant="h6">{i}</Typography>
+            <Typography variant="h6">{t(`isochrone.modes.${i}`)}</Typography>
           </SegementedButton>
         ))}
       </SegmentedSection>

@@ -1,18 +1,17 @@
-import axios from "axios";
+import germanFile from "../locales/de.json";
+import englishFile from "../locales/en.json";
 
 export function get_all_translations() {
-  const languages = ["en", "de"];
+  const languagesSorted = {
+    en: englishFile,
+    de: germanFile,
+  };
+
   const messages = {};
-  languages.forEach((language) => {
-    axios
-      .get(
-        `https://goat-community.github.io/translations/UMSTranslations/${
-          language || "en"
-        }/allTranslations.json`
-      )
-      .then((data) => {
-        messages[language] = { translation: data.data };
-      });
-  });
+  console.log(englishFile);
+  for (const language in languagesSorted) {
+    messages[language] = { translation: languagesSorted[language] };
+  }
+
   return messages;
 }

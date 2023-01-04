@@ -9,7 +9,7 @@ import { networkStateHandler } from "@context/base/network";
 import { PERSISTANCE_DATE, POIS } from "@constants";
 import { AMENITIES_LIST } from "@constants/flower";
 
-import { setPersistanceDate, setPoiFeatures } from "./pois-reducer";
+import { setPersistanceDate, setPoiConfig, setPoiFeatures } from "./pois-reducer";
 
 const POIS_PERSIST_TIME = 24;
 export function get_pois_aois() {
@@ -59,6 +59,19 @@ export function get_pois_aois() {
 
           dispatch(setPersistanceDate(persistance_date.toString()));
           dispatch(setPoiFeatures(pois));
+        }
+      })
+    );
+  };
+}
+
+export function get_pois_config() {
+  return (dispatch: CallableFunction) => {
+    dispatch(
+      networkStateHandler(async () => {
+        const response = await Api.fetch_pois_config();
+        if (response && response.poi_groups) {
+          dispatch(setPoiConfig(response.poi_groups));
         }
       })
     );

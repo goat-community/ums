@@ -1,12 +1,13 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { PoisList } from "@types";
+import { PoisConfig, PoisList } from "@types";
 
 /** Reducer */
 const initialState = {
+  pois_config: {} as PoisConfig,
   poi_features: {} as PoisList,
   persistance_date: "" as ReturnType<typeof Date>,
-  active_pois: [] as string[],
+  active_poi_groups: [] as string[],
 };
 
 export const pois = createSlice({
@@ -23,10 +24,13 @@ export const pois = createSlice({
       state.poi_features = {};
     },
     setActivePois: (state: typeof initialState, action: PayloadAction<string[]>) => {
-      state.active_pois = action.payload;
+      state.active_poi_groups = action.payload;
     },
     clearActivePois: (state: typeof initialState) => {
-      state.active_pois = [];
+      state.active_poi_groups = [];
+    },
+    setPoiConfig: (state: typeof initialState, action: PayloadAction<PoisConfig>) => {
+      state.pois_config = action.payload;
     },
   },
 });
@@ -37,5 +41,6 @@ export const {
   clearPois,
   setActivePois,
   clearActivePois,
+  setPoiConfig,
 } = pois.actions;
 export default pois.reducer;

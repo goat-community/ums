@@ -1,4 +1,5 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
+import i18n from "i18next";
 
 import { notify, resetNotify } from "./notifier";
 
@@ -34,7 +35,7 @@ export function networkStateHandler(req: CallableFunction) {
   return async (dispatch: CallableFunction) => {
     dispatch(setNetworkState({ loading: true }));
     try {
-      dispatch(notify("Loading, please wait..."));
+      dispatch(notify(i18n.t("messages.loading")));
       await req();
       // Request is done, resetting the notifiers
       dispatch(resetNotify());
@@ -46,7 +47,7 @@ export function networkStateHandler(req: CallableFunction) {
         })
       );
       // notify error message
-      dispatch(notify("Error occured!"));
+      dispatch(notify(i18n.t("messages.simpleError")));
     }
   };
 }
