@@ -4,7 +4,15 @@ import type { Amenities, FlowerMinutes } from "@types";
 import styled from "styled-components";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, Container, IconButton, Slider, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  Container,
+  IconButton,
+  Slider,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import { convert_to_pascal } from "@utils";
 
@@ -13,7 +21,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 import { get_amenities, persist_amenities, set_amenity } from "@context/flower";
 
 import * as D from "@constants/design";
-import { AMENITIES_GROUP, FLOWER_PROXIMITY } from "@constants/flower";
+import { AMENITIES_GROUP, FLOWER_PROXIMITY_WITH_LABEL } from "@constants/flower";
 
 import { Margin } from "@components/common";
 import { LinearProgressBar } from "@components/mobile/linear-progress";
@@ -30,9 +38,12 @@ function SurveyQuestions(props: {
   return (
     <>
       <SurveyQuestionsContainer>
-        <Typography variant="h6" sx={{ width: 300 }}></Typography>
-        <Stack direction="row" justifyContent="space-between" sx={{ width: "100%" }}>
-          {FLOWER_PROXIMITY.map((proximity) => (
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          sx={{ width: "245px", marginLeft: "150px" }}
+        >
+          {FLOWER_PROXIMITY_WITH_LABEL.map((proximity) => (
             <Typography key={proximity} variant="h6">
               {proximity}
             </Typography>
@@ -41,19 +52,38 @@ function SurveyQuestions(props: {
       </SurveyQuestionsContainer>
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
-          <Typography variant="h4" sx={{ width: 300 }}>
+          <Typography variant="h4" sx={{ width: 250 }}>
             {convert_to_pascal(key)}
           </Typography>
           <Slider
+            min={5}
+            max={15}
+            sx={{ width: "400px" }}
+            color={"secondary"}
+            valueLabelDisplay="auto"
             value={props.amentities_list[key]}
+            disabled={props.amentities_list[key] === 0}
             onChange={(_, value) =>
               props.on_change({ [key]: value } as Record<string, FlowerMinutes>)
             }
-            min={5}
-            max={15}
-            valueLabelDisplay="auto"
-            color={"secondary"}
           />
+          <Margin margin="0 0 0 40px" />
+          <Checkbox
+            defaultChecked={props.amentities_list[key] == 0}
+            onChange={() => {
+              if (props.amentities_list[key] != false) {
+                // Disable the option
+                props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
+              }
+              if (!props.amentities_list[key]) {
+                // Convert it back to default state
+                props.on_change({ [key]: 5 } as Record<string, FlowerMinutes>);
+              }
+            }}
+          />
+          <Typography variant="h6" width={150}>
+            Not relevant
+          </Typography>
         </SurveyQuestionsContainer>
       ))}
     </>
@@ -104,7 +134,7 @@ export default function Survey(props: SurveyProps) {
             <Typography variant="h4">
               Make a selection of the distance in minutes for the locations that are
               relevant for you (create your ideal city). The travel times are
-              mode-independent
+              mode-independent.
             </Typography>
           </TypoGraphyContainer>
           <Margin margin="55px 0 0 0" />

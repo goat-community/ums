@@ -4,9 +4,11 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Notfound from "@pages/common/404";
 
+const MOBILE_SCREEN_SIZE = 830;
+
 let router: ReturnType<typeof createBrowserRouter>;
 // Mobile
-if (window.screen.width <= 780) {
+if (window.screen.width <= MOBILE_SCREEN_SIZE) {
   const Flower = lazy(() => import("@pages/mobile/flower/Flower"));
   const Map = lazy(() => import("@pages/mobile/map/Map"));
   const Profile = lazy(() => import("@pages/mobile/profile/Profile"));

@@ -1,4 +1,5 @@
-export type FlowerMinutes = 5 | 10 | 15;
+// 0 is for not revelant
+export type FlowerMinutes = number | 0;
 
 export interface Amenities {
   Mobilitaetspunkte: FlowerMinutes;
