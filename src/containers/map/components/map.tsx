@@ -25,7 +25,6 @@ interface MapProps {
 
 function MapComponent(props: MapProps) {
   const cursor_mode = props.picking_mode ? "crosshair" : "default";
-  console.log("Component re-rendered + " + props.picking_mode);
   return (
     <Map
       id="map"
