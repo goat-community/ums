@@ -4,7 +4,7 @@ import type { Amenities, FlowerMinutes } from "@types";
 import styled from "styled-components";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, IconButton, Slider, Stack, Typography } from "@mui/material";
+import { Button, Checkbox, IconButton, Slider, Stack, Typography } from "@mui/material";
 
 import { convert_to_pascal } from "@utils";
 
@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 import { get_amenities, persist_amenities, set_amenity } from "@context/flower";
 
 import * as D from "@constants/design";
-import { AMENITIES_GROUP, FLOWER_PROXIMITY } from "@constants/flower";
+import { AMENITIES_GROUP, FLOWER_PROXIMITY_WITH_LABEL } from "@constants/flower";
 
 import { Margin } from "@components/common";
 import { LinearProgressBar } from "@components/mobile/linear-progress";
@@ -29,31 +29,65 @@ function SurveyQuestions(props: {
 }) {
   return (
     <>
-      <SurveyQuestionsContainer>
-        <Typography variant="h6" sx={{ width: 300 }}></Typography>
-        <Stack direction="row" justifyContent="space-between" sx={{ width: "100%" }}>
-          {FLOWER_PROXIMITY.map((proximity) => (
+      {/* <SurveyQuestionsContainer>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          sx={{ width: "150px", marginLeft: "105px" }}
+        >
+          {FLOWER_PROXIMITY_WITH_LABEL.map((proximity) => (
             <Typography key={proximity} variant="h6">
               {proximity}
             </Typography>
           ))}
         </Stack>
-      </SurveyQuestionsContainer>
+      </SurveyQuestionsContainer> */}
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
-          <Typography variant="h6" sx={{ width: 300 }}>
+          <Typography variant="h6" sx={{ width: 250 }}>
             {convert_to_pascal(key)}
           </Typography>
-          <Slider
-            value={props.amentities_list[key]}
-            onChange={(_, value) =>
-              props.on_change({ [key]: value } as Record<string, FlowerMinutes>)
-            }
-            min={5}
-            max={15}
-            valueLabelDisplay="auto"
-            color={"secondary"}
+          <Stack width={"100%"}>
+            {index === 0 ? (
+              <Stack direction="row" justifyContent="space-between" mt={"-20px"}>
+                {FLOWER_PROXIMITY_WITH_LABEL.map((proximity) => (
+                  <Typography key={proximity} variant="h6">
+                    {proximity}
+                  </Typography>
+                ))}
+              </Stack>
+            ) : (
+              <></>
+            )}
+            <Slider
+              min={5}
+              max={15}
+              color={"secondary"}
+              valueLabelDisplay="auto"
+              value={props.amentities_list[key]}
+              disabled={props.amentities_list[key] === 0}
+              onChange={(_, value) =>
+                props.on_change({ [key]: value } as Record<string, FlowerMinutes>)
+              }
+            />
+          </Stack>
+          <Margin margin="0 0 0 10px" />
+          <Checkbox
+            defaultChecked={props.amentities_list[key] == 0}
+            onChange={() => {
+              if (props.amentities_list[key] != false) {
+                // Disable the option
+                props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
+              }
+              if (!props.amentities_list[key]) {
+                // Convert it back to default state
+                props.on_change({ [key]: 5 } as Record<string, FlowerMinutes>);
+              }
+            }}
           />
+          <Typography variant="h6" width={200}>
+            Not relevant
+          </Typography>
         </SurveyQuestionsContainer>
       ))}
     </>
@@ -112,7 +146,7 @@ export default function Survey(props: SurveyProps) {
         <Typography variant="h3" fontWeight="bold">
           {convert_to_pascal(amenity_group)}
         </Typography>
-        <Margin margin="20px 0 0 0" />
+        <Margin margin="50px 0 0 0" />
         <SurveyQuestions
           amentities_filtered={amentities_filtered}
           amentities_list={amentities_list}
