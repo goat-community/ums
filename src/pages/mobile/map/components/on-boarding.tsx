@@ -46,24 +46,28 @@ export function Onboarding(props: OnboardingProps) {
       text: "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
       image: M4CImage,
       radius: 0,
+      size: "280px",
     },
     {
       title: "Customized 15-min-city",
       text: "This is strongly linked to the concept of the 15-min-city. To assist you in finding your perfect 15-min-city location, which fulfills all your needs, you can create your personal “flower-of-proximity”. The application then shows you how well different locations in the city can serve your needs.",
       image: FifteenMinute,
       radius: 0,
+      size: "350px",
     },
     {
       title: "Isochrones",
       text: "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
       image: IsochroneImage,
       radius: "10%",
+      size: "330px",
     },
     {
       title: "Ready to use?",
       text: "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
       image: BrandingImage,
       radius: 0,
+      size: "350px",
     },
   ];
 
@@ -72,7 +76,7 @@ export function Onboarding(props: OnboardingProps) {
       <img
         src={pages[page_index].image}
         alt={pages[page_index].title}
-        width="320px"
+        width={pages[page_index].size}
         style={{ borderRadius: pages[page_index].radius || 0 }}
       />
       <Margin margin="140px 0" />
