@@ -7,7 +7,7 @@ import { useAppDispatch } from "@hooks/context";
 
 import { get_amenities } from "@context/flower";
 
-import { BaseMapSelector } from "@pages/common/map/base-map-selector";
+import { BaseMapSelector } from "@pages/common/map/basemap-selector";
 import { LayerSelector } from "@pages/common/map/layer-selector";
 import { PoisSelector } from "@pages/common/map/pois-selector";
 

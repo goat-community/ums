@@ -5,6 +5,7 @@ import { IndicatorConfig, MapView } from "@types";
 
 /** Reducer */
 const initialState = {
+  style: "mapbox://styles/mapbox/light-v11",
   picking_mode: false as boolean,
   picked_point: null as LngLat | null,
   current_point_address: "" as string,
@@ -432,6 +433,9 @@ export const map = createSlice({
   name: "map",
   initialState,
   reducers: {
+    setStyle: (state: typeof initialState, action: PayloadAction<string>) => {
+      state.style = action.payload;
+    },
     setPickingMode: (state: typeof initialState, action: PayloadAction<boolean>) => {
       state.picking_mode = action.payload;
     },
@@ -477,6 +481,7 @@ export const map = createSlice({
 });
 
 export const {
+  setStyle,
   setPickingMode,
   setPickedPoint,
   setMapView,

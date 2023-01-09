@@ -12,7 +12,7 @@ export type PageKey = keyof typeof PAGES;
 export const MAPBOX_TOKEN =
   "pk.eyJ1IjoibWFqa3Noa3VydGkiLCJhIjoiY2w5YWpqM3ZlMGE2ZDQ1bGVqaG9tNzJnayJ9._IU92hy-v_e4vckpDNFyAQ";
 export const API_TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMwODQ4ODgsInN1YiI6IjE0MiIsInNjb3BlcyI6W119.51LKvUdFMeLhHazmk60Tj9T6v8g3m-sNnMhPyg5gfxc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzM5MTY4NzgsInN1YiI6IjE1Iiwic2NvcGVzIjpbXX0.aQA1iVKqCD3i_lMu5owJDQWrHpC3wk3LvEiHdrXLAXk";
 export const DEFAULT_ZOOM = 16;
 export const DEFAULT_LATITUDE = 48.1351;
 export const DEFAULT_LONGITUDE = 11.582;

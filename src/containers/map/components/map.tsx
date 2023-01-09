@@ -3,6 +3,8 @@ import Map, { type LngLat } from "react-map-gl";
 
 import { MapView } from "@types";
 
+import { useAppSelector } from "@hooks/context";
+
 // import { isochrones_selector } from "@context/isochrones/isochrones-selector";
 import { API_TOKEN, MAPBOX_TOKEN } from "@constants";
 
@@ -24,6 +26,7 @@ interface MapProps {
 }
 
 function MapComponent(props: MapProps) {
+  const mapStyle = useAppSelector((state) => state.map.style);
   const cursor_mode = props.picking_mode ? "crosshair" : "default";
   console.log("Component re-rendered + " + props.picking_mode);
   return (
@@ -33,7 +36,7 @@ function MapComponent(props: MapProps) {
       initialViewState={props.view}
       maxBounds={props.viewBounds}
       mapboxAccessToken={MAPBOX_TOKEN}
-      mapStyle="mapbox://styles/mapbox/light-v11"
+      mapStyle={mapStyle}
       style={{ top: 0, left: 0, bottom: 0, right: 0, zIndex: -1, position: "fixed" }}
       onClick={(e) => props.on_click_point(e.lngLat as LngLat)}
       transformRequest={(url) => {
