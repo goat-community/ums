@@ -166,6 +166,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#32932b",
             "fill-outline-color": "#232323",
           },
@@ -176,6 +177,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#e2ce30",
             "fill-outline-color": "#232323",
           },
@@ -186,6 +188,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#e9a029",
             "fill-outline-color": "#232323",
           },
@@ -196,6 +199,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#b4381f",
             "fill-outline-color": "#232323",
           },
@@ -206,6 +210,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#4881c2",
             "fill-outline-color": "#232323",
           },
@@ -224,6 +229,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#b6b6b6",
             "fill-outline-color": "#232323",
           },
@@ -242,6 +248,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#707070",
             "fill-outline-color": "#232323",
           },
@@ -252,6 +259,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#146614",
             "fill-outline-color": "#232323",
           },
@@ -274,6 +282,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#8dc05c",
             "fill-outline-color": "#232323",
           },
@@ -302,6 +311,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#4fa7e1",
             "fill-outline-color": "#232323",
           },
