@@ -57,7 +57,7 @@ export function BaseMapSelector() {
     },
   ];
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState([2]);
+  const [selected, setSelected] = useState([3]);
 
   return (
     <>
