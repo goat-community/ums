@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback, useState } from "react";
 import Map, { type LngLat } from "react-map-gl";
 
 import { MapView } from "@types";
@@ -25,10 +25,56 @@ interface MapProps {
   on_click_point: (e: LngLat) => void;
 }
 
+function renderTooltip(info) {
+  const { object, x, y } = info;
+
+  if (info.objects) {
+    return (
+      <div className="tooltip interactive" style={{ left: x, top: y }}>
+        {info.objects.map(({ name, year, mass, class: meteorClass }) => {
+          return (
+            <div key={name}>
+              <h5>{name}</h5>
+              <div>Year: {year || "unknown"}</div>
+              <div>Class: {meteorClass}</div>
+              <div>Mass: {mass}g</div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  if (!object) {
+    return null;
+  }
+
+  return object.cluster ? (
+    <div className="tooltip" style={{ left: x, top: y }}>
+      {object.point_count} records
+    </div>
+  ) : (
+    <div className="tooltip" style={{ left: x, top: y }}>
+      {object.name} {object.year ? `(${object.year})` : ""}
+    </div>
+  );
+}
+
 function MapComponent(props: MapProps) {
   const mapStyle = useAppSelector((state) => state.map.style);
+  const [hoverInfo, setHoverInfo] = useState(null);
   const cursor_mode = props.picking_mode ? "crosshair" : "default";
   console.log("Component re-rendered + " + props.picking_mode);
+  const onHover = useCallback((event) => {
+    const {
+      features,
+      point: { x, y },
+    } = event;
+    const hoveredFeature = features && features[0];
+    console.log("Hovered feature: " + hoveredFeature);
+    // prettier-ignore
+    setHoverInfo(hoveredFeature && {feature: hoveredFeature, x, y});
+  }, []);
   return (
     <Map
       id="map"

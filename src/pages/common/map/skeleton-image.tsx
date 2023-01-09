@@ -7,7 +7,7 @@ interface Props {
   alt?: string;
   width?: number;
   height?: number;
-  border?: "rectangular" | "rounded";
+  border?: "rectangular" | "rounded" | "circular";
 }
 
 export default function SkeletonImage({
@@ -18,11 +18,13 @@ export default function SkeletonImage({
   border = "rectangular",
 }: Props) {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const imageStyle = imageLoaded
-    ? border === "rounded"
-      ? { borderRadius: "4px" }
-      : {}
-    : { display: "none" };
+  const borderStyle = {
+    rounded: { borderRadius: "4px" },
+    circular: { borderRadius: "50%" },
+    rectangular: {},
+  };
+  const imageStyle = imageLoaded ? borderStyle[border] : { display: "none" };
+
   const skeletonStyle = imageLoaded ? { display: "none" } : {};
   return (
     <Fragment>

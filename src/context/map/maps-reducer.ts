@@ -5,7 +5,7 @@ import { IndicatorConfig, MapView } from "@types";
 
 /** Reducer */
 const initialState = {
-  style: "mapbox://styles/mapbox/light-v11",
+  style: "mapbox://styles/mapbox/dark-v11",
   picking_mode: false as boolean,
   picked_point: null as LngLat | null,
   current_point_address: "" as string,

@@ -37,11 +37,26 @@ interface Props {
   multiple?: boolean;
   /**
    * The thumbnail border style
+   * @default "rectangular"
    */
-  thumbnailBorder?: "rectangular" | "rounded";
+  thumbnailBorder?: "rectangular" | "rounded" | "circular";
+
+  /**
+   * The thumbnail width
+   * @default 40
+   */
+
+  thumbnailWidth?: number;
+  /**
+   * The thumbnail height
+   * @default 40
+   */
+
+  thumbnailHeight?: number;
 
   /**
    * Reverse the thumbnail position. If true, the thumbnail will be displayed on the left side and control on the right side.
+   * @default false
    */
   reverse?: boolean;
 
@@ -59,9 +74,13 @@ function ListTileLabel({
   item,
   thumbnailBorder = "rectangular",
   reverse = false,
+  thumbnailWidth = 60,
+  thumbnailHeight = 60,
 }: {
   item: Items;
-  thumbnailBorder?: "rectangular" | "rounded";
+  thumbnailBorder?: "rectangular" | "rounded" | "circular";
+  thumbnailWidth?: number;
+  thumbnailHeight?: number;
   reverse: boolean;
 }) {
   return (
@@ -82,8 +101,8 @@ function ListTileLabel({
       />
       {item.thumbnail && (
         <SkeletonImage
-          width={65}
-          height={50}
+          width={thumbnailWidth}
+          height={thumbnailHeight}
           src={item.thumbnail}
           border={thumbnailBorder}
         />
@@ -98,6 +117,8 @@ function ButtonList({
   multiple,
   onChange,
   thumbnailBorder,
+  thumbnailWidth,
+  thumbnailHeight,
   reverse,
 }: Props) {
   const handleCheckboxToggle = (value: number) => () => {
@@ -133,6 +154,8 @@ function ButtonList({
                 <ListTileLabel
                   item={item}
                   thumbnailBorder={thumbnailBorder}
+                  thumbnailWidth={thumbnailWidth}
+                  thumbnailHeight={thumbnailHeight}
                   reverse={reverse}
                 />
               }
@@ -153,6 +176,8 @@ function ButtonList({
             <ListTileLabel
               item={item}
               thumbnailBorder={thumbnailBorder}
+              thumbnailWidth={thumbnailWidth}
+              thumbnailHeight={thumbnailHeight}
               reverse={reverse}
             />
           )}
@@ -167,14 +192,16 @@ export default function ListTile({
   selected,
   multiple = false,
   thumbnailBorder = "rectangular",
-  reverse = true,
+  thumbnailWidth = 60,
+  thumbnailHeight = 60,
+  reverse = false,
   onChange,
 }: Props) {
   return (
     <DialogContent
       sx={{
         px: 0,
-        pb: 1,
+        pb: 0,
         pt: 0,
         m: 0,
       }}
@@ -198,6 +225,8 @@ export default function ListTile({
           multiple={multiple}
           onChange={onChange}
           thumbnailBorder={thumbnailBorder}
+          thumbnailWidth={thumbnailWidth}
+          thumbnailHeight={thumbnailHeight}
           reverse={reverse}
         />
       </Wrap>
