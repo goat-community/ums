@@ -5,7 +5,7 @@ import MapIcon from "@mui/icons-material/Map";
 import { Box, IconButton, Paper, Typography } from "@mui/material";
 import Fab from "@mui/material/Fab";
 
-import { useAppDispatch } from "@hooks/context";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { setStyle } from "@context/map";
 
@@ -17,6 +17,8 @@ import ListTile from "./list-tile";
 
 export function BaseMapSelector() {
   const dispatch = useAppDispatch();
+  const mapStyleUrl = useAppSelector((state) => state.map.style);
+
   const styles = {
     mapbox_streets: "mapbox://styles/mapbox/streets-v12",
     mapbox_satellite: "mapbox://styles/mapbox/satellite-streets-v12",
@@ -56,8 +58,15 @@ export function BaseMapSelector() {
       thumbnail: "https://i.imgur.com/lfcARxZm.png",
     },
   ];
+
+  //
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState([3]);
+  const [selected, setSelected] = useState(() => {
+    const selectedMapStyle = Object.keys(styles).find(
+      (key) => styles[key] === mapStyleUrl
+    );
+    return [items.findIndex((item) => item.value === selectedMapStyle)];
+  });
 
   return (
     <>

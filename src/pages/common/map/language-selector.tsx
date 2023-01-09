@@ -32,7 +32,14 @@ export function LanguageSelector() {
     deutsch: "de",
   };
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState([0]);
+  const [selected, setSelected] = useState(() => {
+    const abbreviationValue = i18n.language;
+    const language = Object.keys(abbreviations).find(
+      (key) => abbreviations[key] === abbreviationValue
+    );
+    const itemIndex = items.findIndex((item) => item.value === language);
+    return [itemIndex];
+  });
 
   return (
     <>
