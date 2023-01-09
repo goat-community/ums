@@ -13,13 +13,7 @@ export function ProfileButton() {
     <Section>
       <Link to="/flower">
         <Button variant="contained">
-          <img
-            src={Icon}
-            width="18"
-            height="18"
-            alt="icon"
-            style={{ marginBottom: -2 }}
-          />
+          <img src={Icon} width="18" height="18" alt="icon" style={{ marginBottom: 1 }} />
           <Typography variant="h6" ml={1}>
             {t("actions.flower")}
           </Typography>

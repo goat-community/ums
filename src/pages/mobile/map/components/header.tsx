@@ -1,13 +1,20 @@
 import styled from "styled-components";
 
-import { Stack } from "@mui/material";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Fab, Stack } from "@mui/material";
+
+import * as D from "@constants/design";
 
 import { Header } from "@components/mobile";
 
 import { LayerSelector } from "@pages/common/map/layer-selector";
 import { PoisSelector } from "@pages/common/map/pois-selector";
 
-export function MapHeader() {
+interface MapHeaderProps {
+  open_onboarding_force: CallableFunction;
+}
+
+export function MapHeader(props: MapHeaderProps) {
   return (
     <Section>
       <Header />
@@ -16,6 +23,13 @@ export function MapHeader() {
         <Stack direction="row" spacing={1}>
           <LayerSelector />
           <PoisSelector />
+          <Fab
+            size="small"
+            sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+            onClick={() => props.open_onboarding_force()}
+          >
+            <InfoOutlinedIcon />
+          </Fab>
         </Stack>
       </Stack>
     </Section>

@@ -1,18 +1,25 @@
 import { Fragment, useEffect } from "react";
 import styled from "styled-components";
 
-import { Stack } from "@mui/material";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Fab, Stack } from "@mui/material";
 
 import { useAppDispatch } from "@hooks/context";
 
 import { get_amenities } from "@context/flower";
+
+import * as D from "@constants/design";
 
 import { BaseMapSelector } from "@pages/common/map/basemap-selector";
 import { LanguageSelector } from "@pages/common/map/language-selector";
 import { LayerSelector } from "@pages/common/map/layer-selector";
 import { PoisSelector } from "@pages/common/map/pois-selector";
 
-export function FloatingActions() {
+interface FloatingActionsProps {
+  open_onboarding_force: CallableFunction;
+}
+
+export function FloatingActions(props: FloatingActionsProps) {
   const dispatch = useAppDispatch();
 
   // fetch survey from localstorage
@@ -31,6 +38,13 @@ export function FloatingActions() {
         </Stack>
       </Container>
       <Container position="left">
+        <Fab
+          size="small"
+          sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+          onClick={() => props.open_onboarding_force()}
+        >
+          <InfoOutlinedIcon />
+        </Fab>
         <LanguageSelector />
       </Container>
     </Fragment>

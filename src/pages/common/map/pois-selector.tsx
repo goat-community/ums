@@ -116,8 +116,8 @@ export function PoisSelector() {
   return (
     <>
       <BuildingButton onClick={handleClickOpen} />
-      <Dialog open={open} onClose={handleClose} maxWidth="xl" sx={{ marginTop: 2 }}>
-        <Box p={1}>
+      <Dialog open={open} onClose={handleClose} sx={{ marginTop: 2 }}>
+        <Box p={1} sx={{ width: 300 }}>
           <DialogTitle variant="h4">Locations</DialogTitle>
           <DialogContent sx={{ padding: 0, maxHeight: 200 }}>
             <List dense sx={{ width: "100%" }}>

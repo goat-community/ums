@@ -16,13 +16,19 @@ import M4CImage from "@images/m4c-big.png";
 
 const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
 
-export function Onboarding() {
+interface OnboardingProps {
+  force_open: boolean;
+  close_onboarding_force: CallableFunction;
+}
+
+export function Onboarding(props: OnboardingProps) {
   const [open, set_open] = useState<boolean>(false);
   const { t } = useTranslation();
 
   const [user_seen_onboarding] = useState<string | null>(
     () => localStorage.getItem(USER_SEEN_ONBOARDING) || null
   );
+
   useEffect(() => {
     if (!user_seen_onboarding) {
       set_open(true);
@@ -31,6 +37,7 @@ export function Onboarding() {
 
   function skip_onboarding() {
     localStorage.setItem(USER_SEEN_ONBOARDING, "yes");
+    props.close_onboarding_force();
     set_open(false);
   }
 
@@ -41,33 +48,37 @@ export function Onboarding() {
       text: t("tutorial.Map4CitizensminuteDesc"),
       image: M4CImage,
       radius: 0,
+      size: "280px",
     },
     {
       title: t("tutorial.15-minCity"),
       text: t("tutorial.15-minCityDesc"),
       image: FifteenMinute,
-      radius: "5%",
+      radius: 0,
+      size: "350px",
     },
     {
       title: t("tutorial.isochrones"),
       text: t("tutorial.isochronesDesc"),
       image: IsochroneImage,
       radius: "10%",
+      size: "330px",
     },
     {
       title: t("tutorial.readyToUse"),
       text: t("tutorial.readyToUseDesc"),
       image: BrandingImage,
-      radius: "5%",
+      radius: 0,
+      size: "350px",
     },
   ];
 
   return (
-    <Box visible={open}>
+    <Box visible={open || props.force_open}>
       <img
         src={pages[page_index].image}
         alt={pages[page_index].title}
-        width="320px"
+        width={pages[page_index].size}
         style={{ borderRadius: pages[page_index].radius || 0 }}
       />
       <Margin margin="140px 0" />
@@ -99,6 +110,7 @@ export function Onboarding() {
               if (page_index === pages.length - 1) {
                 // Done scrolling
                 localStorage.setItem(USER_SEEN_ONBOARDING, "yes");
+                props.close_onboarding_force();
                 return set_open(false);
               }
 

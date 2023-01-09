@@ -19,6 +19,7 @@ export function MapContainer() {
   const on_click_point = useCallback((latlng: LngLat) => {
     dispatch(get_point_isochrone(latlng));
   }, []);
+
   useEffect(() => {
     //fetch pois at app startup
     dispatch(get_pois_aois());

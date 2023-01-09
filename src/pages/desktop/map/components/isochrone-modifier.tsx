@@ -2,6 +2,9 @@ import { useTranslation } from "react-i18next";
 import { batch } from "react-redux";
 import styled from "styled-components";
 
+import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
+import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
+import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import { Slider, Stack, Typography } from "@mui/material";
 
 import { SCORE_MODE, TRAVEL_MODE } from "@types";
@@ -22,14 +25,11 @@ import { picked_point_selector } from "@context/map/maps-selector";
 
 import * as D from "@constants/design";
 
-import TriangleIcon from "@images/triangle.png";
-import TriangleWhiteIcon from "@images/triangle-white.png";
-
-// const POI_LIST = [
-//   { label: "Personal", icon: <img src={Icon} width="18" height="18" /> },
-//   { label: "Nature lover", icon: <img src={tree} width="18" height="18" /> },
-//   { label: "Creative spirit", icon: <img src={artistpallete} width="18" height="18" /> },
-// ];
+const ISOCHRONES_MODE_ICON = {
+  walking: <DirectionsWalkIcon fontSize="small" />,
+  cycling: <DirectionsBikeIcon fontSize="small" />,
+  transit: <DirectionsBusIcon fontSize="small" />,
+};
 
 export function IsochroneModifier() {
   const dispatch = useAppDispatch();
@@ -72,9 +72,7 @@ export function IsochroneModifier() {
               active={selectedIsochroneMode === isochrone_mode}
               onClick={() => set_isochrone_mode(isochrone_mode as TRAVEL_MODE)}
             >
-              <Typography variant="h6">
-                {t(`isochrone.modalityModes.${isochrone_mode}`)}
-              </Typography>
+              {ISOCHRONES_MODE_ICON[isochrone_mode]}
             </SegementedButton>
           ))}
         </SegmentedSection>
@@ -91,16 +89,7 @@ export function IsochroneModifier() {
               active={score_mode === i}
               onClick={() => dispatch(setScoreMode(i))}
             >
-              {i === score_mode ? (
-                <span>
-                  <img src={TriangleWhiteIcon} alt="triangle" width={18} height={18} />
-                </span>
-              ) : (
-                <span>
-                  <img src={TriangleIcon} alt="triangle" width={18} height={18} />
-                </span>
-              )}
-              <Typography variant="h6">{t(`isochrone.modes.${i}`)}</Typography>
+              <Typography variant="h6">{convert_to_pascal(i)}</Typography>
             </SegementedButtonTwo>
           ))}
         </SegmentedSection>
@@ -128,7 +117,7 @@ const SegementedButton = styled.button<{ active: boolean }>`
   align-items: center;
   justify-content: center;
   border: 1px solid #73777f;
-  padding: 0 10px;
+  padding: 0 15px;
   text-decoration: none;
   height: 28px;
   font-size: 11px;
