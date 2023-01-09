@@ -38,14 +38,16 @@ export function FloatingActions(props: FloatingActionsProps) {
         </Stack>
       </Container>
       <Container position="left">
-        <Fab
-          size="small"
-          sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
-          onClick={() => props.open_onboarding_force()}
-        >
-          <InfoOutlinedIcon />
-        </Fab>
-        <LanguageSelector />
+        <Stack direction="column" spacing={2}>
+          <Fab
+            size="small"
+            sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+            onClick={() => props.open_onboarding_force()}
+          >
+            <InfoOutlinedIcon />
+          </Fab>
+          <LanguageSelector />
+        </Stack>
       </Container>
     </Fragment>
   );
