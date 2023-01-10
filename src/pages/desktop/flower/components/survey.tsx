@@ -68,22 +68,26 @@ function SurveyQuestions(props: {
             }
           />
           <Margin margin="0 0 0 40px" />
-          <Checkbox
-            defaultChecked={props.amentities_list[key] == 0}
-            onChange={() => {
-              if (props.amentities_list[key] != false) {
-                // Disable the option
-                props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
-              }
-              if (!props.amentities_list[key]) {
-                // Convert it back to default state
-                props.on_change({ [key]: 5 } as Record<string, FlowerMinutes>);
-              }
-            }}
-          />
-          <Typography variant="h6" width={150}>
-            Not relevant
-          </Typography>
+          <RoudedBG>
+            <Checkbox
+              size="small"
+              color="secondary"
+              defaultChecked={props.amentities_list[key] == 0}
+              onChange={() => {
+                if (props.amentities_list[key] != false) {
+                  // Disable the option
+                  props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
+                }
+                if (!props.amentities_list[key]) {
+                  // Convert it back to default state
+                  props.on_change({ [key]: 5 } as Record<string, FlowerMinutes>);
+                }
+              }}
+            />
+            <Typography variant="h6" width={150}>
+              Not relevant
+            </Typography>
+          </RoudedBG>
         </SurveyQuestionsContainer>
       ))}
     </>
@@ -185,4 +189,12 @@ const SurveyQuestionsContainer = styled.div`
 
 const BottomFloating = styled.div`
   margin-top: 30px;
+`;
+
+const RoudedBG = styled.div`
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  width: 120px;
 `;
