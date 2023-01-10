@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 import { Stack, Typography } from "@mui/material";
 
-import { convert_to_pascal } from "@utils";
-
 import { useCalculateStandardScore } from "@hooks";
 
 // import { useAppSelector } from "@hooks/context";

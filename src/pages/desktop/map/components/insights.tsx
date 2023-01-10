@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 import { CircularProgress, Stack, Typography } from "@mui/material";
 
-import { convert_to_pascal } from "@utils";
-
 import { useCalculateSingleScore } from "@hooks";
 import { useAppSelector } from "@hooks/context";
 
