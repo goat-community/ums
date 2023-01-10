@@ -1,11 +1,12 @@
 import { LngLat } from "react-map-gl";
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { IndicatorConfig, MapView } from "@types";
+import { IndicatorConfig, MapView, popupInfo } from "@types";
 
 /** Reducer */
 const initialState = {
   style: "mapbox://styles/mapbox/dark-v11",
+  popupInfo: null as popupInfo,
   picking_mode: false as boolean,
   picked_point: null as LngLat | null,
   current_point_address: "" as string,
@@ -487,6 +488,9 @@ export const map = createSlice({
     setAddress: (state: typeof initialState, action: PayloadAction<string>) => {
       state.current_point_address = action.payload;
     },
+    setPopupInfo: (state: typeof initialState, action: PayloadAction<popupInfo>) => {
+      state.popupInfo = action.payload;
+    },
   },
 });
 
@@ -500,5 +504,6 @@ export const {
   toggleLayer,
   toggleOffAllLayers,
   setAddress,
+  setPopupInfo,
 } = map.actions;
 export default map.reducer;

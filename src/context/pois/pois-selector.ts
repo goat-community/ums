@@ -19,7 +19,6 @@ export const get_poi_features = createSelector(
         });
       }
     });
-    console.log(activeCategories);
     const features = [];
     const featuresCategories = Object.keys(view.poi_features);
     featuresCategories.forEach((category) => {

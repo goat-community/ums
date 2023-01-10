@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Close, FlagCircle } from "@mui/icons-material";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Paper } from "@mui/material";
 import Fab from "@mui/material/Fab";
-
-import { useAppDispatch } from "@hooks/context";
 
 import * as D from "@constants/design";
 
@@ -14,7 +11,7 @@ import ArrowPopper from "@pages/common/map/arrow-popper";
 import ListTile from "./list-tile";
 
 export function LanguageSelector() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const items = [
     {
       value: "english",
@@ -33,7 +30,10 @@ export function LanguageSelector() {
   };
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(() => {
-    const abbreviationValue = i18n.language;
+    let abbreviationValue = i18n.language;
+    if (abbreviationValue === "en-US") {
+      abbreviationValue = "en";
+    }
     const language = Object.keys(abbreviations).find(
       (key) => abbreviations[key] === abbreviationValue
     );

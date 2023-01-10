@@ -121,5 +121,13 @@
   "profile": {
     "reach": "Want to reach in",
     "minutes": "minutes"
+  },
+  "popup": {
+    "category": "Category",
+    "name": "Name",
+    "street": "Street",
+    "housenumber": "House Number",
+    "zipcode": "Zip Code",
+    "score": "Overall Score"
   }
 }

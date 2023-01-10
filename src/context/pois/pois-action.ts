@@ -6,26 +6,12 @@ import * as Api from "@api/poi";
 
 import { networkStateHandler } from "@context/base/network";
 
-import { PERSISTANCE_DATE, POIS } from "@constants";
 import { AMENITIES_LIST } from "@constants/flower";
 
-import { setPersistanceDate, setPoiConfig, setPoiFeatures } from "./pois-reducer";
+import { setPoiConfig, setPoiFeatures } from "./pois-reducer";
 
-const POIS_PERSIST_TIME = 24;
 export function get_pois_aois() {
   return (dispatch: CallableFunction) => {
-    // check for last persisted date
-    const persistanced_date = new Date(localStorage.getItem(PERSISTANCE_DATE)) || null;
-    const persistanced_pois = JSON.parse(localStorage.getItem(POIS)) || [];
-    // check the time passed more than 24 hours from last persistance
-    // if not passed then we return the cached pois
-    if (
-      Math.abs(persistanced_date.getTime() - new Date().getTime()) / 36e5 <
-      POIS_PERSIST_TIME
-    ) {
-      return dispatch(setPoiFeatures(persistanced_pois));
-    }
-
     dispatch(
       networkStateHandler(async () => {
         const response = await Api.fetch_pois_aios();
@@ -33,7 +19,6 @@ export function get_pois_aois() {
           const geobuf_raw = geobuf.decode(new Pbf(response));
           const features = geobuf_raw.features;
 
-          // { atm: [], school: []...}
           let pois: PoisList = {};
 
           for (let index = 0; index < features.length; index++) {
@@ -45,19 +30,13 @@ export function get_pois_aois() {
                   ...(pois[element.properties.category] || ""),
                   {
                     coordinates: element.geometry.coordinates,
-                    category: element.properties.category,
+                    ...element.properties,
                   },
                 ],
               };
             }
           }
 
-          // Persist in local storage
-          const persistance_date = new Date();
-          localStorage.setItem(POIS, JSON.stringify(pois));
-          localStorage.setItem(PERSISTANCE_DATE, persistance_date.toString());
-
-          dispatch(setPersistanceDate(persistance_date.toString()));
           dispatch(setPoiFeatures(pois));
         }
       })

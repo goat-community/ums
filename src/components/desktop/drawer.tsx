@@ -25,6 +25,7 @@ const drawer_animation = keyframes`
 `;
 
 const Section = styled.section`
+  z-index: 3;
   width: ${D.DRAWER_WIDTH}px;
   background-color: ${D.WHITE_COLOR};
   position: absolute;

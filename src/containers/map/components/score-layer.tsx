@@ -3,9 +3,10 @@ import { DeckProps } from "@deck.gl/core/typed";
 import { MVTLayer } from "@deck.gl/geo-layers/typed";
 import { MapboxOverlay } from "@deck.gl/mapbox/typed";
 
-import { useAppSelector } from "@hooks/context";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { active_amenities_selector } from "@context/flower";
+import { setPopupInfo } from "@context/map";
 
 import { MAPBOX_TOKEN } from "@constants";
 const COLORS = {
@@ -36,7 +37,24 @@ export default function ScoreLayer() {
   const allAmenities = useAppSelector((state) => state.flower.amenities);
   const surveyCompleted = useAppSelector((state) => state.flower.survey_done_already);
   const scoreLayerVisible = useAppSelector((state) => state.flower.score_layer_visible);
+  const dispatch = useAppDispatch();
+
   // Active amenities are the ones that have a value > 0 in the flower state
+  const calculateScore = (d) => {
+    let nrAmenitiesReached = 0;
+    const amenities = surveyCompleted ? activeAmenities : allAmenities;
+    const nrTotalAmenities = Object.keys(amenities).length;
+    Object.keys(d.properties).forEach((amenity) => {
+      if (amenities[amenity]) {
+        const maxTime = surveyCompleted ? amenities[amenity] : 15;
+        if (d.properties[amenity] <= maxTime) {
+          nrAmenitiesReached++;
+        }
+      }
+    });
+    const score = Math.round((nrAmenitiesReached / nrTotalAmenities) * 10);
+    return score;
+  };
   const activeAmenities = useAppSelector(active_amenities_selector);
   const scoreLayer = new MVTLayer({
     data: SCORE_LAYER_TILESET_URL,
@@ -45,19 +63,26 @@ export default function ScoreLayer() {
     maxZoom: 17,
     getLineWidth: 0,
     getFillColor: (d) => {
-      let nrAmenitiesReached = 0;
-      const amenities = surveyCompleted ? activeAmenities : allAmenities;
-      const nrTotalAmenities = Object.keys(amenities).length;
-      Object.keys(d.properties).forEach((amenity) => {
-        if (amenities[amenity]) {
-          const maxTime = surveyCompleted ? amenities[amenity] : 15;
-          if (d.properties[amenity] <= maxTime) {
-            nrAmenitiesReached++;
-          }
-        }
-      });
-      const score = Math.round((nrAmenitiesReached / nrTotalAmenities) * 10);
+      const score = calculateScore(d);
       return COLORS[score] || [168, 168, 168];
+    },
+    pickable: true,
+    onClick: (e) => {
+      dispatch(setPopupInfo(null));
+      setTimeout(() => {
+        dispatch(
+          setPopupInfo({
+            title: "Building",
+            latitude: e.coordinate[1].toString(),
+            longitude: e.coordinate[0].toString(),
+            uid: e.object.properties.fid,
+            content: {
+              score: ` ${calculateScore(e.object)} / 10 `,
+              color: COLORS[calculateScore(e.object)],
+            },
+          })
+        );
+      }, 100);
     },
     updateTriggers: {
       getFillColor: [surveyCompleted],
