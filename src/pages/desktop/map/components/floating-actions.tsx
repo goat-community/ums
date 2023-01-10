@@ -10,11 +10,13 @@ import { get_amenities } from "@context/flower";
 
 import * as D from "@constants/design";
 
-import { BaseMapSelector } from "@pages/common/map/basemap-selector";
-import { LanguageSelector } from "@pages/common/map/language-selector";
-import { LayerSelector } from "@pages/common/map/layer-selector";
-import { Legend } from "@pages/common/map/legend";
-import { PoisSelector } from "@pages/common/map/pois-selector";
+import { Legend } from "@components/common/legend";
+
+import { LanguageSelector } from "@pages/desktop/map/components/language-selector";
+
+import { BaseMapSelector } from "./basemap-selector";
+import { LayerSelector } from "./layer-selector";
+import { PoisSelector } from "./pois-selector";
 
 interface FloatingActionsProps {
   open_onboarding_force: CallableFunction;

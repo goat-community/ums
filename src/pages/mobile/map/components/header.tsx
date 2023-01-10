@@ -7,8 +7,9 @@ import * as D from "@constants/design";
 
 import { Header } from "@components/mobile";
 
-import { LayerSelector } from "@pages/common/map/layer-selector";
-import { PoisSelector } from "@pages/common/map/pois-selector";
+import { BaseMapSelector } from "./basemap-selector";
+import { LayerSelector } from "./layer-selector";
+import { PoisSelector } from "./pois-selector";
 
 interface MapHeaderProps {
   open_onboarding_force: CallableFunction;
@@ -23,6 +24,7 @@ export function MapHeader(props: MapHeaderProps) {
         <Stack direction="row" spacing={1}>
           <LayerSelector />
           <PoisSelector />
+          <BaseMapSelector />
           <Fab
             size="small"
             sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}

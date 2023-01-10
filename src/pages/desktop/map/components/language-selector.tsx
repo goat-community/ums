@@ -6,9 +6,8 @@ import Fab from "@mui/material/Fab";
 
 import * as D from "@constants/design";
 
-import ArrowPopper from "@pages/common/map/arrow-popper";
-
-import ListTile from "./list-tile";
+import { ArrowPopper } from "@components/common/arrow-popper";
+import { ListTile } from "@components/common/list-tile";
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();
@@ -80,8 +79,8 @@ export function LanguageSelector() {
         >
           <img
             style={{ borderRadius: "50%" }}
-            width={32}
-            height={32}
+            width={26}
+            height={26}
             src={items[selected[0]].thumbnail}
           />
         </Fab>
