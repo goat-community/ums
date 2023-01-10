@@ -16,6 +16,8 @@ import { view_bounds_selector } from "@context/map/maps-selector";
 import { MAPBOX_TOKEN } from "@constants";
 import * as D from "@constants/design";
 
+import { LanguageSelector } from "@pages/common/map/language-selector";
+
 import Icon from "@images/icon.png";
 import Logo from "@images/m4c.png";
 
@@ -55,15 +57,17 @@ export function Header() {
       >
         {/* <Typography variant="h1">Where to be?</Typography> */}
         <img src={Logo} width="50%" height="auto" alt="logo" />
-
-        <Link to="/flower">
-          <Button variant="contained">
-            <img src={Icon} width="18" height="18" alt="icon" style={icon_style} />
-            <Typography variant="h6" ml={1}>
-              {t("actions.flower")}
-            </Typography>
-          </Button>
-        </Link>
+        <>
+          <LanguageSelector />
+          <Link to="/flower">
+            <Button variant="contained">
+              <img src={Icon} width="18" height="18" alt="icon" style={icon_style} />
+              <Typography variant="h6" ml={1}>
+                {t("actions.flower")}
+              </Typography>
+            </Button>
+          </Link>
+        </>
       </Stack>
 
       <MatGeocoder

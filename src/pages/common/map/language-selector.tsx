@@ -80,8 +80,8 @@ export function LanguageSelector() {
         >
           <img
             style={{ borderRadius: "50%" }}
-            width={32}
-            height={32}
+            width={26}
+            height={26}
             src={items[selected[0]].thumbnail}
           />
         </Fab>
