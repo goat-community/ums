@@ -10,10 +10,11 @@ import { get_amenities } from "@context/flower";
 
 import * as D from "@constants/design";
 
-import { BaseMapSelector } from "@pages/common/map/basemap-selector";
-import { LanguageSelector } from "@pages/common/map/language-selector";
-import { Legend } from "@pages/common/map/legend";
+import { Legend } from "@components/common/legend";
 
+import { LanguageSelector } from "@pages/desktop/map/components/language-selector";
+
+import { BaseMapSelector } from "./basemap-selector";
 import { LayerSelector } from "./layer-selector";
 import { PoisSelector } from "./pois-selector";
 

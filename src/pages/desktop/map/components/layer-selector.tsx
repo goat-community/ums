@@ -16,8 +16,8 @@ import {
 
 import * as D from "@constants/design";
 
-import ArrowPopper from "../../../common/map/arrow-popper";
-import ListTile from "../../../common/map/list-tile";
+import { ArrowPopper } from "@components/common/arrow-popper";
+import { ListTile } from "@components/common/list-tile";
 
 export function LayerSelector() {
   const dispatch = useAppDispatch();

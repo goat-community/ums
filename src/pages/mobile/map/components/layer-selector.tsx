@@ -16,7 +16,7 @@ import {
 
 import * as D from "@constants/design";
 
-import ListTile from "../../../common/map/list-tile";
+import { ListTile } from "@components/common";
 
 export function LayerSelector() {
   const dispatch = useAppDispatch();
