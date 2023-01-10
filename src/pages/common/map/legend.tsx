@@ -19,6 +19,8 @@ export function Legend() {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
   const activeLayers = useAppSelector(map_layers_visible);
+  const scoreLayerVisible = useAppSelector((state) => state.flower.score_layer_visible);
+
   return (
     <>
       <ArrowPopper
@@ -32,7 +34,11 @@ export function Legend() {
             <Typography sx={{ m: 2 }} variant="h4">
               Legend
             </Typography>
-
+            {scoreLayerVisible && (
+              <Box sx={{ m: 2 }}>
+                <Typography variant="h5">{t("layers.building_score_layer")}</Typography>
+              </Box>
+            )}
             {Object.keys(activeLayers).map((layer) => (
               <Box key={layer} sx={{ m: 2 }}>
                 <Typography variant="h5">{t(`layers.${layer}`)}</Typography>
@@ -46,7 +52,7 @@ export function Legend() {
                 )}
               </Box>
             ))}
-            {Object.keys(activeLayers).length === 0 && (
+            {Object.keys(activeLayers).length === 0 && !scoreLayerVisible && (
               <Box sx={{ m: 2 }}>
                 <Typography variant="body1">No layers selected</Typography>
               </Box>
