@@ -37,6 +37,11 @@ export function Legend() {
             {scoreLayerVisible && (
               <Box sx={{ m: 2 }}>
                 <Typography variant="h5">{t("layers.building_score_layer")}</Typography>
+                <SkeletonImage
+                  src="https://i.imgur.com/nx2Ff6U.png"
+                  style={{ maxWidth: "210px" }}
+                  border="rectangular"
+                ></SkeletonImage>
               </Box>
             )}
             {Object.keys(activeLayers).map((layer) => (
