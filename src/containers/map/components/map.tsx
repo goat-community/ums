@@ -110,7 +110,6 @@ function MapComponent(props: MapProps) {
             <Table size="small">
               <TableBody>
                 {popupInfo.content &&
-                  // loop through object key values
                   Object.keys(popupInfo.content)
                     .filter((k) => k !== "color")
                     .map((key) => (

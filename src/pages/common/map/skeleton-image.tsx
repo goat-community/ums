@@ -8,6 +8,7 @@ interface Props {
   width?: number;
   height?: number;
   border?: "rectangular" | "rounded" | "circular";
+  style?: React.CSSProperties;
 }
 
 export default function SkeletonImage({
@@ -16,6 +17,7 @@ export default function SkeletonImage({
   width,
   height,
   border = "rectangular",
+  style = {},
 }: Props) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const borderStyle = {
@@ -30,7 +32,7 @@ export default function SkeletonImage({
     <Fragment>
       <Skeleton style={skeletonStyle} width={width} variant={border} height={height} />
       <img
-        style={imageStyle}
+        style={{ ...style, ...imageStyle }}
         src={src}
         alt={alt}
         width={width}

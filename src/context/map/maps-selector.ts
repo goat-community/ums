@@ -37,6 +37,19 @@ export const map_layers_list_selector = createSelector(
   }
 );
 
+export const map_layers_visible = createSelector(
+  (state: RootState) => state.map.layers,
+  (view) => {
+    const layerList = {};
+    Object.keys(view).forEach((key) => {
+      if (view[key].visibility === "visible") {
+        layerList[key] = view[key];
+      }
+    });
+    return layerList;
+  }
+);
+
 export const study_area_selector = createSelector(
   (state: RootState) => state.map.studyArea,
   (view) => view

@@ -13,6 +13,7 @@ import * as D from "@constants/design";
 import { BaseMapSelector } from "@pages/common/map/basemap-selector";
 import { LanguageSelector } from "@pages/common/map/language-selector";
 import { LayerSelector } from "@pages/common/map/layer-selector";
+import { Legend } from "@pages/common/map/legend";
 import { PoisSelector } from "@pages/common/map/pois-selector";
 
 interface FloatingActionsProps {
@@ -32,6 +33,7 @@ export function FloatingActions(props: FloatingActionsProps) {
     <Fragment>
       <Container position="right">
         <Stack direction="column" spacing={2}>
+          <Legend />
           <LayerSelector />
           <PoisSelector />
           <BaseMapSelector />

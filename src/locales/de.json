@@ -72,8 +72,8 @@
     "noise_levels_day": "Noise Levels (Day)",
     "noise_levels_night": "Noise Levels (Night)",
     "population_density": "Population Density",
-    "landuseAktis": "Landuse",
-    "ov_guteklassen": "ÖV-Güteklassen"
+    "landuse_atkis": "Landuse",
+    "pt_oev_gueteklassen": "ÖV-Güteklassen"
   },
   "bars": {
     "map": "Map",

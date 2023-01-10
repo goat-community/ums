@@ -21,6 +21,8 @@ const initialState = {
   layers: {
     noise_levels_day: {
       title: "noise_levels_day",
+      legend:
+        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadlden&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
       visibility: "none",
       source: {
         type: "raster",
@@ -40,6 +42,8 @@ const initialState = {
     },
     noise_levels_night: {
       title: "noise_levels_night",
+      legend:
+        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadln&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
       visibility: "none",
       source: {
         type: "raster",
@@ -59,6 +63,7 @@ const initialState = {
     },
     population_density: {
       title: "population_density",
+      legend: "https://i.imgur.com/XlOc1Yd.png",
       visibility: "none",
       source: {
         type: "geojson",
@@ -152,7 +157,8 @@ const initialState = {
       ],
     },
     landuse_atkis: {
-      title: "landuseAktis",
+      title: "landuse_atkis",
+      legend: "https://i.imgur.com/Kf19YfY.png",
       visibility: "none",
       source: {
         type: "vector",
@@ -320,7 +326,8 @@ const initialState = {
       ],
     },
     pt_oev_gueteklassen: {
-      title: "ov_guteklassen",
+      title: "pt_oev_gueteklassen",
+      legend: "https://i.imgur.com/W07YBc0.png",
       visibility: "none",
       source: {
         type: "geojson",
