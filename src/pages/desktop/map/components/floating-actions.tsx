@@ -14,7 +14,8 @@ import { BaseMapSelector } from "@pages/common/map/basemap-selector";
 import { LanguageSelector } from "@pages/common/map/language-selector";
 import { LayerSelector } from "@pages/common/map/layer-selector";
 import { Legend } from "@pages/common/map/legend";
-import { PoisSelector } from "@pages/common/map/pois-selector";
+
+import { PoisSelector } from "./pois-selector";
 
 interface FloatingActionsProps {
   open_onboarding_force: CallableFunction;

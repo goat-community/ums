@@ -8,7 +8,8 @@ import * as D from "@constants/design";
 import { Header } from "@components/mobile";
 
 import { LayerSelector } from "@pages/common/map/layer-selector";
-import { PoisSelector } from "@pages/common/map/pois-selector";
+
+import { PoisSelector } from "./pois-selector";
 
 interface MapHeaderProps {
   open_onboarding_force: CallableFunction;

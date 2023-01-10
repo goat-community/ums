@@ -12,8 +12,8 @@ import { get_poi_groups } from "@context/pois/pois-selector";
 
 import * as D from "@constants/design";
 
-import ArrowPopper from "./arrow-popper";
-import ListTile from "./list-tile";
+import ArrowPopper from "../../../common/map/arrow-popper";
+import ListTile from "../../../common/map/list-tile";
 
 export function PoisSelector() {
   const dispatch = useAppDispatch();
