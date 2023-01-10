@@ -9,7 +9,7 @@
     "close": "Close",
     "cancel": "Cancel",
     "apply": "Apply",
-    "flower": "Meine Blume"
+    "flower": "My Flower"
   },
   "amenitiesGroup": {
     "food": "Food",
@@ -22,7 +22,8 @@
     "shop": "Shop",
     "education": "Education",
     "tourismandleisure": "Tourism and Leisure",
-    "foodanddrink": "Food and Drink"
+    "foodanddrink": "Food and Drink",
+    "other": "Other"
   },
   "amenities": {
     "Mobilitaetspunkte": "Mobilitaetspunkte",
@@ -73,7 +74,8 @@
     "noise_levels_night": "Noise Levels (Night)",
     "population_density": "Population Density",
     "landuse_atkis": "Landuse",
-    "pt_oev_gueteklassen": "ÖV-Güteklassen"
+    "pt_oev_gueteklassen": "ÖV-Güteklassen",
+    "building_score_layer": "Building Score Layer"
   },
   "bars": {
     "map": "Map",
@@ -121,5 +123,13 @@
   "profile": {
     "reach": "Want to reach in",
     "minutes": "minutes"
+  },
+  "popup": {
+    "category": "Category",
+    "name": "Name",
+    "street": "Street",
+    "housenumber": "House Number",
+    "zipcode": "Zip Code",
+    "score": "Overall Score"
   }
 }
