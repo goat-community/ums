@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { batch } from "react-redux";
 import styled from "styled-components";
 
@@ -36,6 +37,7 @@ export function IsochroneModifier() {
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const selectedIsochroneMode = useAppSelector(select_isochrone_mode);
   const picked_point = useAppSelector(picked_point_selector);
+  const { t } = useTranslation();
 
   function set_isochrone_mode(mode: TRAVEL_MODE) {
     batch(() => {
@@ -48,7 +50,7 @@ export function IsochroneModifier() {
     <Section>
       <Stack direction="row" alignItems="center" spacing={2}>
         <Typography p={1} variant="h6" sx={typography_style} width={90}>
-          Travel time <br /> ({max_trip_duration_minutes} min.)
+          {t("isochrone.distance")} <br /> ({max_trip_duration_minutes} min.)
         </Typography>
         <Slider
           value={max_trip_duration_minutes}
@@ -78,7 +80,7 @@ export function IsochroneModifier() {
 
       <Stack direction="row" alignItems="center" maxWidth={280} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
-          Score
+          {t("isochrone.score")}
         </Typography>
         <SegmentedSection>
           {[SCORE_MODE.personal, SCORE_MODE.standard].map((i) => (

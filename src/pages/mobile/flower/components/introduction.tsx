@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -16,6 +17,8 @@ interface IntroductionProps {
 export default function Introduction(props: IntroductionProps) {
   const surevey_has_done = useAppSelector((state) => state.flower.survey_done_already);
 
+  const { t } = useTranslation();
+
   if (surevey_has_done) {
     return (
       <Box>
@@ -33,11 +36,11 @@ export default function Introduction(props: IntroductionProps) {
         >
           <Link to="/">
             <Button variant="outlined" onClick={props.onClickContinue}>
-              Go back
+              {t("introduction.back")}
             </Button>
           </Link>
           <Button variant="contained" onClick={props.onClickContinue}>
-            Edit Flower
+            {t("introduction.editFlower")}
           </Button>
         </Stack>
       </Box>
@@ -46,13 +49,10 @@ export default function Introduction(props: IntroductionProps) {
 
   return (
     <Box>
-      <Typography variant="h3">
-        The &apos;Proximity Flower&apos; helps map people&apos;s preferred city ammenities
-        in relation to the distance to their homes
-      </Typography>
+      <Typography variant="h3">{t("introduction.proximityFlowerDesc")}</Typography>
       <Margin margin="25px 0 0 0" />
       <Typography variant="h3" fontWeight="bold">
-        How does your flower looks like?
+        {t("introduction.howDoesYourFlowerLook")}
       </Typography>
       <Margin margin="35px 0 0 0" />
       <Stack
@@ -63,11 +63,11 @@ export default function Introduction(props: IntroductionProps) {
       >
         <Link to="/">
           <Button variant="outlined" onClick={props.onClickContinue}>
-            Go back
+            {t("introduction.back")}
           </Button>
         </Link>
         <Button variant="contained" onClick={props.onClickContinue}>
-          Create Flower
+          {t("introduction.createFlower")}
         </Button>
       </Stack>
     </Box>

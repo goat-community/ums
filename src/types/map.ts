@@ -5,6 +5,13 @@ export interface LonLatOutput {
   lon: number;
 }
 
+export interface popupInfo {
+  title: string;
+  longitude: string;
+  latitude: string;
+  uid: string;
+  content: unknown;
+}
 export interface Point {
   x: number;
   y: number;

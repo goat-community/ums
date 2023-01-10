@@ -1,21 +1,9 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
+import { Close } from "@mui/icons-material";
 import LayersOutlinedIcon from "@mui/icons-material/LayersOutlined";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Fab,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
+import { Box, Fab, IconButton, Paper, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -28,104 +16,74 @@ import {
 
 import * as D from "@constants/design";
 
-function LayersList(props: {
-  layers_list: ReturnType<typeof map_layers_list_selector>;
-  current_layer: string;
-  radio_clicked: (layer_name: string) => void;
-  on_change: (e: string) => void;
-}) {
-  return (
-    <RadioGroup
-      value={props.current_layer}
-      onChange={(e) => props.on_change(e.target.value)}
-    >
-      {props.layers_list.map((i) => {
-        const labelId = `label-${i.value}`;
-        return (
-          <ListItem
-            key={i.value}
-            disablePadding
-            secondaryAction={
-              <Radio
-                edge="end"
-                inputProps={{ "aria-labelledby": labelId }}
-                value={i.value}
-                onClick={() => props.radio_clicked(i.value)}
-              />
-            }
-            sx={{ marginTop: 1 }}
-          >
-            <ListItemButton>
-              <ListItemText id={labelId} primary={i.label} />
-            </ListItemButton>
-          </ListItem>
-        );
-      })}
-    </RadioGroup>
-  );
-}
+import ArrowPopper from "./arrow-popper";
+import ListTile from "./list-tile";
 
 export function LayerSelector() {
   const dispatch = useAppDispatch();
   const layers = useAppSelector(map_layers_selector);
   const layersList = useAppSelector(map_layers_list_selector);
+  const { t } = useTranslation();
+  const items = layersList.map((layer) => {
+    return {
+      value: layer.value,
+      title: t(`layers.${layer.label}`),
+      subtitle: "",
+    };
+  });
   const indicatorsList = useAppSelector(map_indicators_selector);
   const [open, setOpen] = useState<boolean>(false);
-  const [checked, setChecked] = useState<string>(
-    () => layersList.find((i) => i.visibility != "none")?.value || ""
-  );
+  const [selected, setSelected] = useState(() => {
+    const index = layersList.findIndex((i) => i.visibility != "none");
+    return [index === -1 ? null : index];
+  });
 
-  const handleChange = () => {
+  const handleChange = (value) => {
+    setSelected(value);
     dispatch(toggleOffAllLayers());
-    if (checked) {
+    if (value[0] === selected[0]) {
+      setSelected(null);
+      return;
+    }
+    if (value[0] !== null) {
+      const checked = layersList[value[0]].value;
       dispatch(toggleLayer(checked));
       if (indicatorsList[checked] && layers[checked].source.data.features.length === 0) {
         dispatch(getIndicator(indicatorsList[checked], checked));
       }
     }
-    setOpen(false);
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (
     <>
-      <Fab
-        size="small"
-        sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
-        onClick={handleClickOpen}
+      <ArrowPopper
+        content={
+          <Paper sx={{ maxWidth: 400, overflow: "auto" }}>
+            <Box position="absolute" top={5} right={5}>
+              <IconButton onClick={() => setOpen(false)}>
+                <Close />
+              </IconButton>
+            </Box>
+
+            <Typography sx={{ m: 2 }} variant="h4">
+              Layers
+            </Typography>
+            <ListTile items={items} selected={selected} onChange={handleChange} />
+          </Paper>
+        }
+        open={open}
+        placement="top"
+        arrow={true}
+        onClose={() => setOpen(false)}
       >
-        <LayersOutlinedIcon />
-      </Fab>
-      <Dialog open={open} onClose={handleClose} maxWidth="xl" sx={{ marginTop: 2 }}>
-        <Box p={1}>
-          <DialogTitle variant="h4">Layers</DialogTitle>
-          <DialogContent sx={{ padding: 0, maxHeight: 200 }}>
-            <List dense sx={{ width: "100%" }}>
-              <LayersList
-                layers_list={layersList}
-                current_layer={checked}
-                on_change={(new_layer: string) => setChecked(new_layer)}
-                radio_clicked={(layer_name: string) => {
-                  if (checked.includes(layer_name)) {
-                    setChecked("");
-                  }
-                }}
-              />
-            </List>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleChange}>Apply</Button>
-          </DialogActions>
-        </Box>
-      </Dialog>
+        <Fab
+          onClick={() => setOpen(!open)}
+          size="small"
+          sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+        >
+          <LayersOutlinedIcon />
+        </Fab>
+      </ArrowPopper>
     </>
   );
 }

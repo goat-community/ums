@@ -1,10 +1,12 @@
 import { LngLat } from "react-map-gl";
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { IndicatorConfig, MapView } from "@types";
+import { IndicatorConfig, MapView, popupInfo } from "@types";
 
 /** Reducer */
 const initialState = {
+  style: "mapbox://styles/mapbox/dark-v11",
+  popupInfo: null as popupInfo,
   picking_mode: false as boolean,
   picked_point: null as LngLat | null,
   current_point_address: "" as string,
@@ -18,7 +20,9 @@ const initialState = {
   viewBounds: null, // defined by study area when fetched
   layers: {
     noise_levels_day: {
-      title: "Noise Levels (Day)",
+      title: "noise_levels_day",
+      legend:
+        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadlden&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
       visibility: "none",
       source: {
         type: "raster",
@@ -37,7 +41,9 @@ const initialState = {
       ],
     },
     noise_levels_night: {
-      title: "Noise Levels (Night)",
+      title: "noise_levels_night",
+      legend:
+        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadln&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
       visibility: "none",
       source: {
         type: "raster",
@@ -56,7 +62,8 @@ const initialState = {
       ],
     },
     population_density: {
-      title: "Population Density",
+      title: "population_density",
+      legend: "https://i.imgur.com/XlOc1Yd.png",
       visibility: "none",
       source: {
         type: "geojson",
@@ -150,7 +157,8 @@ const initialState = {
       ],
     },
     landuse_atkis: {
-      title: "Landuse Atkis",
+      title: "landuse_atkis",
+      legend: "https://i.imgur.com/Kf19YfY.png",
       visibility: "none",
       source: {
         type: "vector",
@@ -165,6 +173,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#32932b",
             "fill-outline-color": "#232323",
           },
@@ -175,6 +184,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#e2ce30",
             "fill-outline-color": "#232323",
           },
@@ -185,6 +195,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#e9a029",
             "fill-outline-color": "#232323",
           },
@@ -195,6 +206,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#b4381f",
             "fill-outline-color": "#232323",
           },
@@ -205,6 +217,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#4881c2",
             "fill-outline-color": "#232323",
           },
@@ -223,6 +236,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#b6b6b6",
             "fill-outline-color": "#232323",
           },
@@ -241,6 +255,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#707070",
             "fill-outline-color": "#232323",
           },
@@ -251,6 +266,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#146614",
             "fill-outline-color": "#232323",
           },
@@ -273,6 +289,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#8dc05c",
             "fill-outline-color": "#232323",
           },
@@ -301,6 +318,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#4fa7e1",
             "fill-outline-color": "#232323",
           },
@@ -308,7 +326,8 @@ const initialState = {
       ],
     },
     pt_oev_gueteklassen: {
-      title: "ÖV-Güteklassen (Monday 7:00AM - 9:00AM)",
+      title: "pt_oev_gueteklassen",
+      legend: "https://i.imgur.com/W07YBc0.png",
       visibility: "none",
       source: {
         type: "geojson",
@@ -432,6 +451,9 @@ export const map = createSlice({
   name: "map",
   initialState,
   reducers: {
+    setStyle: (state: typeof initialState, action: PayloadAction<string>) => {
+      state.style = action.payload;
+    },
     setPickingMode: (state: typeof initialState, action: PayloadAction<boolean>) => {
       state.picking_mode = action.payload;
     },
@@ -473,10 +495,14 @@ export const map = createSlice({
     setAddress: (state: typeof initialState, action: PayloadAction<string>) => {
       state.current_point_address = action.payload;
     },
+    setPopupInfo: (state: typeof initialState, action: PayloadAction<popupInfo>) => {
+      state.popupInfo = action.payload;
+    },
   },
 });
 
 export const {
+  setStyle,
   setPickingMode,
   setPickedPoint,
   setMapView,
@@ -485,5 +511,6 @@ export const {
   toggleLayer,
   toggleOffAllLayers,
   setAddress,
+  setPopupInfo,
 } = map.actions;
 export default map.reducer;

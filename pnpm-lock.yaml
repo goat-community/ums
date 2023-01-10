@@ -39,6 +39,8 @@ specifiers:
   geobuf: ^3.0.2
   husky: ^8.0.1
   i18next: ^22.0.5
+  i18next-browser-languagedetector: ^7.0.1
+  json-loader: ^0.5.7
   lint-staged: ^13.0.3
   localforage: ^1.10.0
   mapbox-gl: ^2.10.0
@@ -81,6 +83,7 @@ dependencies:
   deck.gl: 8.8.20_cv2nq554jlwr6aqj5a3xdl3tcq
   geobuf: 3.0.2
   i18next: 22.0.6
+  i18next-browser-languagedetector: 7.0.1
   localforage: 1.10.0
   mapbox-gl: 2.10.0
   match-sorter: 6.3.1
@@ -111,6 +114,7 @@ devDependencies:
   eslint-plugin-react: 7.31.10_eslint@8.25.0
   eslint-plugin-simple-import-sort: 8.0.0_eslint@8.25.0
   husky: 8.0.1
+  json-loader: 0.5.7
   lint-staged: 13.0.3
   prettier: 2.7.1
   sass: 1.55.0
@@ -7798,6 +7802,15 @@ packages:
     hasBin: true
     dev: true
 
+  /i18next-browser-languagedetector/7.0.1:
+    resolution:
+      {
+        integrity: sha512-Pa5kFwaczXJAeHE56CHG2aWzFBMJNUNghf0Pm4SwSrEMps/PTKqW90EYWlIvhuYStf3Sn1K0vw+gH3+TLdkH1g==,
+      }
+    dependencies:
+      "@babel/runtime": 7.19.4
+    dev: false
+
   /i18next/22.0.6:
     resolution:
       {
@@ -8275,6 +8288,13 @@ packages:
         integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==,
       }
     dev: false
+
+  /json-loader/0.5.7:
+    resolution:
+      {
+        integrity: sha512-QLPs8Dj7lnf3e3QYS1zkCo+4ZwqOiF9d/nZnYozTISxXWCfNs9yuky5rJw4/W34s7POaNlbZmQGaB5NiXCbP4w==,
+      }
+    dev: true
 
   /json-parse-even-better-errors/2.3.1:
     resolution:

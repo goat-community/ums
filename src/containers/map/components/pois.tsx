@@ -3,8 +3,9 @@ import { DeckProps } from "@deck.gl/core/typed";
 import { IconLayer } from "@deck.gl/layers";
 import { MapboxOverlay } from "@deck.gl/mapbox/typed";
 
-import { useAppSelector } from "@hooks/context";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
 
+import { setPopupInfo } from "@context/map";
 import { get_poi_features } from "@context/pois/pois-selector";
 
 const ICON_MAPPING = {
@@ -281,6 +282,8 @@ function DeckGLOverlay(props: DeckProps) {
 
 export default function PoiLayer() {
   const poiFeatures = useAppSelector(get_poi_features);
+  const dispatch = useAppDispatch();
+
   const poiLayer = new IconLayer({
     data: poiFeatures,
     iconAtlas: "https://i.imgur.com/br0ZLlr.png",
@@ -292,6 +295,23 @@ export default function PoiLayer() {
     getPosition: (d) => d.coordinates,
     sizeScale: 40,
     pickable: true,
+    onClick: (e) => {
+      console.log(e);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { coordinates, id, min_zoom, max_zoom, uid, ...object } = e.object;
+      dispatch(setPopupInfo(null));
+      setTimeout(() => {
+        dispatch(
+          setPopupInfo({
+            title: "Amenity",
+            latitude: coordinates[1],
+            longitude: coordinates[0],
+            uid,
+            content: object,
+          })
+        );
+      }, 100);
+    },
     beforeId: "study-area-mask",
   });
 

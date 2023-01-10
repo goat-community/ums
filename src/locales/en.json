@@ -1,0 +1,135 @@
+{
+  "messages": {
+    "loading": "Loading, please wait...",
+    "simpleError": "Error occured!",
+    "tapLocation": "Tap a location on the map",
+    "page404": "Page not found..."
+  },
+  "actions": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "apply": "Apply",
+    "flower": "My Flower"
+  },
+  "amenitiesGroup": {
+    "food": "Food",
+    "transport": "Transport",
+    "health": "Health",
+    "services": "Services",
+    "sport": "Sport",
+    "nature": "Nature",
+    "tourism": "Tourism",
+    "shop": "Shop",
+    "education": "Education",
+    "tourismandleisure": "Tourism and Leisure",
+    "foodanddrink": "Food and Drink",
+    "other": "Other"
+  },
+  "amenities": {
+    "Mobilitaetspunkte": "Mobilitaetspunkte",
+    "atm": "ATM",
+    "bakery": "Bakery",
+    "bank": "Bank",
+    "bar": "Bar",
+    "bike_sharing": "Bike Sharing",
+    "bus_stop": "Bus Stop",
+    "butcher": "Butcher",
+    "cafe": "Coffee",
+    "car_sharing": "Car Sharing",
+    "charging_station": "Charging Station",
+    "cinema": "Cinema",
+    "convenience": "Convenience",
+    "dentist": "Dentist",
+    "discount_supermarket": "Discount supermarket",
+    "fast_food": "Fast Food",
+    "general_practitioner": "General Practitioner",
+    "grundschule": "Primary School",
+    "gym": "Gym",
+    "gymnasium": "High School",
+    "hauptschule_mittelschule": "Secondary School",
+    "hotel": "Hotel",
+    "hyper": "Hypermarket",
+    "kindergarten": "Kindergarten",
+    "marketplace": "Market Place",
+    "museum": "Museum",
+    "nursery": "Nursery",
+    "organic_supermarket": "Organic Supermarket",
+    "park": "Park",
+    "pharmacy": "Pharmacy",
+    "playground": "Playground",
+    "population": "Population",
+    "post_box": "Post Box",
+    "post_office": "Post Office",
+    "pub": "Pub",
+    "realschule": "Realschule",
+    "recycling": "Recycling",
+    "restaurant": "Restaurant",
+    "subway_entrance": "Subway Entrance",
+    "supermarket": "Supermarket",
+    "tram_stop": "Tram Stop",
+    "yoga": "Yoga"
+  },
+  "layers": {
+    "noise_levels_day": "Noise Levels (Day)",
+    "noise_levels_night": "Noise Levels (Night)",
+    "population_density": "Population Density",
+    "landuse_atkis": "Landuse",
+    "pt_oev_gueteklassen": "ÖV-Güteklassen",
+    "building_score_layer": "Building Score Layer"
+  },
+  "bars": {
+    "map": "Map",
+    "insights": "Insights"
+  },
+  "placeholders": {
+    "addressSearch": "Search Address"
+  },
+  "introduction": {
+    "editPersonalData": "Do you want to edit your personal mobility flower?",
+    "back": "Go back",
+    "editFlower": "Edit Flower",
+    "proximityFlowerDesc": "The 'Proximity Flower' helps map people's preferred city ammenities in relation to the distance to their homes",
+    "createFlower": "Create Flower",
+    "howDoesYourFlowerLook": "How does your flower looks like?"
+  },
+  "survey": {
+    "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent",
+    "continue": "Continue"
+  },
+  "isochrone": {
+    "modes": {
+      "standard": "Standard",
+      "personal": "Personal"
+    },
+    "modalityModes": {
+      "walking": "Walking",
+      "cycling": "Cycling",
+      "transit": "Public Transport"
+    },
+    "distance": "Distance",
+    "modality": "Mode",
+    "score": "Score"
+  },
+  "tutorial": {
+    "welcomeMap4Citizens": "Welcome to Map4Citizens!",
+    "Map4CitizensminuteDesc": "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
+    "15-minCity": "Customized 15-min-city",
+    "15-minCityDesc": "This is strongly linked to the concept of the 15-min-city. To assist you in finding your perfect 15-min-city location, which fulfills all your needs, you can create your personal “flower-of-proximity”. The application then shows you how well different locations in the city can serve your needs.",
+    "isochrones": "Isochrones",
+    "isochronesDesc": "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
+    "readyToUse": "Ready to use?",
+    "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!"
+  },
+  "profile": {
+    "reach": "Want to reach in",
+    "minutes": "minutes"
+  },
+  "popup": {
+    "category": "Category",
+    "name": "Name",
+    "street": "Street",
+    "housenumber": "House Number",
+    "zipcode": "Zip Code",
+    "score": "Overall Score"
+  }
+}

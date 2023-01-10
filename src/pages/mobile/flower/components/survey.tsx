@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import type { Amenities, FlowerMinutes } from "@types";
 import styled from "styled-components";
@@ -27,6 +28,8 @@ function SurveyQuestions(props: {
   amentities_filtered: string[];
   on_change: (e: Record<string, FlowerMinutes>) => void;
 }) {
+  const { t } = useTranslation();
+
   return (
     <>
       {/* <SurveyQuestionsContainer>
@@ -45,7 +48,7 @@ function SurveyQuestions(props: {
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
           <Typography variant="h6" sx={{ width: 250 }}>
-            {convert_to_pascal(key)}
+            {t(`amenities.${key}`)}
           </Typography>
           <Stack width={"100%"}>
             {index === 0 ? (
@@ -103,6 +106,7 @@ export default function Survey(props: SurveyProps) {
   const dispatch = useAppDispatch();
   const [step, setStep] = useState<number>(1);
   const amentities_list = useAppSelector((state) => state.flower.amenities);
+  const { t } = useTranslation();
 
   // retrieve previous choices from localStorage
   useEffect(() => {
@@ -140,11 +144,7 @@ export default function Survey(props: SurveyProps) {
         <LinearProgressBar value={percentage_completed} />
         <Margin margin="30px 0 0 0" />
         <TypoGraphyContainer>
-          <Typography variant="h6">
-            Make a selection of the distance in minutes for the locations that are
-            relevant for you (create your ideal city). The travel times are
-            mode-independent
-          </Typography>
+          <Typography variant="h6">{t("survey.surveyDescription")}</Typography>
         </TypoGraphyContainer>
         <Margin margin="25px 0 0 0" />
         <Typography variant="h3" fontWeight="bold">
@@ -161,7 +161,7 @@ export default function Survey(props: SurveyProps) {
         <Margin margin="32px 0 0 0" />
         <BottomFloating>
           <Button variant="contained" sx={{ width: "90vw" }} onClick={continue_clicked}>
-            Continue
+            {t("survey.continue")}
           </Button>
         </BottomFloating>
       </Box>

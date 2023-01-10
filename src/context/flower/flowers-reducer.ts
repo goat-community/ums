@@ -46,7 +46,7 @@ const initialState = {
     tram_stop: 15,
   } as Amenities,
   survey_done_already: false as boolean,
-  score_layer_visible: false as boolean, //TODO: Move to type
+  score_layer_visible: true as boolean, //TODO: Move to type
 };
 
 export const flower = createSlice({

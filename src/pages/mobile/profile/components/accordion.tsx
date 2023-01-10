@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
@@ -13,6 +14,7 @@ import { convert_to_pascal } from "@utils";
 
 export function CustomizedAccordions(props: { titles: string[]; values: string[] }) {
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
+  const { t } = useTranslation();
 
   const handleChange =
     (panel: string) => (_: React.SyntheticEvent, newExpanded: boolean) => {
@@ -31,7 +33,9 @@ export function CustomizedAccordions(props: { titles: string[]; values: string[]
             <Typography>{convert_to_pascal(title)}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>Want to reach in {props.values[index]} minutes</Typography>
+            <Typography>
+              {t("profile.reach")} {props.values[index]} {t("profile.minutes")}
+            </Typography>
           </AccordionDetails>
         </Accordion>
       ))}

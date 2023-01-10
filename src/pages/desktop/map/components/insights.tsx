@@ -1,8 +1,7 @@
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { CircularProgress, Stack, Typography } from "@mui/material";
-
-import { convert_to_pascal } from "@utils";
 
 import { useCalculateSingleScore } from "@hooks";
 import { useAppSelector } from "@hooks/context";
@@ -15,6 +14,7 @@ export default function Insights() {
   const score = useCalculateSingleScore();
   const isochrone_mode = useAppSelector((state) => state.isochrones.score_mode);
   const address = useAppSelector((state) => state.map.current_point_address);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -36,7 +36,7 @@ export default function Insights() {
             />
             <Stack justifyContent="space-between" alignItems="center">
               <Typography fontSize="12px">
-                {convert_to_pascal(isochrone_mode)} Score
+                {t(`isochrone.modes.${isochrone_mode}`)} Score
               </Typography>
               <Typography fontSize="34px" fontWeight="400">
                 <ScoreHighLighter isochrone_score={score} large />

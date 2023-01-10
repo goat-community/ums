@@ -7,7 +7,6 @@ import * as D from "@constants/design";
 
 import { Header } from "@components/mobile";
 
-import { BaseMapSelector } from "@pages/common/map/base-map-selector";
 import { LayerSelector } from "@pages/common/map/layer-selector";
 import { PoisSelector } from "@pages/common/map/pois-selector";
 
@@ -32,7 +31,6 @@ export function MapHeader(props: MapHeaderProps) {
             <InfoOutlinedIcon />
           </Fab>
         </Stack>
-        <BaseMapSelector />
       </Stack>
     </Section>
   );

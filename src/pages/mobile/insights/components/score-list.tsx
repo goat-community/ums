@@ -1,8 +1,7 @@
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { Stack, Typography } from "@mui/material";
-
-import { convert_to_pascal } from "@utils";
 
 import { useCalculateStandardScore } from "@hooks";
 
@@ -14,13 +13,14 @@ import { ScoreHighLighter } from "@components/common";
 
 export function ScoreList() {
   const standard_score = useCalculateStandardScore();
+  const { t } = useTranslation();
 
   return (
     <Stack padding="0 23px" margin="auto">
       {Object.keys(AMENITIES_GROUP).map((group) => (
         <ScoreItem key={group}>
           <Typography variant="h5" color="black">
-            {convert_to_pascal(group)}
+            {t(`amenitiesGroup.${group}`)}
           </Typography>
           <Typography>
             <ScoreHighLighter isochrone_score={standard_score[group]} />
