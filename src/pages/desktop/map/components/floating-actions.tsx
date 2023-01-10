@@ -12,9 +12,9 @@ import * as D from "@constants/design";
 
 import { BaseMapSelector } from "@pages/common/map/basemap-selector";
 import { LanguageSelector } from "@pages/common/map/language-selector";
-import { LayerSelector } from "@pages/common/map/layer-selector";
 import { Legend } from "@pages/common/map/legend";
 
+import { LayerSelector } from "./layer-selector";
 import { PoisSelector } from "./pois-selector";
 
 interface FloatingActionsProps {
