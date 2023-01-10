@@ -61,7 +61,7 @@ export function Legend() {
         }
         open={open}
         placement="top"
-        arrow={false}
+        arrow={true}
         onClose={() => setOpen(false)}
       >
         <Fab

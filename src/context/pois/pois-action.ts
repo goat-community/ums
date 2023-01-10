@@ -50,7 +50,13 @@ export function get_pois_config() {
       networkStateHandler(async () => {
         const response = await Api.fetch_pois_config();
         if (response && response.poi_groups) {
-          dispatch(setPoiConfig(response.poi_groups));
+          const poiGroups = response.poi_groups.filter((group) => {
+            const groupName = Object.keys(group)[0];
+            if (groupName !== "other") {
+              return true;
+            }
+          });
+          dispatch(setPoiConfig(poiGroups));
         }
       })
     );

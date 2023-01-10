@@ -22,7 +22,8 @@
     "shop": "Shop",
     "education": "Education",
     "tourismandleisure": "Tourism and Leisure",
-    "foodanddrink": "Food and Drink"
+    "foodanddrink": "Food and Drink",
+    "other": "Other"
   },
   "amenities": {
     "Mobilitaetspunkte": "Mobilitaetspunkte",

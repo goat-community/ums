@@ -59,7 +59,6 @@ export function BaseMapSelector() {
     },
   ];
 
-  //
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(() => {
     const selectedMapStyle = Object.keys(styles).find(
@@ -96,7 +95,7 @@ export function BaseMapSelector() {
         }
         open={open}
         placement="top"
-        arrow={false}
+        arrow={true}
         onClose={() => setOpen(false)}
       >
         <Fab
