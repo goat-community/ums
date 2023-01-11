@@ -99,7 +99,7 @@ function ListTileLabel({
         primary={item.title}
         secondary={item.subtitle || " "}
       />
-      {item.thumbnail && (
+      {item && item.thumbnail && (
         <SkeletonImage
           width={thumbnailWidth}
           height={thumbnailHeight}
