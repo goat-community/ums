@@ -25,6 +25,7 @@ export function BaseMapSelector() {
     mapbox_dark: "mapbox://styles/mapbox/dark-v11",
     mapbox_navigation: "mapbox://styles/mapbox/navigation-day-v1",
   };
+
   const items = [
     {
       value: "mapbox_streets",

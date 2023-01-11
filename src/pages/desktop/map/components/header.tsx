@@ -17,6 +17,7 @@ import { MAPBOX_TOKEN } from "@constants";
 import { Margin } from "@components/common";
 
 import M4CLOGO from "@images/m4c-big.png";
+import M4CLOGO_WHITE from "@images/m4c-white.png";
 
 import { FlowerButton } from "./floating-flower";
 import { IsochroneButton } from "./isochrone-button";
@@ -28,6 +29,7 @@ export function Header(props: { position?: string }) {
 
   const viewBounds = useAppSelector(view_bounds_selector);
   const survey_has_done = useAppSelector((state) => state.flower.survey_done_already);
+  const mapStyleUrl = useAppSelector((state) => state.map.style);
 
   const onSelectHandler = (result) => {
     if (survey_has_done) {
@@ -43,9 +45,20 @@ export function Header(props: { position?: string }) {
     }
   };
 
+  const base_layers_styles = {
+    "streets-v12": M4CLOGO,
+    "satellite-streets-v12": M4CLOGO_WHITE,
+    "light-v11": M4CLOGO,
+    "dark-v11": M4CLOGO_WHITE,
+    "navigation-day-v1": M4CLOGO,
+  };
+
+  const M4C_logo = base_layers_styles[mapStyleUrl?.split("/")?.pop()] || M4CLOGO;
+
   return (
     <Section position={props.position || "fixed"}>
-      <img src={M4CLOGO} height="25px" />
+      <img src={M4C_logo} height="25px" />
+
       <Typography variant="h6">
         How does your city score in terms of accessibility?
       </Typography>
