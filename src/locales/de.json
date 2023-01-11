@@ -106,7 +106,7 @@
       "cycling": "Cycling",
       "transit": "Public Transport"
     },
-    "distance": "Distance",
+    "distance": "Travel time",
     "modality": "Mode",
     "score": "Score"
   },
