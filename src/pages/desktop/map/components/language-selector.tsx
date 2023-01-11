@@ -36,7 +36,7 @@ export function LanguageSelector() {
     const language = Object.keys(abbreviations).find(
       (key) => abbreviations[key] === abbreviationValue
     );
-    const itemIndex = items.findIndex((item) => item.value === language);
+    const itemIndex = items.findIndex((item) => item.value === language) || 0;
     return [itemIndex];
   });
 
