@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Close } from "@mui/icons-material";
 import LayersOutlinedIcon from "@mui/icons-material/LayersOutlined";
-import { Box, Fab, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Drawer, Fab, IconButton, Paper, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -16,8 +16,7 @@ import {
 
 import * as D from "@constants/design";
 
-import ArrowPopper from "./arrow-popper";
-import ListTile from "./list-tile";
+import { ListTile } from "@components/common";
 
 export function LayerSelector() {
   const dispatch = useAppDispatch();
@@ -32,7 +31,7 @@ export function LayerSelector() {
     };
   });
   const indicatorsList = useAppSelector(map_indicators_selector);
-  const [open, setOpen] = useState<boolean>(false);
+  const [drawerOpen, toggleDrawer] = useState<boolean>(false);
   const [selected, setSelected] = useState(() => {
     const index = layersList.findIndex((i) => i.visibility != "none");
     return [index === -1 ? null : index];
@@ -56,34 +55,27 @@ export function LayerSelector() {
 
   return (
     <>
-      <ArrowPopper
-        content={
-          <Paper sx={{ maxWidth: 400, overflow: "auto" }}>
-            <Box position="absolute" top={5} right={5}>
-              <IconButton onClick={() => setOpen(false)}>
-                <Close />
-              </IconButton>
-            </Box>
+      <Drawer anchor={"bottom"} open={drawerOpen} onClose={() => toggleDrawer(false)}>
+        <Paper>
+          <Box position="absolute" top={5} right={5}>
+            <IconButton onClick={() => toggleDrawer(false)}>
+              <Close />
+            </IconButton>
+          </Box>
 
-            <Typography sx={{ m: 2 }} variant="h4">
-              Layers
-            </Typography>
-            <ListTile items={items} selected={selected} onChange={handleChange} />
-          </Paper>
-        }
-        open={open}
-        placement="top"
-        arrow={true}
-        onClose={() => setOpen(false)}
+          <Typography sx={{ m: 2 }} variant="h4">
+            Layers
+          </Typography>
+          <ListTile items={items} selected={selected} onChange={handleChange} />
+        </Paper>
+      </Drawer>
+      <Fab
+        onClick={() => toggleDrawer(!drawerOpen)}
+        size="small"
+        sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
       >
-        <Fab
-          onClick={() => setOpen(!open)}
-          size="small"
-          sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
-        >
-          <LayersOutlinedIcon />
-        </Fab>
-      </ArrowPopper>
+        <LayersOutlinedIcon />
+      </Fab>
     </>
   );
 }

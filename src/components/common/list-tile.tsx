@@ -12,9 +12,9 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-import SkeletonImage from "@pages/common/map/skeleton-image";
+import { SkeletonImage } from "@components/common/skeleton-image";
 
-import Wrap from "./conditional-wrap";
+import { Wrap } from "./conditional-wrap";
 
 interface Items {
   title: string;
@@ -99,7 +99,7 @@ function ListTileLabel({
         primary={item.title}
         secondary={item.subtitle || " "}
       />
-      {item.thumbnail && (
+      {item && item.thumbnail && (
         <SkeletonImage
           width={thumbnailWidth}
           height={thumbnailHeight}
@@ -187,7 +187,7 @@ function ButtonList({
   );
 }
 
-export default function ListTile({
+export function ListTile({
   items = [],
   selected,
   multiple = false,

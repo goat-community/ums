@@ -106,7 +106,7 @@ const Arrow = styled("div")({
   },
 });
 
-export default function ArrowPopper({
+export function ArrowPopper({
   placement = "top",
   arrow = true,
   open,

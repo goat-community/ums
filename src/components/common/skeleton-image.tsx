@@ -11,7 +11,7 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-export default function SkeletonImage({
+export function SkeletonImage({
   src,
   alt = "",
   width,
