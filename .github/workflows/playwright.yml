@@ -35,7 +35,7 @@ jobs:
       - name: Install packages
         run: pnpm install --no-frozen-lockfile
       - name: Install Playwright
-        run: npx playwright@1.29.2 install --with-deps
+        run: npx playwright@latest install --with-deps
       - name: Run tests
         run: pnpm dlx playwright test
         env:
