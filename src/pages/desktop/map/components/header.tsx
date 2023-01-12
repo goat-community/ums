@@ -45,21 +45,23 @@ export function Header(props: { position?: string }) {
     }
   };
 
-  const base_layers_styles = {
-    "streets-v12": M4CLOGO,
-    "satellite-streets-v12": M4CLOGO_WHITE,
-    "light-v11": M4CLOGO,
-    "dark-v11": M4CLOGO_WHITE,
-    "navigation-day-v1": M4CLOGO,
+  const base_layers = {
+    "streets-v12": { logo: M4CLOGO, color: "black" },
+    "satellite-streets-v12": { logo: M4CLOGO_WHITE, color: "white" },
+    "light-v11": { logo: M4CLOGO, color: "black" },
+    "dark-v11": { logo: M4CLOGO_WHITE, color: "white" },
+    "navigation-day-v1": { logo: M4CLOGO, color: "black" },
   };
 
-  const M4C_logo = base_layers_styles[mapStyleUrl?.split("/")?.pop()] || M4CLOGO;
+  const current_style = mapStyleUrl?.split("/")?.pop();
+  const M4C_logo = base_layers[current_style]?.logo || M4CLOGO;
+  const M4C_logotext_color = base_layers[current_style]?.color || "black";
 
   return (
     <Section position={props.position || "fixed"}>
       <img src={M4C_logo} height="25px" />
 
-      <Typography variant="h6">
+      <Typography variant="h6" color={M4C_logotext_color}>
         How does your city score in terms of accessibility?
       </Typography>
       <Margin margin="13px 0 0" />
