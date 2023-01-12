@@ -29,13 +29,13 @@ jobs:
         with:
           node-version: "lts/*"
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
+        uses: pnpm/action-setup@latest
         with:
           version: 7.17.1
       - name: Install packages
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm i --no-frozen-lockfile
       - name: Install Playwright
-        run: npx playwright@latest install --with-deps
+        run: npx playwright@latest i --with-deps
       - name: Run tests
         run: pnpm dlx playwright test
         env:
