@@ -33,9 +33,9 @@ jobs:
         with:
           version: 7.17.1
       - name: Install packages
-        run: pnpm i --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: Install Playwright
-        run: npx playwright@latest i --with-deps
+        run: npx playwright@latest install --with-deps
       - name: Run tests
         run: pnpm dlx playwright test
         env:
