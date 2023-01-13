@@ -44,7 +44,7 @@ function SurveyQuestions(props: {
         <Stack
           direction="row"
           justifyContent="space-between"
-          sx={{ width: "245px", marginLeft: "150px" }}
+          sx={{ width: "300px", marginLeft: "185px" }}
         >
           {FLOWER_PROXIMITY_WITH_LABEL.map((proximity) => (
             <Typography key={proximity} variant="h6">
@@ -129,6 +129,7 @@ export default function Survey(props: SurveyProps) {
   const percentage_completed: number = Math.round(
     (step / Object.keys(AMENITIES_GROUP).length) * 100
   );
+
   return (
     <>
       <IconButton onClick={on_back_clicked}>
@@ -187,7 +188,7 @@ const SurveyQuestionsContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
+  width: 80%;
   margin-top: 10px;
 `;
 
