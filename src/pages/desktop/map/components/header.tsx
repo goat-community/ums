@@ -22,7 +22,7 @@ import M4CLOGO_WHITE from "@images/m4c-white.png";
 import { FlowerButton } from "./floating-flower";
 import { IsochroneButton } from "./isochrone-button";
 
-export function Header(props: { position?: string }) {
+export function Header(props: { position?: string; dark_theme?: boolean }) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -59,9 +59,9 @@ export function Header(props: { position?: string }) {
 
   return (
     <Section position={props.position || "fixed"}>
-      <img src={M4C_logo} height="25px" />
+      <img src={props.dark_theme ? M4CLOGO : M4C_logo} height="25px" />
 
-      <Typography variant="h6" color={M4C_logotext_color}>
+      <Typography variant="h6" color={props.dark_theme ? "black" : M4C_logotext_color}>
         How does your city score in terms of accessibility?
       </Typography>
       <Margin margin="13px 0 0" />

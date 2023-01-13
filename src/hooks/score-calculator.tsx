@@ -20,7 +20,7 @@ export function useCalculateSingleScore() {
   const calculate_scores = useCallback(() => {
     let nr_amenities_reached = 0;
     AMENITIES_LIST.map((amenity) => {
-      const isochrone_amenity = travel_time_surface.accessibility?.[amenity];
+      const isochrone_amenity = travel_time_surface.accessibility?.[amenity] || null;
       if (!isochrone_amenity || isochrone_amenity.length < 1) {
         return false;
       }
@@ -30,7 +30,7 @@ export function useCalculateSingleScore() {
       const user_ideal_time_to_this_amenity =
         score_mode === SCORE_MODE.standard
           ? max_trip_duration_minutes
-          : flower_survey_amenties[amenity];
+          : flower_survey_amenties?.[amenity] || 15;
 
       let amenity_reached: string;
       if (user_ideal_time_to_this_amenity > 15) {
@@ -89,31 +89,34 @@ export function useCalculateStandardScore() {
     let shallow_scores = {};
     Object.keys(scores).map((category) => {
       let nr_category_amenity_reached = 0;
-      AMENITIES_GROUP[category].map((field) => {
-        const isochrone_amenity = travel_time_surface.accessibility?.[field];
-        // check the amenity is available
-        if (!isochrone_amenity || isochrone_amenity.length < 1) {
-          return false;
-        }
-        /* get the number of amenity reached
-         *  based on the user personal flower maximum reach time
-         */
-        let amenity_reached: string;
-        if (max_trip_duration_minutes > 15) {
-          amenity_reached = isochrone_amenity[15 - 1];
-        } else {
-          amenity_reached = isochrone_amenity[max_trip_duration_minutes - 1];
-        }
-        if (parseInt(amenity_reached) >= 1) {
-          nr_category_amenity_reached += 1;
-        }
-      });
-      shallow_scores = {
-        ...shallow_scores,
-        [category]: Math.round(
-          (nr_category_amenity_reached / AMENITIES_GROUP[category].length) * 10
-        ),
-      };
+      if (AMENITIES_GROUP?.[category]) {
+        AMENITIES_GROUP[category].map((field) => {
+          const isochrone_amenity = travel_time_surface.accessibility?.[field];
+          // check the amenity is available
+          if (!isochrone_amenity || isochrone_amenity.length < 1) {
+            return false;
+          }
+          /* get the number of amenity reached
+           *  based on the user personal flower maximum reach time
+           */
+          let amenity_reached: string;
+          if (max_trip_duration_minutes > 15) {
+            amenity_reached = isochrone_amenity[15 - 1];
+          } else {
+            amenity_reached = isochrone_amenity[max_trip_duration_minutes - 1];
+          }
+          if (parseInt(amenity_reached) >= 1) {
+            nr_category_amenity_reached += 1;
+          }
+        });
+
+        shallow_scores = {
+          ...shallow_scores,
+          [category]: Math.round(
+            (nr_category_amenity_reached / AMENITIES_GROUP[category].length) * 10
+          ),
+        };
+      }
     });
     setScores(shallow_scores);
     // re-create function on these params change
