@@ -300,6 +300,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#c1ce44",
             "fill-outline-color": "#232323",
           },

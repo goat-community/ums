@@ -75,7 +75,8 @@
     "population_density": "Bevölkerungsdichte",
     "landuse_atkis": "Flächennutzung",
     "pt_oev_gueteklassen": "ÖV-Güteklassen",
-    "building_score_layer": "15-Minuten-Score"
+    "building_score_layer": "15-Minuten-Score",
+    "none": "None"
   },
   "bars": {
     "map": "Karte",

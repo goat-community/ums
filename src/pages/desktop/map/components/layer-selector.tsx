@@ -31,18 +31,24 @@ export function LayerSelector() {
       subtitle: "",
     };
   });
+  // Add a "None" option to the list of layers
+  items.push({
+    value: "none",
+    title: t("layers.none"),
+    subtitle: "",
+  });
   const indicatorsList = useAppSelector(map_indicators_selector);
   const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState(() => {
     const index = layersList.findIndex((i) => i.visibility != "none");
-    return [index === -1 ? null : index];
+    return [index === -1 ? items.length - 1 : index];
   });
 
   const handleChange = (value) => {
     setSelected(value);
     dispatch(toggleOffAllLayers());
-    if (value[0] === selected[0]) {
-      setSelected(null);
+    if (value[0] === selected[0] || value[0] === items.length - 1) {
+      setSelected(value);
       return;
     }
     if (value[0] !== null) {
