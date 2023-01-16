@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import type { Amenities, FlowerMinutes } from "@types";
 import styled from "styled-components";
 
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Button,
   Checkbox,
   Container,
+  Dialog,
   IconButton,
   Slider,
   Stack,
@@ -29,6 +29,8 @@ import { LinearProgressBar } from "@components/mobile/linear-progress";
 
 interface SurveyProps {
   onClickBack: () => void;
+  onDone: () => void;
+  onClose: () => void;
 }
 
 function SurveyQuestions(props: {
@@ -98,7 +100,7 @@ function SurveyQuestions(props: {
 }
 
 export default function Survey(props: SurveyProps) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [step, setStep] = useState<number>(1);
   const amentities_list = useAppSelector((state) => state.flower.amenities);
@@ -119,7 +121,7 @@ export default function Survey(props: SurveyProps) {
   function continue_clicked() {
     if (step === Object.keys(AMENITIES_GROUP).length - 1) {
       dispatch(persist_amenities(amentities_list as Amenities));
-      return navigate("/");
+      return props.onDone();
     }
     return setStep((currentStep) => currentStep + 1);
   }
@@ -130,12 +132,16 @@ export default function Survey(props: SurveyProps) {
     (step / Object.keys(AMENITIES_GROUP).length) * 100
   );
   return (
-    <>
-      <IconButton onClick={on_back_clicked}>
-        <ArrowBackIcon sx={{ padding: 1 }} />
+    <Dialog open={true} maxWidth="xl">
+      <IconButton
+        onClick={() => props.onClose()}
+        sx={{ position: "absolute", right: 10, top: 10 }}
+      >
+        <CloseIcon />
       </IconButton>
       <Container maxWidth="md">
         <Box>
+          <Margin margin="30px 0 0 0" />
           <LinearProgressBar value={percentage_completed} />
           <Margin margin="30px 0 0 0" />
           <TypoGraphyContainer>
@@ -145,11 +151,11 @@ export default function Survey(props: SurveyProps) {
               mode-independent.
             </Typography>
           </TypoGraphyContainer>
-          <Margin margin="55px 0 0 0" />
+          <Margin margin="30px 0 0 0" />
           <Typography variant="h3" fontWeight="bold">
             {convert_to_pascal(amenity_group)}
           </Typography>
-          <Margin margin="55px 0 0 0" />
+          <Margin margin="50px 0 0 0" />
           <SurveyQuestions
             amentities_filtered={amentities_filtered}
             amentities_list={amentities_list}
@@ -157,15 +163,17 @@ export default function Survey(props: SurveyProps) {
               dispatch(set_amenity(changed_proximity));
             }}
           />
-          <Margin margin="32px 0 0 0" />
-          <BottomFloating>
+          <Stack direction="row" spacing={2} style={{ position: "absolute", bottom: 30 }}>
+            <Button variant="outlined" sx={{ width: "20vw" }} onClick={on_back_clicked}>
+              {t("survey.back")}
+            </Button>
             <Button variant="contained" sx={{ width: "20vw" }} onClick={continue_clicked}>
               {t("survey.continue")}
             </Button>
-          </BottomFloating>
+          </Stack>
         </Box>
       </Container>
-    </>
+    </Dialog>
   );
 }
 
@@ -174,6 +182,8 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 24px 0px;
+  height: 700px;
+  width: 800px;
 `;
 
 const TypoGraphyContainer = styled.div`
@@ -189,10 +199,6 @@ const SurveyQuestionsContainer = styled.div`
   align-items: center;
   width: 80%;
   margin-top: 10px;
-`;
-
-const BottomFloating = styled.div`
-  margin-top: 30px;
 `;
 
 const RoudedBG = styled.div`

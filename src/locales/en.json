@@ -94,7 +94,8 @@
   },
   "survey": {
     "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent.",
-    "continue": "Continue"
+    "continue": "Continue",
+    "back": "Back"
   },
   "isochrone": {
     "modes": {

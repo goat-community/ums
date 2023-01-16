@@ -4,8 +4,8 @@ import { MapContainer } from "@containers/map/map-container";
 
 import DrawerContent from "./components/drawer-content";
 import { FloatingActions } from "./components/floating-actions";
+import Flower from "./components/flower/Flower";
 import { Onboarding } from "./components/on-boarding";
-import { ProfileButton } from "./components/profile-button";
 
 export default function Map() {
   const [force_visibility, set_force_visibility] = useState<boolean>(false);
@@ -16,9 +16,9 @@ export default function Map() {
         force_open={force_visibility}
         close_onboarding_force={() => set_force_visibility(false)}
       />
+      <Flower />
       <MapProvider>
         <DrawerContent />
-        <ProfileButton />
         <FloatingActions open_onboarding_force={() => set_force_visibility(true)} />
         <MapContainer />
       </MapProvider>
