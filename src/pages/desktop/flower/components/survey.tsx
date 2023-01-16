@@ -44,7 +44,7 @@ function SurveyQuestions(props: {
         <Stack
           direction="row"
           justifyContent="space-between"
-          sx={{ width: "245px", marginLeft: "150px" }}
+          sx={{ width: "290px", marginLeft: "195px" }}
         >
           {FLOWER_PROXIMITY_WITH_LABEL.map((proximity) => (
             <Typography key={proximity} variant="h6">
@@ -55,13 +55,13 @@ function SurveyQuestions(props: {
       </SurveyQuestionsContainer>
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
-          <Typography variant="h4" sx={{ width: 250 }}>
+          <Typography variant="h4" sx={{ width: 300 }}>
             {t(`amenities.${key}`)}
           </Typography>
           <Slider
             min={5}
             max={15}
-            sx={{ width: "400px" }}
+            sx={{ width: "450px" }}
             color={"secondary"}
             valueLabelDisplay="auto"
             value={props.amentities_list[key]}
@@ -187,7 +187,7 @@ const SurveyQuestionsContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
+  width: 80%;
   margin-top: 10px;
 `;
 
