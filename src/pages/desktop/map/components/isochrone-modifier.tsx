@@ -7,9 +7,7 @@ import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import { Slider, Stack, Typography } from "@mui/material";
 
-import { SCORE_MODE, TRAVEL_MODE } from "@types";
-
-import { convert_to_pascal } from "@utils";
+import { TRAVEL_MODE } from "@types";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -19,7 +17,6 @@ import {
   select_max_trip_duration_minutes,
   setIsochroneMode,
   setMaxTripDurationMinutes,
-  setScoreMode,
 } from "@context/isochrones";
 import { picked_point_selector } from "@context/map/maps-selector";
 
@@ -33,7 +30,6 @@ const ISOCHRONES_MODE_ICON = {
 
 export function IsochroneModifier() {
   const dispatch = useAppDispatch();
-  const score_mode = useAppSelector((state) => state.isochrones.score_mode);
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const selectedIsochroneMode = useAppSelector(select_isochrone_mode);
   const picked_point = useAppSelector(picked_point_selector);
@@ -78,7 +74,7 @@ export function IsochroneModifier() {
         </SegmentedSection>
       </Stack>
 
-      <Stack direction="row" alignItems="center" maxWidth={280} p={1}>
+      {/* <Stack direction="row" alignItems="center" maxWidth={280} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
           {t("isochrone.score")}
         </Typography>
@@ -93,7 +89,7 @@ export function IsochroneModifier() {
             </SegementedButtonTwo>
           ))}
         </SegmentedSection>
-      </Stack>
+      </Stack> */}
     </Section>
   );
 }
@@ -138,32 +134,32 @@ const SegementedButton = styled.button<{ active: boolean }>`
   }
 `;
 
-const SegementedButtonTwo = styled.button<{ active: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  border: 1px solid #73777f;
-  padding: 0 10px;
-  text-decoration: none;
-  height: 28px;
-  font-size: 11px;
-  color: ${(props) => (props.active ? D.WHITE_COLOR : D.BLACK_COLOR)};
-  background-color: ${(props) => (props.active ? D.GREEN_PRIMARY : D.WHITE_COLOR)};
+// const SegementedButtonTwo = styled.button<{ active: boolean }>`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100%;
+//   border: 1px solid #73777f;
+//   padding: 0 10px;
+//   text-decoration: none;
+//   height: 28px;
+//   font-size: 11px;
+//   color: ${(props) => (props.active ? D.WHITE_COLOR : D.BLACK_COLOR)};
+//   background-color: ${(props) => (props.active ? D.GREEN_PRIMARY : D.WHITE_COLOR)};
 
-  &:nth-child(1) {
-    border-radius: 50px 0 0 50px;
-  }
+//   &:nth-child(1) {
+//     border-radius: 50px 0 0 50px;
+//   }
 
-  &:nth-child(2) {
-    border-radius: 0 50px 50px 0;
-    border-left: none;
-  }
-`;
+//   &:nth-child(2) {
+//     border-radius: 0 50px 50px 0;
+//     border-left: none;
+//   }
+// `;
 
-// const segmented_section_style = {
-//   overflowX: "scroll",
-//   paddingBottom: "30px",
-//   paddingRight: "30px",
-// };
+// // const segmented_section_style = {
+// //   overflowX: "scroll",
+// //   paddingBottom: "30px",
+// //   paddingRight: "30px",
+// // };
 const typography_style = { fontSize: "11px" };
