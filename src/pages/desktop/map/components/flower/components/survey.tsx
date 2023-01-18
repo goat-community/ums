@@ -25,6 +25,7 @@ import * as D from "@constants/design";
 import { AMENITIES_GROUP, FLOWER_PROXIMITY_WITH_LABEL } from "@constants/flower";
 
 import { Margin } from "@components/common";
+import { PetalGenerator } from "@components/common/petal-generator";
 import { LinearProgressBar } from "@components/mobile/linear-progress";
 
 interface SurveyProps {
@@ -155,7 +156,17 @@ export default function Survey(props: SurveyProps) {
           <Typography variant="h3" fontWeight="bold">
             {convert_to_pascal(amenity_group)}
           </Typography>
-          <Margin margin="50px 0 0 0" />
+          <Margin margin="10px 0 0 0" />
+          <PetalGenerator
+            max_categories={amentities_filtered.length}
+            category_color={D.FLOWER_CATEGORIES_COLOR[amenity_group]}
+            list_of_minutes={amentities_filtered.map(
+              (amenity: string) => amentities_list[amenity]
+            )}
+            width={90}
+            height={90}
+          />
+          <Margin margin="20px 0 0 0" />
           <SurveyQuestions
             amentities_filtered={amentities_filtered}
             amentities_list={amentities_list}
@@ -182,7 +193,7 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 24px 0px;
-  height: 700px;
+  height: 800px;
   width: 800px;
 `;
 

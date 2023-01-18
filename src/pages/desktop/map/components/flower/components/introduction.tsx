@@ -7,8 +7,7 @@ import { Button, Dialog, Stack, Typography } from "@mui/material";
 import { useAppSelector } from "@hooks/context";
 
 import { Margin } from "@components/common";
-
-import FlowerImage from "@images/flower.jpg";
+import { Flower } from "@components/common/flower-generator";
 
 interface IntroductionProps {
   onClickContinue: () => void;
@@ -23,7 +22,7 @@ export default function Introduction(props: IntroductionProps) {
     return (
       <Dialog open={true} maxWidth="xl">
         <Box>
-          <img src={FlowerImage} width="184" height="154" alt="flower" />
+          <Flower />
           <Margin margin="25px 0 0 0" />
           <Typography variant="h3">{t("introduction.editPersonalData")}</Typography>
           <Margin margin="25px 0 0 0" />
