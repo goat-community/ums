@@ -33,3 +33,18 @@ export interface MapView {
   bounds?: LngLatBoundsLike;
   fitBoundsOptions?: FitBoundsOptions;
 }
+
+export interface ReverseAddress {
+  display_name: string;
+  address: {
+    city: string;
+    city_district: string;
+    country: string;
+    country_code: string;
+    house_number: string;
+    postcode: string;
+    road: string;
+    state: string;
+    suburb: string;
+  };
+}
