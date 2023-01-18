@@ -17,3 +17,15 @@ export const RED_PRIMARY = "#F95F62";
 export const BOTTOM_BAR_HEIGHT = 80;
 export const SIDE_BAR_WIDTH = 80;
 export const DRAWER_WIDTH = 360;
+/** Flower */
+export const FLOWER_CATEGORIES_COLOR = {
+  transport: "#33A8C7",
+  sport: "#52E3E1",
+  leisure: "#FDF148",
+  tourism: "#FDF148",
+  food: "#FFAB00",
+  health: "#F77976",
+  education: "#F050AE",
+  services: "#D883FF",
+  shop: "#9336FD",
+};

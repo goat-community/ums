@@ -6,6 +6,7 @@ export * from "./legend";
 export * from "./list-tile";
 export * from "./margin";
 export * from "./notifier";
+export * from "./petal-generator";
 export * from "./score-highlighter";
 export * from "./search";
 export * from "./skeleton-image";
