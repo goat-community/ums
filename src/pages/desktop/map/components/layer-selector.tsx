@@ -84,7 +84,7 @@ export function LayerSelector() {
       >
         <Fab
           onClick={() => setOpen(!open)}
-          size="small"
+          size="large"
           sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
         >
           <LayersOutlinedIcon />

@@ -44,7 +44,7 @@ export function FloatingActions(props: FloatingActionsProps) {
       <Container position="left">
         <Stack direction="column" spacing={2}>
           <Fab
-            size="small"
+            size="large"
             sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
             onClick={() => props.open_onboarding_force()}
           >
