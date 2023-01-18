@@ -91,7 +91,7 @@ export function Header() {
         }}
         suggestionsPaperProps={{
           style: {
-            zIndex: 2,
+            zIndex: 4,
           },
         }}
       />

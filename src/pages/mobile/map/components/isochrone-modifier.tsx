@@ -47,7 +47,7 @@ export function IsochroneModifier() {
   return (
     <Section>
       <Stack direction="row" alignItems="center" spacing={2} maxWidth={240}>
-        <Typography p={1} variant="h6" sx={typography_style} width={70}>
+        <Typography p={1} variant="h6" sx={typography_style} width={120}>
           {t("isochrone.distance")} <br /> ({max_trip_duration_minutes} min.)
         </Typography>
         <Slider
@@ -60,7 +60,7 @@ export function IsochroneModifier() {
       </Stack>
 
       <Stack direction="row" alignItems="center" maxWidth={260} width={"90vw"} p={1}>
-        <Typography variant="h6" sx={typography_style} width={70}>
+        <Typography variant="h6" sx={typography_style} width={120}>
           {t("isochrone.modality")}
         </Typography>
         <SegmentedSection>

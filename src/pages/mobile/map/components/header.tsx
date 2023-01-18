@@ -21,7 +21,7 @@ export function MapHeader(props: MapHeaderProps) {
       <Header />
       {/** Selector buttons */}
       <Stack direction="row" padding="10px 16px" justifyContent="space-between">
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" spacing={1} style={{ zIndex: 2 }}>
           <LayerSelector />
           <PoisSelector />
           <BaseMapSelector />

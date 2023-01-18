@@ -11,11 +11,11 @@ export function InsightsSection() {
   return (
     <Stack padding="31px 23px 10px">
       <Typography variant="h1" fontWeight="400" color="black">
-        {address.split(",").slice(0, 2) || "..."}
+        {address.split(",").slice(0, 2) || ""}
       </Typography>
       <br />
       <Typography variant="h6" fontWeight="400" color="black">
-        Munich {address.split("Munich")?.[1] || "..."}
+        Munich {address.split("Munich")?.[1] || ""}
       </Typography>
       <InsightsModifier />
       <PersonalScore />
