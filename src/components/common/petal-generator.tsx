@@ -49,8 +49,6 @@ export function PetalGenerator(props: PetalGeneratorProps) {
   }
 
   const ratios = useMemo(() => {
-    // console.log(props.list_of_minutes);
-    console.log(categorize_minutes(props.list_of_minutes));
     return pedal_generator(
       props.max_categories,
       categorize_minutes(props.list_of_minutes)

@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { type LngLat } from "react-map-gl";
 import MatGeocoder from "react-mui-mapbox-geocoder";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { Stack, Typography } from "@mui/material";
@@ -11,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 import { get_point_isochrone } from "@context/isochrones";
 import { setAddress, setPickingMode } from "@context/map";
 import { view_bounds_selector } from "@context/map/maps-selector";
+import { temprorary_open } from "@context/openers";
 
 import { MAPBOX_TOKEN } from "@constants";
 
@@ -23,7 +23,6 @@ import { FlowerButton } from "./floating-flower";
 import { IsochroneButton } from "./isochrone-button";
 
 export function Header(props: { position?: string; dark_theme?: boolean }) {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
@@ -41,7 +40,8 @@ export function Header(props: { position?: string; dark_theme?: boolean }) {
       dispatch(get_point_isochrone(point));
       dispatch(setAddress(result?.place_name));
     } else {
-      navigate("/flower");
+      // Open the flower modal
+      dispatch(temprorary_open("flower_open"));
     }
   };
 

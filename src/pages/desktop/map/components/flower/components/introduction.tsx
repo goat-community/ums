@@ -64,7 +64,7 @@ export default function Introduction(props: IntroductionProps) {
           spacing={3}
         >
           <Link to="/">
-            <Button variant="outlined" onClick={props.onClickContinue}>
+            <Button variant="outlined" onClick={props.onBackClick}>
               {t("introduction.back")}
             </Button>
           </Link>

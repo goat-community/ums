@@ -30,9 +30,6 @@ export function GeocoderControl(props: GeocoderControlProps) {
         accessToken: props.mapboxAccessToken,
       });
       ctrl.on("loading", props.onLoading);
-      ctrl.on("results", () => {
-        console.log("here");
-      });
       ctrl.on("result", (evt) => {
         props.onResult(evt);
 

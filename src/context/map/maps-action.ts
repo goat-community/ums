@@ -84,7 +84,6 @@ export function getIndicator(config: IndicatorConfig, layer: string) {
     dispatch(
       networkStateHandler(async () => {
         const response = await Api.getIndicator(config);
-        console.log(response);
         if (response) {
           const geobufDecoded = geobuf.decode(new Pbf(response));
           const features = geobufDecoded.features;
