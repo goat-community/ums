@@ -36,6 +36,7 @@ export default function ScoreLayer() {
   // TODO: Make sure that the amenities in the vector tile are the same as the ones in the redux store
   const allAmenities = useAppSelector((state) => state.flower.amenities);
   const surveyCompleted = useAppSelector((state) => state.flower.survey_done_already);
+  const flowerOpen = useAppSelector((state) => state.flower.flower_open);
   const scoreLayerVisible = useAppSelector((state) => state.flower.score_layer_visible);
   const dispatch = useAppDispatch();
 
@@ -85,7 +86,7 @@ export default function ScoreLayer() {
       }, 100);
     },
     updateTriggers: {
-      getFillColor: [surveyCompleted],
+      getFillColor: [surveyCompleted, flowerOpen],
     },
   });
 
