@@ -1,4 +1,4 @@
-import { useControl } from "react-map-gl";
+import { useControl, useMap } from "react-map-gl";
 import { DeckProps } from "@deck.gl/core/typed";
 import { MVTLayer } from "@deck.gl/geo-layers/typed";
 import { MapboxOverlay } from "@deck.gl/mapbox/typed";
@@ -22,7 +22,7 @@ const COLORS = {
   1: [125, 36, 8],
   0: [168, 168, 168],
 };
-const SCORE_LAYER_TILESET_URL = `https://api.mapbox.com/v4/majkshkurti.8i2kndde/{z}/{x}/{y}.mvt?access_token=${MAPBOX_TOKEN}`;
+const SCORE_LAYER_TILESET_URL = `https://api.mapbox.com/v4/majkshkurti.dzvk0han/{z}/{x}/{y}.mvt?access_token=${MAPBOX_TOKEN}`;
 
 function DeckGLOverlay(props: DeckProps) {
   const deck = useControl<MapboxOverlay>(() => new MapboxOverlay({ ...props }));
@@ -31,11 +31,13 @@ function DeckGLOverlay(props: DeckProps) {
 }
 
 export default function ScoreLayer() {
+  const mapRef = useMap();
   // All amenities are the ones that are available in the redux store.
   // For the score to be correct the amenities in redux should be the same as the ones in the vector tile feature props.
   // TODO: Make sure that the amenities in the vector tile are the same as the ones in the redux store
   const allAmenities = useAppSelector((state) => state.flower.amenities);
   const surveyCompleted = useAppSelector((state) => state.flower.survey_done_already);
+  const flowerOpen = useAppSelector((state) => state.flower.flower_open);
   const scoreLayerVisible = useAppSelector((state) => state.flower.score_layer_visible);
   const dispatch = useAppDispatch();
 
@@ -63,8 +65,13 @@ export default function ScoreLayer() {
     maxZoom: 17,
     getLineWidth: 0,
     getFillColor: (d) => {
+      const zoom = mapRef.current.getZoom();
       const score = calculateScore(d);
-      return COLORS[score] || [168, 168, 168];
+      const color = COLORS[score] || [168, 168, 168];
+      if (zoom < 14) {
+        return [color[0], color[1], color[2], 100];
+      }
+      return [color[0], color[1], color[2], 255];
     },
     pickable: true,
     onClick: (e) => {
@@ -85,7 +92,7 @@ export default function ScoreLayer() {
       }, 100);
     },
     updateTriggers: {
-      getFillColor: [surveyCompleted],
+      getFillColor: [surveyCompleted, flowerOpen],
     },
   });
 

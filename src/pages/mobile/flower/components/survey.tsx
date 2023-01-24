@@ -64,7 +64,7 @@ function SurveyQuestions(props: {
             )}
             <Slider
               min={5}
-              max={15}
+              max={20}
               color={"secondary"}
               valueLabelDisplay="auto"
               value={props.amentities_list[key]}
