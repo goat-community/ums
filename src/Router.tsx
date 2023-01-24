@@ -38,7 +38,6 @@ if (window.screen.width <= MOBILE_SCREEN_SIZE) {
   ]);
 } else {
   const Map = lazy(() => import("@pages/desktop/map/Map"));
-  const Flower = lazy(() => import("@pages/desktop/flower/Flower"));
   router = createBrowserRouter([
     {
       path: "/",
@@ -47,10 +46,6 @@ if (window.screen.width <= MOBILE_SCREEN_SIZE) {
     {
       path: "*",
       element: <Notfound />,
-    },
-    {
-      path: "/flower",
-      element: <Flower />,
     },
   ]);
 }

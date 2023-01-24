@@ -10,11 +10,13 @@ import { get_amenities } from "@context/flower";
 
 import * as D from "@constants/design";
 
-import { BaseMapSelector } from "@pages/common/map/basemap-selector";
-import { LanguageSelector } from "@pages/common/map/language-selector";
-import { LayerSelector } from "@pages/common/map/layer-selector";
-import { Legend } from "@pages/common/map/legend";
-import { PoisSelector } from "@pages/common/map/pois-selector";
+import { Legend } from "@components/common/legend";
+
+import { LanguageSelector } from "@pages/desktop/map/components/language-selector";
+
+import { BaseMapSelector } from "./basemap-selector";
+import { LayerSelector } from "./layer-selector";
+import { PoisSelector } from "./pois-selector";
 
 interface FloatingActionsProps {
   open_onboarding_force: CallableFunction;
@@ -42,7 +44,7 @@ export function FloatingActions(props: FloatingActionsProps) {
       <Container position="left">
         <Stack direction="column" spacing={2}>
           <Fab
-            size="small"
+            size="large"
             sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
             onClick={() => props.open_onboarding_force()}
           >

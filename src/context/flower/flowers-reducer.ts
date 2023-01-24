@@ -38,6 +38,8 @@ const initialState = {
     post_box: 15,
     post_office: 15,
     pub: 15,
+    hyper: 15,
+    yoga: 15,
     realschule: 15,
     recycling: 15,
     restaurant: 15,

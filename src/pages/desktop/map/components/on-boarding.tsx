@@ -7,9 +7,12 @@ import { Button, Dialog, Stack, Typography } from "@mui/material";
 import { Margin } from "@components/common";
 
 import FifteenMinute from "@images/15-min.jpg";
-import BrandingImage from "@images/branding.jpg";
+import EITLogo from "@images/eit.png";
+import HumankindLogo from "@images/humankind.png";
 import IsochroneImage from "@images/isochrone.jpg";
-import M4CImage from "@images/m4c-pattern.png";
+import M4CImage from "@images/m4c-big.png";
+import Plan4BetterLogo from "@images/p4b.png";
+import TumLogo from "@images/tum.png";
 
 const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
 
@@ -18,20 +21,50 @@ interface OnboardingProps {
   close_onboarding_force: CallableFunction;
 }
 
+function About() {
+  return (
+    <Container>
+      <img src={M4CImage} width="200px" />
+      <Margin margin="30px 0" />
+      <Typography fontSize="2vh" color="black">
+        The application was developed by:
+      </Typography>
+      <Stack direction="row" spacing={2} mt={2}>
+        <img src={Plan4BetterLogo} width="auto" height="30vh" alt="p4b-logo" />
+        <img src={HumankindLogo} width="auto" height="30vh" alt="humankind-logo" />
+        <img src={TumLogo} width="auto" height="30vh" alt="tum-logo" />
+      </Stack>
+      <Margin margin="20px 10px" />
+      <Typography fontSize="2vh" color="black">
+        This project is funded by EIT Urban Mobility, an initiative of the European
+        Institute of Innovation and Technology (EIT), a body of the European Union. EIT
+        Urban Mobility acts to accelerate positive change on mobility to make urban spaces
+        more liveable. Learn more:{" "}
+        <a href="eiturbanmobility.eu" style={{ color: "blue" }}>
+          eiturbanmobility.eu
+        </a>
+      </Typography>
+      <Margin margin="10px 0" />
+      <img src={EITLogo} width="auto" height="50vh" />
+    </Container>
+  );
+}
+
 const pages = [
   {
     title: "Welcome to Map4Citizens!",
     text: "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
     image: M4CImage,
     radius: 0,
-    top: 70,
+    top: 140,
   },
   {
     title: "Customized 15-min-city",
     text: "This is strongly linked to the concept of the 15-min-city. To assist you in finding your perfect 15-min-city location, which fulfills all your needs, you can create your personal “flower-of-proximity”. The application then shows you how well different locations in the city can serve your needs.",
     image: FifteenMinute,
     radius: 0,
-    top: 50,
+    top: 60,
+    width: "50vh",
   },
   {
     title: "Isochrones",
@@ -39,14 +72,14 @@ const pages = [
     image: IsochroneImage,
     radius: "10%",
     top: 70,
+    width: "50vh",
   },
   {
     title: "Ready to use?",
     text: "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
-    image: BrandingImage,
+    component: <About />,
     radius: 0,
-    width: "550px",
-    top: 50,
+    top: 0,
   },
 ];
 
@@ -73,17 +106,21 @@ export function Onboarding(props: OnboardingProps) {
   return (
     <Dialog open={open || props.force_open} onClose={() => set_open(false)} maxWidth="xl">
       <Box>
-        <img
-          src={pages[page_index].image}
-          alt="onboard"
-          style={{
-            borderRadius: pages[page_index].radius || 0,
-            maxWidth: pages[page_index].width || "450px",
-            margin: "auto",
-            position: "absolute",
-            top: pages[page_index].top || "15px",
-          }}
-        />
+        {pages[page_index]?.image ? (
+          <img
+            src={pages[page_index].image}
+            alt="onboard"
+            style={{
+              borderRadius: pages[page_index].radius || 0,
+              maxWidth: pages[page_index].width || "450px",
+              margin: "auto",
+              position: "absolute",
+              top: pages[page_index].top || "15px",
+            }}
+          />
+        ) : (
+          <>{pages[page_index]?.component}</>
+        )}
 
         <Section>
           <Typography variant="h2" fontWeight="bold" color="black" textAlign="left">
@@ -134,14 +171,18 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   width: 600px;
-  height: 500px;
-  padding: 100px 0 70px;
+  height: 600px;
+  padding: 40px 0 70px;
   text-align: left;
 `;
 
 const Section = styled.section`
   position: absolute;
-  bottom: 70px;
+  bottom: 50px;
   height: 180px;
+  padding: 0 45px;
+`;
+
+const Container = styled.section`
   padding: 0 45px;
 `;

@@ -10,15 +10,47 @@ import * as D from "@constants/design";
 import { Margin } from "@components/common";
 
 import FifteenMinute from "@images/15-min.jpg";
-import BrandingImage from "@images/branding.jpg";
+import EITLogo from "@images/eit.png";
+import HumankindLogo from "@images/humankind.png";
 import IsochroneImage from "@images/isochrone.jpg";
 import M4CImage from "@images/m4c-big.png";
+import Plan4BetterLogo from "@images/p4b.png";
+import TumLogo from "@images/tum.png";
 
 const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
 
 interface OnboardingProps {
   force_open: boolean;
   close_onboarding_force: CallableFunction;
+}
+
+function About() {
+  return (
+    <Container>
+      <img src={M4CImage} width="200px" />
+      <Margin margin="15px 0" />
+      <Typography variant="h6" color="black">
+        The application was developed by:
+      </Typography>
+      <Stack direction="row" spacing={2} mt={2}>
+        <img src={Plan4BetterLogo} width="auto" height="28px" alt="p4b-logo" />
+        <img src={HumankindLogo} width="auto" height="28px" alt="humankind-logo" />
+        <img src={TumLogo} width="auto" height="28px" alt="tum-logo" />
+      </Stack>
+      <Margin margin="15px 5px" />
+      <Typography variant="h6" color="black">
+        This project is funded by EIT Urban Mobility, an initiative of the European
+        Institute of Innovation and Technology (EIT), a body of the European Union. EIT
+        Urban Mobility acts to accelerate positive change on mobility to make urban spaces
+        more liveable. Learn more:{" "}
+        <a href="eiturbanmobility.eu" style={{ color: "blue" }}>
+          eiturbanmobility.eu
+        </a>
+      </Typography>
+      <Margin margin="10px 0" />
+      <img src={EITLogo} width="100%" />
+    </Container>
+  );
 }
 
 export function Onboarding(props: OnboardingProps) {
@@ -67,20 +99,22 @@ export function Onboarding(props: OnboardingProps) {
     {
       title: t("tutorial.readyToUse"),
       text: t("tutorial.readyToUseDesc"),
-      image: BrandingImage,
-      radius: 0,
-      size: "350px",
+      component: <About />,
     },
   ];
 
   return (
     <Box visible={open || props.force_open}>
-      <img
-        src={pages[page_index].image}
-        alt={pages[page_index].title}
-        width={pages[page_index].size}
-        style={{ borderRadius: pages[page_index].radius || 0 }}
-      />
+      {pages[page_index]?.image ? (
+        <img
+          src={pages[page_index].image}
+          alt={pages[page_index].title}
+          width={pages[page_index].size}
+          style={{ borderRadius: pages[page_index].radius || 0 }}
+        />
+      ) : (
+        <>{pages[page_index]?.component}</>
+      )}
       <Margin margin="140px 0" />
       <Section>
         <Typography variant="h2" fontWeight="bold" color="white">
@@ -131,7 +165,7 @@ const Box = styled.div<{ visible: boolean }>`
   align-items: center;
   justify-content: space-around;
   position: fixed;
-  padding: 100px 50px;
+  padding: 100px 20px;
   top: 0;
   right: 0;
   left: 0;
@@ -149,4 +183,9 @@ const Section = styled.section`
   background-color: ${D.PRIMARY_COLOR};
   padding: 60px 20px 0;
   border-radius: 28px 28px 0 0;
+`;
+
+const Container = styled.section`
+  max-width: 100%;
+  padding: 0 5px;
 `;

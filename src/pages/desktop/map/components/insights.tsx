@@ -20,11 +20,12 @@ export default function Insights() {
     <>
       <Stack padding="31px 0 10px" sx={{ width: "90%" }}>
         <Typography variant="h2" fontWeight="400" color="black">
-          {address.split(",").slice(0, 2) || "..."}
+          {address?.display_name.split(",").slice(0, 2) || ""}
         </Typography>
         <br />
         <Typography variant="h6" fontWeight="400" color="black">
-          Munich {address.split("Munich")?.[1] || "..."}
+          {address.address?.city}, {address.address?.state}, {address.address?.postcode},{" "}
+          {address.address?.country}
         </Typography>
         <Section>
           <Stack direction="row" justifyContent="space-around" alignItems="center">
