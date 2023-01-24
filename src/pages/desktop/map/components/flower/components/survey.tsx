@@ -174,7 +174,7 @@ export default function Survey(props: SurveyProps) {
               dispatch(set_amenity(changed_proximity));
             }}
           />
-          <Stack direction="row" spacing={2} style={{ position: "absolute", bottom: 30 }}>
+          <Stack direction="row" spacing={2} mt={4}>
             <Button variant="outlined" sx={{ width: "20vw" }} onClick={on_back_clicked}>
               {t("survey.back")}
             </Button>
