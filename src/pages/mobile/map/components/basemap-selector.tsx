@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Close } from "@mui/icons-material";
 import MapIcon from "@mui/icons-material/Map";
@@ -17,6 +18,7 @@ export function BaseMapSelector() {
   const dispatch = useAppDispatch();
   const mapStyleUrl = useAppSelector((state) => state.map.style);
   const [drawerOpen, toggleDrawer] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const styles = {
     mapbox_streets: "mapbox://styles/mapbox/streets-v12",
@@ -28,36 +30,35 @@ export function BaseMapSelector() {
   const items = [
     {
       value: "mapbox_streets",
-      title: "High Fidelity",
-      subtitle: "Great for public presentations",
+      title: t("baseMaps.highFidelity"),
+      subtitle: t("baseMaps.highFidelityDescription"),
       thumbnail: "https://i.imgur.com/aVDMUKAm.png",
     },
     {
       value: "mapbox_satellite",
-      title: "Satellite Streets",
-      subtitle: "As seen from space",
+      title: t("baseMaps.sateliteStreets"),
+      subtitle: t("baseMaps.sateliteStreetsDescription"),
       thumbnail: "https://i.imgur.com/JoMGuUOm.png",
     },
     {
       value: "mapbox_light",
-      title: "Light",
-      subtitle: "For highlighting the data overlays",
+      title: t("baseMaps.light"),
+      subtitle: t("baseMaps.lightDescription"),
       thumbnail: "https://i.imgur.com/jHFGEEQm.png",
     },
     {
       value: "mapbox_dark",
-      title: "Dark",
-      subtitle: "For highlighting the data overlays",
+      title: t("baseMaps.dark"),
+      subtitle: t("baseMaps.darkDescription"),
       thumbnail: "https://i.imgur.com/PaYV5Gjm.png",
     },
     {
       value: "mapbox_navigation",
-      title: "Traffic",
-      subtitle: "Live traffic data",
+      title: t("baseMaps.traffic"),
+      subtitle: t("baseMaps.trafficDescription"),
       thumbnail: "https://i.imgur.com/lfcARxZm.png",
     },
   ];
-
   const [selected, setSelected] = useState(() => {
     const selectedMapStyle = Object.keys(styles).find(
       (key) => styles[key] === mapStyleUrl
@@ -76,7 +77,7 @@ export function BaseMapSelector() {
           </Box>
 
           <Typography sx={{ m: 2 }} variant="h4">
-            Map Style
+            {t("mainWords.mapStyle")}
           </Typography>
           <ListTile
             items={items}
