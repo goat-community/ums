@@ -1,13 +1,19 @@
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { CircularProgress, Stack, Typography } from "@mui/material";
 
 import { useCalculateSingleScore } from "@hooks";
+import { useAppSelector } from "@hooks/context";
 
 import { ScoreHighLighter } from "@components/common";
 
 export function PersonalScore() {
   const score = useCalculateSingleScore();
+  const isochrone_mode = useAppSelector((state) => state.isochrones.score_mode);
+
+  const { t } = useTranslation();
+
   return (
     <Section>
       <Stack direction="row" justifyContent="space-around" alignItems="center">
@@ -19,7 +25,7 @@ export function PersonalScore() {
         />
         <Stack justifyContent="space-between" alignItems="center">
           <Typography variant="h6" fontSize="14px">
-            Personal Score
+            {t(`isochrone.modes.${isochrone_mode}`)} {t("insights.score")}
           </Typography>
           <Typography variant="h1" fontSize="46px" fontWeight="400">
             <ScoreHighLighter isochrone_score={score} large />

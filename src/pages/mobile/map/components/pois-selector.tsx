@@ -59,7 +59,7 @@ export function PoisSelector() {
           </Box>
 
           <Typography sx={{ m: 2 }} variant="h4">
-            Amenities
+            {t("mainWords.ameities")}
           </Typography>
           <ListTile
             items={items}

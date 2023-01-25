@@ -1,4 +1,8 @@
 {
+  "mainWords": {
+    "ameities": "Amenities",
+    "mapStyle": "Map Style"
+  },
   "messages": {
     "loading": "Loading, please wait...",
     "simpleError": "Error occured!",
@@ -80,6 +84,22 @@
     "legend": "Legend",
     "none": "None"
   },
+  "baseMaps": {
+    "highFidelity": "High Fidelity",
+    "highFidelityDescription": "Great for public presentations",
+    "sateliteStreets": "Satellite Streets",
+    "sateliteStreetsDescription": "As seen from space",
+    "light": "Light",
+    "lightDescription": "For highlighting the data overlays",
+    "dark": "Dark",
+    "darkDescription": "For highlighting the data overlays",
+    "traffic": "Traffic",
+    "trafficDescription": "Live traffic data"
+  },
+  "insights": {
+    "addLocation": "Search for an address to get your analyses started!",
+    "score": "Score"
+  },
   "bars": {
     "map": "Map",
     "insights": "Insights"
@@ -99,7 +119,8 @@
   "survey": {
     "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent.",
     "continue": "Continue",
-    "back": "Back"
+    "back": "Back",
+    "notRelevant": "Not Relevant"
   },
   "isochrone": {
     "modes": {
@@ -117,6 +138,7 @@
   },
   "tutorial": {
     "skip": "Skip",
+    "letsGo": "Let's go!",
     "continue": "Continue",
     "welcomeMap4Citizens": "Welcome to Map4Citizens!",
     "Map4CitizensminuteDesc": "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",

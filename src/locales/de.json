@@ -1,4 +1,8 @@
 {
+  "mainWords": {
+    "ameities": "Amenities",
+    "mapStyle": "Map Style"
+  },
   "messages": {
     "loading": "Berechnung wird ausgeführt, bitte warten ...",
     "simpleError": "Sorry! Es ist ein Fehler aufgetreten!",
@@ -80,6 +84,18 @@
     "legend": "Legende",
     "none": "None"
   },
+  "baseMaps": {
+    "highFidelity": "High Fidelity",
+    "highFidelityDescription": "Great for public presentations",
+    "sateliteStreets": "Satellite Streets",
+    "sateliteStreetsDescription": "As seen from space",
+    "light": "Light",
+    "lightDescription": "For highlighting the data overlays",
+    "dark": "Dark",
+    "darkDescription": "For highlighting the data overlays",
+    "traffic": "Traffic",
+    "trafficDescription": "Live traffic data"
+  },
   "bars": {
     "map": "Karte",
     "insights": "Details"
@@ -119,6 +135,7 @@
   "tutorial": {
     "skip": "Überspringen",
     "continue": "Weiter",
+    "letsGo": "Start!",
     "welcomeMap4Citizens": "Willkommen zu Map4Citizens!",
     "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, den Bürger:innen detaillierte Informationen über ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
     "15-minCity": "Personalisierte 15-Minuten-Stadt",

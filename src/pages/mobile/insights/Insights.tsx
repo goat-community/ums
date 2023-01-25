@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { Stack, Typography } from "@mui/material";
 
 import { useAppSelector } from "@hooks/context";
@@ -15,6 +17,8 @@ export default function Insights() {
     (state) => state.isochrones.travel_time_surface
   );
 
+  const { t } = useTranslation();
+
   return (
     <BottomBarLayout>
       <Header />
@@ -27,7 +31,7 @@ export default function Insights() {
       ) : (
         <Stack padding={4}>
           <Typography variant="h4" textAlign="center">
-            Search for an address to get your analyses started!
+            {t("insights.addLocation")}
           </Typography>
         </Stack>
       )}

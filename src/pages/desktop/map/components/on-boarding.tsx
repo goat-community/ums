@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -50,42 +51,10 @@ function About() {
   );
 }
 
-const pages = [
-  {
-    title: "Welcome to Map4Citizens!",
-    text: "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
-    image: M4CImage,
-    radius: 0,
-    top: 140,
-  },
-  {
-    title: "Customized 15-min-city",
-    text: "This is strongly linked to the concept of the 15-min-city. To assist you in finding your perfect 15-min-city location, which fulfills all your needs, you can create your personal “flower-of-proximity”. The application then shows you how well different locations in the city can serve your needs.",
-    image: FifteenMinute,
-    radius: 0,
-    top: 60,
-    width: "50vh",
-  },
-  {
-    title: "Isochrones",
-    text: "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
-    image: IsochroneImage,
-    radius: "10%",
-    top: 70,
-    width: "50vh",
-  },
-  {
-    title: "Ready to use?",
-    text: "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
-    component: <About />,
-    radius: 0,
-    top: 0,
-  },
-];
-
 export function Onboarding(props: OnboardingProps) {
   const [open, set_open] = useState<boolean>(false);
   const [page_index, set_page_index] = useState<number>(0);
+  const { t } = useTranslation();
 
   const [user_seen_onboarding] = useState<string | null>(
     () => localStorage.getItem(USER_SEEN_ONBOARDING) || null
@@ -102,6 +71,38 @@ export function Onboarding(props: OnboardingProps) {
     props.close_onboarding_force();
     set_open(false);
   }
+  const pages = [
+    {
+      title: t("tutorial.welcomeMap4Citizens"),
+      text: t("tutorial.Map4CitizensminuteDesc"),
+      image: M4CImage,
+      radius: 0,
+      top: 140,
+    },
+    {
+      title: t("tutorial.15-minCity"),
+      text: t("tutorial.15-minCityDesc"),
+      image: FifteenMinute,
+      radius: 0,
+      top: 60,
+      width: "50vh",
+    },
+    {
+      title: t("tutorial.isochrones"),
+      text: t("tutorial.isochronesDesc"),
+      image: IsochroneImage,
+      radius: "10%",
+      top: 70,
+      width: "50vh",
+    },
+    {
+      title: t("tutorial.readyToUse"),
+      text: t("tutorial.readyToUseDesc"),
+      component: <About />,
+      radius: 0,
+      top: 0,
+    },
+  ];
 
   return (
     <Dialog open={open || props.force_open} onClose={() => set_open(false)} maxWidth="xl">
@@ -158,7 +159,9 @@ export function Onboarding(props: OnboardingProps) {
               set_page_index((currPage) => currPage + 1);
             }}
           >
-            {page_index === pages.length - 1 ? "Let's go!" : "Continue"}
+            {page_index === pages.length - 1
+              ? t("tutorial.letsGo")
+              : t("tutorial.continue")}
           </Button>
         </Stack>
       </Box>
