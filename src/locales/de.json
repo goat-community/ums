@@ -1,135 +1,158 @@
 {
+  "mainWords": {
+    "ameities": "Amenities",
+    "mapStyle": "Map Style"
+  },
   "messages": {
-    "loading": "Loading, please wait...",
-    "simpleError": "Error occured!",
-    "tapLocation": "Tap a location on the map",
-    "page404": "Page not found..."
+    "loading": "Isochrone wird berechnet, bitte warten ...",
+    "simpleError": "Sorry! Es ist ein Fehler aufgetreten!",
+    "tapLocation": "Klicken Sie auf einen Standort in der Karte",
+    "page404": "Die Seite wurde leider nicht gefunden."
   },
   "actions": {
-    "close": "Close",
-    "cancel": "Cancel",
-    "apply": "Apply",
-    "flower": "My Flower"
+    "close": "Schließen",
+    "cancel": "Abbrechen",
+    "apply": "Anwenden",
+    "flower": "Mein Profil"
   },
   "amenitiesGroup": {
-    "food": "Food",
-    "transport": "Transport",
-    "health": "Health",
+    "food": "Gastronomie",
+    "transport": "Mobilität",
+    "health": "Gesundheit",
     "services": "Services",
     "sport": "Sport",
-    "nature": "Nature",
-    "tourism": "Tourism",
+    "nature": "Natur",
+    "tourism": "Freizeit und Tourismus",
     "shop": "Shop",
     "education": "Education",
     "tourismandleisure": "Tourism and Leisure",
-    "foodanddrink": "Food and Drink",
-    "other": "Other"
+    "foodanddrink": "Gastronomie",
+    "other": "Andere"
   },
   "amenities": {
-    "Mobilitaetspunkte": "Mobilitaetspunkte",
-    "atm": "ATM",
-    "bakery": "Bakery",
+    "Mobilitaetspunkte": "Mobilitätspunkte",
+    "atm": "Geldautomat",
+    "bakery": "Bäckerei",
     "bank": "Bank",
     "bar": "Bar",
     "bike_sharing": "Bike Sharing",
     "bus_stop": "Bus Stop",
-    "butcher": "Butcher",
-    "cafe": "Coffee",
+    "butcher": "Metzgerei",
+    "cafe": "Café",
     "car_sharing": "Car Sharing",
-    "charging_station": "Charging Station",
-    "cinema": "Cinema",
-    "convenience": "Convenience",
-    "dentist": "Dentist",
-    "discount_supermarket": "Discount supermarket",
+    "charging_station": "E-Ladestation",
+    "cinema": "Kino",
+    "convenience": "Kiosk",
+    "dentist": "Zahnarzt",
+    "discount_supermarket": "Discount Supermarkt",
     "fast_food": "Fast Food",
-    "general_practitioner": "General Practitioner",
-    "grundschule": "Primary School",
-    "gym": "Gym",
-    "gymnasium": "High School",
-    "hauptschule_mittelschule": "Secondary School",
+    "general_practitioner": "Allgemeinmediziner",
+    "grundschule": "Grundschule",
+    "gym": "Fitnessstudio",
+    "gymnasium": "Gymnasium",
+    "hauptschule_mittelschule": "Hauptschule",
     "hotel": "Hotel",
-    "hyper": "Hypermarket",
+    "hyper": "Großmarkt",
     "kindergarten": "Kindergarten",
-    "marketplace": "Market Place",
+    "marketplace": "Marktplatz",
     "museum": "Museum",
-    "nursery": "Nursery",
-    "organic_supermarket": "Organic Supermarket",
+    "nursery": "Kita",
+    "organic_supermarket": "Bio Supermarkt",
     "park": "Park",
-    "pharmacy": "Pharmacy",
-    "playground": "Playground",
-    "population": "Population",
-    "post_box": "Post Box",
-    "post_office": "Post Office",
+    "pharmacy": "Apotheke",
+    "playground": "Spielplatz",
+    "population": "Einwohner",
+    "post_box": "Briefkasten",
+    "post_office": "Post",
     "pub": "Pub",
     "realschule": "Realschule",
-    "recycling": "Recycling",
+    "recycling": "Recycling Container",
     "restaurant": "Restaurant",
-    "subway_entrance": "Subway Entrance",
-    "supermarket": "Supermarket",
-    "tram_stop": "Tram Stop",
-    "yoga": "Yoga"
+    "subway_entrance": "U-Bahn",
+    "supermarket": "Supermarkt",
+    "tram_stop": "Tram",
+    "yoga": "Yoga Studio"
   },
   "layers": {
-    "noise_levels_day": "Noise Levels (Day)",
-    "noise_levels_night": "Noise Levels (Night)",
-    "population_density": "Population Density",
-    "landuse_atkis": "Landuse",
+    "noise_levels_day": "Lärm von Hauptverkehrsstraßen (Tag)",
+    "noise_levels_night": "Lärm von Hauptverkehrsstraßen (Nacht)",
+    "population_density": "Bevölkerungsdichte",
+    "landuse_atkis": "Flächennutzung",
     "pt_oev_gueteklassen": "ÖV-Güteklassen",
-    "building_score_layer": "Building Score Layer"
+    "building_score_layer": "15-Minuten-Score",
+    "none": "None"
+  },
+  "baseMaps": {
+    "highFidelity": "High Fidelity",
+    "highFidelityDescription": "Great for public presentations",
+    "sateliteStreets": "Satellite Streets",
+    "sateliteStreetsDescription": "As seen from space",
+    "light": "Light",
+    "lightDescription": "For highlighting the data overlays",
+    "dark": "Dark",
+    "darkDescription": "For highlighting the data overlays",
+    "traffic": "Traffic",
+    "trafficDescription": "Live traffic data"
   },
   "bars": {
-    "map": "Map",
-    "insights": "Insights"
+    "map": "Karte",
+    "insights": "Details"
   },
   "placeholders": {
-    "addressSearch": "Search Address"
+    "addressSearch": "Adresse suchen"
   },
   "introduction": {
-    "editPersonalData": "Do you want to edit your personal mobility flower?",
-    "back": "Go back",
-    "editFlower": "Edit Flower",
+    "editPersonalData": "Möchten Sie Ihr persönliches Profil anpassen?",
+    "back": "Zurück",
+    "editFlower": "Profil bearbeiten",
     "proximityFlowerDesc": "The 'Proximity Flower' helps map people's preferred city ammenities in relation to the distance to their homes",
     "createFlower": "Create Flower",
     "howDoesYourFlowerLook": "How does your flower looks like?"
   },
   "survey": {
-    "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent",
-    "continue": "Continue"
+    "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (Erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhägig.",
+    "continue": "Weiter",
+    "back": "Zurück",
+    "notRelavent": "Nicht relevant"
   },
   "isochrone": {
     "modes": {
       "standard": "Standard",
-      "personal": "Personal"
+      "personal": "Personalisiert"
     },
     "modalityModes": {
-      "walking": "Walking",
-      "cycling": "Cycling",
-      "transit": "Public Transport"
+      "walking": "Zu Fuß",
+      "cycling": "Fahrrad",
+      "transit": "ÖPNV"
     },
-    "distance": "Distance",
-    "modality": "Mode",
+    "distance": "Reisezeit",
+    "modality": "Verkehrsmittel",
     "score": "Score"
   },
   "tutorial": {
-    "welcomeMap4Citizens": "Welcome to Map4Citizens!",
-    "Map4CitizensminuteDesc": "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
-    "15-minCity": "Customized 15-min-city",
-    "15-minCityDesc": "This is strongly linked to the concept of the 15-min-city. To assist you in finding your perfect 15-min-city location, which fulfills all your needs, you can create your personal “flower-of-proximity”. The application then shows you how well different locations in the city can serve your needs.",
-    "isochrones": "Isochrones",
-    "isochronesDesc": "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
-    "readyToUse": "Ready to use?",
-    "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!"
+    "skip": "Skip",
+    "letsGo": "Let's go!",
+    "continue": "Continue",
+    "welcomeMap4Citizens": "Willkommen zu Map4Citizens!",
+    "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, den Bürger:innen detaillierte Informationen über ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
+    "15-minCity": "Personalisierte 15-Minuten-Stadt",
+    "15-minCityDesc": "Dies ist eng mit dem Konzept der 15-Minuten-Stadt verbunden. Um Ihnen dabei zu helfen, Ihren perfekten 15-Minuten-Stadt Standort zu finden, der all Ihre Bedürfnisse erfüllt, können Sie Ihre persönliches Mobilitätsprofil erstellen. Die Anwendung zeigt Ihnen dann, wie gut verschiedene Standorte in der Stadt Ihre Bedürfnisse erfüllen können.",
+    "isochrones": "Isochronen",
+    "isochronesDesc": "Durch die Berechnung von Isochronen bekommen Sie ein Gefühl dafür, wie weit Sie zu Fuß, mit dem Fahrrad oder mit öffentlichen Verkehrsmitteln kommen und welche Ziele Sie erreichen können. Darüber hinaus können Sie sich zusätzliche Layer wie Lärmpegel, Bevölkerungsdichte, Flächennutzung und ÖV-Güteklassen anzeigen lassen.",
+    "readyToUse": "Los geht's!",
+    "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen. \r\n Viel Spaß!"
   },
   "profile": {
     "reach": "Want to reach in",
     "minutes": "minutes"
   },
   "popup": {
-    "category": "Category",
+    "category": "Kategorie",
     "name": "Name",
-    "street": "Street",
-    "housenumber": "House Number",
-    "zipcode": "Zip Code",
-    "score": "Overall Score"
+    "street": "Straße",
+    "housenumber": "Hausnummer",
+    "zipcode": "Postleitzahl",
+    "score": "Gesamtscore",
+    "opening_hours": "Öffnungszeiten"
   }
 }

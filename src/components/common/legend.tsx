@@ -11,9 +11,8 @@ import { map_layers_visible } from "@context/map";
 
 import * as D from "@constants/design";
 
-import ArrowPopper from "@pages/common/map/arrow-popper";
-
-import SkeletonImage from "./skeleton-image";
+import { ArrowPopper } from "./arrow-popper";
+import { SkeletonImage } from "./skeleton-image";
 
 export function Legend() {
   const [open, setOpen] = useState(false);
@@ -71,7 +70,7 @@ export function Legend() {
       >
         <Fab
           onClick={() => setOpen(!open)}
-          size="small"
+          size="large"
           sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
         >
           <List />

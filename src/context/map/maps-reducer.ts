@@ -1,7 +1,7 @@
 import { LngLat } from "react-map-gl";
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { IndicatorConfig, MapView, popupInfo } from "@types";
+import { IndicatorConfig, MapView, popupInfo, ReverseAddress } from "@types";
 
 /** Reducer */
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
   popupInfo: null as popupInfo,
   picking_mode: false as boolean,
   picked_point: null as LngLat | null,
-  current_point_address: "" as string,
+  current_point_address: {} as ReverseAddress,
   view: {
     bounds: [
       11.327192290815145, 48.03915718648435, 11.756388821971976, 48.27059464660387,
@@ -300,6 +300,7 @@ const initialState = {
           "source-layer": "default",
           type: "fill",
           paint: {
+            "fill-opacity": 0.4,
             "fill-color": "#c1ce44",
             "fill-outline-color": "#232323",
           },
@@ -492,7 +493,7 @@ export const map = createSlice({
       const visibility = layer.visibility;
       layer.visibility = visibility === "visible" ? "none" : "visible";
     },
-    setAddress: (state: typeof initialState, action: PayloadAction<string>) => {
+    setAddress: (state: typeof initialState, action: PayloadAction<ReverseAddress>) => {
       state.current_point_address = action.payload;
     },
     setPopupInfo: (state: typeof initialState, action: PayloadAction<popupInfo>) => {

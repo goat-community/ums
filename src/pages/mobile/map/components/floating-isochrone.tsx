@@ -28,7 +28,9 @@ export function FloatingIsochroneButton() {
   // const icon = is_picking ? LightIcon : PurpleIcon;
   // User should done the flower before picking isochrone
   const button_action = () =>
-    is_done_survey ? dispatch(set_picking_mode(!is_picking)) : navigate("/flower");
+    is_done_survey
+      ? dispatch(set_picking_mode(!is_picking)) // Open the flower modal
+      : navigate("/flower");
 
   // fetch survey from localstorage
   // to state the filling status

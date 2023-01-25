@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Close } from "@mui/icons-material";
 import MapIcon from "@mui/icons-material/Map";
@@ -11,13 +12,13 @@ import { setStyle } from "@context/map";
 
 import * as D from "@constants/design";
 
-import ArrowPopper from "@pages/common/map/arrow-popper";
-
-import ListTile from "./list-tile";
+import { ListTile } from "@components/common";
+import { ArrowPopper } from "@components/common/arrow-popper";
 
 export function BaseMapSelector() {
   const dispatch = useAppDispatch();
   const mapStyleUrl = useAppSelector((state) => state.map.style);
+  const { t } = useTranslation();
 
   const styles = {
     mapbox_streets: "mapbox://styles/mapbox/streets-v12",
@@ -26,35 +27,36 @@ export function BaseMapSelector() {
     mapbox_dark: "mapbox://styles/mapbox/dark-v11",
     mapbox_navigation: "mapbox://styles/mapbox/navigation-day-v1",
   };
+
   const items = [
     {
       value: "mapbox_streets",
-      title: "High Fidelity",
-      subtitle: "Great for public presentations",
+      title: t("baseMaps.highFidelity"),
+      subtitle: t("baseMaps.highFidelityDescription"),
       thumbnail: "https://i.imgur.com/aVDMUKAm.png",
     },
     {
       value: "mapbox_satellite",
-      title: "Satellite Streets",
-      subtitle: "As seen from space",
+      title: t("baseMaps.sateliteStreets"),
+      subtitle: t("baseMaps.sateliteStreetsDescription"),
       thumbnail: "https://i.imgur.com/JoMGuUOm.png",
     },
     {
       value: "mapbox_light",
-      title: "Light",
-      subtitle: "For highlighting the data overlays",
+      title: t("baseMaps.light"),
+      subtitle: t("baseMaps.lightDescription"),
       thumbnail: "https://i.imgur.com/jHFGEEQm.png",
     },
     {
       value: "mapbox_dark",
-      title: "Dark",
-      subtitle: "For highlighting the data overlays",
+      title: t("baseMaps.dark"),
+      subtitle: t("baseMaps.darkDescription"),
       thumbnail: "https://i.imgur.com/PaYV5Gjm.png",
     },
     {
       value: "mapbox_navigation",
-      title: "Traffic",
-      subtitle: "Live traffic data",
+      title: t("baseMaps.traffic"),
+      subtitle: t("baseMaps.trafficDescription"),
       thumbnail: "https://i.imgur.com/lfcARxZm.png",
     },
   ];
@@ -100,7 +102,7 @@ export function BaseMapSelector() {
       >
         <Fab
           onClick={() => setOpen(!open)}
-          size="small"
+          size="large"
           sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
         >
           <MapIcon />

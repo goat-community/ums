@@ -20,7 +20,7 @@ export default function DrawerContent() {
     <>
       {drawer_is_open ? (
         <Drawer open={travel_time_surface}>
-          <Header position="static" />
+          <Header position="static" dark_theme />
           <IsochroneModifier />
           {/* <hr style={{ border: "1px solid black", width: "100%" }} /> */}
           <br />

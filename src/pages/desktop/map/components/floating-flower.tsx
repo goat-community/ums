@@ -26,7 +26,7 @@ export function FlowerButton() {
 }
 
 const Button = styled.button<{ is_picking: boolean; is_picked }>`
-  z-index: 2;
+  z-index: 1;
   width: 56px;
   height: 56px;
   right: 10px;

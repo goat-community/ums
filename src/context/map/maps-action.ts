@@ -74,7 +74,7 @@ export function coords_to_address(coords: LngLat) {
   return async (dispatch: CallableFunction) => {
     const response = await Api.geocode_coords(coords);
     if (response?.display_name) {
-      dispatch(setAddress(response.display_name));
+      dispatch(setAddress(response));
     }
   };
 }
@@ -84,7 +84,6 @@ export function getIndicator(config: IndicatorConfig, layer: string) {
     dispatch(
       networkStateHandler(async () => {
         const response = await Api.getIndicator(config);
-        console.log(response);
         if (response) {
           const geobufDecoded = geobuf.decode(new Pbf(response));
           const features = geobufDecoded.features;

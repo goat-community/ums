@@ -1,4 +1,8 @@
 {
+  "mainWords": {
+    "ameities": "Amenities",
+    "mapStyle": "Map Style"
+  },
   "messages": {
     "loading": "Loading, please wait...",
     "simpleError": "Error occured!",
@@ -12,21 +16,21 @@
     "flower": "My Flower"
   },
   "amenitiesGroup": {
-    "food": "Food",
+    "food": "Food and Drinks",
     "transport": "Transport",
     "health": "Health",
     "services": "Services",
     "sport": "Sport",
     "nature": "Nature",
-    "tourism": "Tourism",
+    "tourism": "Leisure and Tourism",
     "shop": "Shop",
     "education": "Education",
-    "tourismandleisure": "Tourism and Leisure",
-    "foodanddrink": "Food and Drink",
+    "tourismandleisure": "Leisure and Tourism",
+    "foodanddrink": "Food and Drinks",
     "other": "Other"
   },
   "amenities": {
-    "Mobilitaetspunkte": "Mobilitaetspunkte",
+    "Mobilitaetspunkte": "Sharing Point",
     "atm": "ATM",
     "bakery": "Bakery",
     "bank": "Bank",
@@ -75,7 +79,24 @@
     "population_density": "Population Density",
     "landuse_atkis": "Landuse",
     "pt_oev_gueteklassen": "ÖV-Güteklassen",
-    "building_score_layer": "Building Score Layer"
+    "building_score_layer": "15-Min-Score",
+    "none": "None"
+  },
+  "baseMaps": {
+    "highFidelity": "High Fidelity",
+    "highFidelityDescription": "Great for public presentations",
+    "sateliteStreets": "Satellite Streets",
+    "sateliteStreetsDescription": "As seen from space",
+    "light": "Light",
+    "lightDescription": "For highlighting the data overlays",
+    "dark": "Dark",
+    "darkDescription": "For highlighting the data overlays",
+    "traffic": "Traffic",
+    "trafficDescription": "Live traffic data"
+  },
+  "insights": {
+    "addLocation": "Search for an address to get your analyses started!",
+    "score": "Score"
   },
   "bars": {
     "map": "Map",
@@ -88,13 +109,15 @@
     "editPersonalData": "Do you want to edit your personal mobility flower?",
     "back": "Go back",
     "editFlower": "Edit Flower",
-    "proximityFlowerDesc": "The 'Proximity Flower' helps map people's preferred city ammenities in relation to the distance to their homes",
+    "proximityFlowerDesc": "The 'Proximity Flower' helps map people's preferred city amenities in relation to the distance to their homes",
     "createFlower": "Create Flower",
     "howDoesYourFlowerLook": "How does your flower looks like?"
   },
   "survey": {
-    "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent",
-    "continue": "Continue"
+    "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent.",
+    "continue": "Continue",
+    "back": "Back",
+    "notRelavent": "Not Relavent"
   },
   "isochrone": {
     "modes": {
@@ -106,11 +129,14 @@
       "cycling": "Cycling",
       "transit": "Public Transport"
     },
-    "distance": "Distance",
+    "distance": "Travel time",
     "modality": "Mode",
     "score": "Score"
   },
   "tutorial": {
+    "skip": "Skip",
+    "letsGo": "Let's go!",
+    "continue": "Continue",
     "welcomeMap4Citizens": "Welcome to Map4Citizens!",
     "Map4CitizensminuteDesc": "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
     "15-minCity": "Customized 15-min-city",
@@ -130,6 +156,7 @@
     "street": "Street",
     "housenumber": "House Number",
     "zipcode": "Zip Code",
-    "score": "Overall Score"
+    "score": "Overall Score",
+    "opening_hours": "Opening Hours"
   }
 }

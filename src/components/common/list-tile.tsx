@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   Box,
@@ -12,9 +13,9 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-import SkeletonImage from "@pages/common/map/skeleton-image";
+import { SkeletonImage } from "@components/common/skeleton-image";
 
-import Wrap from "./conditional-wrap";
+import { Wrap } from "./conditional-wrap";
 
 interface Items {
   title: string;
@@ -83,6 +84,8 @@ function ListTileLabel({
   thumbnailHeight?: number;
   reverse: boolean;
 }) {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -97,9 +100,9 @@ function ListTileLabel({
       <ListItemText
         sx={reverse ? { ml: 2, mr: 1 } : { mr: 2, ml: 1 }}
         primary={item.title}
-        secondary={item.subtitle || " "}
+        secondary={item.subtitle}
       />
-      {item.thumbnail && (
+      {item && item.thumbnail && (
         <SkeletonImage
           width={thumbnailWidth}
           height={thumbnailHeight}
@@ -187,7 +190,7 @@ function ButtonList({
   );
 }
 
-export default function ListTile({
+export function ListTile({
   items = [],
   selected,
   multiple = false,

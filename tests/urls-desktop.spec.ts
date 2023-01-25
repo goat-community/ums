@@ -1,10 +1,9 @@
 // Test all pages are available on the Desktop
-// and not breaked by the new changes -> !404
 import { expect, test } from "@playwright/test";
 
 test.use({
   viewport: { width: 1280, height: 1100 },
-  baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || "http://localhost:5173",
+  baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || "http://localhost:1024",
 });
 
 const URLS = ["/"];

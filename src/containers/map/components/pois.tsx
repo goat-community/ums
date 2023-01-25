@@ -296,7 +296,6 @@ export default function PoiLayer() {
     sizeScale: 40,
     pickable: true,
     onClick: (e) => {
-      console.log(e);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { coordinates, id, min_zoom, max_zoom, uid, ...object } = e.object;
       dispatch(setPopupInfo(null));

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
@@ -8,14 +7,11 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_amenities } from "@context/flower";
 import { set_picking_mode } from "@context/map/maps-action";
+import { temprorary_open } from "@context/openers";
 
 import * as D from "@constants/design";
 
-// import LightIcon from "@images/icon.png";
-// import PurpleIcon from "@images/purple_icon.png";
-
 export function IsochroneButton() {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const is_picking = useAppSelector((state) => state.map.picking_mode);
   const is_loading = useAppSelector((state) => state.network.loading);
@@ -25,10 +21,11 @@ export function IsochroneButton() {
   );
 
   const isochrone_shown = Boolean(!is_loading && travel_time_surface);
-  // const icon = is_picking ? LightIcon : PurpleIcon;
   // User should done the flower before picking isochrone
   const button_action = () =>
-    is_done_survey ? dispatch(set_picking_mode(!is_picking)) : navigate("/flower");
+    is_done_survey
+      ? dispatch(set_picking_mode(!is_picking)) // Open the flower modal
+      : dispatch(temprorary_open("flower_open"));
 
   // fetch survey from localstorage
   // to state the filling status
