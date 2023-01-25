@@ -1,7 +1,6 @@
 {
   "mainWords": {
-    "ameities": "Amenities",
-    "mapStyle": "Map Style"
+    "mapStyle": "Background map"
   },
   "messages": {
     "loading": "Loading, please wait...",
@@ -147,7 +146,8 @@
     "isochrones": "Isochrones",
     "isochronesDesc": "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
     "readyToUse": "Ready to use?",
-    "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!"
+    "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
+    "developedBy": "The application was developed by:"
   },
   "profile": {
     "reach": "Want to reach in",

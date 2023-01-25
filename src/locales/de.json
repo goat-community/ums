@@ -1,7 +1,6 @@
 {
   "mainWords": {
-    "ameities": "Amenities",
-    "mapStyle": "Map Style"
+    "mapStyle": "Hintergrundkarte"
   },
   "messages": {
     "loading": "Berechnung wird ausgeführt, bitte warten ...",
@@ -135,7 +134,7 @@
   "tutorial": {
     "skip": "Überspringen",
     "continue": "Weiter",
-    "letsGo": "Start!",
+    "letsGo": "Los geht's!",
     "welcomeMap4Citizens": "Willkommen zu Map4Citizens!",
     "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, den Bürger:innen detaillierte Informationen über ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
     "15-minCity": "Personalisierte 15-Minuten-Stadt",
@@ -143,7 +142,8 @@
     "isochrones": "Isochronen",
     "isochronesDesc": "Durch die Berechnung von Isochronen bekommen Sie ein Gefühl dafür, wie weit Sie zu Fuß, mit dem Fahrrad oder mit öffentlichen Verkehrsmitteln kommen und welche Ziele Sie erreichen können. Darüber hinaus können Sie sich zusätzliche Layer wie Lärmpegel, Bevölkerungsdichte, Flächennutzung und ÖV-Güteklassen anzeigen lassen.",
     "readyToUse": "Los geht's!",
-    "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen. \r\n Viel Spaß!"
+    "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen.\r\n Viel Spaß!",
+    "developedBy": "Diese Anwendung wurde entwickelt von:"
   },
   "profile": {
     "reach": "Want to reach in",

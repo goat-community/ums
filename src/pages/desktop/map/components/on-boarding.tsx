@@ -141,7 +141,7 @@ export function Onboarding(props: OnboardingProps) {
         >
           <Link to="/">
             <Button variant="text" sx={{ color: "black" }} onClick={skip_onboarding}>
-              Skip
+              { t("tutorial.skip") }
             </Button>
           </Link>
           <Button
