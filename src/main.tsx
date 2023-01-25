@@ -21,16 +21,14 @@ import "@styles/root.scss";
 store.dispatch(get_pois_config());
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <ErrorBoundary>
-      <Provider store={store}>
-        <Palette>
-          <NotifierWrapper />
-          <Suspense fallback={<Splash />}>
-            <RouterProvider router={router} />
-          </Suspense>
-        </Palette>
-      </Provider>
-    </ErrorBoundary>
-  </React.StrictMode>
+  <ErrorBoundary>
+    <Provider store={store}>
+      <Palette>
+        <NotifierWrapper />
+        <Suspense fallback={<Splash />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </Palette>
+    </Provider>
+  </ErrorBoundary>
 );
