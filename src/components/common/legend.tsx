@@ -31,7 +31,7 @@ export function Legend() {
               </IconButton>
             </Box>
             <Typography sx={{ m: 2 }} variant="h4">
-              Legend
+            { t("layers.legend") }
             </Typography>
             {scoreLayerVisible && (
               <Box sx={{ m: 2 }}>

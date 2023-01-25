@@ -59,7 +59,7 @@ export function IsochroneModifier() {
 
       <Stack direction="row" alignItems="center" maxWidth={360} p={1}>
         <Typography variant="h6" sx={typography_style} width={70}>
-          Mode
+        { t("isochrone.modality") }
         </Typography>
         <SegmentedSection>
           {["walking", "cycling", "transit"].map((isochrone_mode) => (

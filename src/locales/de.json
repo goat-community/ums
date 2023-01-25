@@ -1,6 +1,6 @@
 {
   "messages": {
-    "loading": "Isochrone wird berechnet, bitte warten ...",
+    "loading": "Berechnung wird ausgeführt, bitte warten ...",
     "simpleError": "Sorry! Es ist ein Fehler aufgetreten!",
     "tapLocation": "Klicken Sie auf einen Standort in der Karte",
     "page404": "Die Seite wurde leider nicht gefunden."
@@ -12,15 +12,16 @@
     "flower": "Mein Profil"
   },
   "amenitiesGroup": {
+    "amenities": "Einrichtungen",
     "food": "Gastronomie",
     "transport": "Mobilität",
     "health": "Gesundheit",
-    "services": "Services",
+    "services": "Serviceeinrichtungen",
     "sport": "Sport",
     "nature": "Natur",
     "tourism": "Freizeit und Tourismus",
-    "shop": "Shop",
-    "education": "Education",
+    "shop": "Einkaufen",
+    "education": "Bildung",
     "tourismandleisure": "Tourism and Leisure",
     "foodanddrink": "Gastronomie",
     "other": "Andere"
@@ -31,11 +32,11 @@
     "bakery": "Bäckerei",
     "bank": "Bank",
     "bar": "Bar",
-    "bike_sharing": "Bike Sharing",
-    "bus_stop": "Bus Stop",
+    "bike_sharing": "Bikesharing Station",
+    "bus_stop": "Bushaltestelle",
     "butcher": "Metzgerei",
     "cafe": "Café",
-    "car_sharing": "Car Sharing",
+    "car_sharing": "Carsharing Station",
     "charging_station": "E-Ladestation",
     "cinema": "Kino",
     "convenience": "Kiosk",
@@ -66,7 +67,7 @@
     "restaurant": "Restaurant",
     "subway_entrance": "U-Bahn",
     "supermarket": "Supermarkt",
-    "tram_stop": "Tram",
+    "tram_stop": "Tram Haltestelle",
     "yoga": "Yoga Studio"
   },
   "layers": {
@@ -76,6 +77,7 @@
     "landuse_atkis": "Flächennutzung",
     "pt_oev_gueteklassen": "ÖV-Güteklassen",
     "building_score_layer": "15-Minuten-Score",
+    "legend": "Legende",
     "none": "None"
   },
   "bars": {
@@ -83,7 +85,8 @@
     "insights": "Details"
   },
   "placeholders": {
-    "addressSearch": "Adresse suchen"
+    "addressSearch": "Adresse suchen",
+    "howDoesYourCityScore": "Wie gut ist die Erreichbarkeit in Ihrer Nachbarschaft?"
   },
   "introduction": {
     "editPersonalData": "Möchten Sie Ihr persönliches Profil anpassen?",
@@ -95,7 +98,9 @@
   },
   "survey": {
     "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (Erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhägig.",
-    "continue": "Weiter"
+    "continue": "Weiter",
+    "back": "Zurück",
+    "notRelevant": "Nicht relevant"
   },
   "isochrone": {
     "modes": {
@@ -112,6 +117,8 @@
     "score": "Score"
   },
   "tutorial": {
+    "skip": "Überspringen",
+    "continue": "Weiter",
     "welcomeMap4Citizens": "Willkommen zu Map4Citizens!",
     "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, den Bürger:innen detaillierte Informationen über ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
     "15-minCity": "Personalisierte 15-Minuten-Stadt",

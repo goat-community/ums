@@ -92,7 +92,7 @@ function SurveyQuestions(props: {
               }}
             />
             <Typography variant="h6" width={170}>
-              Not relevant
+            { t("placeholders.howDoesYourCityScore") }
             </Typography>
           </RoudedBG>
         </SurveyQuestionsContainer>

@@ -12,6 +12,7 @@
     "flower": "My Flower"
   },
   "amenitiesGroup": {
+    "amenities": "Amenities",
     "food": "Food and Drinks",
     "transport": "Transport",
     "health": "Health",
@@ -74,8 +75,9 @@
     "noise_levels_night": "Noise Levels (Night)",
     "population_density": "Population Density",
     "landuse_atkis": "Landuse",
-    "pt_oev_gueteklassen": "ÖV-Güteklassen",
+    "pt_oev_gueteklassen": "Public transport quality classes",
     "building_score_layer": "15-Min-Score",
+    "legend": "Legend",
     "none": "None"
   },
   "bars": {
@@ -83,7 +85,8 @@
     "insights": "Insights"
   },
   "placeholders": {
-    "addressSearch": "Search Address"
+    "addressSearch": "Search Address",
+    "howDoesYourCityScore": "How does your neighborhood score in terms of accessibility?"
   },
   "introduction": {
     "editPersonalData": "Do you want to edit your personal mobility flower?",
@@ -113,6 +116,8 @@
     "score": "Score"
   },
   "tutorial": {
+    "skip": "Skip",
+    "continue": "Continue",
     "welcomeMap4Citizens": "Welcome to Map4Citizens!",
     "Map4CitizensminuteDesc": "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
     "15-minCity": "Customized 15-min-city",
