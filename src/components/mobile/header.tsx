@@ -55,7 +55,6 @@ export function Header() {
         alignItems="center"
         padding="24px 10px 18px"
       >
-        {/* <Typography variant="h1">Where to be?</Typography> */}
         <img src={Logo} width="50%" height="auto" alt="logo" />
         <>
           <LanguageSelector />
