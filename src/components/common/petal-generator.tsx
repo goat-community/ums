@@ -20,10 +20,10 @@ export function PetalGenerator(props: PetalGeneratorProps) {
       if (minute <= 5 && minute > 0) {
         categorized_minutes_list[0] = categorized_minutes_list[0] + 1;
       }
-      if (minute <= 10 && minute > 5) {
+      if (minute <= 15 && minute > 5) {
         categorized_minutes_list[1] = categorized_minutes_list[1] + 1;
       }
-      if (minute <= 15 && minute > 10) {
+      if (minute <= 20 && minute > 15) {
         categorized_minutes_list[2] = categorized_minutes_list[2] + 1;
       }
     });

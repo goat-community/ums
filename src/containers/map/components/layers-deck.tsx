@@ -1,12 +1,30 @@
-import { useControl } from "react-map-gl";
-import { DeckProps } from "@deck.gl/core/typed";
-import { IconLayer } from "@deck.gl/layers";
-import { MapboxOverlay } from "@deck.gl/mapbox/typed";
+import { useEffect } from "react";
+import { useControl, useMap } from "react-map-gl";
+import { MVTLayer } from "@deck.gl/geo-layers/typed";
+import { GeoJsonLayer, IconLayer } from "@deck.gl/layers/typed";
+import { MapboxOverlay, MapboxOverlayProps } from "@deck.gl/mapbox";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { setPopupInfo } from "@context/map";
+import { active_amenities_selector } from "@context/flower";
+import { setPopupInfo, study_area_selector } from "@context/map";
+import { getStudyArea } from "@context/map";
 import { get_poi_features } from "@context/pois/pois-selector";
+
+import { MAPBOX_TOKEN } from "@constants";
+const COLORS = {
+  10: [50, 136, 189],
+  9: [102, 194, 165],
+  8: [171, 221, 164],
+  7: [230, 245, 152],
+  6: [255, 255, 191],
+  5: [254, 224, 139],
+  4: [253, 174, 97],
+  3: [244, 109, 67],
+  2: [197, 56, 12],
+  1: [125, 36, 8],
+  0: [168, 168, 168],
+};
 
 const ICON_MAPPING = {
   atm: {
@@ -274,17 +292,89 @@ const ICON_MAPPING = {
     height: 92,
   },
 };
-function DeckGLOverlay(props: DeckProps) {
-  const deck = useControl<MapboxOverlay>(() => new MapboxOverlay({ ...props }));
-  deck.setProps(props);
+
+const SCORE_LAYER_TILESET_URL = `https://api.mapbox.com/v4/majkshkurti.dzvk0han/{z}/{x}/{y}.mvt?access_token=${MAPBOX_TOKEN}`;
+
+function DeckGLOverlay(
+  props: MapboxOverlayProps & {
+    interleaved?: boolean;
+  }
+) {
+  const overlay = useControl<MapboxOverlay>(() => new MapboxOverlay(props));
+  overlay.setProps(props);
   return null;
 }
 
-export default function PoiLayer() {
+export default function LayersDeck() {
+  const mapRef = useMap();
+  const allAmenities = useAppSelector((state) => state.flower.amenities);
   const poiFeatures = useAppSelector(get_poi_features);
+  const studyAreaData = useAppSelector(study_area_selector);
+  const surveyCompleted = useAppSelector((state) => state.flower.survey_done_already);
+  const flowerOpen = useAppSelector((state) => state.flower.flower_open);
+  const scoreLayerVisible = useAppSelector((state) => state.flower.score_layer_visible);
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getStudyArea());
+  }, [dispatch]);
+  // Active amenities are the ones that have a value > 0 in the flower state
+  const calculateScore = (d) => {
+    let nrAmenitiesReached = 0;
+    const amenities = surveyCompleted ? activeAmenities : allAmenities;
+    const nrTotalAmenities = Object.keys(amenities).length;
+    Object.keys(d.properties).forEach((amenity) => {
+      if (amenities[amenity]) {
+        const maxTime = surveyCompleted ? amenities[amenity] : 15;
+        if (d.properties[amenity] <= maxTime) {
+          nrAmenitiesReached++;
+        }
+      }
+    });
+    const score = Math.round((nrAmenitiesReached / nrTotalAmenities) * 10);
+    return score;
+  };
+  const activeAmenities = useAppSelector(active_amenities_selector);
+  const scoreLayer = new MVTLayer({
+    id: "score-layer",
+    data: SCORE_LAYER_TILESET_URL,
+    visible: scoreLayerVisible,
+    minZoom: 0,
+    maxZoom: 17,
+    getLineWidth: 0,
+    getFillColor: (d) => {
+      const zoom = mapRef.current.getZoom();
+      const score = calculateScore(d);
+      const color = COLORS[score] || [168, 168, 168];
+      if (zoom < 14) {
+        return [color[0], color[1], color[2], 100];
+      }
+      return [color[0], color[1], color[2], 255];
+    },
+    pickable: true,
+    onClick: (e) => {
+      dispatch(setPopupInfo(null));
+      setTimeout(() => {
+        dispatch(
+          setPopupInfo({
+            title: "Building",
+            latitude: e.coordinate[1].toString(),
+            longitude: e.coordinate[0].toString(),
+            uid: e.object.properties.fid,
+            content: {
+              score: ` ${calculateScore(e.object)} / 10 `,
+              color: COLORS[calculateScore(e.object)],
+            },
+          })
+        );
+      }, 100);
+    },
+    updateTriggers: {
+      getFillColor: [surveyCompleted, flowerOpen],
+    },
+  });
 
   const poiLayer = new IconLayer({
+    id: "poi-layer",
     data: poiFeatures,
     iconAtlas: "https://i.imgur.com/br0ZLlr.png",
     visible: true,
@@ -311,8 +401,23 @@ export default function PoiLayer() {
         );
       }, 100);
     },
-    beforeId: "study-area-mask",
   });
 
-  return <DeckGLOverlay useDevicePixels={false} layers={[poiLayer]} />;
+  const maskLayer = new GeoJsonLayer({
+    id: "study-area-mask",
+    data: studyAreaData,
+    pickable: false,
+    stroked: false,
+    filled: true,
+    getFillColor: [96, 96, 98, 200],
+    getLineWidth: 1,
+  });
+
+  return (
+    <DeckGLOverlay
+      useDevicePixels={true}
+      layers={[scoreLayer, poiLayer, maskLayer]}
+      interleaved={true}
+    />
+  );
 }

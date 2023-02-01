@@ -29,9 +29,7 @@ import { API_TOKEN, MAPBOX_TOKEN } from "@constants";
 // import PinIcon from "@images/pin.png";
 import Isochrones from "./isochrones";
 import Layers from "./layers";
-import MaskLayer from "./mask";
-import PoiLayer from "./pois";
-import ScoreLayer from "./score-layer";
+import LayersDeck from "./layers-deck";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -68,15 +66,9 @@ function MapComponent(props: MapProps) {
         }
       }}
     >
-      {/** Score Layer */}
-      <ScoreLayer />
-      {/** Isochrones */}
+      <LayersDeck />
       <Isochrones />
-      {/** Layers */}
       <Layers />
-      {/** POIS */}
-      <PoiLayer />
-      <MaskLayer />
       {/** Popup */}
       {popupInfo && (
         <Popup
