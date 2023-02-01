@@ -61,7 +61,7 @@ function SurveyQuestions(props: {
           </Typography>
           <Slider
             min={5}
-            max={15}
+            max={20}
             sx={{ width: "450px" }}
             color={"secondary"}
             valueLabelDisplay="auto"
