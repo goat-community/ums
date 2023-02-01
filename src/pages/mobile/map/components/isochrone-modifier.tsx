@@ -75,23 +75,6 @@ export function IsochroneModifier() {
           ))}
         </SegmentedSection>
       </Stack>
-
-      {/* <Stack direction="row" alignItems="center" maxWidth={250} width={"90vw"} p={1}>
-        <Typography variant="h6" sx={typography_style} width={70}>
-          {t("isochrone.score")}
-        </Typography>
-        <SegmentedSection>
-          {[SCORE_MODE.personal, SCORE_MODE.standard].map((i) => (
-            <SegementedButtonTwo
-              key={i}
-              active={score_mode === i}
-              onClick={() => dispatch(setScoreMode(i))}
-            >
-              <Typography variant="h6">{convert_to_pascal(i)}</Typography>
-            </SegementedButtonTwo>
-          ))}
-        </SegmentedSection>
-      </Stack> */}
     </Section>
   );
 }
@@ -99,7 +82,7 @@ export function IsochroneModifier() {
 const Section = styled.section`
   position: fixed;
   left: 5px;
-  bottom: calc(${D.BOTTOM_BAR_HEIGHT}px + 20px);
+  bottom: calc(${D.BOTTOM_BAR_HEIGHT}px + 70px);
   padding-left: env(safe-area-inset-left, 20px);
   padding-bottom: env(safe-area-inset-bottom, 100px);
   border-radius: 16px;

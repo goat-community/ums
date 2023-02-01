@@ -15,6 +15,7 @@ import { Legend } from "@components/common/legend";
 import { LanguageSelector } from "@pages/desktop/map/components/language-selector";
 
 import { BaseMapSelector } from "./basemap-selector";
+import { EitLogo } from "./eit-logo";
 import { LayerSelector } from "./layer-selector";
 import { PoisSelector } from "./pois-selector";
 
@@ -50,7 +51,10 @@ export function FloatingActions(props: FloatingActionsProps) {
           >
             <InfoOutlinedIcon />
           </Fab>
-          <LanguageSelector />
+          <Stack direction="row" spacing={2}>
+            <LanguageSelector />
+            <EitLogo />
+          </Stack>
         </Stack>
       </Container>
     </Fragment>
