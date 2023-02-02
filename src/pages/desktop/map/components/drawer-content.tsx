@@ -9,7 +9,6 @@ import Insights from "./insights";
 import { IsochroneModifier } from "./isochrone-modifier";
 
 export default function DrawerContent() {
-  //   const loading = useAppSelector((state) => state.network.loading);
   const travel_time_surface = useAppSelector(
     (state) => state.isochrones.travel_time_surface
   );
