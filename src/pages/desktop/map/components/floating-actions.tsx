@@ -4,7 +4,7 @@ import styled from "styled-components";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Fab, Stack } from "@mui/material";
 
-import { useAppDispatch } from "@hooks/context";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_amenities } from "@context/flower";
 
@@ -25,6 +25,11 @@ interface FloatingActionsProps {
 
 export function FloatingActions(props: FloatingActionsProps) {
   const dispatch = useAppDispatch();
+  const travel_time_surface = useAppSelector(
+    (state) => state.isochrones.travel_time_surface
+  );
+
+  const drawer_is_open = travel_time_surface;
 
   // fetch survey from localstorage
   // to state the filling status
@@ -42,7 +47,7 @@ export function FloatingActions(props: FloatingActionsProps) {
           <BaseMapSelector />
         </Stack>
       </Container>
-      <Container position="left">
+      <Container position="left" extraPadding={drawer_is_open}>
         <Stack direction="column" spacing={2}>
           <Fab
             size="large"
@@ -61,11 +66,12 @@ export function FloatingActions(props: FloatingActionsProps) {
   );
 }
 
-const Container = styled.section<{ position: string }>`
+const Container = styled.section<{ position: string; extraPadding?: boolean }>`
   z-index: 2;
   position: fixed;
   padding-right: env(safe-area-inset-right, 50px);
   padding-bottom: env(safe-area-inset-bottom, 50px);
   bottom: 50px;
   ${(props) => props.position}: 50px;
+  ${(props) => props.extraPadding && `padding-left: ${D.DRAWER_WIDTH}px;}`}
 `;

@@ -63,12 +63,12 @@ function SurveyQuestions(props: {
               <></>
             )}
             <Slider
-              min={5}
+              min={0}
               max={20}
               color={"secondary"}
               valueLabelDisplay="auto"
               value={props.amentities_list[key]}
-              disabled={props.amentities_list[key] === 0}
+              disabled={props.amentities_list[key] === null}
               onChange={(_, value) =>
                 props.on_change({ [key]: value } as Record<string, FlowerMinutes>)
               }
@@ -79,15 +79,15 @@ function SurveyQuestions(props: {
             <Checkbox
               size="small"
               color="secondary"
-              defaultChecked={props.amentities_list[key] == 0}
+              defaultChecked={props.amentities_list[key] === null}
               onChange={() => {
                 if (props.amentities_list[key] != false) {
                   // Disable the option
-                  props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
+                  props.on_change({ [key]: null } as Record<string, FlowerMinutes>);
                 }
                 if (!props.amentities_list[key]) {
                   // Convert it back to default state
-                  props.on_change({ [key]: 5 } as Record<string, FlowerMinutes>);
+                  props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
                 }
               }}
             />

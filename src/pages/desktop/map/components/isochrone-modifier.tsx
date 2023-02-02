@@ -57,9 +57,9 @@ export function IsochroneModifier() {
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" maxWidth={360} p={1}>
+      <Stack direction="row" alignItems="center" maxWidth={360} p={1} spacing={2}>
         <Typography variant="h6" sx={typography_style} width={70}>
-          Mode
+          {t("isochrone.modality")}
         </Typography>
         <SegmentedSection>
           {["walking", "cycling", "transit"].map((isochrone_mode) => (
@@ -73,23 +73,6 @@ export function IsochroneModifier() {
           ))}
         </SegmentedSection>
       </Stack>
-
-      {/* <Stack direction="row" alignItems="center" maxWidth={280} p={1}>
-        <Typography variant="h6" sx={typography_style} width={70}>
-          {t("isochrone.score")}
-        </Typography>
-        <SegmentedSection>
-          {[SCORE_MODE.personal, SCORE_MODE.standard].map((i) => (
-            <SegementedButtonTwo
-              key={i}
-              active={score_mode === i}
-              onClick={() => dispatch(setScoreMode(i))}
-            >
-              <Typography variant="h6">{convert_to_pascal(i)}</Typography>
-            </SegementedButtonTwo>
-          ))}
-        </SegmentedSection>
-      </Stack> */}
     </Section>
   );
 }

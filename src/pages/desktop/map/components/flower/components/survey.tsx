@@ -62,13 +62,13 @@ function SurveyQuestions(props: {
             {t(`amenities.${key}`)}
           </Typography>
           <Slider
-            min={5}
+            min={0}
             max={20}
             sx={{ width: "450px" }}
             color={"secondary"}
             valueLabelDisplay="auto"
             value={props.amentities_list[key]}
-            disabled={props.amentities_list[key] === 0}
+            disabled={props.amentities_list[key] == null}
             onChange={(_, value) =>
               props.on_change({ [key]: value } as Record<string, FlowerMinutes>)
             }
@@ -78,15 +78,15 @@ function SurveyQuestions(props: {
             <Checkbox
               size="small"
               color="secondary"
-              defaultChecked={props.amentities_list[key] == 0}
+              defaultChecked={props.amentities_list[key] == null}
               onChange={() => {
                 if (props.amentities_list[key] != false) {
                   // Disable the option
-                  props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
+                  props.on_change({ [key]: null } as Record<string, FlowerMinutes>);
                 }
                 if (!props.amentities_list[key]) {
                   // Convert it back to default state
-                  props.on_change({ [key]: 5 } as Record<string, FlowerMinutes>);
+                  props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
                 }
               }}
             />
@@ -174,11 +174,11 @@ export default function Survey(props: SurveyProps) {
               dispatch(set_amenity(changed_proximity));
             }}
           />
-          <Stack direction="row" spacing={2} mt={4}>
-            <Button variant="outlined" sx={{ width: "20vw" }} onClick={on_back_clicked}>
+          <Stack direction="row" spacing={2} mt={5}>
+            <Button variant="outlined" sx={{ width: 300 }} onClick={on_back_clicked}>
               {t("survey.back")}
             </Button>
-            <Button variant="contained" sx={{ width: "20vw" }} onClick={continue_clicked}>
+            <Button variant="contained" sx={{ width: 300 }} onClick={continue_clicked}>
               {t("survey.continue")}
             </Button>
           </Stack>
