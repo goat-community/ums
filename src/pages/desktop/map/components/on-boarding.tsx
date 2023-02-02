@@ -171,9 +171,11 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   width: 600px;
-  height: 600px;
+  min-height: 650px;
   padding: 40px 0 70px;
   text-align: left;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 const Section = styled.section`
