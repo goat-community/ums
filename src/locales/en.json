@@ -74,7 +74,7 @@
     "noise_levels_night": "Noise Levels (Night)",
     "population_density": "Population Density",
     "landuse_atkis": "Landuse",
-    "pt_oev_gueteklassen": "ÖV-Güteklassen",
+    "pt_oev_gueteklassen": "Public Transport Quality Classes",
     "building_score_layer": "15-Min-Score",
     "none": "None"
   },

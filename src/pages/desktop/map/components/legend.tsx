@@ -11,8 +11,7 @@ import { map_layers_visible } from "@context/map";
 
 import * as D from "@constants/design";
 
-import { ArrowPopper } from "./arrow-popper";
-import { SkeletonImage } from "./skeleton-image";
+import { ArrowPopper, SkeletonImage } from "@components/common";
 
 export function Legend() {
   const [open, setOpen] = useState(false);
