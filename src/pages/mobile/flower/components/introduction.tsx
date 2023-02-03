@@ -6,9 +6,7 @@ import { Button, Stack, Typography } from "@mui/material";
 
 import { useAppSelector } from "@hooks/context";
 
-import { Margin } from "@components/common";
-
-import FlowerImage from "@images/flower.jpg";
+import { Flower, Margin } from "@components/common";
 
 interface IntroductionProps {
   onClickContinue: () => void;
@@ -22,8 +20,8 @@ export default function Introduction(props: IntroductionProps) {
   if (surevey_has_done) {
     return (
       <Box>
-        <img src={FlowerImage} width="184" height="154" alt="flower" />
-        <Margin margin="25px 0 0 0" />
+        <Flower />
+        <Margin margin="15px 0 0 0" />
         <Typography variant="h3">
           Do you want to edit your personal mobility flower?
         </Typography>

@@ -1,6 +1,7 @@
 export * from "./arrow-popper";
 export * from "./conditional-wrap";
 export * from "./error-boundary";
+export * from "./flower-generator";
 export * from "./geocoder";
 export * from "./legend";
 export * from "./list-tile";
