@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Button, Stack, Typography } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import { Button, IconButton, Stack, Typography } from "@mui/material";
 
 import * as D from "@constants/design";
 
@@ -103,6 +104,10 @@ export function Onboarding(props: OnboardingProps) {
     },
   ];
 
+  function go_back() {
+    set_page_index(page_index - 1);
+  }
+
   return (
     <Box visible={open || props.force_open}>
       {pages[page_index]?.image ? (
@@ -131,11 +136,18 @@ export function Onboarding(props: OnboardingProps) {
           direction="row"
           sx={{ position: "absolute", bottom: 20, left: 10, right: 20 }}
         >
-          <Link to="/">
-            <Button variant="text" sx={{ color: "white" }} onClick={skip_onboarding}>
-              Skip
-            </Button>
-          </Link>
+          {page_index > 0 ? (
+            <IconButton onClick={go_back}>
+              <ArrowBack color="secondary" />
+            </IconButton>
+          ) : (
+            <Link to="/">
+              <Button variant="text" sx={{ color: "white" }} onClick={skip_onboarding}>
+                Skip
+              </Button>
+            </Link>
+          )}
+
           <Button
             variant="contained"
             color="secondary"
