@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Button, Dialog, Stack, Typography } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import { Margin } from "@components/common";
 
@@ -103,8 +111,19 @@ export function Onboarding(props: OnboardingProps) {
     set_open(false);
   }
 
+  function go_back() {
+    set_page_index(page_index - 1);
+  }
+
   return (
     <Dialog open={open || props.force_open} onClose={() => set_open(false)} maxWidth="xl">
+      {page_index > 0 && (
+        <DialogTitle>
+          <IconButton onClick={go_back}>
+            <ArrowBack />
+          </IconButton>
+        </DialogTitle>
+      )}
       <Box>
         {pages[page_index]?.image ? (
           <img
@@ -127,7 +146,7 @@ export function Onboarding(props: OnboardingProps) {
             {pages[page_index].title}
           </Typography>
           <Margin margin="20px 0" />
-          <Typography variant="h4" color="black">
+          <Typography fontSize="2vh" color="black">
             {pages[page_index].text}
           </Typography>
         </Section>
@@ -170,12 +189,9 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 600px;
-  min-height: 650px;
-  padding: 40px 0 70px;
+  width: 550px;
+  height: 800px;
   text-align: left;
-  overflow-x: hidden;
-  overflow-y: hidden;
 `;
 
 const Section = styled.section`
