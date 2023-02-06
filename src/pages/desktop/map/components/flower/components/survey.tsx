@@ -37,6 +37,7 @@ interface SurveyProps {
 function SurveyQuestions(props: {
   amentities_list: Amenities;
   amentities_filtered: string[];
+  category_color: string;
   on_change: (e: Record<string, FlowerMinutes>) => void;
 }) {
   const { t } = useTranslation();
@@ -58,14 +59,13 @@ function SurveyQuestions(props: {
       </SurveyQuestionsContainer>
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
-          <Typography variant="h4" sx={{ width: 300 }}>
+          <Typography variant="h5" sx={{ width: 300 }}>
             {t(`amenities.${key}`)}
           </Typography>
           <Slider
             min={0}
             max={20}
-            sx={{ width: "450px" }}
-            color={"secondary"}
+            sx={{ width: "450px", color: props.category_color || "#ff0017" }}
             valueLabelDisplay="auto"
             value={props.amentities_list[key]}
             disabled={props.amentities_list[key] == null}
@@ -144,14 +144,20 @@ export default function Survey(props: SurveyProps) {
         <Box>
           <Margin margin="30px 0 0 0" />
           <LinearProgressBar value={percentage_completed} />
-          <Margin margin="30px 0 0 0" />
-          <TypoGraphyContainer>
-            <Typography variant="h4">
-              Make a selection of the distance in minutes for the locations that are
-              relevant for you (create your ideal city). The travel times are
-              mode-independent.
-            </Typography>
-          </TypoGraphyContainer>
+          {step === 1 ? (
+            <>
+              <Margin margin="30px 0 0 0" />
+              <TypoGraphyContainer>
+                <Typography variant="h4">
+                  Make a selection of the distance in minutes for the locations that are
+                  relevant for you (create your ideal city). The travel times are
+                  mode-independent.
+                </Typography>
+              </TypoGraphyContainer>
+            </>
+          ) : (
+            <Margin margin="10px 0 0 0" />
+          )}
           <Margin margin="30px 0 0 0" />
           <Typography variant="h3" fontWeight="bold">
             {convert_to_pascal(amenity_group)}
@@ -170,6 +176,7 @@ export default function Survey(props: SurveyProps) {
           <SurveyQuestions
             amentities_filtered={amentities_filtered}
             amentities_list={amentities_list}
+            category_color={D.FLOWER_CATEGORIES_COLOR[amenity_group]}
             on_change={(changed_proximity) => {
               dispatch(set_amenity(changed_proximity));
             }}
@@ -209,7 +216,7 @@ const SurveyQuestionsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  margin-top: 10px;
+  margin-top: 4px;
 `;
 
 const RoudedBG = styled.div`
