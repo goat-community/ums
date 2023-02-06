@@ -38,6 +38,8 @@ const initialState = {
     post_box: 15,
     post_office: 15,
     pub: 15,
+    hyper: 15,
+    yoga: 15,
     realschule: 15,
     recycling: 15,
     restaurant: 15,
@@ -47,6 +49,7 @@ const initialState = {
   } as Amenities,
   survey_done_already: false as boolean,
   score_layer_visible: true as boolean, //TODO: Move to type
+  flower_open: false as boolean,
 };
 
 export const flower = createSlice({
@@ -68,12 +71,20 @@ export const flower = createSlice({
     setSurveyDone: (state: typeof initialState) => {
       state.survey_done_already = true;
     },
+    setFlowerOpen: (state: typeof initialState, action: PayloadAction<boolean>) => {
+      state.flower_open = action.payload;
+    },
     setScoreLayerMode: (state: typeof initialState, action: PayloadAction<boolean>) => {
       state.score_layer_visible = action.payload;
     },
   },
 });
 
-export const { setAmenities, clearAmenities, setSurveyDone, setScoreLayerMode } =
-  flower.actions;
+export const {
+  setAmenities,
+  clearAmenities,
+  setSurveyDone,
+  setScoreLayerMode,
+  setFlowerOpen,
+} = flower.actions;
 export default flower.reducer;

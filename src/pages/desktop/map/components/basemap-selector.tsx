@@ -100,7 +100,7 @@ export function BaseMapSelector() {
       >
         <Fab
           onClick={() => setOpen(!open)}
-          size="small"
+          size="large"
           sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
         >
           <MapIcon />

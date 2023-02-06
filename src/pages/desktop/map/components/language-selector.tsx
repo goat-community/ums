@@ -75,7 +75,7 @@ export function LanguageSelector() {
               i18n.changeLanguage(lang);
             }
           }}
-          size="small"
+          size="large"
           sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
         >
           <img

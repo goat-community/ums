@@ -1,7 +1,7 @@
 export const AMENITIES = "AMENITIES";
 
-export const FLOWER_PROXIMITY = [5, 15];
-export const FLOWER_PROXIMITY_WITH_LABEL = [5, "min", 15];
+export const FLOWER_PROXIMITY = [5, 20];
+export const FLOWER_PROXIMITY_WITH_LABEL = [0, "min", 20];
 
 export const AMENITIES_LIST = [
   "Mobilitaetspunkte",
@@ -23,6 +23,7 @@ export const AMENITIES_LIST = [
   "general_practitioner",
   "grundschule",
   "gym",
+  "yoga",
   "gymnasium",
   "hauptschule_mittelschule",
   "hotel",
@@ -31,9 +32,9 @@ export const AMENITIES_LIST = [
   "museum",
   "nursery",
   "organic_supermarket",
-  "park",
   "pharmacy",
   "playground",
+  "hyper",
   "population",
   "post_box",
   "post_office",
@@ -52,7 +53,6 @@ export const AMENITIES_GROUP = {
   health: ["dentist", "general_practitioner", "pharmacy"],
   services: ["atm", "bank", "post_office", "post_box"],
   sport: ["gym", "yoga"],
-  nature: ["park"],
   tourism: ["cinema", "museum", "hotel", "playground"],
   shop: [
     "organic_supermarket",

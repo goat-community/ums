@@ -1,5 +1,4 @@
 // Test all pages are available on the Desktop
-// and not breaked by the new changes -> !404
 import { expect, test } from "@playwright/test";
 
 test.use({

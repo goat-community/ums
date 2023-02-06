@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { batch } from "react-redux";
-import styled from "styled-components";
 
-import { Slider, Stack, Typography } from "@mui/material";
+import { Slider, Stack } from "@mui/material";
 
 import { SCORE_MODE, TRAVEL_MODE } from "@types";
 
@@ -14,17 +13,10 @@ import {
   select_max_trip_duration_minutes,
   setIsochroneMode,
   setMaxTripDurationMinutes,
-  setScoreMode,
 } from "@context/isochrones";
 import { picked_point_selector } from "@context/map/maps-selector";
 
-import * as D from "@constants/design";
-
-import { Margin } from "@components/common";
 import { Selector } from "@components/mobile";
-
-import TriangleIcon from "@images/triangle.png";
-import TriangleWhiteIcon from "@images/triangle-white.png";
 
 export function InsightsModifier() {
   const dispatch = useAppDispatch();
@@ -64,59 +56,6 @@ export function InsightsModifier() {
           disabled={score_mode === SCORE_MODE.personal}
         />
       </Stack>
-      <Margin margin="20px 0 0" />
-      <SegmentedSection>
-        {[SCORE_MODE.personal, SCORE_MODE.standard].map((i) => (
-          <SegementedButton
-            key={i}
-            active={score_mode === i}
-            onClick={() => dispatch(setScoreMode(i))}
-          >
-            {i === score_mode ? (
-              <span>
-                <img src={TriangleWhiteIcon} alt="triangle" width={18} height={18} />
-              </span>
-            ) : (
-              <span>
-                <img src={TriangleIcon} alt="triangle" width={18} height={18} />
-              </span>
-            )}
-            <Typography variant="h6">{t(`isochrone.modes.${i}`)}</Typography>
-          </SegementedButton>
-        ))}
-      </SegmentedSection>
     </>
   );
 }
-
-const SegmentedSection = styled.section`
-  border-radius: 50px;
-  background-color: ${D.WHITE_COLOR};
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 207px;
-  height: 28px;
-`;
-
-const SegementedButton = styled.button<{ active: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  border: 1px solid #73777f;
-  text-decoration: none;
-  height: 28px;
-  font-size: 11px;
-  color: ${(props) => (props.active ? D.WHITE_COLOR : D.BLACK_COLOR)};
-  background-color: ${(props) => (props.active ? D.GREEN_PRIMARY : D.WHITE_COLOR)};
-
-  &:nth-child(1) {
-    border-radius: 50px 0 0 50px;
-  }
-
-  &:nth-child(2) {
-    border-radius: 0 50px 50px 0;
-    border-left: none;
-  }
-`;

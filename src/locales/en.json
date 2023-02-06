@@ -74,8 +74,9 @@
     "noise_levels_night": "Noise Levels (Night)",
     "population_density": "Population Density",
     "landuse_atkis": "Landuse",
-    "pt_oev_gueteklassen": "ÖV-Güteklassen",
-    "building_score_layer": "15-Min-Score"
+    "pt_oev_gueteklassen": "Public Transport Quality Classes",
+    "building_score_layer": "15-Min-Score",
+    "none": "None"
   },
   "bars": {
     "map": "Map",
@@ -94,7 +95,8 @@
   },
   "survey": {
     "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent.",
-    "continue": "Continue"
+    "continue": "Continue",
+    "back": "Back"
   },
   "isochrone": {
     "modes": {

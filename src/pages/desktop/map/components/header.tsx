@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { type LngLat } from "react-map-gl";
 import MatGeocoder from "react-mui-mapbox-geocoder";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { Stack, Typography } from "@mui/material";
@@ -11,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 import { get_point_isochrone } from "@context/isochrones";
 import { setAddress, setPickingMode } from "@context/map";
 import { view_bounds_selector } from "@context/map/maps-selector";
+import { temprorary_open } from "@context/openers";
 
 import { MAPBOX_TOKEN } from "@constants";
 
@@ -22,8 +22,7 @@ import M4CLOGO_WHITE from "@images/m4c-white.png";
 import { FlowerButton } from "./floating-flower";
 import { IsochroneButton } from "./isochrone-button";
 
-export function Header(props: { position?: string }) {
-  const navigate = useNavigate();
+export function Header(props: { position?: string; dark_theme?: boolean }) {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
@@ -41,25 +40,28 @@ export function Header(props: { position?: string }) {
       dispatch(get_point_isochrone(point));
       dispatch(setAddress(result?.place_name));
     } else {
-      navigate("/flower");
+      // Open the flower modal
+      dispatch(temprorary_open("flower_open"));
     }
   };
 
-  const base_layers_styles = {
-    "streets-v12": M4CLOGO,
-    "satellite-streets-v12": M4CLOGO_WHITE,
-    "light-v11": M4CLOGO,
-    "dark-v11": M4CLOGO_WHITE,
-    "navigation-day-v1": M4CLOGO,
+  const base_layers = {
+    "streets-v12": { logo: M4CLOGO, color: "black" },
+    "satellite-streets-v12": { logo: M4CLOGO_WHITE, color: "white" },
+    "light-v11": { logo: M4CLOGO, color: "black" },
+    "dark-v11": { logo: M4CLOGO_WHITE, color: "white" },
+    "navigation-day-v1": { logo: M4CLOGO, color: "black" },
   };
 
-  const M4C_logo = base_layers_styles[mapStyleUrl?.split("/")?.pop()] || M4CLOGO;
+  const current_style = mapStyleUrl?.split("/")?.pop();
+  const M4C_logo = base_layers[current_style]?.logo || M4CLOGO;
+  const M4C_logotext_color = base_layers[current_style]?.color || "black";
 
   return (
     <Section position={props.position || "fixed"}>
-      <img src={M4C_logo} height="25px" />
+      <img src={props.dark_theme ? M4CLOGO : M4C_logo} height="25px" />
 
-      <Typography variant="h6">
+      <Typography variant="h6" color={props.dark_theme ? "black" : M4C_logotext_color}>
         How does your city score in terms of accessibility?
       </Typography>
       <Margin margin="13px 0 0" />

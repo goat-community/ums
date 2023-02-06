@@ -9,6 +9,7 @@ import { Header } from "@components/mobile";
 
 import { BaseMapSelector } from "./basemap-selector";
 import { LayerSelector } from "./layer-selector";
+import { Legend } from "./legend";
 import { PoisSelector } from "./pois-selector";
 
 interface MapHeaderProps {
@@ -21,10 +22,11 @@ export function MapHeader(props: MapHeaderProps) {
       <Header />
       {/** Selector buttons */}
       <Stack direction="row" padding="10px 16px" justifyContent="space-between">
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" spacing={1} style={{ zIndex: 2 }}>
           <LayerSelector />
           <PoisSelector />
           <BaseMapSelector />
+          <Legend />
           <Fab
             size="small"
             sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}

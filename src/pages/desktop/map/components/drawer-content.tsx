@@ -9,7 +9,6 @@ import Insights from "./insights";
 import { IsochroneModifier } from "./isochrone-modifier";
 
 export default function DrawerContent() {
-  //   const loading = useAppSelector((state) => state.network.loading);
   const travel_time_surface = useAppSelector(
     (state) => state.isochrones.travel_time_surface
   );
@@ -20,7 +19,7 @@ export default function DrawerContent() {
     <>
       {drawer_is_open ? (
         <Drawer open={travel_time_surface}>
-          <Header position="static" />
+          <Header position="static" dark_theme />
           <IsochroneModifier />
           {/* <hr style={{ border: "1px solid black", width: "100%" }} /> */}
           <br />

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import type { Amenities, FlowerMinutes } from "@types";
 import styled from "styled-components";
 
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Button,
   Checkbox,
   Container,
+  Dialog,
   IconButton,
   Slider,
   Stack,
@@ -25,15 +25,19 @@ import * as D from "@constants/design";
 import { AMENITIES_GROUP, FLOWER_PROXIMITY_WITH_LABEL } from "@constants/flower";
 
 import { Margin } from "@components/common";
+import { PetalGenerator } from "@components/common/petal-generator";
 import { LinearProgressBar } from "@components/mobile/linear-progress";
 
 interface SurveyProps {
   onClickBack: () => void;
+  onDone: () => void;
+  onClose: () => void;
 }
 
 function SurveyQuestions(props: {
   amentities_list: Amenities;
   amentities_filtered: string[];
+  category_color: string;
   on_change: (e: Record<string, FlowerMinutes>) => void;
 }) {
   const { t } = useTranslation();
@@ -44,7 +48,7 @@ function SurveyQuestions(props: {
         <Stack
           direction="row"
           justifyContent="space-between"
-          sx={{ width: "245px", marginLeft: "150px" }}
+          sx={{ width: "290px", marginLeft: "195px" }}
         >
           {FLOWER_PROXIMITY_WITH_LABEL.map((proximity) => (
             <Typography key={proximity} variant="h6">
@@ -55,17 +59,16 @@ function SurveyQuestions(props: {
       </SurveyQuestionsContainer>
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
-          <Typography variant="h4" sx={{ width: 250 }}>
+          <Typography variant="h5" sx={{ width: 300 }}>
             {t(`amenities.${key}`)}
           </Typography>
           <Slider
-            min={5}
-            max={15}
-            sx={{ width: "400px" }}
-            color={"secondary"}
+            min={0}
+            max={20}
+            sx={{ width: "450px", color: props.category_color || "#ff0017" }}
             valueLabelDisplay="auto"
             value={props.amentities_list[key]}
-            disabled={props.amentities_list[key] === 0}
+            disabled={props.amentities_list[key] == null}
             onChange={(_, value) =>
               props.on_change({ [key]: value } as Record<string, FlowerMinutes>)
             }
@@ -75,15 +78,15 @@ function SurveyQuestions(props: {
             <Checkbox
               size="small"
               color="secondary"
-              defaultChecked={props.amentities_list[key] == 0}
+              defaultChecked={props.amentities_list[key] == null}
               onChange={() => {
                 if (props.amentities_list[key] != false) {
                   // Disable the option
-                  props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
+                  props.on_change({ [key]: null } as Record<string, FlowerMinutes>);
                 }
                 if (!props.amentities_list[key]) {
                   // Convert it back to default state
-                  props.on_change({ [key]: 5 } as Record<string, FlowerMinutes>);
+                  props.on_change({ [key]: 0 } as Record<string, FlowerMinutes>);
                 }
               }}
             />
@@ -98,7 +101,7 @@ function SurveyQuestions(props: {
 }
 
 export default function Survey(props: SurveyProps) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [step, setStep] = useState<number>(1);
   const amentities_list = useAppSelector((state) => state.flower.amenities);
@@ -119,7 +122,7 @@ export default function Survey(props: SurveyProps) {
   function continue_clicked() {
     if (step === Object.keys(AMENITIES_GROUP).length - 1) {
       dispatch(persist_amenities(amentities_list as Amenities));
-      return navigate("/");
+      return props.onDone();
     }
     return setStep((currentStep) => currentStep + 1);
   }
@@ -130,42 +133,65 @@ export default function Survey(props: SurveyProps) {
     (step / Object.keys(AMENITIES_GROUP).length) * 100
   );
   return (
-    <>
-      <IconButton onClick={on_back_clicked}>
-        <ArrowBackIcon sx={{ padding: 1 }} />
+    <Dialog open={true} maxWidth="xl">
+      <IconButton
+        onClick={() => props.onClose()}
+        sx={{ position: "absolute", right: 10, top: 10 }}
+      >
+        <CloseIcon />
       </IconButton>
       <Container maxWidth="md">
         <Box>
-          <LinearProgressBar value={percentage_completed} />
           <Margin margin="30px 0 0 0" />
-          <TypoGraphyContainer>
-            <Typography variant="h4">
-              Make a selection of the distance in minutes for the locations that are
-              relevant for you (create your ideal city). The travel times are
-              mode-independent.
-            </Typography>
-          </TypoGraphyContainer>
-          <Margin margin="55px 0 0 0" />
+          <LinearProgressBar value={percentage_completed} />
+          {step === 1 ? (
+            <>
+              <Margin margin="30px 0 0 0" />
+              <TypoGraphyContainer>
+                <Typography variant="h4">
+                  Make a selection of the distance in minutes for the locations that are
+                  relevant for you (create your ideal city). The travel times are
+                  mode-independent.
+                </Typography>
+              </TypoGraphyContainer>
+            </>
+          ) : (
+            <Margin margin="10px 0 0 0" />
+          )}
+          <Margin margin="30px 0 0 0" />
           <Typography variant="h3" fontWeight="bold">
             {convert_to_pascal(amenity_group)}
           </Typography>
-          <Margin margin="55px 0 0 0" />
+          <Margin margin="10px 0 0 0" />
+          <PetalGenerator
+            max_categories={amentities_filtered.length}
+            category_color={D.FLOWER_CATEGORIES_COLOR[amenity_group]}
+            list_of_minutes={amentities_filtered.map(
+              (amenity: string) => amentities_list[amenity]
+            )}
+            width={90}
+            height={90}
+          />
+          <Margin margin="20px 0 0 0" />
           <SurveyQuestions
             amentities_filtered={amentities_filtered}
             amentities_list={amentities_list}
+            category_color={D.FLOWER_CATEGORIES_COLOR[amenity_group]}
             on_change={(changed_proximity) => {
               dispatch(set_amenity(changed_proximity));
             }}
           />
-          <Margin margin="32px 0 0 0" />
-          <BottomFloating>
-            <Button variant="contained" sx={{ width: "20vw" }} onClick={continue_clicked}>
+          <Stack direction="row" spacing={2} mt={5}>
+            <Button variant="outlined" sx={{ width: 300 }} onClick={on_back_clicked}>
+              {t("survey.back")}
+            </Button>
+            <Button variant="contained" sx={{ width: 300 }} onClick={continue_clicked}>
               {t("survey.continue")}
             </Button>
-          </BottomFloating>
+          </Stack>
         </Box>
       </Container>
-    </>
+    </Dialog>
   );
 }
 
@@ -174,6 +200,8 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 24px 0px;
+  height: 800px;
+  width: 800px;
 `;
 
 const TypoGraphyContainer = styled.div`
@@ -187,12 +215,8 @@ const SurveyQuestionsContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
-  margin-top: 10px;
-`;
-
-const BottomFloating = styled.div`
-  margin-top: 30px;
+  width: 80%;
+  margin-top: 4px;
 `;
 
 const RoudedBG = styled.div`

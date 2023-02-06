@@ -20,9 +20,11 @@ export function MapContainer() {
     dispatch(get_point_isochrone(latlng));
   }, []);
 
+  // fetch pois at app startup
   useEffect(() => {
-    //fetch pois at app startup
-    dispatch(get_pois_aois());
+    setTimeout(() => {
+      dispatch(get_pois_aois());
+    }, 0);
   }, []);
 
   return (

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { BottomBarLayout } from "@layouts/mobile";
 
+import { EITLogo } from "./components/eit-logo";
 import { FlowerButton } from "./components/floating-flower";
 import { FloatingIsochroneButton } from "./components/floating-isochrone";
 import { MapHeader } from "./components/header";
@@ -22,6 +23,7 @@ export default function Map() {
         <FloatingIsochroneButton />
         <FlowerButton />
         <MapLayer />
+        <EITLogo />
       </BottomBarLayout>
     </>
   );
