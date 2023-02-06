@@ -15,8 +15,6 @@ import {
   Typography,
 } from "@mui/material";
 
-import { convert_to_pascal } from "@utils";
-
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_amenities, persist_amenities, set_amenity } from "@context/flower";
@@ -91,7 +89,7 @@ function SurveyQuestions(props: {
               }}
             />
             <Typography variant="h6" width={150}>
-              Not relevant
+            { t("survey.notRelevant") }
             </Typography>
           </RoudedBG>
         </SurveyQuestionsContainer>
@@ -146,15 +144,11 @@ export default function Survey(props: SurveyProps) {
           <LinearProgressBar value={percentage_completed} />
           <Margin margin="30px 0 0 0" />
           <TypoGraphyContainer>
-            <Typography variant="h4">
-              Make a selection of the distance in minutes for the locations that are
-              relevant for you (create your ideal city). The travel times are
-              mode-independent.
-            </Typography>
+            <Typography variant="h4">{t("survey.surveyDescription")}</Typography>
           </TypoGraphyContainer>
           <Margin margin="30px 0 0 0" />
           <Typography variant="h3" fontWeight="bold">
-            {convert_to_pascal(amenity_group)}
+            {t(`amenitiesGroup.${amenity_group}`)}
           </Typography>
           <Margin margin="10px 0 0 0" />
           <PetalGenerator

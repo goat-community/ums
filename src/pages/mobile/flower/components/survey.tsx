@@ -92,7 +92,7 @@ function SurveyQuestions(props: {
               }}
             />
             <Typography variant="h6" width={170}>
-              Not relevant
+            { t("placeholders.howDoesYourCityScore") }
             </Typography>
           </RoudedBG>
         </SurveyQuestionsContainer>
@@ -148,7 +148,7 @@ export default function Survey(props: SurveyProps) {
         </TypoGraphyContainer>
         <Margin margin="25px 0 0 0" />
         <Typography variant="h3" fontWeight="bold">
-          {convert_to_pascal(amenity_group)}
+          {t(`amenitiesGroup.${amenity_group}`)}
         </Typography>
         <Margin margin="50px 0 0 0" />
         <SurveyQuestions

@@ -143,7 +143,7 @@ export function Onboarding(props: OnboardingProps) {
           ) : (
             <Link to="/">
               <Button variant="text" sx={{ color: "white" }} onClick={skip_onboarding}>
-                Skip
+                {t("tutorial.skip")}
               </Button>
             </Link>
           )}
@@ -163,7 +163,9 @@ export function Onboarding(props: OnboardingProps) {
               set_page_index((currPage) => currPage + 1);
             }}
           >
-            {page_index === pages.length - 1 ? "Let's go!" : "Continue"}
+            {page_index === pages.length - 1
+              ? t("tutorial.letsGo")
+              : t("tutorial.continue")}
           </Button>
         </Stack>
       </Section>

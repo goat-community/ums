@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   Box,
@@ -83,6 +84,8 @@ function ListTileLabel({
   thumbnailHeight?: number;
   reverse: boolean;
 }) {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -97,7 +100,7 @@ function ListTileLabel({
       <ListItemText
         sx={reverse ? { ml: 2, mr: 1 } : { mr: 2, ml: 1 }}
         primary={item.title}
-        secondary={item.subtitle || " "}
+        secondary={item.subtitle}
       />
       {item && item.thumbnail && (
         <SkeletonImage

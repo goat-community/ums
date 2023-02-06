@@ -37,7 +37,7 @@ export default function Insights() {
             />
             <Stack justifyContent="space-between" alignItems="center">
               <Typography fontSize="12px">
-                {t(`isochrone.modes.${isochrone_mode}`)} Score
+                {t(`isochrone.modes.${isochrone_mode}`)} {t("insights.score")}
               </Typography>
               <Typography fontSize="34px" fontWeight="400">
                 <ScoreHighLighter isochrone_score={score} large />

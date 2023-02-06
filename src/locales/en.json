@@ -1,4 +1,8 @@
 {
+  "mainWords": {
+    "mapStyle": "Background map",
+    "ameities": "Amenities"
+  },
   "messages": {
     "loading": "Loading, please wait...",
     "simpleError": "Error occured!",
@@ -12,6 +16,7 @@
     "flower": "My Flower"
   },
   "amenitiesGroup": {
+    "amenities": "Amenities",
     "food": "Food and Drinks",
     "transport": "Transport",
     "health": "Health",
@@ -74,16 +79,34 @@
     "noise_levels_night": "Noise Levels (Night)",
     "population_density": "Population Density",
     "landuse_atkis": "Landuse",
-    "pt_oev_gueteklassen": "Public Transport Quality Classes",
+    "pt_oev_gueteklassen": "Public transport quality classes",
     "building_score_layer": "15-Min-Score",
+    "legend": "Legend",
     "none": "None"
+  },
+  "baseMaps": {
+    "highFidelity": "High Fidelity",
+    "highFidelityDescription": "Great for public presentations",
+    "sateliteStreets": "Satellite Streets",
+    "sateliteStreetsDescription": "As seen from space",
+    "light": "Light",
+    "lightDescription": "For highlighting the data overlays",
+    "dark": "Dark",
+    "darkDescription": "For highlighting the data overlays",
+    "traffic": "Traffic",
+    "trafficDescription": "Live traffic data"
+  },
+  "insights": {
+    "addLocation": "Search for an address to get your analyses started!",
+    "score": "Score"
   },
   "bars": {
     "map": "Map",
     "insights": "Insights"
   },
   "placeholders": {
-    "addressSearch": "Search Address"
+    "addressSearch": "Search Address",
+    "howDoesYourCityScore": "How does your neighborhood score in terms of accessibility?"
   },
   "introduction": {
     "editPersonalData": "Do you want to edit your personal mobility flower?",
@@ -91,12 +114,15 @@
     "editFlower": "Edit Flower",
     "proximityFlowerDesc": "The 'Proximity Flower' helps map people's preferred city amenities in relation to the distance to their homes",
     "createFlower": "Create Flower",
-    "howDoesYourFlowerLook": "How does your flower looks like?"
+    "howDoesYourFlowerLook": "How does your flower looks like?",
+    "wasDevelopedBy": "The application was developed by:",
+    "projectDescription": " This project is funded by EIT Urban Mobility, an initiative of the European Institute of Innovation and Technology (EIT), a body of the European Union. EIT Urban Mobility acts to accelerate positive change on mobility to make urban spaces more liveable. Learn more:"
   },
   "survey": {
     "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent.",
     "continue": "Continue",
-    "back": "Back"
+    "back": "Back",
+    "notRelavent": "Not Relavent"
   },
   "isochrone": {
     "modes": {
@@ -113,6 +139,9 @@
     "score": "Score"
   },
   "tutorial": {
+    "skip": "Skip",
+    "letsGo": "Let's go!",
+    "continue": "Continue",
     "welcomeMap4Citizens": "Welcome to Map4Citizens!",
     "Map4CitizensminuteDesc": "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
     "15-minCity": "Customized 15-min-city",
@@ -120,7 +149,8 @@
     "isochrones": "Isochrones",
     "isochronesDesc": "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
     "readyToUse": "Ready to use?",
-    "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!"
+    "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
+    "developedBy": "The application was developed by:"
   },
   "profile": {
     "reach": "Want to reach in",
@@ -133,6 +163,9 @@
     "housenumber": "House Number",
     "zipcode": "Zip Code",
     "score": "Overall Score",
-    "opening_hours": "Opening Hours"
+    "opening_hours": "Opening Hours",
+    "titles": {
+      "building": "Building"
+    }
   }
 }

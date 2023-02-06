@@ -42,7 +42,7 @@ interface MapProps {
 
 function MapComponent(props: MapProps) {
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const mapStyle = useAppSelector((state) => state.map.style);
   const popupInfo = useAppSelector((state) => state.map.popupInfo);
@@ -96,7 +96,9 @@ function MapComponent(props: MapProps) {
               </IconButton>
             </Box>
             <Typography sx={{ m: 1 }} variant="h4">
-              {popupInfo.title}
+              {i18n.exists(`popup.titles.${popupInfo.title.toLowerCase()}`)
+                ? t(`popup.titles.${popupInfo.title.toLowerCase()}`)
+                : popupInfo.title}
             </Typography>
             <Divider sx={{ mb: 1 }} />
             <Table size="small">
