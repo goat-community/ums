@@ -23,12 +23,14 @@ interface OnboardingProps {
 }
 
 function About() {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <img src={M4CImage} width="200px" />
       <Margin margin="30px 0" />
       <Typography fontSize="2vh" color="black">
-        The application was developed by:
+        {t("introduction.wasDevelopedBy")}
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
         <img src={Plan4BetterLogo} width="auto" height="30vh" alt="p4b-logo" />
@@ -37,10 +39,7 @@ function About() {
       </Stack>
       <Margin margin="20px 10px" />
       <Typography fontSize="2vh" color="black">
-        This project is funded by EIT Urban Mobility, an initiative of the European
-        Institute of Innovation and Technology (EIT), a body of the European Union. EIT
-        Urban Mobility acts to accelerate positive change on mobility to make urban spaces
-        more liveable. Learn more:{" "}
+        {t("introduction.projectDescription")}{" "}
         <a href="eiturbanmobility.eu" style={{ color: "blue" }}>
           eiturbanmobility.eu
         </a>

@@ -29,9 +29,7 @@ import { API_TOKEN, MAPBOX_TOKEN } from "@constants";
 // import PinIcon from "@images/pin.png";
 import Isochrones from "./isochrones";
 import Layers from "./layers";
-import MaskLayer from "./mask";
-import PoiLayer from "./pois";
-import ScoreLayer from "./score-layer";
+import LayersDeck from "./layers-deck";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -44,7 +42,7 @@ interface MapProps {
 
 function MapComponent(props: MapProps) {
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const mapStyle = useAppSelector((state) => state.map.style);
   const popupInfo = useAppSelector((state) => state.map.popupInfo);
@@ -68,15 +66,9 @@ function MapComponent(props: MapProps) {
         }
       }}
     >
-      {/** Score Layer */}
-      <ScoreLayer />
-      {/** Isochrones */}
+      <LayersDeck />
       <Isochrones />
-      {/** Layers */}
       <Layers />
-      {/** POIS */}
-      <PoiLayer />
-      <MaskLayer />
       {/** Popup */}
       {popupInfo && (
         <Popup
@@ -104,7 +96,9 @@ function MapComponent(props: MapProps) {
               </IconButton>
             </Box>
             <Typography sx={{ m: 1 }} variant="h4">
-              {popupInfo.title}
+              {i18n.exists(`popup.titles.${popupInfo.title.toLowerCase()}`)
+                ? t(`popup.titles.${popupInfo.title.toLowerCase()}`)
+                : popupInfo.title}
             </Typography>
             <Divider sx={{ mb: 1 }} />
             <Table size="small">
