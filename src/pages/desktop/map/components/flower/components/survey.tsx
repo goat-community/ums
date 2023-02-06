@@ -144,11 +144,7 @@ export default function Survey(props: SurveyProps) {
           <LinearProgressBar value={percentage_completed} />
           <Margin margin="30px 0 0 0" />
           <TypoGraphyContainer>
-            <Typography variant="h4">
-              Make a selection of the distance in minutes for the locations that are
-              relevant for you (create your ideal city). The travel times are
-              mode-independent.
-            </Typography>
+            <Typography variant="h4">{t("survey.surveyDescription")}</Typography>
           </TypoGraphyContainer>
           <Margin margin="30px 0 0 0" />
           <Typography variant="h3" fontWeight="bold">

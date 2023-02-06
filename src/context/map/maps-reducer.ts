@@ -401,7 +401,7 @@ const initialState = {
       ],
     },
   },
-  studyArea: null as GeoJSON.FeatureCollection | null,
+  studyArea: [],
   indicators: {
     pt_oev_gueteklassen: {
       payload: {
@@ -474,7 +474,7 @@ export const map = createSlice({
       state: typeof initialState,
       action: PayloadAction<GeoJSON.FeatureCollection | null>
     ) => {
-      state.studyArea = action.payload;
+      state.studyArea = action.payload.features;
       state.viewBounds = action.payload.features[0].properties.bounds;
     },
     setIndicator: (

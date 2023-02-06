@@ -15,7 +15,7 @@ import { ScoreHighLighter } from "@components/common";
 import PinIcon from "@images/pin.png";
 
 const isochroneStyle: FillLayer = {
-  id: "data",
+  id: "isochrone-layer",
   type: "fill",
   paint: {
     "fill-color": "#7DFAC2",
