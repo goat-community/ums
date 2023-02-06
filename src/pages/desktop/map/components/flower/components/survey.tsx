@@ -89,7 +89,7 @@ function SurveyQuestions(props: {
               }}
             />
             <Typography variant="h6" width={150}>
-            { t("survey.notRelevant") }
+              {t("survey.notRelevant")}
             </Typography>
           </RoudedBG>
         </SurveyQuestionsContainer>
