@@ -34,7 +34,7 @@ function About() {
     <Container>
       <img src={M4CImage} width="200px" />
       <Margin margin="30px 0" />
-      <Typography fontSize="2vh" color="black">
+      <Typography fontSize="1.7vh" color="black">
         The application was developed by:
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
@@ -43,7 +43,7 @@ function About() {
         <img src={TumLogo} width="auto" height="30vh" alt="tum-logo" />
       </Stack>
       <Margin margin="20px 10px" />
-      <Typography fontSize="2vh" color="black">
+      <Typography fontSize="1.7vh" color="black">
         This project is funded by EIT Urban Mobility, an initiative of the European
         Institute of Innovation and Technology (EIT), a body of the European Union. EIT
         Urban Mobility acts to accelerate positive change on mobility to make urban spaces
@@ -146,7 +146,7 @@ export function Onboarding(props: OnboardingProps) {
             {pages[page_index].title}
           </Typography>
           <Margin margin="20px 0" />
-          <Typography fontSize="2vh" color="black">
+          <Typography fontSize="1.7vh" color="black">
             {pages[page_index].text}
           </Typography>
         </Section>
@@ -190,13 +190,13 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   width: 550px;
-  height: 800px;
+  height: 650px;
   text-align: left;
 `;
 
 const Section = styled.section`
   position: absolute;
-  bottom: 50px;
+  bottom: 80px;
   height: 180px;
   padding: 0 45px;
 `;
