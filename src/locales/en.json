@@ -1,7 +1,7 @@
 {
   "mainWords": {
-    "ameities": "Amenities",
-    "mapStyle": "Map Style"
+    "mapStyle": "Background map"
+    "ameities": "Amenities"
   },
   "messages": {
     "loading": "Loading, please wait...",
@@ -16,6 +16,7 @@
     "flower": "My Flower"
   },
   "amenitiesGroup": {
+    "amenities": "Amenities",
     "food": "Food and Drinks",
     "transport": "Transport",
     "health": "Health",
@@ -78,8 +79,9 @@
     "noise_levels_night": "Noise Levels (Night)",
     "population_density": "Population Density",
     "landuse_atkis": "Landuse",
-    "pt_oev_gueteklassen": "ÖV-Güteklassen",
+    "pt_oev_gueteklassen": "Public transport quality classes",
     "building_score_layer": "15-Min-Score",
+    "legend": "Legend",
     "none": "None"
   },
   "baseMaps": {
@@ -103,7 +105,8 @@
     "insights": "Insights"
   },
   "placeholders": {
-    "addressSearch": "Search Address"
+    "addressSearch": "Search Address",
+    "howDoesYourCityScore": "How does your neighborhood score in terms of accessibility?"
   },
   "introduction": {
     "editPersonalData": "Do you want to edit your personal mobility flower?",
@@ -146,7 +149,8 @@
     "isochrones": "Isochrones",
     "isochronesDesc": "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
     "readyToUse": "Ready to use?",
-    "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!"
+    "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
+    "developedBy": "The application was developed by:"
   },
   "profile": {
     "reach": "Want to reach in",

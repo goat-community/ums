@@ -62,7 +62,7 @@ export function Header(props: { position?: string; dark_theme?: boolean }) {
       <img src={props.dark_theme ? M4CLOGO : M4C_logo} height="25px" />
 
       <Typography variant="h6" color={props.dark_theme ? "black" : M4C_logotext_color}>
-        How does your city score in terms of accessibility?
+      { t("placeholders.howDoesYourCityScore") }
       </Typography>
       <Margin margin="13px 0 0" />
       <MatGeocoder
