@@ -20,7 +20,7 @@ export default function Insights() {
     <>
       <Stack padding="31px 0 10px" sx={{ width: "90%" }}>
         <Typography variant="h2" fontWeight="400" color="black">
-          {address?.display_name.split(",").slice(0, 2) || ""}
+          {address?.display_name?.split(",").slice(0, 2) || ""}
         </Typography>
         <br />
         <Typography variant="h6" fontWeight="400" color="black">

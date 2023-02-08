@@ -84,7 +84,7 @@ export default function PopupTooltip() {
                             "color"
                           ].toString()})`,
                           color:
-                            parseInt(popupInfo.content["score"].split(" / ")[0]) < 4
+                            parseInt(popupInfo.content["score"]?.split(" / ")[0]) < 4
                               ? "white"
                               : "black",
                         }}
