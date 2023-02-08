@@ -26,7 +26,7 @@
     "tourism": "Freizeit und Tourismus",
     "shop": "Einkaufen",
     "education": "Bildung",
-    "tourismandleisure": "Tourism and Leisure",
+    "tourismandleisure": "Freizeit und Tourismus",
     "foodanddrink": "Gastronomie",
     "other": "Andere"
   },
@@ -86,15 +86,15 @@
   },
   "baseMaps": {
     "title": "Kartenstil",
-    "highFidelity": "High Fidelity",
-    "highFidelityDescription": "Ideal für öffentliche Präsentationen",
-    "sateliteStreets": "Satelliten-Straßen",
+    "highFidelity": "Viele Details",
+    "highFidelityDescription": "Gibt einen guten Überblick",
+    "sateliteStreets": "Satellitenbild",
     "sateliteStreetsDescription": "Aus dem Weltraum gesehen",
-    "light": "Licht",
-    "lightDescription": "Zum Hervorheben der Datenüberlagerungen",
+    "light": "Hell",
+    "lightDescription": "Hoher Kontrast für Datenvisualisierung",
     "dark": "Dunkel",
-    "darkDescription": "Zum Hervorheben der Datenüberlagerungen",
-    "traffic": "Verkehr",
+    "darkDescription": "Hoher Kontrast für Datenvisualisierung",
+    "traffic": "Straßenverkehr",
     "trafficDescription": "Live-Verkehrsdaten"
   },
   "bars": {
@@ -109,7 +109,7 @@
     "editPersonalData": "Möchten Sie Ihr persönliches Profil anpassen?",
     "back": "Zurück",
     "editFlower": "Profil bearbeiten",
-    "proximityFlowerDesc": "Die 'Proximity Flower' hilft dabei, die bevorzugten städtischen Einrichtungen im Verhältnis zur Entfernung zu ihrem Wohnort zu kartieren.",
+    "proximityFlowerDesc": "Die 'Proximity Flower' hilft dabei, die bevorzugten städtischen Einrichtungen im Verhältnis zur Entfernung zu Ihrem Wohnort zu kartieren.",
     "createFlower": "Blume erstellen",
     "howDoesYourFlowerLook": "Wie sieht Ihre Blume aus?",
 
@@ -117,7 +117,7 @@
     "projectDescription": " Dieses Projekt wird von EIT Urban Mobility finanziert, einer Initiative des Europäischen Innovations- und Technologieinstituts (EIT), einer Einrichtung der Europäischen Union. EIT Urbane Mobilität setzt sich dafür ein, positive Veränderungen im Bereich der Mobilität zu beschleunigen, um städtische Räume lebenswerter zu machen. Mehr Informationen"
   },
   "survey": {
-    "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (Erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhägig.",
+    "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhängig.",
     "continue": "Weiter",
     "back": "Zurück",
     "notRelevant": "Nicht relevant"
@@ -141,13 +141,13 @@
     "continue": "Weiter",
     "letsGo": "Los geht's!",
     "welcomeMap4Citizens": "Willkommen zu Map4Citizens!",
-    "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, den Bürger:innen detaillierte Informationen über ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
+    "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, Bürger:innen detaillierte Informationen über Ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
     "15-minCity": "Personalisierte 15-Minuten-Stadt",
     "15-minCityDesc": "Dies ist eng mit dem Konzept der 15-Minuten-Stadt verbunden. Um Ihnen dabei zu helfen, Ihren perfekten 15-Minuten-Stadt Standort zu finden, der all Ihre Bedürfnisse erfüllt, können Sie Ihre persönliches Mobilitätsprofil erstellen. Die Anwendung zeigt Ihnen dann, wie gut verschiedene Standorte in der Stadt Ihre Bedürfnisse erfüllen können.",
     "isochrones": "Isochronen",
     "isochronesDesc": "Durch die Berechnung von Isochronen bekommen Sie ein Gefühl dafür, wie weit Sie zu Fuß, mit dem Fahrrad oder mit öffentlichen Verkehrsmitteln kommen und welche Ziele Sie erreichen können. Darüber hinaus können Sie sich zusätzliche Layer wie Lärmpegel, Bevölkerungsdichte, Flächennutzung und ÖV-Güteklassen anzeigen lassen.",
     "readyToUse": "Los geht's!",
-    "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen.\r\n Viel Spaß!",
+    "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, Ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen.\r\n Viel Spaß!",
     "developedBy": "Diese Anwendung wurde entwickelt von:"
   },
   "profile": {
