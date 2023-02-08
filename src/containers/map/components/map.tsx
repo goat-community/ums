@@ -50,7 +50,6 @@ function MapComponent(props: MapProps) {
       <LayersDeck />
       <Isochrones />
       <Layers />
-      {/** Popup Tooltip */}
       <PopupTooltip />
     </Map>
   );

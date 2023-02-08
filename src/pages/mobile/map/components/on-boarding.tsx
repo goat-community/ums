@@ -27,12 +27,14 @@ interface OnboardingProps {
 }
 
 function About() {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <img src={M4CLogoSmall} width="200px" style={{ marginLeft: -23 }} />
       <Margin margin="15px 0" />
       <Typography variant="h6" color="black">
-        The application was developed by:
+        {t("introduction.wasDevelopedBy")}
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
         <img src={Plan4BetterLogo} width="auto" height="28px" alt="p4b-logo" />
@@ -41,11 +43,13 @@ function About() {
       </Stack>
       <Margin margin="15px 5px" />
       <Typography fontSize={13} color="black">
-        This project is funded by EIT Urban Mobility, an initiative of the European
-        Institute of Innovation and Technology (EIT), a body of the European Union. EIT
-        Urban Mobility acts to accelerate positive change on mobility to make urban spaces
-        more liveable. Learn more:{" "}
-        <a href="eiturbanmobility.eu" style={{ color: "blue" }}>
+        {t("introduction.projectDescription")}{" "}
+        <a
+          href="https://eiturbanmobility.eu"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "blue" }}
+        >
           eiturbanmobility.eu
         </a>
       </Typography>
@@ -144,7 +148,7 @@ export function Onboarding(props: OnboardingProps) {
           ) : (
             <Link to="/">
               <Button variant="text" sx={{ color: "white" }} onClick={skip_onboarding}>
-                Skip
+                {t("tutorial.skip")}
               </Button>
             </Link>
           )}
@@ -164,7 +168,9 @@ export function Onboarding(props: OnboardingProps) {
               set_page_index((currPage) => currPage + 1);
             }}
           >
-            {page_index === pages.length - 1 ? "Let's go!" : "Continue"}
+            {page_index === pages.length - 1
+              ? t("tutorial.letsGo")
+              : t("tutorial.continue")}
           </Button>
         </Stack>
       </Section>
