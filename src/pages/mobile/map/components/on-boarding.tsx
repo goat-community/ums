@@ -14,8 +14,9 @@ import FifteenMinute from "@images/15-min.jpg";
 import EITLogo from "@images/eit.png";
 import HumankindLogo from "@images/humankind.png";
 import IsochroneImage from "@images/isochrone.jpg";
-import M4CImage from "@images/m4c-big.png";
+import M4CLogoSmall from "@images/logo-horizontal-black.png";
 import Plan4BetterLogo from "@images/p4b.png";
+import M4CImage from "@images/simplified_logo_primary.jpg";
 import TumLogo from "@images/tum.png";
 
 const USER_SEEN_ONBOARDING = "USER_SEEN_ONBOARDING";
@@ -26,12 +27,14 @@ interface OnboardingProps {
 }
 
 function About() {
+  const { t } = useTranslation();
+
   return (
     <Container>
-      <img src={M4CImage} width="200px" />
+      <img src={M4CLogoSmall} width="200px" style={{ marginLeft: -23 }} />
       <Margin margin="15px 0" />
       <Typography variant="h6" color="black">
-        The application was developed by:
+        {t("introduction.wasDevelopedBy")}
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
         <img src={Plan4BetterLogo} width="auto" height="28px" alt="p4b-logo" />
@@ -39,12 +42,14 @@ function About() {
         <img src={TumLogo} width="auto" height="28px" alt="tum-logo" />
       </Stack>
       <Margin margin="15px 5px" />
-      <Typography variant="h6" color="black">
-        This project is funded by EIT Urban Mobility, an initiative of the European
-        Institute of Innovation and Technology (EIT), a body of the European Union. EIT
-        Urban Mobility acts to accelerate positive change on mobility to make urban spaces
-        more liveable. Learn more:{" "}
-        <a href="eiturbanmobility.eu" style={{ color: "blue" }}>
+      <Typography fontSize={13} color="black">
+        {t("introduction.projectDescription")}{" "}
+        <a
+          href="https://eiturbanmobility.eu"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "blue" }}
+        >
           eiturbanmobility.eu
         </a>
       </Typography>
@@ -126,7 +131,7 @@ export function Onboarding(props: OnboardingProps) {
           {pages[page_index].title}
         </Typography>
         <Margin margin="20px 0" />
-        <Typography fontSize={14} color="white">
+        <Typography fontSize={13} color="white">
           {pages[page_index].text}
         </Typography>
 
@@ -143,7 +148,7 @@ export function Onboarding(props: OnboardingProps) {
           ) : (
             <Link to="/">
               <Button variant="text" sx={{ color: "white" }} onClick={skip_onboarding}>
-                Skip
+                {t("tutorial.skip")}
               </Button>
             </Link>
           )}
@@ -163,7 +168,9 @@ export function Onboarding(props: OnboardingProps) {
               set_page_index((currPage) => currPage + 1);
             }}
           >
-            {page_index === pages.length - 1 ? "Let's go!" : "Continue"}
+            {page_index === pages.length - 1
+              ? t("tutorial.letsGo")
+              : t("tutorial.continue")}
           </Button>
         </Stack>
       </Section>
@@ -191,7 +198,7 @@ const Section = styled.section`
   right: 0;
   left: 0;
   bottom: 0;
-  height: 260px;
+  height: 300px;
   background-color: ${D.PRIMARY_COLOR};
   padding: 60px 20px 0;
   border-radius: 28px 28px 0 0;

@@ -26,25 +26,13 @@ interface SurveyProps {
 function SurveyQuestions(props: {
   amentities_list: Amenities;
   amentities_filtered: string[];
+  category_color: string;
   on_change: (e: Record<string, FlowerMinutes>) => void;
 }) {
   const { t } = useTranslation();
 
   return (
     <>
-      {/* <SurveyQuestionsContainer>
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          sx={{ width: "150px", marginLeft: "105px" }}
-        >
-          {FLOWER_PROXIMITY_WITH_LABEL.map((proximity) => (
-            <Typography key={proximity} variant="h6">
-              {proximity}
-            </Typography>
-          ))}
-        </Stack>
-      </SurveyQuestionsContainer> */}
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
           <Typography variant="h6" sx={{ width: 250 }}>
@@ -65,7 +53,7 @@ function SurveyQuestions(props: {
             <Slider
               min={0}
               max={20}
-              color={"secondary"}
+              sx={{ color: props.category_color || "#ff0017" }}
               valueLabelDisplay="auto"
               value={props.amentities_list[key]}
               disabled={props.amentities_list[key] === null}
@@ -78,7 +66,7 @@ function SurveyQuestions(props: {
           <RoudedBG>
             <Checkbox
               size="small"
-              color="secondary"
+              sx={{ color: props.category_color || "#ff0017" }}
               defaultChecked={props.amentities_list[key] === null}
               onChange={() => {
                 if (props.amentities_list[key] != false) {
@@ -92,7 +80,7 @@ function SurveyQuestions(props: {
               }}
             />
             <Typography variant="h6" width={170}>
-              Not relevant
+              {t("placeholders.howDoesYourCityScore")}
             </Typography>
           </RoudedBG>
         </SurveyQuestionsContainer>
@@ -148,12 +136,13 @@ export default function Survey(props: SurveyProps) {
         </TypoGraphyContainer>
         <Margin margin="25px 0 0 0" />
         <Typography variant="h3" fontWeight="bold">
-          {convert_to_pascal(amenity_group)}
+          {t(`amenitiesGroup.${amenity_group}`)}
         </Typography>
         <Margin margin="50px 0 0 0" />
         <SurveyQuestions
           amentities_filtered={amentities_filtered}
           amentities_list={amentities_list}
+          category_color={D.FLOWER_CATEGORIES_COLOR[amenity_group]}
           on_change={(changed_proximity) => {
             dispatch(set_amenity(changed_proximity));
           }}

@@ -74,7 +74,7 @@ export default function PopupTooltip() {
                     )}
                     {popupInfo.content["score"] && (
                       <Chip
-                        label={popupInfo.content[key]}
+                        label={popupInfo.content["score"]}
                         clickable={false}
                         sx={{
                           mb: 1,
@@ -83,6 +83,10 @@ export default function PopupTooltip() {
                           backgroundColor: `rgb(${popupInfo.content[
                             "color"
                           ].toString()})`,
+                          color:
+                            parseInt(popupInfo.content["score"].split(" / ")[0]) < 4
+                              ? "white"
+                              : "black",
                         }}
                       />
                     )}
