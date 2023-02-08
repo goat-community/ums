@@ -80,7 +80,7 @@ function SurveyQuestions(props: {
               }}
             />
             <Typography fontSize={9} width={80}>
-              {t("placeholders.howDoesYourCityScore")}
+              {t("survey.notRelevant")}
             </Typography>
           </RoudedBG>
         </SurveyQuestionsContainer>
