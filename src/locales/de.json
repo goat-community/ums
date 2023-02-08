@@ -85,16 +85,17 @@
     "none": "None"
   },
   "baseMaps": {
+    "title": "Kartenstil",
     "highFidelity": "High Fidelity",
-    "highFidelityDescription": "Great for public presentations",
-    "sateliteStreets": "Satellite Streets",
-    "sateliteStreetsDescription": "As seen from space",
-    "light": "Light",
-    "lightDescription": "For highlighting the data overlays",
-    "dark": "Dark",
-    "darkDescription": "For highlighting the data overlays",
-    "traffic": "Traffic",
-    "trafficDescription": "Live traffic data"
+    "highFidelityDescription": "Ideal für öffentliche Präsentationen",
+    "sateliteStreets": "Satelliten-Straßen",
+    "sateliteStreetsDescription": "Aus dem Weltraum gesehen",
+    "light": "Licht",
+    "lightDescription": "Zum Hervorheben der Datenüberlagerungen",
+    "dark": "Dunkel",
+    "darkDescription": "Zum Hervorheben der Datenüberlagerungen",
+    "traffic": "Verkehr",
+    "trafficDescription": "Live-Verkehrsdaten"
   },
   "bars": {
     "map": "Karte",
@@ -108,18 +109,18 @@
     "editPersonalData": "Möchten Sie Ihr persönliches Profil anpassen?",
     "back": "Zurück",
     "editFlower": "Profil bearbeiten",
-    "proximityFlowerDesc": "The 'Proximity Flower' helps map people's preferred city ammenities in relation to the distance to their homes",
+    "proximityFlowerDesc": "Die 'Proximity Flower' hilft dabei, die bevorzugten städtischen Einrichtungen im Verhältnis zur Entfernung zu ihrem Wohnort zu kartieren.",
     "createFlower": "Create Flower",
     "howDoesYourFlowerLook": "How does your flower looks like?",
 
-    "wasDevelopedBy": "The application was developed by:",
-    "projectDescription": " This project is funded by EIT Urban Mobility, an initiative of the European Institute of Innovation and Technology (EIT), a body of the European Union. EIT Urban Mobility acts to accelerate positive change on mobility to make urban spaces more liveable. Learn more:"
+    "wasDevelopedBy": "Die Anwendung wurde entwickelt von:",
+    "projectDescription": " Dieses Projekt wird von EIT Urban Mobility finanziert, einer Initiative des Europäischen Innovations- und Technologieinstituts (EIT), einer Einrichtung der Europäischen Union. EIT Urbane Mobilität setzt sich dafür ein, positive Veränderungen im Bereich der Mobilität zu beschleunigen, um städtische Räume lebenswerter zu machen. Mehr Informationen"
   },
   "survey": {
     "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (Erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhägig.",
     "continue": "Weiter",
     "back": "Zurück",
-    "notRelavent": "Nicht relevant"
+    "notRelevant": "Nicht relevant"
   },
   "isochrone": {
     "modes": {

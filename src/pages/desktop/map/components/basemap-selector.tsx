@@ -81,7 +81,7 @@ export function BaseMapSelector() {
             </Box>
 
             <Typography sx={{ m: 2 }} variant="h4">
-              Map Style
+              {t("baseMaps.title")}
             </Typography>
             <ListTile
               items={items}

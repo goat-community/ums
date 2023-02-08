@@ -48,7 +48,12 @@ function About() {
       <Margin margin="20px 10px" />
       <Typography fontSize="1.7vh" color="black">
         {t("introduction.projectDescription")}{" "}
-        <a href="eiturbanmobility.eu" style={{ color: "blue" }}>
+        <a
+          href="https://eiturbanmobility.eu"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "blue" }}
+        >
           eiturbanmobility.eu
         </a>
       </Typography>
