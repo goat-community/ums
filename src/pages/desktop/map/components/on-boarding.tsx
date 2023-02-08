@@ -37,7 +37,7 @@ function About() {
     <Container>
       <img src={M4CImage} width="200px" />
       <Margin margin="30px 0" />
-      <Typography fontSize="2vh" color="black">
+      <Typography fontSize="1.7vh" color="black">
         {t("introduction.wasDevelopedBy")}
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
@@ -46,7 +46,7 @@ function About() {
         <img src={TumLogo} width="auto" height="30vh" alt="tum-logo" />
       </Stack>
       <Margin margin="20px 10px" />
-      <Typography fontSize="2vh" color="black">
+      <Typography fontSize="1.7vh" color="black">
         {t("introduction.projectDescription")}{" "}
         <a href="eiturbanmobility.eu" style={{ color: "blue" }}>
           eiturbanmobility.eu
@@ -146,7 +146,7 @@ export function Onboarding(props: OnboardingProps) {
             {pages[page_index].title}
           </Typography>
           <Margin margin="20px 0" />
-          <Typography fontSize="2vh" color="black">
+          <Typography fontSize="1.7vh" color="black">
             {pages[page_index].text}
           </Typography>
         </Section>
@@ -192,13 +192,13 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   width: 550px;
-  height: 800px;
+  height: 650px;
   text-align: left;
 `;
 
 const Section = styled.section`
   position: absolute;
-  bottom: 50px;
+  bottom: 80px;
   height: 180px;
   padding: 0 45px;
 `;
