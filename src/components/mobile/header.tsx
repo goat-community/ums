@@ -19,7 +19,7 @@ import * as D from "@constants/design";
 import { LanguageSelector } from "@pages/desktop/map/components/language-selector";
 
 import Icon from "@images/icon.png";
-import Logo from "@images/m4c.png";
+import Logo from "@images/m4c-horizontal.png";
 
 export function Header() {
   const navigate = useNavigate();
