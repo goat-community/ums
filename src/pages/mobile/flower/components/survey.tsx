@@ -35,7 +35,7 @@ function SurveyQuestions(props: {
     <>
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
-          <Typography variant="h6" sx={{ width: 250 }}>
+          <Typography variant="h6" sx={{ width: 380, overflowWrap: "break-word" }}>
             {t(`amenities.${key}`)}
           </Typography>
           <Stack width={"100%"}>
@@ -79,7 +79,7 @@ function SurveyQuestions(props: {
                 }
               }}
             />
-            <Typography variant="h6" width={170}>
+            <Typography fontSize={9} width={80}>
               {t("placeholders.howDoesYourCityScore")}
             </Typography>
           </RoudedBG>
@@ -191,7 +191,5 @@ const RoudedBG = styled.div`
   border-radius: 20px;
   display: flex;
   align-items: center;
-  width: 110px;
-  padding: 0 5px;
-  margin-left: 10px;
+  width: 100px;
 `;

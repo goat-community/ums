@@ -61,7 +61,7 @@ export function Header(props: { position?: string; dark_theme?: boolean }) {
     <Section position={props.position || "fixed"}>
       <img
         src={props.dark_theme ? M4CLOGO : M4C_logo}
-        height="45px"
+        height="60px"
         style={{ marginLeft: -23 }}
       />
 
