@@ -35,7 +35,7 @@ function About() {
     <Container>
       <img src={M4CImage} width="200px" style={{ marginLeft: -23 }} />
       <Margin margin="30px 0" />
-      <Typography fontSize="1.7vh" color="black">
+      <Typography fontSize="16px" color="black">
         The application was developed by:
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
@@ -44,7 +44,7 @@ function About() {
         <img src={TumLogo} width="auto" height="30vh" alt="tum-logo" />
       </Stack>
       <Margin margin="20px 10px" />
-      <Typography fontSize="1.7vh" color="black">
+      <Typography fontSize="16px" color="black">
         This project is funded by EIT Urban Mobility, an initiative of the European
         Institute of Innovation and Technology (EIT), a body of the European Union. EIT
         Urban Mobility acts to accelerate positive change on mobility to make urban spaces
