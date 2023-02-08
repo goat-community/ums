@@ -39,9 +39,21 @@ function About() {
         The application was developed by:
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
-        <img src={Plan4BetterLogo} width="auto" height="30vh" alt="p4b-logo" />
-        <img src={HumankindLogo} width="auto" height="30vh" alt="humankind-logo" />
-        <img src={TumLogo} width="auto" height="30vh" alt="tum-logo" />
+        <img src={Plan4BetterLogo} width="auto" height="45vh" alt="p4b-logo" />
+        <img
+          src={HumankindLogo}
+          width="auto"
+          height="30vh"
+          alt="humankind-logo"
+          style={{ marginTop: 10 }}
+        />
+        <img
+          src={TumLogo}
+          width="auto"
+          height="30vh"
+          alt="tum-logo"
+          style={{ marginTop: 10 }}
+        />
       </Stack>
       <Margin margin="20px 10px" />
       <Typography fontSize="16px" color="black">
