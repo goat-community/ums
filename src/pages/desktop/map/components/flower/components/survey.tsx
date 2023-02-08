@@ -75,7 +75,7 @@ function SurveyQuestions(props: {
           <RoudedBG>
             <Checkbox
               size="small"
-              color="secondary"
+              sx={{ color: props.category_color || "#ff0017" }}
               defaultChecked={props.amentities_list[key] == null}
               onChange={() => {
                 if (props.amentities_list[key] != false) {

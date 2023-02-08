@@ -37,5 +37,5 @@ const ScoreHighlighter = styled.div<{ score: number; large: boolean }>`
   width: ${(props) => (props.large ? "65px" : "43px")};
   height: ${(props) => (props.large ? "30px" : "22px")};
   border-radius: 15px;
-  color: white;
+  color: ${(props) => (props.score > 4 ? "black" : "white")};
 `;

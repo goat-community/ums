@@ -19,7 +19,7 @@ import * as D from "@constants/design";
 import { LanguageSelector } from "@pages/desktop/map/components/language-selector";
 
 import Icon from "@images/icon.png";
-import Logo from "@images/m4c.png";
+import Logo from "@images/logo-horizontal-black.png";
 
 export function Header() {
   const navigate = useNavigate();
@@ -55,7 +55,13 @@ export function Header() {
         alignItems="center"
         padding="24px 10px 18px"
       >
-        <img src={Logo} width="50%" height="auto" alt="logo" />
+        <img
+          src={Logo}
+          width="50%"
+          height="auto"
+          alt="logo"
+          style={{ marginLeft: -13 }}
+        />
         <>
           <LanguageSelector />
           <Link to="/flower">

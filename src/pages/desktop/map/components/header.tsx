@@ -16,8 +16,8 @@ import { MAPBOX_TOKEN } from "@constants";
 
 import { Margin } from "@components/common";
 
-import M4CLOGO from "@images/m4c-big.png";
-import M4CLOGO_WHITE from "@images/m4c-white.png";
+import M4CLOGO_WHITE from "@images/logo-horizontal.png";
+import M4CLOGO from "@images/logo-horizontal-black.png";
 
 import { FlowerButton } from "./floating-flower";
 import { IsochroneButton } from "./isochrone-button";
@@ -59,7 +59,11 @@ export function Header(props: { position?: string; dark_theme?: boolean }) {
 
   return (
     <Section position={props.position || "fixed"}>
-      <img src={props.dark_theme ? M4CLOGO : M4C_logo} height="25px" />
+      <img
+        src={props.dark_theme ? M4CLOGO : M4C_logo}
+        height="45px"
+        style={{ marginLeft: -23 }}
+      />
 
       <Typography variant="h6" color={props.dark_theme ? "black" : M4C_logotext_color}>
         {t("placeholders.howDoesYourCityScore")}

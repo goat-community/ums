@@ -19,7 +19,7 @@ import FifteenMinute from "@images/15-min.jpg";
 import EITLogo from "@images/eit.png";
 import HumankindLogo from "@images/humankind.png";
 import IsochroneImage from "@images/isochrone.jpg";
-import M4CImage from "@images/m4c-big.png";
+import M4CImage from "@images/logo-horizontal-black.png";
 import Plan4BetterLogo from "@images/p4b.png";
 import TumLogo from "@images/tum.png";
 
@@ -35,7 +35,7 @@ function About() {
 
   return (
     <Container>
-      <img src={M4CImage} width="200px" />
+      <img src={M4CImage} width="200px" style={{ marginLeft: -23 }} />
       <Margin margin="30px 0" />
       <Typography fontSize="1.7vh" color="black">
         {t("introduction.wasDevelopedBy")}
@@ -132,9 +132,6 @@ export function Onboarding(props: OnboardingProps) {
             style={{
               borderRadius: pages[page_index].radius || 0,
               maxWidth: pages[page_index].width || "450px",
-              margin: "auto",
-              position: "absolute",
-              top: pages[page_index].top || "15px",
             }}
           />
         ) : (
@@ -146,7 +143,7 @@ export function Onboarding(props: OnboardingProps) {
             {pages[page_index].title}
           </Typography>
           <Margin margin="20px 0" />
-          <Typography fontSize="1.7vh" color="black">
+          <Typography fontSize="16px" color="black">
             {pages[page_index].text}
           </Typography>
         </Section>
@@ -155,11 +152,11 @@ export function Onboarding(props: OnboardingProps) {
           justifyContent="space-between"
           alignItems="center"
           direction="row"
-          sx={{ position: "absolute", bottom: 20, left: 10, right: 20 }}
+          width={"85%"}
         >
           <Link to="/">
-            <Button variant="text" sx={{ color: "black" }} onClick={skip_onboarding}>
-              {t("tutorial.skip")}
+            <Button variant="outlined" sx={{ color: "black" }} onClick={skip_onboarding}>
+              Skip
             </Button>
           </Link>
           <Button
@@ -197,10 +194,7 @@ const Box = styled.div`
 `;
 
 const Section = styled.section`
-  position: absolute;
-  bottom: 80px;
-  height: 180px;
-  padding: 0 45px;
+  padding: 40px 45px;
 `;
 
 const Container = styled.section`
