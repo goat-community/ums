@@ -46,23 +46,24 @@ export function Header(props: { position?: string; dark_theme?: boolean }) {
   };
 
   const base_layers = {
-    "streets-v12": { logo: M4CLOGO, color: "black" },
-    "satellite-streets-v12": { logo: M4CLOGO_WHITE, color: "white" },
-    "light-v11": { logo: M4CLOGO, color: "black" },
-    "dark-v11": { logo: M4CLOGO_WHITE, color: "white" },
-    "navigation-day-v1": { logo: M4CLOGO, color: "black" },
+    "streets-v12": { logo: M4CLOGO, color: "black", marginLeft: -30 },
+    "satellite-streets-v12": { logo: M4CLOGO_WHITE, color: "white", marginLeft: 0 },
+    "light-v11": { logo: M4CLOGO, color: "black", marginLeft: -30 },
+    "dark-v11": { logo: M4CLOGO_WHITE, color: "white", marginLeft: 0 },
+    "navigation-day-v1": { logo: M4CLOGO, color: "black", marginLeft: -30 },
   };
 
   const current_style = mapStyleUrl?.split("/")?.pop();
   const M4C_logo = base_layers[current_style]?.logo || M4CLOGO;
   const M4C_logotext_color = base_layers[current_style]?.color || "black";
+  const marginLeft = base_layers[current_style]?.marginLeft || 0;
 
   return (
     <Section position={props.position || "fixed"}>
       <img
         src={props.dark_theme ? M4CLOGO : M4C_logo}
         height="60px"
-        style={{ marginLeft: -23 }}
+        style={{ marginLeft: marginLeft }}
       />
 
       <Typography variant="h6" color={props.dark_theme ? "black" : M4C_logotext_color}>
