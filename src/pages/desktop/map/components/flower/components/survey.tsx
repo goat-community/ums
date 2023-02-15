@@ -101,7 +101,7 @@ function SurveyQuestions(props: {
 export default function Survey(props: SurveyProps) {
   // const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(0);
   const amentities_list = useAppSelector((state) => state.flower.amenities);
   const { t } = useTranslation();
 

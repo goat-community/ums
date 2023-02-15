@@ -7,8 +7,6 @@ import styled from "styled-components";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Button, Checkbox, IconButton, Slider, Stack, Typography } from "@mui/material";
 
-import { convert_to_pascal } from "@utils";
-
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_amenities, persist_amenities, set_amenity } from "@context/flower";
@@ -92,7 +90,7 @@ function SurveyQuestions(props: {
 export default function Survey(props: SurveyProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(0);
   const amentities_list = useAppSelector((state) => state.flower.amenities);
   const { t } = useTranslation();
 
