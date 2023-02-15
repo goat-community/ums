@@ -75,6 +75,38 @@ function About() {
   );
 }
 
+function Feedback() {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <img src={M4CImage} width="400px" />
+      <Margin margin="10px 0" />
+      <Section>
+        <Typography variant="h2" fontWeight="bold" color="black" textAlign="left">
+          {t("tutorial.readyToUse")}
+        </Typography>
+        <Margin margin="20px 0" />
+        <Typography fontSize="16px" color="black">
+          {t("tutorial.readyToUseDesc")}
+        </Typography>
+      </Section>
+      <Margin margin="10px 0" />
+      <Section no_padding>
+        <Typography variant="h2" fontWeight="bold" color="black" textAlign="left">
+          {t("tutorial.giveUsFeedback")}
+        </Typography>
+        <Margin margin="20px 0" />
+        <Typography fontSize="16px" color="black">
+          {t("tutorial.giveUsFeedbackDesc")}{" "}
+          <BlueLink>{t("tutorial.giveUsFeedbackLink")}</BlueLink>{" "}
+          {t("tutorial.giveUsFeedbackDescHelper")}
+        </Typography>
+      </Section>
+    </>
+  );
+}
+
 export function Onboarding(props: OnboardingProps) {
   const [open, set_open] = useState<boolean>(false);
   const [page_index, set_page_index] = useState<number>(0);
@@ -101,7 +133,7 @@ export function Onboarding(props: OnboardingProps) {
       text: t("tutorial.Map4CitizensminuteDesc"),
       image: M4CImage,
       radius: 0,
-      top: 140,
+      margin: "130px 0",
     },
     {
       title: t("tutorial.15-minCity"),
@@ -121,10 +153,21 @@ export function Onboarding(props: OnboardingProps) {
     },
     {
       title: t("tutorial.readyToUse"),
-      text: t("tutorial.readyToUseDesc"),
+      text: "",
       component: <About />,
       radius: 0,
       top: 0,
+      no_text: true,
+      is_component: true,
+    },
+    {
+      title: "Feedback",
+      text: "Feedback",
+      component: <Feedback />,
+      radius: 0,
+      top: 0,
+      no_text: true,
+      is_component: true,
     },
   ];
 
@@ -142,34 +185,38 @@ export function Onboarding(props: OnboardingProps) {
         </DialogTitle>
       )}
       <Box>
-        {pages[page_index]?.image ? (
+        {pages[page_index]?.is_component ? (
+          <>{pages[page_index]?.component}</>
+        ) : (
           <img
             src={pages[page_index].image}
             alt="onboard"
             style={{
               borderRadius: pages[page_index].radius || 0,
               maxWidth: pages[page_index].width || "450px",
+              margin: pages[page_index]?.margin || 0,
             }}
           />
-        ) : (
-          <>{pages[page_index]?.component}</>
         )}
 
-        <Section>
-          <Typography variant="h2" fontWeight="bold" color="black" textAlign="left">
-            {pages[page_index].title}
-          </Typography>
-          <Margin margin="20px 0" />
-          <Typography fontSize="16px" color="black">
-            {pages[page_index].text}
-          </Typography>
-        </Section>
+        {!pages[page_index].no_text && (
+          <Section>
+            <Typography variant="h2" fontWeight="bold" color="black" textAlign="left">
+              {pages[page_index].title}
+            </Typography>
+            <Margin margin="20px 0" />
+            <Typography fontSize="16px" color="black">
+              {pages[page_index].text}
+            </Typography>
+          </Section>
+        )}
 
         <Stack
           justifyContent="space-between"
           alignItems="center"
           direction="row"
           width={"85%"}
+          style={{ position: "absolute", bottom: 20, left: "7.5%", paddingBottom: 10 }}
         >
           <Link to="/">
             <Button variant="outlined" sx={{ color: "black" }} onClick={skip_onboarding}>
@@ -210,10 +257,14 @@ const Box = styled.div`
   text-align: left;
 `;
 
-const Section = styled.section`
-  padding: 40px 45px;
+const Section = styled.section<{ no_padding?: boolean }>`
+  padding: ${(props) => (props.no_padding ? "0 45px" : "40px 45px")};
 `;
 
 const Container = styled.section`
   padding: 0 45px;
+`;
+
+const BlueLink = styled.a`
+  color: blue;
 `;

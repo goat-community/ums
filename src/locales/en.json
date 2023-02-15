@@ -151,7 +151,11 @@
     "isochronesDesc": "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
     "readyToUse": "Ready to use?",
     "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
-    "developedBy": "The application was developed by:"
+    "developedBy": "The application was developed by:",
+    "giveUsFeedback": "Would you like to give us feedback?",
+    "giveUsFeedbackDesc": "We look forward to receiving your comments and suggestions for improvement: ",
+    "giveUsFeedbackDescHelper": "(use subject \"Feedback Map4Citizens\").",
+    "giveUsFeedbackLink": "https://plan4better.de/en/contact/"
   },
   "profile": {
     "reach": "Want to reach in",
