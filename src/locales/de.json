@@ -148,7 +148,11 @@
     "isochronesDesc": "Durch die Berechnung von Isochronen bekommen Sie ein Gefühl dafür, wie weit Sie zu Fuß, mit dem Fahrrad oder mit öffentlichen Verkehrsmitteln kommen und welche Ziele Sie erreichen können. Darüber hinaus können Sie sich zusätzliche Layer wie Lärmpegel, Bevölkerungsdichte, Flächennutzung und ÖV-Güteklassen anzeigen lassen.",
     "readyToUse": "Los geht's!",
     "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, Ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen.\r\n Viel Spaß!",
-    "developedBy": "Diese Anwendung wurde entwickelt von:"
+    "developedBy": "Diese Anwendung wurde entwickelt von:",
+    "giveUsFeedback": "Möchten Sie uns Feedback geben?",
+    "giveUsFeedbackDesc": "Wir freuen uns auf Ihre Kommentare und Verbesserungsvorschläge: ",
+    "giveUsFeedbackDescHelper": "(Betreff \"Feedback Map4Citizens\").",
+    "giveUsFeedbackLink": "https://plan4better.de/kontakt/"
   },
   "profile": {
     "reach": "Want to reach in",
