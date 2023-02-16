@@ -2,9 +2,11 @@ import type { Amenities, FlowerMinutes } from "@types";
 
 import { object_is_empty } from "@utils";
 
+import { RootState } from "@context";
+
 import { AMENITIES } from "@constants/flower";
 
-import { setAmenities, setSurveyDone } from "./flowers-reducer";
+import { resetFlower, setAmenities, setSurveyDone } from "./flowers-reducer";
 
 export function get_amenities() {
   return (dispatch: CallableFunction) => {
@@ -26,5 +28,12 @@ export function persist_amenities(amenities: Amenities) {
 export function set_amenity(amenity: Record<string, FlowerMinutes>) {
   return (dispatch: CallableFunction) => {
     dispatch(setAmenities(amenity));
+  };
+}
+
+export function resetToStandardFlower() {
+  return (dispatch: CallableFunction, getState: () => RootState) => {
+    dispatch(resetFlower());
+    dispatch(persist_amenities(getState().flower.amenities));
   };
 }

@@ -112,9 +112,9 @@
     "proximityFlowerDesc": "Die 'Proximity Flower' hilft dabei, die bevorzugten städtischen Einrichtungen im Verhältnis zur Entfernung zu Ihrem Wohnort zu kartieren.",
     "createFlower": "Blume erstellen",
     "howDoesYourFlowerLook": "Wie sieht Ihre Blume aus?",
-
     "wasDevelopedBy": "Die Anwendung wurde entwickelt von:",
-    "projectDescription": " Dieses Projekt wird von EIT Urban Mobility finanziert, einer Initiative des Europäischen Innovations- und Technologieinstituts (EIT), einer Einrichtung der Europäischen Union. EIT Urbane Mobilität setzt sich dafür ein, positive Veränderungen im Bereich der Mobilität zu beschleunigen, um städtische Räume lebenswerter zu machen. Mehr Informationen"
+    "projectDescription": " Dieses Projekt wird von EIT Urban Mobility finanziert, einer Initiative des Europäischen Innovations- und Technologieinstituts (EIT), einer Einrichtung der Europäischen Union. EIT Urbane Mobilität setzt sich dafür ein, positive Veränderungen im Bereich der Mobilität zu beschleunigen, um städtische Räume lebenswerter zu machen. Mehr Informationen",
+    "resetToStandard": "Auf Normal zurücksetzen"
   },
   "survey": {
     "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhängig.",
