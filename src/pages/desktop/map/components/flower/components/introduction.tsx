@@ -23,7 +23,7 @@ export default function Introduction(props: IntroductionProps) {
 
   function reset_to_standard() {
     dispatch(resetToStandardFlower());
-    // return props.onBackClick();
+    return props.onBackClick();
   }
 
   if (surevey_has_done) {
