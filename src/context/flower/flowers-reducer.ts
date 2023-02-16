@@ -77,6 +77,9 @@ export const flower = createSlice({
     setScoreLayerMode: (state: typeof initialState, action: PayloadAction<boolean>) => {
       state.score_layer_visible = action.payload;
     },
+    resetFlower: (state: typeof initialState) => {
+      state.amenities = initialState.amenities;
+    },
   },
 });
 
@@ -86,5 +89,6 @@ export const {
   setSurveyDone,
   setScoreLayerMode,
   setFlowerOpen,
+  resetFlower,
 } = flower.actions;
 export default flower.reducer;

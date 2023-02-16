@@ -4,7 +4,9 @@ import styled from "styled-components";
 
 import { Button, Dialog, Stack, Typography } from "@mui/material";
 
-import { useAppSelector } from "@hooks/context";
+import { useAppDispatch, useAppSelector } from "@hooks/context";
+
+import { resetToStandardFlower } from "@context/flower";
 
 import { Margin } from "@components/common";
 import { Flower } from "@components/common/flower-generator";
@@ -15,12 +17,23 @@ interface IntroductionProps {
 }
 
 export default function Introduction(props: IntroductionProps) {
+  const dispatch = useAppDispatch();
   const surevey_has_done = useAppSelector((state) => state.flower.survey_done_already);
   const { t } = useTranslation();
+
+  function reset_to_standard() {
+    dispatch(resetToStandardFlower());
+    return props.onBackClick();
+  }
 
   if (surevey_has_done) {
     return (
       <Dialog open={true} maxWidth="xl">
+        <FloatingResetButton>
+          <Button variant="contained" color="error" onClick={reset_to_standard}>
+            {t("introduction.resetToStandard")}
+          </Button>
+        </FloatingResetButton>
         <Box>
           <Flower />
           <Margin margin="25px 0 0 0" />
@@ -85,4 +98,10 @@ const Box = styled.div`
   padding: 0 53px;
   height: 650px;
   width: 700px;
+`;
+
+const FloatingResetButton = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
 `;
