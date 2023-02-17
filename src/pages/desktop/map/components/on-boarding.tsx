@@ -99,7 +99,11 @@ function Feedback() {
         <Margin margin="20px 0" />
         <Typography fontSize="16px" color="black">
           {t("tutorial.giveUsFeedbackDesc")}{" "}
-          <BlueLink>{t("tutorial.giveUsFeedbackLink")}</BlueLink>{" "}
+          <BlueLink>
+            <a href={t("tutorial.giveUsFeedbackLink")} target="_blank" rel="noreferrer">
+              {t("tutorial.giveUsFeedbackLink")}
+            </a>{" "}
+          </BlueLink>{" "}
           {t("tutorial.giveUsFeedbackDescHelper")}
         </Typography>
       </Section>
