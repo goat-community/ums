@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+
+import { Tooltip } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -10,18 +13,25 @@ import LightIcon from "@images/icon.png";
 import PurpleIcon from "@images/purple_icon.png";
 
 export function FlowerButton() {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const layerVisibility = useAppSelector((state) => state.flower.score_layer_visible);
   const icon = layerVisibility ? LightIcon : PurpleIcon;
 
+  const tooltip_title = layerVisibility
+    ? t("tooltips.disable15MinScore")
+    : t("tooltips.enable15MinScore");
+
   return (
-    <Button
-      is_picking={layerVisibility}
-      is_picked={layerVisibility}
-      onClick={() => dispatch(setScoreLayerMode(!layerVisibility))}
-    >
-      <img src={icon} alt="icon" width="24" height="24" />
-    </Button>
+    <Tooltip title={tooltip_title} arrow>
+      <Button
+        is_picking={layerVisibility}
+        is_picked={layerVisibility}
+        onClick={() => dispatch(setScoreLayerMode(!layerVisibility))}
+      >
+        <img src={icon} alt="icon" width="24" height="24" />
+      </Button>
+    </Tooltip>
   );
 }
 

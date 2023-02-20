@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Close, List } from "@mui/icons-material";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Fab from "@mui/material/Fab";
 
 import { useAppSelector } from "@hooks/context";
@@ -13,7 +13,7 @@ import * as D from "@constants/design";
 
 import { ArrowPopper, SkeletonImage } from "@components/common";
 
-export function Legend() {
+export function LegendSelector() {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
   const activeLayers = useAppSelector(map_layers_visible);
@@ -67,13 +67,15 @@ export function Legend() {
         arrow={true}
         onClose={() => setOpen(false)}
       >
-        <Fab
-          onClick={() => setOpen(!open)}
-          size="large"
-          sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
-        >
-          <List />
-        </Fab>
+        <Tooltip title={t("tooltips.openLegends")} arrow placement="left">
+          <Fab
+            onClick={() => setOpen(!open)}
+            size="large"
+            sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+          >
+            <List />
+          </Fab>
+        </Tooltip>
       </ArrowPopper>
     </>
   );

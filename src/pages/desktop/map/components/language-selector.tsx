@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Paper } from "@mui/material";
+import { Paper, Tooltip } from "@mui/material";
 import Fab from "@mui/material/Fab";
 
 import * as D from "@constants/design";
@@ -64,27 +64,29 @@ export function LanguageSelector() {
         arrow={false}
         onClose={() => setOpen(false)}
       >
-        <Fab
-          onClick={() => {
-            if (items.length > 2) {
-              setOpen(!open);
-            } else {
-              const languageIndex = selected[0] === 0 ? 1 : 0;
-              setSelected([languageIndex]);
-              const lang = abbreviations[items[languageIndex].value];
-              i18n.changeLanguage(lang);
-            }
-          }}
-          size="large"
-          sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
-        >
-          <img
-            style={{ borderRadius: "50%" }}
-            width={26}
-            height={26}
-            src={items[selected[0]].thumbnail}
-          />
-        </Fab>
+        <Tooltip title={"Change the language"} arrow placement="right">
+          <Fab
+            onClick={() => {
+              if (items.length > 2) {
+                setOpen(!open);
+              } else {
+                const languageIndex = selected[0] === 0 ? 1 : 0;
+                setSelected([languageIndex]);
+                const lang = abbreviations[items[languageIndex].value];
+                i18n.changeLanguage(lang);
+              }
+            }}
+            size="large"
+            sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+          >
+            <img
+              style={{ borderRadius: "50%" }}
+              width={26}
+              height={26}
+              src={items[selected[0]].thumbnail}
+            />
+          </Fab>
+        </Tooltip>
       </ArrowPopper>
     </>
   );

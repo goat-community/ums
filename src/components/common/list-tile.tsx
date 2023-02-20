@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import { useTranslation } from "react-i18next";
 
 import {
   Box,
@@ -84,8 +83,6 @@ function ListTileLabel({
   thumbnailHeight?: number;
   reverse: boolean;
 }) {
-  const { t } = useTranslation();
-
   return (
     <Box
       sx={{

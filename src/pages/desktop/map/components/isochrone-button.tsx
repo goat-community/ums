@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
+import { Tooltip } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -12,6 +14,7 @@ import { temprorary_open } from "@context/openers";
 import * as D from "@constants/design";
 
 export function IsochroneButton() {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const is_picking = useAppSelector((state) => state.map.picking_mode);
   const is_loading = useAppSelector((state) => state.network.loading);
@@ -33,14 +36,20 @@ export function IsochroneButton() {
     dispatch(get_amenities());
   }, []);
 
+  const tooltip_title = is_picking
+    ? t("tooltips.disableIsochrone")
+    : t("tooltips.enableIsochrone");
+
   return (
-    <Button
-      is_picking={is_picking}
-      isochrone_shown={isochrone_shown}
-      onClick={button_action}
-    >
-      <FmdGoodIcon sx={{ color: is_picking ? "white" : D.PRIMARY_COLOR }} />
-    </Button>
+    <Tooltip title={tooltip_title} arrow>
+      <Button
+        is_picking={is_picking}
+        isochrone_shown={isochrone_shown}
+        onClick={button_action}
+      >
+        <FmdGoodIcon sx={{ color: is_picking ? "white" : D.PRIMARY_COLOR }} />
+      </Button>
+    </Tooltip>
   );
 }
 
