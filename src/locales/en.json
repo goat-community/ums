@@ -173,5 +173,17 @@
     "titles": {
       "building": "Building"
     }
+  },
+  "tooltips": {
+    "enableIsochrone": "Enable isochrone function",
+    "disableIsochrone": "Disable isochrone function",
+    "enable15MinScore": "Enable 15-min-score",
+    "disable15MinScore": "Disable 15-min-score",
+    "customizeFlower": "Customize your personal Flower",
+    "openPois": "Available Point of Interests",
+    "openBaseMap": "Base maps",
+    "openLayers": "Available layers",
+    "openInformation": "Useful information",
+    "openLegends": "Map Legends"
   }
 }

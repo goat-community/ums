@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Close } from "@mui/icons-material";
 import MapIcon from "@mui/icons-material/Map";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Fab from "@mui/material/Fab";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
@@ -100,13 +100,15 @@ export function BaseMapSelector() {
         arrow={true}
         onClose={() => setOpen(false)}
       >
-        <Fab
-          onClick={() => setOpen(!open)}
-          size="large"
-          sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
-        >
-          <MapIcon />
-        </Fab>
+        <Tooltip title={t("tooltips.openBaseMap")} arrow placement="left">
+          <Fab
+            onClick={() => setOpen(!open)}
+            size="large"
+            sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+          >
+            <MapIcon />
+          </Fab>
+        </Tooltip>
       </ArrowPopper>
     </>
   );

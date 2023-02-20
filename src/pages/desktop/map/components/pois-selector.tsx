@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Close } from "@mui/icons-material";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
-import { Box, Fab, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Fab, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -77,13 +77,15 @@ export function PoisSelector() {
         arrow={true}
         onClose={() => setOpen(false)}
       >
-        <Fab
-          onClick={() => setOpen(!open)}
-          size="large"
-          sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
-        >
-          <HomeWorkOutlinedIcon />
-        </Fab>
+        <Tooltip title={t("tooltips.openPois")} arrow placement="left">
+          <Fab
+            onClick={() => setOpen(!open)}
+            size="large"
+            sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+          >
+            <HomeWorkOutlinedIcon />
+          </Fab>
+        </Tooltip>
       </ArrowPopper>
     </>
   );
