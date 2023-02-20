@@ -14,7 +14,7 @@ export function ProfileButton(props: ProfileButtonProps) {
 
   return (
     <Section>
-      <Button variant="contained" onClick={props.on_click} size="large">
+      <Button disableRipple variant="contained" onClick={props.on_click} size="large">
         <img src={Icon} width="22" height="22" alt="icon" style={{ marginBottom: 2 }} />
         <Typography variant="h5" color="white" ml={1}>
           {t("actions.flower")}
