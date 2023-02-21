@@ -66,7 +66,7 @@ export function useCalculateStandardScore() {
     health: 0,
     services: 0,
     sport: 0,
-    tourism: 0,
+    leisure: 0,
     transport: 0,
     shop: 0,
     education: 0,

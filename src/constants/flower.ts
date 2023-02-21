@@ -53,7 +53,7 @@ export const AMENITIES_GROUP = {
   health: ["dentist", "general_practitioner", "pharmacy"],
   services: ["atm", "bank", "post_office", "post_box"],
   sport: ["gym", "yoga"],
-  tourism: ["cinema", "museum", "hotel", "playground"],
+  leisure: ["cinema", "museum", "hotel", "playground"],
   shop: [
     "organic_supermarket",
     "discount_supermarket",
