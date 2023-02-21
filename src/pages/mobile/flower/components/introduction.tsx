@@ -34,7 +34,7 @@ export default function Introduction(props: IntroductionProps) {
             {t("introduction.resetToStandard")}
           </Button>
         </FloatingResetButton>
-        <Flower />
+        <Flower width={300} height={300} />
         <Margin margin="15px 0 0 0" />
         <Typography variant="h3">
           Do you want to edit your personal mobility flower?
