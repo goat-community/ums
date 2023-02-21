@@ -114,7 +114,7 @@
     "howDoesYourFlowerLook": "Wie sieht Ihre Blume aus?",
     "wasDevelopedBy": "Die Anwendung wurde entwickelt von:",
     "projectDescription": " Dieses Projekt wird von EIT Urban Mobility finanziert, einer Initiative des Europäischen Innovations- und Technologieinstituts (EIT), einer Einrichtung der Europäischen Union. EIT Urbane Mobilität setzt sich dafür ein, positive Veränderungen im Bereich der Mobilität zu beschleunigen, um städtische Räume lebenswerter zu machen. Mehr Informationen",
-    "resetToStandard": "Auf Normal zurücksetzen"
+    "resetToStandard": "Zurücksetzen"
   },
   "survey": {
     "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhängig.",
@@ -169,5 +169,17 @@
     "titles": {
       "building": "Gebäude"
     }
-  }
+  },
+"tooltips": {
+  "enableIsochrone": "Isochronen berechnen",
+  "disableIsochrone": "Isochronenberechnung beenden",
+  "enable15MinScore": "15-Min-Score aktivieren",
+  "disable15MinScore": "15-Min-Score deaktivieren",
+  "customizeFlower": "15-Min-Score individualisieren",
+  "openPois": "Points-of-Interest einblenden",
+  "openBaseMap": "Hintergrundkarten",
+  "openLayers": "Weitere Layer",
+  "openInformation": "Über Map4Citizens",
+  "openLegends": "Legende"
+}
 }
