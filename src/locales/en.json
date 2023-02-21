@@ -184,6 +184,7 @@
     "openBaseMap": "Base maps",
     "openLayers": "Available layers",
     "openInformation": "Useful information",
-    "openLegends": "Map Legends"
+    "openLegends": "Map Legends",
+    "changeLanguage": "Change the Language"
   }
 }

@@ -170,16 +170,17 @@
       "building": "Gebäude"
     }
   },
-"tooltips": {
-  "enableIsochrone": "Isochronen berechnen",
-  "disableIsochrone": "Isochronenberechnung beenden",
-  "enable15MinScore": "15-Min-Score aktivieren",
-  "disable15MinScore": "15-Min-Score deaktivieren",
-  "customizeFlower": "15-Min-Score individualisieren",
-  "openPois": "Points-of-Interest einblenden",
-  "openBaseMap": "Hintergrundkarten",
-  "openLayers": "Weitere Layer",
-  "openInformation": "Über Map4Citizens",
-  "openLegends": "Legende"
-}
+  "tooltips": {
+    "enableIsochrone": "Isochronen berechnen",
+    "disableIsochrone": "Isochronenberechnung beenden",
+    "enable15MinScore": "15-Min-Score aktivieren",
+    "disable15MinScore": "15-Min-Score deaktivieren",
+    "customizeFlower": "15-Min-Score individualisieren",
+    "openPois": "Points-of-Interest einblenden",
+    "openBaseMap": "Hintergrundkarten",
+    "openLayers": "Weitere Layer",
+    "openInformation": "Über Map4Citizens",
+    "openLegends": "Legende",
+    "changeLanguage": "Sprache ändern"
+  }
 }

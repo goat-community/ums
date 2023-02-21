@@ -10,7 +10,7 @@ import { ArrowPopper } from "@components/common/arrow-popper";
 import { ListTile } from "@components/common/list-tile";
 
 export function LanguageSelector() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const items = [
     {
       value: "english",
@@ -64,7 +64,7 @@ export function LanguageSelector() {
         arrow={false}
         onClose={() => setOpen(false)}
       >
-        <Tooltip title={"Change the language"} arrow placement="right">
+        <Tooltip title={t("tooltips.changeLanguage")} arrow placement="right">
           <Fab
             onClick={() => {
               if (items.length > 2) {
