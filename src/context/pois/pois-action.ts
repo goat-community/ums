@@ -34,6 +34,8 @@ export function get_pois_aois() {
                   },
                 ],
               };
+            } else {
+              console.log(element.properties.category);
             }
           }
 

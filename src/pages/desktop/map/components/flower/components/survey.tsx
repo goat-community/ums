@@ -198,7 +198,7 @@ const Box = styled.div`
   align-items: center;
   position: relative;
   padding: 10px 10px 0px;
-  height: 650px;
+  height: 700px;
   width: 800px;
 `;
 

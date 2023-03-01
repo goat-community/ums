@@ -46,9 +46,15 @@ const initialState = {
     subway_entrance: 15,
     supermarket: 15,
     tram_stop: 15,
+    fuel_station: 15,
+    recycling_station: 15,
+    chemists: 15,
+    nurseries: 15,
+    underground_stop: 15,
+    railway_station: 15,
   } as Amenities,
   survey_done_already: false as boolean,
-  score_layer_visible: true as boolean, //TODO: Move to type
+  score_layer_visible: true as boolean,
   flower_open: false as boolean,
 };
 

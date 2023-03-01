@@ -49,9 +49,24 @@ export const AMENITIES_LIST = [
 
 export const AMENITIES_GROUP = {
   food: ["restaurant", "fast_food", "cafe", "pub", "bar"],
-  transport: ["bus_stop", "tram_stop", "bike_sharing", "car_sharing", "charging_station"],
+  transport: [
+    "bus_stop",
+    "tram_stop",
+    "bike_sharing",
+    "car_sharing",
+    "charging_station",
+    "underground_stop",
+    "railway_station",
+  ],
   health: ["dentist", "general_practitioner", "pharmacy"],
-  services: ["atm", "bank", "post_office", "post_box"],
+  services: [
+    "atm",
+    "bank",
+    "post_office",
+    "post_box",
+    "fuel_station",
+    "recycling_station",
+  ],
   sport: ["gym", "yoga"],
   leisure: ["cinema", "museum", "hotel", "playground"],
   shop: [
@@ -62,6 +77,7 @@ export const AMENITIES_GROUP = {
     "marketplace",
     "bakery",
     "butcher",
+    "chemists",
   ],
   education: [
     "kindergarten",
@@ -69,5 +85,6 @@ export const AMENITIES_GROUP = {
     "grundschule",
     "realschule",
     "gymnasium",
+    "nurseries",
   ],
 };
