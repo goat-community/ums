@@ -73,12 +73,12 @@
     "supermarket": "Supermarkt",
     "tram_stop": "Tram Haltestelle",
     "yoga": "Yoga Studio",
-    "underground_stop": "Underground Stop",
-    "railway_station": "Railway Station",
-    "fuel_station": "Fuel Station",
+    "underground_stop": "U-Bahn Haltestelle",
+    "railway_station": "Bahnhof",
+    "fuel_station": "Tankstelle",
     "recycling_station": "Recycling Station",
-    "chemists": "Chemists",
-    "nurseries": "Nurseries"
+    "chemists": "Drogerie",
+    "nurseries": "Kitas"
   },
   "layers": {
     "noise_levels_day": "Lärm von Hauptverkehrsstraßen (Tag)",
