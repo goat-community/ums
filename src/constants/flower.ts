@@ -52,11 +52,11 @@ export const AMENITIES_GROUP = {
   transport: [
     "bus_stop",
     "tram_stop",
+    "underground_stop",
+    "railway_station",
     "bike_sharing",
     "car_sharing",
     "charging_station",
-    "underground_stop",
-    "railway_station",
   ],
   health: ["dentist", "general_practitioner", "pharmacy"],
   services: [
@@ -80,11 +80,11 @@ export const AMENITIES_GROUP = {
     "chemists",
   ],
   education: [
+    "nurseries",
     "kindergarten",
     "hauptschule_mittelschule",
     "grundschule",
     "realschule",
     "gymnasium",
-    "nurseries",
   ],
 };
