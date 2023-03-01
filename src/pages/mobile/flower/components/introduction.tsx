@@ -36,7 +36,7 @@ export default function Introduction(props: IntroductionProps) {
         </FloatingResetButton>
         <Flower width={300} height={300} />
         <Margin margin="15px 0 0 0" />
-        <Typography variant="h3">
+        <Typography variant="h3" textAlign="center">
           Do you want to edit your personal mobility flower?
         </Typography>
         <Margin margin="25px 0 0 0" />

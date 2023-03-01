@@ -29,7 +29,7 @@ const Section = styled.section`
   width: ${D.DRAWER_WIDTH}px;
   background-color: ${D.WHITE_COLOR};
   position: absolute;
-  padding: 0 5px;
+  padding: 0 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,4 +39,5 @@ const Section = styled.section`
   overflow-y: scroll;
   overflow-x: hidden;
   animation: ${drawer_animation} 0.2s;
+  border-radius: 0 20px 20px 0;
 `;

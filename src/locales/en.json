@@ -72,7 +72,13 @@
     "subway_entrance": "Subway Entrance",
     "supermarket": "Supermarket",
     "tram_stop": "Tram Stop",
-    "yoga": "Yoga"
+    "yoga": "Yoga",
+    "underground_stop": "Underground Stop",
+    "railway_station": "Railway Station",
+    "fuel_station": "Fuel Station",
+    "recycling_station": "Recycling Station",
+    "chemists": "Chemists",
+    "nurseries": "Nurseries"
   },
   "layers": {
     "noise_levels_day": "Noise Levels (Day)",

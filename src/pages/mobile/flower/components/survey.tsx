@@ -100,7 +100,7 @@ export default function Survey(props: SurveyProps) {
   }, []);
 
   function on_back_clicked() {
-    if (step > 1) {
+    if (step > 0) {
       return setStep((currrent_step) => currrent_step - 1);
     }
     return props.onClickBack();

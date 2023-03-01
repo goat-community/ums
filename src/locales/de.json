@@ -72,7 +72,13 @@
     "subway_entrance": "U-Bahn",
     "supermarket": "Supermarkt",
     "tram_stop": "Tram Haltestelle",
-    "yoga": "Yoga Studio"
+    "yoga": "Yoga Studio",
+    "underground_stop": "Underground Stop",
+    "railway_station": "Railway Station",
+    "fuel_station": "Fuel Station",
+    "recycling_station": "Recycling Station",
+    "chemists": "Chemists",
+    "nurseries": "Nurseries"
   },
   "layers": {
     "noise_levels_day": "Lärm von Hauptverkehrsstraßen (Tag)",
