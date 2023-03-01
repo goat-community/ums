@@ -17,7 +17,7 @@ function FlowerGenerator(props: FlowerGeneratorProps) {
 
   function categorize_minutes(list_of_minutes: number[]): [number, number, number] {
     /** [5 mins, 10 mins, 15 mins] */
-    const categorized_minutes_list: [number, number, number] = [0, 0, 0];
+    const categorized_minutes_list: [number, number, number] = [0, 0, 1];
 
     list_of_minutes.forEach((minute: number) => {
       if (minute <= 5 && minute > 0) {

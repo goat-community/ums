@@ -57,7 +57,7 @@ function SurveyQuestions(props: {
       </SurveyQuestionsContainer>
       {props.amentities_filtered.map((key: string, index: number) => (
         <SurveyQuestionsContainer key={key + index}>
-          <Typography variant="h5" sx={{ width: 300 }}>
+          <Typography fontSize={14} sx={{ width: 300 }}>
             {t(`amenities.${key}`)}
           </Typography>
           <Slider
@@ -140,23 +140,17 @@ export default function Survey(props: SurveyProps) {
       </IconButton>
       <Container maxWidth="md">
         <Box>
-          <Margin margin="30px 0 0 0" />
+          <Margin margin="10px 0 0 0" />
           <LinearProgressBar value={percentage_completed} />
-          {step === 1 ? (
-            <>
-              <Margin margin="30px 0 0 0" />
-              <TypoGraphyContainer>
-                <Typography variant="h4">{t("survey.surveyDescription")}</Typography>
-              </TypoGraphyContainer>
-            </>
-          ) : (
-            <Margin margin="10px 0 0 0" />
-          )}
-          <Margin margin="30px 0 0 0" />
-          <Typography variant="h3" fontWeight="bold">
+          <Margin margin="20px 0 0 0" />
+          <TypoGraphyContainer>
+            <Typography variant="h4">{t("survey.surveyDescription")}</Typography>
+          </TypoGraphyContainer>
+          <Margin margin="20px 0 0 0" />
+          <Typography variant="h4" fontWeight="bold">
             {t(`amenitiesGroup.${amenity_group}`)}
           </Typography>
-          <Margin margin="10px 0 0 0" />
+          <Margin margin="5px 0 0 0" />
           <PetalGenerator
             max_categories={amentities_filtered.length}
             category_color={D.FLOWER_CATEGORIES_COLOR[amenity_group]}
@@ -166,7 +160,7 @@ export default function Survey(props: SurveyProps) {
             width={90}
             height={90}
           />
-          <Margin margin="20px 0 0 0" />
+          <Margin margin="5px 0 0 0" />
           <SurveyQuestions
             amentities_filtered={amentities_filtered}
             amentities_list={amentities_list}
@@ -175,7 +169,16 @@ export default function Survey(props: SurveyProps) {
               dispatch(set_amenity(changed_proximity));
             }}
           />
-          <Stack direction="row" spacing={2} mt={5}>
+          <Stack
+            direction="row"
+            spacing={2}
+            mt={5}
+            style={{
+              position: "absolute",
+              bottom: "40px",
+              padding: "env(safe-area-inset-bottom, 40px)",
+            }}
+          >
             <Button variant="outlined" sx={{ width: 300 }} onClick={on_back_clicked}>
               {t("survey.back")}
             </Button>
@@ -193,8 +196,9 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 24px 0px;
-  height: 800px;
+  position: relative;
+  padding: 10px 10px 0px;
+  height: 650px;
   width: 800px;
 `;
 
