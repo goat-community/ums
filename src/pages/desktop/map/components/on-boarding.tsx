@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { ArrowBack } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
 import {
   Button,
   Dialog,
@@ -130,6 +129,7 @@ export function Onboarding(props: OnboardingProps) {
     localStorage.setItem(USER_SEEN_ONBOARDING, "yes");
     props.close_onboarding_force();
     set_open(false);
+    set_page_index(0);
   }
   const pages = [
     {
@@ -182,9 +182,9 @@ export function Onboarding(props: OnboardingProps) {
   return (
     <Dialog open={open || props.force_open} onClose={() => set_open(false)} maxWidth="xl">
       {page_index > 0 && (
-        <DialogTitle>
-          <IconButton onClick={go_back}>
-            <ArrowBack />
+        <DialogTitle sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <IconButton onClick={skip_onboarding}>
+            <Close />
           </IconButton>
         </DialogTitle>
       )}
@@ -222,11 +222,11 @@ export function Onboarding(props: OnboardingProps) {
           width={"85%"}
           style={{ position: "absolute", bottom: 20, left: "7.5%", paddingBottom: 10 }}
         >
-          <Link to="/">
-            <Button variant="outlined" sx={{ color: "black" }} onClick={skip_onboarding}>
-              Skip
+          {page_index > 0 && (
+            <Button variant="outlined" sx={{ color: "black" }} onClick={go_back}>
+              {t("tutorial.previous")}
             </Button>
-          </Link>
+          )}
           <Button
             variant="contained"
             color="secondary"
