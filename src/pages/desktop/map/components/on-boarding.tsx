@@ -181,13 +181,11 @@ export function Onboarding(props: OnboardingProps) {
 
   return (
     <Dialog open={open || props.force_open} onClose={() => set_open(false)} maxWidth="xl">
-      {page_index > 0 && (
-        <DialogTitle sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <IconButton onClick={skip_onboarding}>
-            <Close />
-          </IconButton>
-        </DialogTitle>
-      )}
+      <DialogTitle sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <IconButton onClick={skip_onboarding}>
+          <Close />
+        </IconButton>
+      </DialogTitle>
       <Box>
         {pages[page_index]?.is_component ? (
           <>{pages[page_index]?.component}</>
@@ -222,11 +220,14 @@ export function Onboarding(props: OnboardingProps) {
           width={"85%"}
           style={{ position: "absolute", bottom: 20, left: "7.5%", paddingBottom: 10 }}
         >
-          {page_index > 0 && (
-            <Button variant="outlined" sx={{ color: "black" }} onClick={go_back}>
-              {t("tutorial.previous")}
-            </Button>
-          )}
+          <Button
+            variant="outlined"
+            sx={{ color: "black" }}
+            onClick={go_back}
+            disabled={page_index <= 0}
+          >
+            {t("tutorial.previous")}
+          </Button>
           <Button
             variant="contained"
             color="secondary"
@@ -236,6 +237,8 @@ export function Onboarding(props: OnboardingProps) {
                 // Done scrolling
                 localStorage.setItem(USER_SEEN_ONBOARDING, "yes");
                 props.close_onboarding_force();
+                set_page_index(0);
+
                 return set_open(false);
               }
 
@@ -257,7 +260,7 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   width: 550px;
-  height: 650px;
+  height: 700px;
   text-align: left;
 `;
 
