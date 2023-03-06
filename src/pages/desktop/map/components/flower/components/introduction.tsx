@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -18,6 +19,8 @@ interface IntroductionProps {
 
 export default function Introduction(props: IntroductionProps) {
   const dispatch = useAppDispatch();
+  const [reset_mode, set_reset_mode] = useState<boolean>(false);
+
   const surevey_has_done = useAppSelector((state) => state.flower.survey_done_already);
   const { t } = useTranslation();
 
@@ -26,11 +29,39 @@ export default function Introduction(props: IntroductionProps) {
     return props.onBackClick();
   }
 
+  if (reset_mode) {
+    return (
+      <Dialog open={true} maxWidth="xl">
+        <Box>
+          <Typography variant="h3" textAlign="center">
+            {t("introduction.resetToStandardConfirmation")}
+          </Typography>
+          <Margin margin="35px 0 0 0" />
+          <Stack
+            justifyContent="space-between"
+            alignItems="center"
+            direction="row"
+            spacing={3}
+          >
+            <Link to="/">
+              <Button variant="outlined" onClick={() => set_reset_mode(false)}>
+                {t("introduction.resetNo")}
+              </Button>
+            </Link>
+            <Button variant="contained" onClick={reset_to_standard}>
+              {t("introduction.resetYes")}
+            </Button>
+          </Stack>
+        </Box>
+      </Dialog>
+    );
+  }
+
   if (surevey_has_done) {
     return (
       <Dialog open={true} maxWidth="xl">
         <FloatingResetButton>
-          <Button variant="contained" color="error" onClick={reset_to_standard}>
+          <Button variant="contained" color="error" onClick={() => set_reset_mode(true)}>
             {t("introduction.resetToStandard")}
           </Button>
         </FloatingResetButton>
