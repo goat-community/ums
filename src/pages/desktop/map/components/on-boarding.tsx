@@ -181,13 +181,11 @@ export function Onboarding(props: OnboardingProps) {
 
   return (
     <Dialog open={open || props.force_open} onClose={() => set_open(false)} maxWidth="xl">
-      {page_index > 0 && (
-        <DialogTitle sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <IconButton onClick={skip_onboarding}>
-            <Close />
-          </IconButton>
-        </DialogTitle>
-      )}
+      <DialogTitle sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <IconButton onClick={skip_onboarding}>
+          <Close />
+        </IconButton>
+      </DialogTitle>
       <Box>
         {pages[page_index]?.is_component ? (
           <>{pages[page_index]?.component}</>
