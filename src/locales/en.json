@@ -124,7 +124,10 @@
     "howDoesYourFlowerLook": "How does your flower looks like?",
     "wasDevelopedBy": "The application was developed by:",
     "projectDescription": "This project is funded by EIT Urban Mobility, an initiative of the European Institute of Innovation and Technology (EIT), a body of the European Union. EIT Urban Mobility acts to accelerate positive change on mobility to make urban spaces more liveable. Learn more:",
-    "resetToStandard": "Reset to standard"
+    "resetToStandard": "Reset to standard",
+    "resetToStandardConfirmation": "Are you sure that you want to reset all the travel time preference settings of your personal mobility flower to 15 minutes?",
+    "resetYes": "Yes",
+    "resetNo": "No"
   },
   "survey": {
     "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent.",
