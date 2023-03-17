@@ -134,7 +134,7 @@ export default function Survey(props: SurveyProps) {
     <Dialog open={true} maxWidth="xl">
       <IconButton
         onClick={() => props.onClose()}
-        sx={{ position: "absolute", right: 10, top: 10 }}
+        sx={{ position: "absolute", right: 10, top: 10, zIndex: 4 }}
       >
         <CloseIcon />
       </IconButton>
@@ -200,6 +200,7 @@ const Box = styled.div`
   padding: 10px 10px 0px;
   height: 700px;
   width: 800px;
+  z-index: 3;
 `;
 
 const TypoGraphyContainer = styled.div`
