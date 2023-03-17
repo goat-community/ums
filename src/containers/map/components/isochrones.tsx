@@ -83,7 +83,7 @@ export default function Isochrones() {
             latitude={picked_point.lat}
             anchor="bottom"
           >
-            <ScoreHighLighter isochrone_score={isochrone_score} />
+            <ScoreHighLighter isochrone_score={isochrone_score} score_type_hint />
             <img src={PinIcon} width="16" height="20" alt="pin" />
           </Marker>
         </>

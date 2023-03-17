@@ -138,7 +138,8 @@
   "isochrone": {
     "modes": {
       "standard": "Standard",
-      "personal": "Personal"
+      "personal": "Personal",
+      "total": "Total"
     },
     "modalityModes": {
       "walking": "Walking",

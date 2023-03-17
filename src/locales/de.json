@@ -134,7 +134,8 @@
   "isochrone": {
     "modes": {
       "standard": "Standard",
-      "personal": "Personalisiert"
+      "personal": "Personalisiert",
+      "total": "Insgesamt"
     },
     "modalityModes": {
       "walking": "Zu Fuß",
