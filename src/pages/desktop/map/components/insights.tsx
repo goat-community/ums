@@ -12,7 +12,6 @@ import { ScoreList } from "./score-list";
 
 export default function Insights() {
   const score = useCalculateSingleTotalScore();
-  const isochrone_mode = useAppSelector((state) => state.isochrones.score_mode);
   const address = useAppSelector((state) => state.map.current_point_address);
   const { t } = useTranslation();
 
