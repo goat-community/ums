@@ -11,13 +11,13 @@ export function useCalculateSingleScore() {
   const flower_survey_amenties = useAppSelector((state) => state.flower.amenities);
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const travel_time_surface = useAppSelector(
-    (state) => state.isochrones.travel_time_surface
+    (state) => state.isochrones.travel_time_surface?.accessibility.opportunities
   );
 
   const calculate_scores = useCallback(() => {
     let nr_amenities_reached = 0;
     AMENITIES_LIST.map((amenity) => {
-      const isochrone_amenity = travel_time_surface.accessibility?.[amenity] || null;
+      const isochrone_amenity = travel_time_surface?.[amenity] || null;
       if (!isochrone_amenity || isochrone_amenity.length < 1) {
         return false;
       }
@@ -73,7 +73,7 @@ export function useCalculateStandardScore() {
   });
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const travel_time_surface = useAppSelector(
-    (state) => state.isochrones.travel_time_surface
+    (state) => state.isochrones.travel_time_surface?.accessibility.opportunities
   );
 
   const calculate_scores = useCallback(() => {
@@ -82,7 +82,7 @@ export function useCalculateStandardScore() {
       let nr_category_amenity_reached = 0;
       if (AMENITIES_GROUP?.[category]) {
         AMENITIES_GROUP[category].map((field) => {
-          const isochrone_amenity = travel_time_surface.accessibility?.[field];
+          const isochrone_amenity = travel_time_surface?.[field];
           // check the amenity is available
           if (!isochrone_amenity || isochrone_amenity.length < 1) {
             return false;
@@ -123,13 +123,13 @@ export function useCalculateSingleTotalScore() {
   const flower_survey_amenties = useAppSelector((state) => state.flower.amenities);
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const travel_time_surface = useAppSelector(
-    (state) => state.isochrones.travel_time_surface
+    (state) => state.isochrones.travel_time_surface?.accessibility.opportunities
   );
 
   const calculate_scores = useCallback(() => {
     let nr_amenities_reached = 0;
     AMENITIES_LIST.map((amenity) => {
-      const isochrone_amenity = travel_time_surface.accessibility?.[amenity] || null;
+      const isochrone_amenity = travel_time_surface?.[amenity] || null;
       if (!isochrone_amenity || isochrone_amenity.length < 1) {
         return false;
       }
