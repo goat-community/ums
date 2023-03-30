@@ -5,7 +5,7 @@ import { instance } from "@utils";
 
 export function getIsochrone(data: IsochroneParams): Promise<ArrayBuffer> | null {
   return instance
-    .post("isochrones", data, {
+    .post("indicators/isochrone", data, {
       responseType: "arraybuffer",
       headers: {
         Accept: "application/pbf",
