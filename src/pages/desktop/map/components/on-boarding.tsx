@@ -6,11 +6,17 @@ import { Close } from "@mui/icons-material";
 import {
   Button,
   Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogProps,
   DialogTitle,
   IconButton,
   Stack,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { Margin } from "@components/common";
 
@@ -36,7 +42,7 @@ function About() {
     <Container>
       <img src={M4CImage} width="200px" style={{ marginLeft: -23 }} />
       <Margin margin="30px 0" />
-      <Typography fontSize="1.7vh" color="black">
+      <Typography fontSize="1rem" color="black">
         {t("introduction.wasDevelopedBy")}
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
@@ -57,7 +63,7 @@ function About() {
         />
       </Stack>
       <Margin margin="20px 10px" />
-      <Typography fontSize="1.7vh" color="black">
+      <Typography fontSize="1rem" color="black">
         {t("introduction.projectDescription")}{" "}
         <a
           href="https://eiturbanmobility.eu"
@@ -86,7 +92,7 @@ function Feedback() {
           {t("tutorial.readyToUse")}
         </Typography>
         <Margin margin="20px 0" />
-        <Typography fontSize="16px" color="black">
+        <Typography fontSize="1rem" color="black">
           {t("tutorial.readyToUseDesc")}
         </Typography>
       </Section>
@@ -96,7 +102,7 @@ function Feedback() {
           {t("tutorial.giveUsFeedback")}
         </Typography>
         <Margin margin="20px 0" />
-        <Typography fontSize="16px" color="black">
+        <Typography fontSize="1rem" color="black">
           {t("tutorial.giveUsFeedbackDesc")}{" "}
           <BlueLink>
             <a href={t("tutorial.giveUsFeedbackLink")} target="_blank" rel="noreferrer">
@@ -111,7 +117,7 @@ function Feedback() {
 }
 
 export function Onboarding(props: OnboardingProps) {
-  const [open, set_open] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [page_index, set_page_index] = useState<number>(0);
   const { t } = useTranslation();
 
@@ -121,14 +127,14 @@ export function Onboarding(props: OnboardingProps) {
 
   useEffect(() => {
     if (!user_seen_onboarding) {
-      set_open(true);
+      setOpen(true);
     }
   }, [user_seen_onboarding]);
 
   function skip_onboarding() {
     localStorage.setItem(USER_SEEN_ONBOARDING, "yes");
     props.close_onboarding_force();
-    set_open(false);
+    setOpen(false);
     set_page_index(0);
   }
   const pages = [
@@ -137,7 +143,7 @@ export function Onboarding(props: OnboardingProps) {
       text: t("tutorial.Map4CitizensminuteDesc"),
       image: M4CImage,
       radius: 0,
-      margin: "130px 0",
+      padding: "15% 0",
     },
     {
       title: t("tutorial.15-minCity"),
@@ -178,94 +184,141 @@ export function Onboarding(props: OnboardingProps) {
   function go_back() {
     set_page_index(page_index - 1);
   }
+  const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
+
+  const handleClickOpen = (scrollType: DialogProps["scroll"]) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const descriptionElementRef = React.useRef<HTMLElement>(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
 
   return (
-    <Dialog open={open || props.force_open} onClose={() => set_open(false)} maxWidth="xl">
-      <DialogTitle sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <IconButton onClick={skip_onboarding}>
-          <Close />
-        </IconButton>
-      </DialogTitle>
-      <Box>
-        {pages[page_index]?.is_component ? (
-          <>{pages[page_index]?.component}</>
-        ) : (
-          <img
-            src={pages[page_index].image}
-            alt="onboard"
+    <Dialog
+      open={open || props.force_open}
+      onClose={handleClose}
+      scroll={"paper"}
+      aria-labelledby="scroll-dialog-title"
+      aria-describedby="scroll-dialog-description"
+      PaperProps={{
+        sx: {
+          minHeight: "70%",
+        },
+      }}
+    >
+      <DialogContent dividers={scroll === "paper"}>
+        <DialogTitle p={0} m={0}>
+          <Stack
+            direction="row"
+            justifyContent="flex-end"
             style={{
-              borderRadius: pages[page_index].radius || 0,
-              maxWidth: pages[page_index].width || "450px",
-              margin: pages[page_index]?.margin || 0,
+              padding: 0,
+              marginTop: -20,
+              marginRight: -30,
             }}
-          />
-        )}
+          >
+            <IconButton onClick={skip_onboarding}>
+              <Close />
+            </IconButton>
+          </Stack>
+        </DialogTitle>
+        <DialogContentText id="scroll-dialog-description" ref={descriptionElementRef}>
+          {pages[page_index]?.is_component ? (
+            <>{pages[page_index]?.component}</>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "0 0 50px 0",
+              }}
+            >
+              <img
+                src={pages[page_index].image}
+                alt="onboard"
+                data-testid="test-onboarding-image"
+                style={{
+                  borderRadius: pages[page_index].radius || 0,
+                  maxWidth: "70%",
+                  alignSelf: "center",
+                  padding: pages[page_index].padding || 0,
+                }}
+              />
+            </div>
+          )}
 
-        {!pages[page_index].no_text && (
-          <Section>
-            <Typography variant="h2" fontWeight="bold" color="black" textAlign="left">
-              {pages[page_index].title}
-            </Typography>
-            <Margin margin="20px 0" />
-            <Typography fontSize="16px" color="black">
-              {pages[page_index].text}
-            </Typography>
-          </Section>
-        )}
-
-        <Stack
-          justifyContent="space-between"
-          alignItems="center"
-          direction="row"
-          width={"85%"}
-          style={{ position: "absolute", bottom: 20, left: "7.5%", paddingBottom: 10 }}
+          {!pages[page_index].no_text && (
+            <Section>
+              <Typography
+                variant="h2"
+                fontSize="1.5rem"
+                fontWeight="bold"
+                color="black"
+                textAlign="left"
+              >
+                {pages[page_index].title}
+              </Typography>
+              <Margin margin="20px 0" />
+              <Typography color="black" fontSize="1rem">
+                {pages[page_index].text}
+              </Typography>
+            </Section>
+          )}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions
+        style={{ justifyContent: "space-between", paddingInline: 50, paddingBlock: 15 }}
+      >
+        <Button
+          data-testid="test-onboarding-previous-button"
+          variant="outlined"
+          sx={{ color: "black" }}
+          onClick={go_back}
+          disabled={page_index <= 0}
         >
-          <Button
-            variant="outlined"
-            sx={{ color: "black" }}
-            onClick={go_back}
-            disabled={page_index <= 0}
-          >
-            {t("tutorial.previous")}
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            sx={{ color: "white" }}
-            onClick={() => {
-              if (page_index === pages.length - 1) {
-                // Done scrolling
-                localStorage.setItem(USER_SEEN_ONBOARDING, "yes");
-                props.close_onboarding_force();
-                set_page_index(0);
-
-                return set_open(false);
-              }
-
-              set_page_index((currPage) => currPage + 1);
-            }}
-          >
-            {page_index === pages.length - 1
-              ? t("tutorial.letsGo")
-              : t("tutorial.continue")}
-          </Button>
-        </Stack>
-      </Box>
+          {t("tutorial.previous")}
+        </Button>
+        <Button
+          data-testid="test-onboarding-continue-button"
+          variant="contained"
+          color="secondary"
+          sx={{ color: "white" }}
+          onClick={() => {
+            if (page_index === pages.length - 1) {
+              // Done scrolling
+              localStorage.setItem(USER_SEEN_ONBOARDING, "yes");
+              props.close_onboarding_force();
+              set_page_index(0);
+              return setOpen(false);
+            }
+            set_page_index((currPage) => currPage + 1);
+          }}
+        >
+          {page_index === pages.length - 1
+            ? t("tutorial.letsGo")
+            : t("tutorial.continue")}
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 }
 
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 550px;
-  height: 700px;
-  text-align: left;
-`;
-
 const Section = styled.section<{ no_padding?: boolean }>`
-  padding: ${(props) => (props.no_padding ? "0 45px" : "40px 45px")};
+  padding: ${(props) => (props.no_padding ? "0 35px" : "10px 35px")};
+  font-size: calc(1rem + 1vw) !important;
 `;
 
 const Container = styled.section`
