@@ -127,7 +127,8 @@
     "resetToStandard": "Reset to standard",
     "resetToStandardConfirmation": "Are you sure that you want to reset all the travel time preference settings of your personal mobility flower to 15 minutes?",
     "resetYes": "Yes",
-    "resetNo": "No"
+    "resetNo": "No",
+    "share": "Share"
   },
   "survey": {
     "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent.",
@@ -197,5 +198,12 @@
     "openInformation": "Useful information",
     "openLegends": "Map Legends",
     "changeLanguage": "Change the Language"
+  },
+  "shareModal": {
+    "title": "Share your flower",
+    "close": "Close",
+    "share": "Share",
+    "subTitle": "Use below options to share your flower with others",
+    "backHome": "Go back home page"
   }
 }

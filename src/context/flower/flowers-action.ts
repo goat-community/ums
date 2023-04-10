@@ -62,16 +62,23 @@ export function get_signed_url_flower(key: string) {
     );
 }
 
-export function upload_flower(svgData: string) {
+export function upload_flower(pngData: string) {
   return (dispatch: CallableFunction) =>
     dispatch(
       networkStateHandler(async () => {
         dispatch(resetShareableFlowerKey());
-        const response = await Api.uploadSvgCode(svgData);
+        const response = await Api.uploadPNGCode(pngData);
         if (response?.key) {
           dispatch(setShareableFlowerKey(response.key));
           dispatch(get_signed_url_flower(response.key));
         }
       })
     );
+}
+
+export function clear_signed_urls() {
+  return (dispatch: CallableFunction) => {
+    dispatch(resetSignedShareableFlower());
+    dispatch(resetShareableFlowerKey());
+  };
 }

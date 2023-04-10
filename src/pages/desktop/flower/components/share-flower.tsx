@@ -1,31 +1,128 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { upload_flower } from "@context/flower";
+import { get_amenities, upload_flower } from "@context/flower";
 
-import ShareModal from "./share-modal";
+import { FLOWER_CATEGORIES_COLOR } from "@constants/design";
+import { AMENITIES_GROUP } from "@constants/flower";
+
+import { ShareModal } from "./share-modal";
 
 export default function ShareableFlower() {
   const dispatch = useAppDispatch();
   const flower = useAppSelector((state) => state.flower);
+  const amentities_list = useAppSelector((state) => state.flower.amenities);
 
-  // upload the svg as string to the server
-  const upload = async () => {
-    const svg = document.querySelector("svg");
-    const svgData = new XMLSerializer().serializeToString(svg);
-    // eslint-disable-next-line quotes
-    dispatch(upload_flower(svgData.replaceAll('"', "'")));
-  };
+  useEffect(() => {
+    dispatch(get_amenities());
+  }, []);
 
-  if (flower.signed_shareable_flower_link) {
-    return <ShareModal imageLink={flower.shareable_flower_key} />;
-  } else {
+  function categorize_minutes(list_of_minutes: number[]): [number, number, number] {
+    /** [5 mins, 10 mins, 15 mins] */
+    const categorized_minutes_list: [number, number, number] = [0, 0, 1];
+
+    list_of_minutes.forEach((minute: number) => {
+      if (minute <= 5 && minute > 0) {
+        categorized_minutes_list[0] = categorized_minutes_list[0] + 1;
+      }
+      if (minute <= 15 && minute > 5) {
+        categorized_minutes_list[1] = categorized_minutes_list[1] + 1;
+      }
+      if (minute <= 20 && minute > 15) {
+        categorized_minutes_list[2] = categorized_minutes_list[2] + 1;
+      }
+    });
+
+    return categorized_minutes_list;
+  }
+
+  function petal_generator(category_name: string) {
+    const coefficients = [1, 1.5, 2];
+    const opacities = [];
+
+    const amenity_group_items = AMENITIES_GROUP[category_name];
+    const amenity_group_travel_times = amenity_group_items.map((amenity: string) => {
+      // get the amenity distance by user
+      return amentities_list[amenity];
+    });
+
+    const MAX_CATEGORIES = amenity_group_items.length;
+    // calculate opacities
+    categorize_minutes(amenity_group_travel_times)?.forEach(
+      (current_category_fallings_inside, index) => {
+        const nr_cats_falling_inside = current_category_fallings_inside;
+        const nr_cats_in_percentage = nr_cats_falling_inside / MAX_CATEGORIES;
+        opacities[index] = (90 / coefficients[index]) * nr_cats_in_percentage;
+      }
+    );
+
+    return opacities;
+  }
+
+  async function upload() {
+    const svgElement = document.querySelector("svg");
+    if (!svgElement) {
+      console.error("SVG element with the specified ID not found");
+      return;
+    }
+
+    // Serialize the SVG element to a string
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(svgElement);
+
+    // Create a Blob from the SVG string
+    const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+
+    // Create an Image object and load the SVG data as a URL
+    const svgUrl = URL.createObjectURL(svgBlob);
+    const img = new Image();
+
+    img.onload = async () => {
+      // Create a canvas to draw the image
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Set the canvas dimensions to match the image
+      canvas.width = 1920;
+      canvas.height = 1080;
+
+      // Draw the image onto the canvas
+      ctx.drawImage(img, 0, 0);
+
+      // // Convert the canvas data to a Blob
+      canvas.toBlob(async (pngBlob) => {
+        // Convert the Blob to a base64-encoded string
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const pngBase64 = event.target.result as string;
+          dispatch(upload_flower(pngBase64.split(",")[1].replace(/"/g, "")));
+        };
+        reader.readAsDataURL(pngBlob);
+      }, "image/png");
+
+      // Clean up the URL
+      URL.revokeObjectURL(svgUrl);
+    };
+
+    img.onerror = () => {
+      console.error("Error loading SVG data as an image");
+    };
+
+    img.src = svgUrl;
+  }
+
+  if (flower.survey_done_already) {
     return (
       <>
+        <ShareModal
+          signed_key={flower.shareable_flower_key}
+          signed_url={flower.signed_shareable_flower_link}
+        />
         <FloatingShareButton>
           <Button variant="contained" onClick={upload}>
             Share my flower
@@ -109,126 +206,135 @@ export default function ShareableFlower() {
             height="63.3222"
             fill="url(#pattern0)"
           />
+
           <path
             d="M1322.14 293.47C1324.3 353.121 1323.1 414.321 1287.37 424.259C1251.96 434.044 1200.38 380.117 1168.54 325.573C1136.85 271.353 1125.23 216.364 1148.7 183.752C1172.31 151.466 1213.8 159.116 1254.95 176.663C1296.33 194.296 1319.66 233.97 1322.14 293.47Z"
-            fill="#A0E426"
-            fillOpacity="0.08"
+            fill={FLOWER_CATEGORIES_COLOR["leisure"]}
+            fillOpacity={`${petal_generator("leisure")[2]}%`}
           />
           <path
             d="M1313.61 323.023C1315.67 368.444 1315.13 415.022 1287.46 422.358C1260.03 429.58 1219.65 388.201 1194.58 346.477C1169.63 305.002 1160.26 263.07 1178.27 238.395C1196.39 213.97 1228.65 220.059 1260.7 233.679C1292.94 247.366 1311.3 277.716 1313.61 323.023Z"
-            fill="#A0E426"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["leisure"]}
+            fillOpacity={`${petal_generator("leisure")[1]}%`}
           />
           <path
             d="M1302.78 363.31C1304.99 391.503 1305.5 420.365 1287.27 424.398C1269.21 428.366 1241.64 401.967 1224.23 375.639C1206.9 349.467 1199.9 323.301 1211.4 308.34C1222.97 293.536 1244.49 297.91 1266.01 306.947C1287.66 316.03 1300.41 335.183 1302.78 363.31Z"
-            fill="#A0E426"
-            fillOpacity="0.6"
+            fill={FLOWER_CATEGORIES_COLOR["leisure"]}
+            fillOpacity={`${petal_generator("leisure")[0]}%`}
           />
+
           <path
             d="M1477.13 354.507C1435.47 397.257 1390.37 438.644 1358.51 419.66C1326.99 400.805 1330.38 326.258 1347.85 265.565C1365.19 205.205 1396.94 158.828 1436.74 153.287C1476.4 148.078 1499.51 183.372 1515.23 225.251C1531.04 267.359 1518.45 311.628 1477.13 354.507Z"
-            fill="#52E3E1"
-            fillOpacity="0.05"
+            fill={FLOWER_CATEGORIES_COLOR["sport"]}
+            fillOpacity={`${petal_generator("sport")[2]}%`}
           />
           <path
             d="M1449.86 368.742C1418.43 401.593 1384.36 433.362 1359.95 418.41C1335.79 403.56 1337.83 345.774 1350.71 298.834C1363.49 252.15 1387.34 216.415 1417.63 212.406C1447.81 208.653 1465.68 236.191 1477.96 268.781C1490.31 301.55 1481.04 335.789 1449.86 368.742Z"
-            fill="#52E3E1"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["sport"]}
+            fillOpacity={`${petal_generator("sport")[1]}%`}
           />
           <path
             d="M1413.24 388.727C1394.37 409.791 1373.85 430.085 1358.34 419.685C1343 409.358 1343.06 371.187 1350.09 340.417C1357.06 309.813 1371.15 286.683 1389.91 284.667C1408.61 282.819 1420.3 301.404 1428.63 323.213C1437 345.142 1431.95 367.59 1413.24 388.727Z"
-            fill="#52E3E1"
-            fillOpacity="0.6"
+            fill={FLOWER_CATEGORIES_COLOR["sport"]}
+            fillOpacity={`${petal_generator("sport")[0]}%`}
           />
+
           <path
             d="M1558.13 492.873C1498.49 495.273 1437.29 494.316 1427.21 458.627C1417.28 423.26 1471 371.463 1525.42 339.407C1579.51 307.499 1634.45 295.654 1667.16 318.991C1699.54 342.478 1692.05 383.998 1674.67 425.213C1657.2 466.663 1617.62 490.151 1558.13 492.873Z"
-            fill="#33A8C7"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["transport"]}
+            fillOpacity={`${petal_generator("transport")[2]}%`}
           />
           <path
             d="M1528.55 484.462C1483.13 486.703 1436.55 486.348 1429.11 458.705C1421.77 431.312 1462.99 390.759 1504.62 365.527C1545.99 340.413 1587.88 330.869 1612.63 348.78C1637.13 366.808 1631.17 399.089 1617.68 431.196C1604.12 463.486 1573.84 481.972 1528.55 484.462Z"
-            fill="#33A8C7"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["transport"]}
+            fillOpacity={`${petal_generator("transport")[1]}%`}
           />
           <path
             d="M1488.21 473.797C1460.03 476.119 1431.17 476.74 1427.06 458.529C1423.02 440.481 1449.31 412.807 1475.57 395.294C1501.67 377.863 1527.81 370.758 1542.82 382.192C1557.67 393.708 1553.38 415.244 1544.43 436.802C1535.43 458.484 1516.33 471.311 1488.21 473.797Z"
-            fill="#33A8C7"
-            fillOpacity="0.6"
+            fill={FLOWER_CATEGORIES_COLOR["transport"]}
+            fillOpacity={`${petal_generator("transport")[0]}%`}
           />
+
           <path
             d="M1495.95 666.91C1454.19 624.265 1413.87 578.211 1433.59 546.804C1453.18 515.729 1527.62 520.863 1587.89 539.749C1647.83 558.493 1693.45 591.319 1698.06 631.232C1702.34 671.004 1666.52 693.286 1624.29 708.019C1581.82 722.847 1537.86 709.226 1495.95 666.91Z"
-            fill="#9336FD"
-            fillOpacity="0.05"
+            fill={FLOWER_CATEGORIES_COLOR["shop"]}
+            fillOpacity={`${petal_generator("shop")[2]}%`}
           />
           <path
             d="M1482.36 639.318C1450.25 607.124 1419.29 572.325 1434.81 548.267C1450.22 524.462 1507.94 527.859 1554.57 541.827C1600.94 555.69 1636.11 580.377 1639.41 610.746C1642.45 641.01 1614.51 658.229 1581.64 669.743C1548.59 681.33 1514.58 671.259 1482.36 639.318Z"
-            fill="#9336FD"
-            fillOpacity="0.05"
+            fill={FLOWER_CATEGORIES_COLOR["shop"]}
+            fillOpacity={`${petal_generator("shop")[1]}%`}
           />
           <path
             d="M1463.24 602.243C1442.62 582.888 1422.81 561.891 1433.57 546.635C1444.25 531.538 1482.41 532.49 1513.01 540.233C1543.44 547.915 1566.24 562.546 1567.81 581.346C1569.22 600.085 1550.37 611.342 1528.37 619.153C1506.25 627.014 1483.93 621.44 1463.24 602.243Z"
-            fill="#9336FD"
-            fillOpacity="0.6"
+            fill={FLOWER_CATEGORIES_COLOR["shop"]}
+            fillOpacity={`${petal_generator("shop")[0]}%`}
           />
+
           <path
             d="M1337.3 728.934C1334.97 669.289 1336.01 608.086 1371.71 598.049C1407.09 588.165 1458.82 641.947 1490.81 696.403C1522.65 750.533 1534.43 805.49 1511.05 838.168C1487.53 870.52 1446.01 862.985 1404.82 845.553C1363.39 828.035 1339.95 788.426 1337.3 728.934Z"
-            fill="#D883FF"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["services"]}
+            fillOpacity={`${petal_generator("services")[2]}%`}
           />
           <path
             d="M1345.75 699.357C1343.56 653.942 1343.97 607.363 1371.63 599.949C1399.03 592.651 1439.53 633.918 1464.71 675.571C1489.78 716.976 1499.27 758.883 1481.33 783.607C1463.27 808.083 1431 802.084 1398.91 788.553C1366.63 774.956 1348.18 744.658 1345.75 699.357Z"
-            fill="#D883FF"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["services"]}
+            fillOpacity={`${petal_generator("services")[1]}%`}
           />
           <path
             d="M1356.46 659.04C1354.18 630.854 1353.59 601.993 1371.81 597.909C1389.86 593.891 1417.5 620.213 1434.98 646.492C1452.38 672.615 1459.46 698.762 1448 713.755C1436.47 728.591 1414.94 724.278 1393.39 715.3C1371.72 706.278 1358.92 687.16 1356.46 659.04Z"
-            fill="#D883FF"
-            fillOpacity="0.6"
+            fill={FLOWER_CATEGORIES_COLOR["services"]}
+            fillOpacity={`${petal_generator("services")[0]}%`}
           />
+
           <path
             d="M1181.34 671.528C1222.58 628.374 1267.27 586.549 1299.31 605.221C1331.02 623.768 1328.35 698.345 1311.47 759.204C1294.72 819.731 1263.43 866.416 1223.69 872.345C1184.08 877.94 1160.62 842.873 1144.5 801.15C1128.27 759.198 1140.43 714.808 1181.34 671.528Z"
-            fill="#F050AE"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["education"]}
+            fillOpacity={`${petal_generator("education")[2]}%`}
           />
           <path
             d="M1208.46 657.027C1239.58 623.872 1273.33 591.772 1297.89 606.485C1322.19 621.099 1320.71 678.902 1308.29 725.965C1295.97 772.771 1272.46 808.738 1242.22 813.042C1212.07 817.089 1193.94 789.727 1181.34 757.258C1168.67 724.611 1177.61 690.283 1208.46 657.027Z"
-            fill="#F050AE"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["education"]}
+            fillOpacity={`${petal_generator("education")[1]}%`}
           />
           <path
             d="M1244.88 636.686C1263.55 615.439 1283.88 594.946 1299.48 605.195C1314.92 615.372 1315.23 653.541 1308.51 684.378C1301.84 715.048 1287.97 738.315 1269.23 740.514C1250.55 742.544 1238.68 724.074 1230.14 702.347C1221.55 680.501 1226.38 658.005 1244.88 636.686Z"
-            fill="#F050AE"
-            fillOpacity="0.6"
+            fill={FLOWER_CATEGORIES_COLOR["education"]}
+            fillOpacity={`${petal_generator("education")[0]}%`}
           />
+
           <path
             d="M1108.16 528.899C1167.42 521.699 1228.5 517.717 1241.42 552.477C1254.17 586.928 1204.8 642.888 1153.15 679.228C1101.8 715.394 1048 731.631 1013.51 711.006C979.346 690.207 983.458 648.219 997.46 605.737C1011.53 563.013 1049.09 536.41 1108.16 528.899Z"
-            fill="#F77976"
-            fillOpacity="0.05"
+            fill={FLOWER_CATEGORIES_COLOR["health"]}
+            fillOpacity={`${petal_generator("health")[2]}%`}
           />
           <path
             d="M1138.33 534.898C1183.41 529.002 1229.87 525.6 1239.52 552.552C1249.04 579.265 1211.23 623.009 1171.77 651.516C1132.56 679.884 1091.57 692.775 1065.46 676.918C1039.59 660.924 1042.93 628.268 1053.78 595.178C1064.69 561.899 1093.38 541.032 1138.33 534.898Z"
-            fill="#F77976"
-            fillOpacity="0.05"
+            fill={FLOWER_CATEGORIES_COLOR["health"]}
+            fillOpacity={`${petal_generator("health")[1]}%`}
           />
           <path
             d="M1179.39 542.276C1207.29 537.689 1236.01 534.743 1241.57 552.563C1247.05 570.227 1223.08 599.931 1198.32 619.504C1173.71 638.982 1148.23 648.172 1132.35 637.986C1116.62 627.705 1119.16 605.893 1126.34 583.683C1133.56 561.346 1151.56 547.021 1179.39 542.276Z"
-            fill="#F77976"
-            fillOpacity="0.6"
+            fill={FLOWER_CATEGORIES_COLOR["health"]}
+            fillOpacity={`${petal_generator("health")[0]}%`}
           />
+
           <path
             d="M1154.39 368.241C1204.43 400.77 1253.82 436.94 1241.4 471.887C1229.05 506.481 1155.27 517.68 1092.34 512.369C1029.76 507.126 978.083 485.021 964.894 447.069C952.056 409.183 982.17 379.636 1020.18 356.06C1058.4 332.342 1104.28 336.064 1154.39 368.241Z"
-            fill="#FFAB00"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["food"]}
+            fillOpacity={`${petal_generator("food")[2]}%`}
           />
           <path
             d="M1173.66 392.211C1212.01 416.642 1249.81 443.864 1239.9 470.724C1230.04 497.313 1172.96 506.566 1124.42 503.085C1076.14 499.652 1036.44 483.214 1026.6 454.292C1017.04 425.418 1040.57 402.527 1070.14 384.133C1099.87 365.627 1135.26 368.051 1173.66 392.211Z"
-            fill="#FFAB00"
-            fillOpacity="0.4"
+            fill={FLOWER_CATEGORIES_COLOR["food"]}
+            fillOpacity={`${petal_generator("food")[1]}%`}
           />
           <path
             d="M1200.4 424.233C1224.74 438.635 1248.64 454.815 1241.46 472.048C1234.32 489.108 1196.87 496.487 1165.32 495.593C1133.95 494.721 1108.51 485.404 1102.88 467.399C1097.43 449.417 1113.38 434.325 1133.14 421.911C1153.02 409.423 1176.02 410.003 1200.4 424.233Z"
-            fill="#FFAB00"
-            fillOpacity="0.6"
+            fill={FLOWER_CATEGORIES_COLOR["food"]}
+            fillOpacity={`${petal_generator("food")[0]}%`}
           />
+
           <rect x="1085" y="106.712" width="122" height="33" rx="6" fill="#A0E426" />
           <path
             d="M1098.7 134.162V113.467H1102.49V130.962H1112.24V134.162H1098.7ZM1121.85 134.455C1119.37 134.455 1117.42 133.77 1116.01 132.4C1114.6 131.03 1113.9 129.152 1113.9 126.764C1113.9 125.218 1114.2 123.868 1114.81 122.713C1115.42 121.559 1116.26 120.659 1117.33 120.013C1118.43 119.367 1119.7 119.044 1121.15 119.044C1122.58 119.044 1123.77 119.347 1124.73 119.954C1125.69 120.561 1126.41 121.412 1126.9 122.508C1127.41 123.604 1127.67 124.886 1127.67 126.353V127.322H1116.86V125.385H1125.05L1124.55 125.796C1124.55 124.426 1124.26 123.379 1123.67 122.655C1123.11 121.931 1122.28 121.569 1121.18 121.569C1119.97 121.569 1119.03 121.999 1118.36 122.86C1117.72 123.721 1117.39 124.925 1117.39 126.471V126.852C1117.39 128.457 1117.78 129.661 1118.57 130.463C1119.37 131.246 1120.49 131.637 1121.94 131.637C1122.78 131.637 1123.57 131.53 1124.29 131.314C1125.03 131.079 1125.74 130.708 1126.4 130.199L1127.49 132.665C1126.79 133.232 1125.94 133.672 1124.97 133.985C1123.99 134.299 1122.95 134.455 1121.85 134.455ZM1130.77 134.162V119.338H1134.44V134.162H1130.77ZM1130.57 116.549V112.968H1134.65V116.549H1130.57ZM1143.71 134.455C1142.44 134.455 1141.27 134.308 1140.19 134.015C1139.13 133.702 1138.24 133.271 1137.52 132.723L1138.54 130.257C1139.29 130.766 1140.11 131.158 1141.01 131.432C1141.91 131.706 1142.82 131.843 1143.74 131.843C1144.72 131.843 1145.44 131.676 1145.91 131.344C1146.4 131.011 1146.65 130.561 1146.65 129.993C1146.65 129.543 1146.49 129.191 1146.18 128.937C1145.88 128.663 1145.4 128.457 1144.74 128.32L1141.8 127.762C1140.55 127.488 1139.59 127.019 1138.93 126.353C1138.28 125.688 1137.96 124.817 1137.96 123.741C1137.96 122.821 1138.2 122.009 1138.69 121.304C1139.2 120.6 1139.91 120.052 1140.83 119.661C1141.77 119.25 1142.87 119.044 1144.12 119.044C1145.22 119.044 1146.25 119.191 1147.2 119.484C1148.18 119.778 1149 120.218 1149.67 120.805L1148.61 123.183C1148.01 122.694 1147.31 122.312 1146.53 122.038C1145.75 121.764 1144.98 121.627 1144.24 121.627C1143.22 121.627 1142.48 121.813 1142.01 122.185C1141.54 122.537 1141.3 122.997 1141.3 123.565C1141.3 123.995 1141.44 124.357 1141.72 124.651C1142.01 124.925 1142.46 125.13 1143.07 125.267L1146 125.825C1147.31 126.079 1148.3 126.53 1148.97 127.175C1149.65 127.802 1149.99 128.663 1149.99 129.758C1149.99 130.737 1149.73 131.578 1149.2 132.283C1148.67 132.987 1147.94 133.526 1147 133.897C1146.06 134.269 1144.96 134.455 1143.71 134.455ZM1158.48 134.455C1156.66 134.455 1155.3 133.956 1154.4 132.958C1153.5 131.96 1153.05 130.434 1153.05 128.379V119.338H1156.71V128.349C1156.71 129.445 1156.94 130.257 1157.39 130.786C1157.84 131.295 1158.52 131.549 1159.44 131.549C1160.48 131.549 1161.32 131.197 1161.97 130.492C1162.63 129.788 1162.97 128.858 1162.97 127.704V119.338H1166.64V134.162H1163.06V131.138H1163.47C1163.04 132.195 1162.38 133.017 1161.5 133.604C1160.64 134.171 1159.63 134.455 1158.48 134.455ZM1170.59 134.162V123.124C1170.59 122.498 1170.57 121.862 1170.53 121.216C1170.51 120.571 1170.46 119.944 1170.38 119.338H1173.94L1174.35 123.389H1173.76C1173.96 122.41 1174.28 121.598 1174.73 120.952C1175.2 120.306 1175.77 119.827 1176.43 119.514C1177.1 119.201 1177.82 119.044 1178.6 119.044C1178.96 119.044 1179.24 119.064 1179.46 119.103C1179.67 119.122 1179.89 119.171 1180.1 119.25L1180.07 122.479C1179.7 122.322 1179.38 122.224 1179.1 122.185C1178.85 122.146 1178.53 122.126 1178.13 122.126C1177.29 122.126 1176.58 122.302 1175.99 122.655C1175.42 123.007 1174.99 123.496 1174.7 124.122C1174.43 124.749 1174.29 125.463 1174.29 126.265V134.162H1170.59ZM1189.08 134.455C1186.59 134.455 1184.64 133.77 1183.24 132.4C1181.83 131.03 1181.12 129.152 1181.12 126.764C1181.12 125.218 1181.43 123.868 1182.03 122.713C1182.64 121.559 1183.48 120.659 1184.56 120.013C1185.65 119.367 1186.92 119.044 1188.37 119.044C1189.8 119.044 1190.99 119.347 1191.95 119.954C1192.91 120.561 1193.64 121.412 1194.13 122.508C1194.63 123.604 1194.89 124.886 1194.89 126.353V127.322H1184.09V125.385H1192.28L1191.78 125.796C1191.78 124.426 1191.48 123.379 1190.9 122.655C1190.33 121.931 1189.5 121.569 1188.4 121.569C1187.19 121.569 1186.25 121.999 1185.58 122.86C1184.94 123.721 1184.61 124.925 1184.61 126.471V126.852C1184.61 128.457 1185.01 129.661 1185.79 130.463C1186.59 131.246 1187.72 131.637 1189.16 131.637C1190.01 131.637 1190.79 131.53 1191.51 131.314C1192.26 131.079 1192.96 130.708 1193.63 130.199L1194.71 132.665C1194.01 133.232 1193.17 133.672 1192.19 133.985C1191.21 134.299 1190.17 134.455 1189.08 134.455Z"
@@ -1188,11 +1294,30 @@ export default function ShareableFlower() {
         </svg>
       </>
     );
+  } else {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <Typography variant="h1">
+          Please make your flower first at
+          <Link to="/" style={{ color: "blue" }}>
+            {" "}
+            Home
+          </Link>
+        </Typography>
+      </div>
+    );
   }
 }
 
 const FloatingShareButton = styled.div`
-  position: absolute;
-  bottom: 250px;
+  position: fixed;
+  bottom: 50px;
   left: 50px;
 `;

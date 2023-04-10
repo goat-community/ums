@@ -38,7 +38,6 @@ if (window.screen.width <= MOBILE_SCREEN_SIZE) {
   ]);
 } else {
   const Map = lazy(() => import("@pages/desktop/map/Map"));
-  const ShareableFlower = lazy(() => import("@components/desktop/shareable-flower-svg"));
   const Flower = lazy(() => import("@pages/desktop/flower/Flower"));
 
   router = createBrowserRouter([
@@ -47,11 +46,7 @@ if (window.screen.width <= MOBILE_SCREEN_SIZE) {
       element: <Map />,
     },
     {
-      path: "/sr",
-      element: <ShareableFlower />,
-    },
-    {
-      path: "/flower/:flowerKey",
+      path: "/flower/:flowerKey?",
       element: <Flower />,
     },
     {
