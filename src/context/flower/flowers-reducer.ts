@@ -56,6 +56,8 @@ const initialState = {
   survey_done_already: false as boolean,
   score_layer_visible: true as boolean,
   flower_open: false as boolean,
+  shareable_flower_key: "" as string,
+  signed_shareable_flower_link: "" as string,
 };
 
 export const flower = createSlice({
@@ -86,6 +88,24 @@ export const flower = createSlice({
     resetFlower: (state: typeof initialState) => {
       state.amenities = initialState.amenities;
     },
+    setShareableFlowerKey: (
+      state: typeof initialState,
+      action: PayloadAction<string>
+    ) => {
+      state.shareable_flower_key = action.payload;
+    },
+    resetShareableFlowerKey: (state: typeof initialState) => {
+      state.shareable_flower_key = null;
+    },
+    setSignedShareableFlower: (
+      state: typeof initialState,
+      action: PayloadAction<string>
+    ) => {
+      state.signed_shareable_flower_link = action.payload;
+    },
+    resetSignedShareableFlower: (state: typeof initialState) => {
+      state.signed_shareable_flower_link = null;
+    },
   },
 });
 
@@ -96,5 +116,9 @@ export const {
   setScoreLayerMode,
   setFlowerOpen,
   resetFlower,
+  setShareableFlowerKey,
+  resetShareableFlowerKey,
+  setSignedShareableFlower,
+  resetSignedShareableFlower,
 } = flower.actions;
 export default flower.reducer;
