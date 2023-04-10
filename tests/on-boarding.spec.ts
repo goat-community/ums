@@ -12,7 +12,7 @@ test.describe("Onboarding Component", () => {
     const image = await page.getByTestId("test-onboarding-image");
     expect(image).toBeTruthy();
     const src = await image?.getAttribute("src");
-    expect(src).toContain("logo-horizontal-black.png");
+    expect(src).toContain("logo-horizontal-black");
   });
 
   // test("should navigate to next page when continue button is clicked", async ({
