@@ -17,7 +17,7 @@ export function NotifierWrapper() {
   const snack_bar_style = {
     bottom: { xs: D.BOTTOM_BAR_HEIGHT + 20, sm: 20, xl: 20, md: 20 },
     maxWidth: "75%",
-    zIndex: 3,
+    zIndex: 9999,
   };
 
   function close_notification() {
