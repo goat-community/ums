@@ -11,9 +11,7 @@ const initialState = {
   picked_point: null as LngLat | null,
   current_point_address: {} as ReverseAddress,
   view: {
-    bounds: [
-      11.327192290815145, 48.03915718648435, 11.756388821971976, 48.27059464660387,
-    ],
+    bounds: [10.97192290815145, 47.79915718648435, 12.1388821971976, 48.54059464660387],
     bearing: 0,
     pitch: 0,
   } as MapView,
