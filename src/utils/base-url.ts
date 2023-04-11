@@ -8,6 +8,6 @@ export function base_url(): string {
 export function base_lambda_url(): string {
   const base_url: string | undefined = import.meta.env.DEV
     ? "/local"
-    : "https://auys8w4hm1.execute-api.eu-central-1.amazonaws.com/Prod/";
+    : "https://dfvz2uuq63.execute-api.eu-central-1.amazonaws.com/Prod/";
   return base_url || "";
 }
