@@ -15,14 +15,9 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
       "/local": {
-        target: "https://auys8w4hm1.execute-api.eu-central-1.amazonaws.com/Prod/",
+        target: "https://dfvz2uuq63.execute-api.eu-central-1.amazonaws.com/Prod/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/local/, ""),
-      },
-      "/cdn": {
-        target: "https://map4citizens-data.s3.eu-central-1.amazonaws.com/",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/cdn/, ""),
       },
     },
   },
