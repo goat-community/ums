@@ -56,6 +56,6 @@ export const study_area_selector = createSelector(
 );
 
 export const view_bounds_selector = createSelector(
-  (state: RootState) => state.map.view.bounds,
+  (state: RootState) => state.map.viewBounds,
   (view) => view
 );
