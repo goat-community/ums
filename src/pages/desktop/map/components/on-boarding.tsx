@@ -57,7 +57,7 @@ function About() {
             and{" "}
             <span>
               <BlueLink href="https://www.humankind.city/" target="__blank">
-                Humankind
+                Humankind.
               </BlueLink>
             </span>
           </>
