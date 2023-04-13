@@ -20,12 +20,12 @@ const initialState = {
     noise_levels_day: {
       title: "noise_levels_day",
       legend:
-        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadlden&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
+        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadln2022&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
       visibility: "none",
       source: {
         type: "raster",
         tiles: [
-          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadlden&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
+          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadln2022&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
         ],
         tileSize: 256,
       },
@@ -41,12 +41,12 @@ const initialState = {
     noise_levels_night: {
       title: "noise_levels_night",
       legend:
-        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadln&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
+        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadln2022&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
       visibility: "none",
       source: {
         type: "raster",
         tiles: [
-          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadln&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
+          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadln2022&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
         ],
         tileSize: 256,
       },
