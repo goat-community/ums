@@ -9,14 +9,11 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogProps,
   DialogTitle,
   IconButton,
   Stack,
   Typography,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { Margin } from "@components/common";
 
@@ -36,14 +33,58 @@ interface OnboardingProps {
 }
 
 function About() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <Container>
       <img src={M4CImage} width="200px" style={{ marginLeft: -23 }} />
       <Margin margin="30px 0" />
       <Typography fontSize="1rem" color="black">
-        {t("introduction.wasDevelopedBy")}
+        {i18n.language === "en" ? (
+          <>
+            The application was developed by{" "}
+            <span>
+              <BlueLink href="https://www.plan4better.de/en/" target="__blank">
+                Plan4Better
+              </BlueLink>
+            </span>
+            ,{" "}
+            <span>
+              <BlueLink href="https://www.mos.ed.tum.de/en/sv/homepage/" target="__blank">
+                Technical University of Munich
+              </BlueLink>
+            </span>{" "}
+            and{" "}
+            <span>
+              <BlueLink href="https://www.humankind.city/" target="__blank">
+                Humankind
+              </BlueLink>
+            </span>
+          </>
+        ) : (
+          <>
+            Die Anwendung wurde von{" "}
+            <span>
+              <BlueLink href="https://www.plan4better.de/" target="__blank">
+                Plan4Better
+              </BlueLink>
+            </span>
+            , der{" "}
+            <span>
+              <BlueLink href="https://www.mos.ed.tum.de/sv/startseite/" target="__blank">
+                Technischen Universität München
+              </BlueLink>
+            </span>{" "}
+            und{" "}
+            <span>
+              {" "}
+              <BlueLink href="https://www.humankind.city/" target="__blank">
+                Humankind
+              </BlueLink>
+            </span>{" "}
+            entwickelt.
+          </>
+        )}
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
         <img src={Plan4BetterLogo} width="auto" height="45vh" alt="p4b-logo" />
@@ -184,12 +225,6 @@ export function Onboarding(props: OnboardingProps) {
   function go_back() {
     set_page_index(page_index - 1);
   }
-  const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
-
-  const handleClickOpen = (scrollType: DialogProps["scroll"]) => () => {
-    setOpen(true);
-    setScroll(scrollType);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -218,7 +253,7 @@ export function Onboarding(props: OnboardingProps) {
         },
       }}
     >
-      <DialogContent dividers={scroll === "paper"}>
+      <DialogContent dividers={true}>
         <DialogTitle p={0} m={0}>
           <Stack
             direction="row"
