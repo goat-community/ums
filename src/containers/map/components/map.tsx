@@ -1,15 +1,13 @@
-import { memo } from "react";
-import Map, { type LngLat } from "react-map-gl";
+// eslint-disable-next-line simple-import-sort/imports
+import { memo, useEffect, useRef } from "react";
+import Map, { MapRef, type LngLat } from "react-map-gl";
 
 import { MapView } from "@types";
 
 import { useAppSelector } from "@hooks/context";
 
-// import { isochrones_selector } from "@context/isochrones/isochrones-selector";
 import { API_TOKEN, MAPBOX_TOKEN } from "@constants";
 
-// import { GeocoderControl } from "@components/common";
-// import PinIcon from "@images/pin.png";
 import Isochrones from "./isochrones";
 import Layers from "./layers";
 import LayersDeck from "./layers-deck";
@@ -27,15 +25,29 @@ interface MapProps {
 function MapComponent(props: MapProps) {
   const mapStyle = useAppSelector((state) => state.map.style);
   const cursor_mode = props.picking_mode ? "crosshair" : "default";
+  const mapRef = useRef<MapRef>();
+
+  // Fix map bounds when we have props.viewBounds
+  function set_map_bounds() {
+    const map = mapRef?.current.getMap();
+    map.fitBounds(props.viewBounds, { padding: 20 });
+  }
+
+  useEffect(() => {
+    if (props.viewBounds) {
+      set_map_bounds();
+    }
+  }, [props.viewBounds]);
 
   return (
     <Map
       id="map"
+      ref={mapRef}
       cursor={cursor_mode}
       initialViewState={props.view}
-      maxBounds={props.viewBounds}
       mapboxAccessToken={MAPBOX_TOKEN}
       mapStyle={mapStyle}
+      minZoom={10}
       style={{ top: 0, left: 0, bottom: 0, right: 0, zIndex: -1, position: "fixed" }}
       onClick={(e) => props.on_click_point(e.lngLat as LngLat)}
       transformRequest={(url) => {
