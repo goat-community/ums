@@ -85,13 +85,13 @@ export default function Introduction(props: IntroductionProps) {
               {t("introduction.editFlower")}
             </Button>
           </Stack>
-          <FloatingShareButton>
+          {/* <FloatingShareButton>
             <Link to="/flower">
               <Button variant="contained" onClick={props.onBackClick}>
                 {t("introduction.share")}
               </Button>
             </Link>
-          </FloatingShareButton>
+          </FloatingShareButton> */}
         </Box>
       </Dialog>
     );
@@ -144,8 +144,8 @@ const FloatingResetButton = styled.div`
   right: 20px;
 `;
 
-const FloatingShareButton = styled.div`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-`;
+// const FloatingShareButton = styled.div`
+//   position: absolute;
+//   bottom: 20px;
+//   right: 20px;
+// `;
