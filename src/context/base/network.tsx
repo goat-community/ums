@@ -47,6 +47,7 @@ export function networkStateHandler(req: CallableFunction) {
         })
       );
       // notify error message
+      console.error("Error on network handler => " + e);
       dispatch(notify(i18n.t("messages.simpleError")));
     }
   };
