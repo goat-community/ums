@@ -64,8 +64,11 @@ const initialState = {
       legend: "https://i.imgur.com/XlOc1Yd.png",
       visibility: "none",
       source: {
-        type: "geojson",
-        data: "https://goat-dev.plan4better.de/api/v1/indicators/population?modus=default&return_type=geojson",
+        type: "heatmap",
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
       },
       layers: [
         {
@@ -442,6 +445,20 @@ const initialState = {
       },
       requestMethod: "POST",
       url: "pt-oev-gueteklassen",
+    } as IndicatorConfig,
+    population_density: {
+      payload: {
+        mode: "walking",
+        study_area_ids: [91620000],
+        walking_profile: "standard",
+        scenario: { id: 0, modus: "default" },
+        analysis_unit: "hexagon",
+        resolution: 9,
+        heatmap_config: { source: "population" },
+        heatmap_type: "aggregated_data",
+      },
+      requestMethod: "POST",
+      url: "heatmap",
     } as IndicatorConfig,
   },
 };
