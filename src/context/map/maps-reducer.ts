@@ -72,11 +72,7 @@ const initialState = {
       },
       layers: [
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 0],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 0]],
           id: "NoPopulation",
           type: "fill",
           paint: {
@@ -86,11 +82,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 1],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 1]],
           id: "1to80Inhabitants",
           type: "fill",
           paint: {
@@ -100,11 +92,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 2],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 2]],
           id: "80to200Inhabitants",
           type: "fill",
           paint: {
@@ -114,11 +102,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 3],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 3]],
           id: "200to500Inhabitants",
           type: "fill",
           paint: {
@@ -128,11 +112,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 4],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 4]],
           id: "500to1000Inhabitants",
           type: "fill",
           paint: {
@@ -142,11 +122,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 5],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 5]],
           id: "More1000Inhabitants",
           type: "fill",
           paint: {
