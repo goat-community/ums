@@ -36,7 +36,7 @@ export function useCalculateSingleScore() {
         nr_amenities_reached += 1;
       }
     });
-    setScore(Math.round((nr_amenities_reached / AMENITIES_LIST.length) * 10));
+    setScore(Math.floor((nr_amenities_reached / AMENITIES_LIST.length) * 10));
     // re-create function on these params change
   }, [
     travel_time_surface,
