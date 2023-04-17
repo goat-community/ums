@@ -64,7 +64,7 @@ const initialState = {
       legend: "https://i.imgur.com/XlOc1Yd.png",
       visibility: "none",
       source: {
-        type: "heatmap",
+        type: "geojson",
         data: {
           type: "FeatureCollection",
           features: [],
