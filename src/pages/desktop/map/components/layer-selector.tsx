@@ -70,7 +70,6 @@ export function LayerSelector() {
                 <Close />
               </IconButton>
             </Box>
-
             <Typography sx={{ m: 2 }} variant="h4">
               Layers
             </Typography>

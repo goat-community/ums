@@ -65,15 +65,14 @@ const initialState = {
       visibility: "none",
       source: {
         type: "geojson",
-        data: "https://goat-dev.plan4better.de/api/v1/indicators/population?modus=default&return_type=geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
       },
       layers: [
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 0],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 0]],
           id: "NoPopulation",
           type: "fill",
           paint: {
@@ -83,11 +82,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 1],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 1]],
           id: "1to80Inhabitants",
           type: "fill",
           paint: {
@@ -97,11 +92,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 2],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 2]],
           id: "80to200Inhabitants",
           type: "fill",
           paint: {
@@ -111,11 +102,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 3],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 3]],
           id: "200to500Inhabitants",
           type: "fill",
           paint: {
@@ -125,11 +112,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 4],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 4]],
           id: "500to1000Inhabitants",
           type: "fill",
           paint: {
@@ -139,11 +122,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 5],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 5]],
           id: "More1000Inhabitants",
           type: "fill",
           paint: {
@@ -442,6 +421,20 @@ const initialState = {
       },
       requestMethod: "POST",
       url: "pt-oev-gueteklassen",
+    } as IndicatorConfig,
+    population_density: {
+      payload: {
+        mode: "walking",
+        study_area_ids: [91620000],
+        walking_profile: "standard",
+        scenario: { id: 0, modus: "default" },
+        analysis_unit: "hexagon",
+        resolution: 9,
+        heatmap_config: { source: "population" },
+        heatmap_type: "aggregated_data",
+      },
+      requestMethod: "POST",
+      url: "heatmap",
     } as IndicatorConfig,
   },
 };

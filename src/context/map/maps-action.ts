@@ -69,7 +69,6 @@ export function getStudyArea() {
     );
 }
 
-// TODO: change return to dispatch
 export function coords_to_address(coords: LngLat) {
   return async (dispatch: CallableFunction) => {
     const response = await Api.geocode_coords(coords);
@@ -79,20 +78,35 @@ export function coords_to_address(coords: LngLat) {
   };
 }
 
-export function getIndicator(config: IndicatorConfig, layer: string) {
-  return (dispatch: CallableFunction) =>
+export function getIndicator(
+  config: IndicatorConfig,
+  layer: string,
+  task_id?: string,
+  attemp = 0
+) {
+  return async (dispatch: CallableFunction) =>
     dispatch(
       networkStateHandler(async () => {
-        const response = await Api.getIndicator(config);
-        if (response) {
-          const geobufDecoded = geobuf.decode(new Pbf(response));
-          const features = geobufDecoded.features;
-          dispatch(
-            setIndicator({
-              features,
-              layer,
-            })
-          );
+        if (task_id && attemp < 20) {
+          const response = await Api.getTaskResult(task_id);
+          if (response.status === 202) {
+            // still worker is pending
+            dispatch(getIndicator(config, layer, task_id, attemp + 1));
+          } else {
+            const geobufDecoded = geobuf.decode(new Pbf(response.data));
+            const features = geobufDecoded.features;
+            dispatch(
+              setIndicator({
+                features,
+                layer,
+              })
+            );
+          }
+        } else {
+          const response = await Api.getIndicator(config);
+          if (response?.task_id) {
+            await dispatch(getIndicator(config, layer, response.task_id));
+          }
         }
       })
     );
