@@ -29,11 +29,7 @@ export function ScoreHighLighter(props: ScoreHighLighterProps) {
       large={props.large}
       score_type_hint={props.score_type_hint}
     >
-      {!props.large && props.score_type_hint && (
-        <>
-          {t("isochrone.modes.standard")} {t("insights.score")}{" "}
-        </>
-      )}
+      {!props.large && props.score_type_hint && <>{t("insights.score")} </>}
       {props.isochrone_score + "/10"}
     </ScoreHighlighter>
   );
