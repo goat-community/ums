@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -25,6 +25,12 @@ interface FloatingActionsProps {
 
 export function FloatingActions(props: FloatingActionsProps) {
   const { t } = useTranslation();
+  // get showLogo from session storage and set to state
+  const [showLogo, setShowLogo] = useState(() => {
+    const showedLogo = sessionStorage.getItem("showedLogo");
+    return showedLogo ? false : true;
+  });
+
   const dispatch = useAppDispatch();
   const travel_time_surface = useAppSelector(
     (state) => state.isochrones.travel_time_surface
@@ -36,6 +42,16 @@ export function FloatingActions(props: FloatingActionsProps) {
   // to state the filling status
   useEffect(() => {
     dispatch(get_amenities());
+  }, []);
+
+  // Display logo at first 20 seconds and hide it until next refresh of the page
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowLogo(false);
+      // set to session storage
+      sessionStorage.setItem("showedLogo", "true");
+    }, 20000);
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
@@ -61,7 +77,7 @@ export function FloatingActions(props: FloatingActionsProps) {
           </Tooltip>
           <Stack direction="row" spacing={2}>
             <LanguageSelector />
-            <EitLogo />
+            {showLogo && <EitLogo />}
           </Stack>
         </Stack>
       </Container>
