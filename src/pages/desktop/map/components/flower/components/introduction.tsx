@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Button, Dialog, Stack, Typography } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { Button, Dialog, IconButton, Stack, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -61,9 +62,9 @@ export default function Introduction(props: IntroductionProps) {
     return (
       <Dialog open={true} maxWidth="xl">
         <FloatingResetButton>
-          <Button variant="contained" color="error" onClick={() => set_reset_mode(true)}>
-            {t("introduction.resetToStandard")}
-          </Button>
+          <IconButton onClick={props.onBackClick}>
+            <CloseIcon />
+          </IconButton>
         </FloatingResetButton>
         <Box>
           <Flower />
@@ -76,11 +77,9 @@ export default function Introduction(props: IntroductionProps) {
             direction="row"
             spacing={3}
           >
-            <Link to="/">
-              <Button variant="outlined" onClick={props.onBackClick}>
-                {t("introduction.back")}
-              </Button>
-            </Link>
+            <Button variant="outlined" onClick={() => set_reset_mode(true)}>
+              {t("introduction.resetToStandard")}
+            </Button>
             <Button variant="contained" onClick={props.onClickContinue}>
               {t("introduction.editFlower")}
             </Button>
@@ -142,6 +141,7 @@ const FloatingResetButton = styled.div`
   position: absolute;
   top: 20px;
   right: 20px;
+  cursor: pointer;
 `;
 
 // const FloatingShareButton = styled.div`
