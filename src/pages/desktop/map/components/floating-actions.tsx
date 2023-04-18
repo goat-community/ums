@@ -26,10 +26,7 @@ interface FloatingActionsProps {
 export function FloatingActions(props: FloatingActionsProps) {
   const { t } = useTranslation();
   // get showLogo from session storage and set to state
-  const [showLogo, setShowLogo] = useState(() => {
-    const showedLogo = sessionStorage.getItem("showedLogo");
-    return showedLogo ? false : true;
-  });
+  const [showLogo, setShowLogo] = useState<boolean>(true);
 
   const dispatch = useAppDispatch();
   const travel_time_surface = useAppSelector(
@@ -48,8 +45,6 @@ export function FloatingActions(props: FloatingActionsProps) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowLogo(false);
-      // set to session storage
-      sessionStorage.setItem("showedLogo", "true");
     }, 20000);
     return () => clearTimeout(timeout);
   }, []);
