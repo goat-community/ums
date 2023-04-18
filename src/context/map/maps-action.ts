@@ -87,11 +87,14 @@ export function getIndicator(
   return async (dispatch: CallableFunction) =>
     dispatch(
       networkStateHandler(async () => {
-        if (task_id && attemp < 20) {
+        if (task_id && attemp < 40) {
           const response = await Api.getTaskResult(task_id);
           if (response.status === 202) {
             // still worker is pending
-            dispatch(getIndicator(config, layer, task_id, attemp + 1));
+            setTimeout(
+              () => dispatch(getIndicator(config, layer, task_id, attemp + 1)),
+              1500
+            );
           } else {
             const geobufDecoded = geobuf.decode(new Pbf(response.data));
             const features = geobufDecoded.features;
