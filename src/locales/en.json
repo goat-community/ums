@@ -140,7 +140,8 @@
     "modes": {
       "standard": "Standard",
       "personal": "Personal",
-      "total": "Total"
+      "total": "Total",
+      "15min": "15-Min-Score"
     },
     "modalityModes": {
       "walking": "Walking",

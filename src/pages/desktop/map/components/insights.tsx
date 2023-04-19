@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { CircularProgress, Stack, Typography } from "@mui/material";
 
-import { useCalculateSingleTotalScore } from "@hooks";
+import { useCalculateSingleScore } from "@hooks";
 import { useAppSelector } from "@hooks/context";
 
 import { ScoreHighLighter } from "@components/common";
@@ -11,7 +11,7 @@ import { ScoreHighLighter } from "@components/common";
 import { ScoreList } from "./score-list";
 
 export default function Insights() {
-  const score = useCalculateSingleTotalScore();
+  const score = useCalculateSingleScore();
   const address = useAppSelector((state) => state.map.current_point_address);
   const { t } = useTranslation();
 
@@ -35,9 +35,7 @@ export default function Insights() {
               color="secondary"
             />
             <Stack justifyContent="space-between" alignItems="center">
-              <Typography fontSize="12px">
-                {t("isochrone.modes.total")} {t("insights.score")}
-              </Typography>
+              <Typography fontSize="12px">{t("isochrone.modes.15min")}</Typography>
               <Typography fontSize="34px" fontWeight="400">
                 <ScoreHighLighter isochrone_score={score} large />
               </Typography>

@@ -136,7 +136,8 @@
     "modes": {
       "standard": "Standard",
       "personal": "Personalisiert",
-      "total": "Insgesamt"
+      "total": "Insgesamt",
+      "15min": "15-Min-Score"
     },
     "modalityModes": {
       "walking": "Zu Fuß",
