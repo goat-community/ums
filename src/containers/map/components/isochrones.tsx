@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { FillLayer, Layer, Marker, Source, useMap } from "react-map-gl";
+import { AnyLayer } from "react-map-gl/dist/esm/types";
 import { useSelector } from "react-redux";
 import bbox from "@turf/bbox";
 
@@ -23,6 +24,16 @@ const isochroneStyle: FillLayer = {
   },
 };
 
+const markerStyle: AnyLayer = {
+  id: "marker-custom-1",
+  type: "symbol",
+  source: "marker-custom-1",
+  layout: {
+    "icon-image": "marker-custom-1",
+    "icon-size": 1,
+  },
+};
+
 export default function Isochrones() {
   const mapRef = useMap();
   const is_mobile = useIsMobile();
@@ -39,6 +50,10 @@ export default function Isochrones() {
   useEffect(() => {
     if (isochrone) {
       const [minLng, minLat, maxLng, maxLat] = bbox(isochrone);
+      console.log(isochrone);
+      // setMarkerCoordinates();
+      console.log(" Lng: " + (minLng + maxLng) / 2 + "Lat: " + (minLat + maxLat) / 2);
+      console.log(picked_point);
       mapRef.current.fitBounds(
         [
           [minLng, minLat],
@@ -71,6 +86,18 @@ export default function Isochrones() {
     }
   }, [isochrone]);
 
+  // listen to map and add a icon to it
+  useEffect(() => {
+    if (mapRef.current) {
+      // check that we don't have the icon already
+      if (mapRef.current.hasImage("marker-custom-1")) return;
+      mapRef.current.loadImage(PinIcon, (error, image) => {
+        if (error) throw error;
+        mapRef.current.addImage("marker-custom-1", image);
+      });
+    }
+  }, [mapRef]);
+
   return (
     <>
       {isochrone && isochrone_score && (
@@ -78,13 +105,31 @@ export default function Isochrones() {
           <Source type="geojson" data={isochrone || null}>
             <Layer {...isochroneStyle} />
           </Source>
+
+          <Source
+            type="geojson"
+            data={{
+              type: "Feature",
+              geometry: {
+                type: "Point",
+                coordinates: [picked_point.lng, picked_point.lat],
+              },
+              properties: {
+                iconNumber: "1",
+              },
+            }}
+          >
+            <Layer {...markerStyle} />
+          </Source>
+
           <Marker
             longitude={picked_point.lng}
             latitude={picked_point.lat}
             anchor="bottom"
+            offset={[60, -10]}
           >
             <ScoreHighLighter isochrone_score={isochrone_score} score_type_hint />
-            <img src={PinIcon} width="16" height="20" alt="pin" />
+            {/* <img src={PinIcon} width="16" height="20" alt="pin" /> */}
           </Marker>
         </>
       )}
