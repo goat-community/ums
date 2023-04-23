@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useControl, useMap } from "react-map-gl";
 import { MVTLayer } from "@deck.gl/geo-layers/typed";
 import { GeoJsonLayer, IconLayer } from "@deck.gl/layers/typed";
@@ -307,6 +307,7 @@ function DeckGLOverlay(
 
 export default function LayersDeck() {
   const mapRef = useMap();
+  const [hovered, setHovered] = useState(false);
   const allAmenities = useAppSelector((state) => state.flower.amenities);
   const poiFeatures = useAppSelector(get_poi_features);
   const studyAreaData = useAppSelector(study_area_selector);
@@ -352,6 +353,15 @@ export default function LayersDeck() {
       return [color[0], color[1], color[2], 255];
     },
     pickable: true,
+    onHover: (e) => {
+      // check if it's not district_munich then set hovered
+      if (e.object) {
+        if (e.object?.properties?.layerName === "district_munich") {
+          return setHovered(false);
+        }
+      }
+      setHovered(!!e.object);
+    },
     onClick: (e) => {
       dispatch(setPopupInfo(null));
       setTimeout(() => {
@@ -386,6 +396,9 @@ export default function LayersDeck() {
     getPosition: (d) => d.coordinates,
     sizeScale: 40,
     pickable: true,
+    onHover: (e) => {
+      setHovered(!!e.object);
+    },
     onClick: (e) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { coordinates, id, min_zoom, max_zoom, uid, ...object } = e.object;
@@ -417,7 +430,7 @@ export default function LayersDeck() {
   return (
     <DeckGLOverlay
       getCursor={() => {
-        if (picking_mode) {
+        if (picking_mode || hovered) {
           return "pointer";
         } else {
           return "inherit";
