@@ -307,7 +307,9 @@ function DeckGLOverlay(
 
 export default function LayersDeck() {
   const mapRef = useMap();
-  const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = useState<boolean>(false);
+  const [selectedDistrict, setSelectedDistrict] = useState(null);
+
   const allAmenities = useAppSelector((state) => state.flower.amenities);
   const poiFeatures = useAppSelector(get_poi_features);
   const studyAreaData = useAppSelector(study_area_selector);
@@ -342,7 +344,6 @@ export default function LayersDeck() {
     visible: scoreLayerVisible,
     minZoom: 0,
     maxZoom: 17,
-    getLineWidth: 0,
     getFillColor: (d) => {
       const zoom = mapRef.current.getZoom();
       const score = calculateScore(d);
@@ -352,6 +353,7 @@ export default function LayersDeck() {
       }
       return [color[0], color[1], color[2], 255];
     },
+    getLineWidth: 0,
     pickable: true,
     onHover: (e) => {
       // check if it's not district_munich then set hovered
@@ -363,21 +365,28 @@ export default function LayersDeck() {
       setHovered(!!e.object);
     },
     onClick: (e) => {
+      // only select district on district features
+      if (e.object?.properties?.layerName === "district_munich") {
+        setSelectedDistrict(e.object);
+      }
       dispatch(setPopupInfo(null));
-      setTimeout(() => {
-        dispatch(
-          setPopupInfo({
-            title: "Building",
-            latitude: e.coordinate[1].toString(),
-            longitude: e.coordinate[0].toString(),
-            uid: e.object.properties.fid,
-            content: {
-              score: ` ${calculateScore(e.object)} / 10 `,
-              color: COLORS[calculateScore(e.object)],
-            },
-          })
-        );
-      }, 100);
+      // set popup info at a min zoom level
+      if (mapRef.current.getZoom() >= 14) {
+        setTimeout(() => {
+          dispatch(
+            setPopupInfo({
+              title: "Building",
+              latitude: e.coordinate[1].toString(),
+              longitude: e.coordinate[0].toString(),
+              uid: e.object.properties.fid,
+              content: {
+                score: ` ${calculateScore(e.object)} / 10 `,
+                color: COLORS[calculateScore(e.object)],
+              },
+            })
+          );
+        }, 100);
+      }
     },
     updateTriggers: {
       getFillColor: [surveyCompleted, flowerOpen],
@@ -427,6 +436,16 @@ export default function LayersDeck() {
     getLineWidth: 1,
   });
 
+  const selectedDistrictLayer = new GeoJsonLayer({
+    id: "selected-district",
+    data: selectedDistrict,
+    pickable: false,
+    stroked: true,
+    filled: false,
+    getLineColor: [255, 255, 255],
+    getLineWidth: 15,
+  });
+
   return (
     <DeckGLOverlay
       getCursor={() => {
@@ -437,7 +456,7 @@ export default function LayersDeck() {
         }
       }}
       useDevicePixels={true}
-      layers={[scoreLayer, poiLayer, maskLayer]}
+      layers={[scoreLayer, poiLayer, maskLayer, selectedDistrictLayer]}
       interleaved={true}
     />
   );
