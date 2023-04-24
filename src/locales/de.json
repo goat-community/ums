@@ -180,7 +180,8 @@
     "score": "Gesamtscore",
     "opening_hours": "Öffnungszeiten",
     "titles": {
-      "building": "Gebäude"
+      "building": "Gebäude",
+      "district": "Bezirk"
     }
   },
   "tooltips": {

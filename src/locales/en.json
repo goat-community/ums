@@ -184,7 +184,8 @@
     "score": "Overall Score",
     "opening_hours": "Opening Hours",
     "titles": {
-      "building": "Building"
+      "building": "Building",
+      "district": "District"
     }
   },
   "tooltips": {

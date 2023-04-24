@@ -3,6 +3,7 @@ import { useControl, useMap } from "react-map-gl";
 import { MVTLayer } from "@deck.gl/geo-layers/typed";
 import { GeoJsonLayer, IconLayer } from "@deck.gl/layers/typed";
 import { MapboxOverlay, MapboxOverlayProps } from "@deck.gl/mapbox";
+import { t } from "i18next";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -12,6 +13,7 @@ import { getStudyArea } from "@context/map";
 import { get_poi_features } from "@context/pois/pois-selector";
 
 import { MAPBOX_TOKEN } from "@constants";
+
 const COLORS = {
   10: [50, 136, 189],
   9: [102, 194, 165],
@@ -357,17 +359,32 @@ export default function LayersDeck() {
     pickable: true,
     onHover: (e) => {
       // check if it's not district_munich then set hovered
-      if (e.object) {
-        if (e.object?.properties?.layerName === "district_munich") {
-          return setHovered(false);
-        }
-      }
+      // if (e.object) {
+      //   if (e.object?.properties?.layerName === "district_munich") {
+      //     return setHovered(false);
+      //   }
+      // }
       setHovered(!!e.object);
     },
     onClick: (e) => {
+      console.log(e);
       // only select district on district features
       if (e.object?.properties?.layerName === "district_munich") {
         setSelectedDistrict(e.object);
+        setTimeout(() => {
+          dispatch(
+            setPopupInfo({
+              title: t("popup.titles.district"),
+              latitude: e.coordinate[1].toString(),
+              longitude: e.coordinate[0].toString(),
+              uid: e.object.properties.fid,
+              content: {
+                score: ` ${calculateScore(e.object)} / 10 `,
+                color: COLORS[calculateScore(e.object)],
+              },
+            })
+          );
+        }, 100);
       }
       dispatch(setPopupInfo(null));
       // set popup info at a min zoom level
@@ -375,7 +392,7 @@ export default function LayersDeck() {
         setTimeout(() => {
           dispatch(
             setPopupInfo({
-              title: "Building",
+              title: t("popup.titles.building"),
               latitude: e.coordinate[1].toString(),
               longitude: e.coordinate[0].toString(),
               uid: e.object.properties.fid,
@@ -443,7 +460,13 @@ export default function LayersDeck() {
     stroked: true,
     filled: false,
     getLineColor: [255, 255, 255],
-    getLineWidth: 15,
+    getLineWidth: () => {
+      const zoom = mapRef.current.getZoom();
+      if (zoom >= 14) {
+        return 0;
+      }
+      return 30;
+    },
   });
 
   return (
