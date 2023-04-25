@@ -7,8 +7,6 @@ import styled from "styled-components";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Button, Checkbox, IconButton, Slider, Stack, Typography } from "@mui/material";
 
-import { convert_to_pascal } from "@utils";
-
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_amenities, persist_amenities, set_amenity } from "@context/flower";
@@ -80,7 +78,7 @@ function SurveyQuestions(props: {
               }}
             />
             <Typography fontSize={9} width={80}>
-              {t("placeholders.howDoesYourCityScore")}
+              {t("survey.notRelevant")}
             </Typography>
           </RoudedBG>
         </SurveyQuestionsContainer>
@@ -92,7 +90,7 @@ function SurveyQuestions(props: {
 export default function Survey(props: SurveyProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(0);
   const amentities_list = useAppSelector((state) => state.flower.amenities);
   const { t } = useTranslation();
 
@@ -102,7 +100,7 @@ export default function Survey(props: SurveyProps) {
   }, []);
 
   function on_back_clicked() {
-    if (step > 1) {
+    if (step > 0) {
       return setStep((currrent_step) => currrent_step - 1);
     }
     return props.onClickBack();

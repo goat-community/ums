@@ -14,6 +14,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+      "/local": {
+        target: "https://dfvz2uuq63.execute-api.eu-central-1.amazonaws.com/Prod/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/local/, ""),
+      },
     },
   },
   plugins: [

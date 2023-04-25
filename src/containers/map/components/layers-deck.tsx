@@ -310,6 +310,7 @@ export default function LayersDeck() {
   const allAmenities = useAppSelector((state) => state.flower.amenities);
   const poiFeatures = useAppSelector(get_poi_features);
   const studyAreaData = useAppSelector(study_area_selector);
+  const picking_mode = useAppSelector((state) => state.map.picking_mode);
   const surveyCompleted = useAppSelector((state) => state.flower.survey_done_already);
   const flowerOpen = useAppSelector((state) => state.flower.flower_open);
   const scoreLayerVisible = useAppSelector((state) => state.flower.score_layer_visible);
@@ -415,6 +416,13 @@ export default function LayersDeck() {
 
   return (
     <DeckGLOverlay
+      getCursor={() => {
+        if (picking_mode) {
+          return "pointer";
+        } else {
+          return "inherit";
+        }
+      }}
       useDevicePixels={true}
       layers={[scoreLayer, poiLayer, maskLayer]}
       interleaved={true}

@@ -23,7 +23,7 @@
     "services": "Services",
     "sport": "Sport",
     "nature": "Nature",
-    "tourism": "Leisure and Tourism",
+    "leisure": "Leisure and Tourism",
     "shop": "Shop",
     "education": "Education",
     "tourismandleisure": "Leisure and Tourism",
@@ -72,7 +72,13 @@
     "subway_entrance": "Subway Entrance",
     "supermarket": "Supermarket",
     "tram_stop": "Tram Stop",
-    "yoga": "Yoga"
+    "yoga": "Yoga",
+    "underground_stop": "Underground Stop",
+    "railway_station": "Railway Station",
+    "fuel_station": "Fuel Station",
+    "recycling_station": "Recycling Station",
+    "chemists": "Chemists",
+    "nurseries": "Nurseries"
   },
   "layers": {
     "noise_levels_day": "Noise Levels (Day)",
@@ -117,7 +123,12 @@
     "createFlower": "Create Flower",
     "howDoesYourFlowerLook": "How does your flower looks like?",
     "wasDevelopedBy": "The application was developed by:",
-    "projectDescription": " This project is funded by EIT Urban Mobility, an initiative of the European Institute of Innovation and Technology (EIT), a body of the European Union. EIT Urban Mobility acts to accelerate positive change on mobility to make urban spaces more liveable. Learn more:"
+    "projectDescription": "This project is funded by EIT Urban Mobility, an initiative of the European Institute of Innovation and Technology (EIT), a body of the European Union. EIT Urban Mobility acts to accelerate positive change on mobility to make urban spaces more liveable. Learn more:",
+    "resetToStandard": "Reset to standard",
+    "resetToStandardConfirmation": "Are you sure that you want to reset all the travel time preference settings of your personal mobility flower to 15 minutes?",
+    "resetYes": "Yes",
+    "resetNo": "No",
+    "share": "Share"
   },
   "survey": {
     "surveyDescription": "Make a selection of the distance in minutes for the locations that are relevant for you (create your ideal city). The travel times are mode-independent.",
@@ -128,7 +139,9 @@
   "isochrone": {
     "modes": {
       "standard": "Standard",
-      "personal": "Personal"
+      "personal": "Personal",
+      "total": "Total",
+      "15min": "15-Min-Score"
     },
     "modalityModes": {
       "walking": "Walking",
@@ -143,6 +156,7 @@
     "skip": "Skip",
     "letsGo": "Let's go!",
     "continue": "Continue",
+    "previous": "Previous",
     "welcomeMap4Citizens": "Welcome to Map4Citizens!",
     "Map4CitizensminuteDesc": "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
     "15-minCity": "Customized 15-min-city",
@@ -151,7 +165,11 @@
     "isochronesDesc": "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
     "readyToUse": "Ready to use?",
     "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
-    "developedBy": "The application was developed by:"
+    "developedBy": "The application was developed by:",
+    "giveUsFeedback": "Would you like to give us feedback?",
+    "giveUsFeedbackDesc": "We look forward to receiving your comments and suggestions for improvement: ",
+    "giveUsFeedbackDescHelper": "(use subject \"Feedback Map4Citizens\").",
+    "giveUsFeedbackLink": "https://plan4better.de/en/contact/"
   },
   "profile": {
     "reach": "Want to reach in",
@@ -168,5 +186,25 @@
     "titles": {
       "building": "Building"
     }
+  },
+  "tooltips": {
+    "enableIsochrone": "Enable isochrone function",
+    "disableIsochrone": "Disable isochrone function",
+    "enable15MinScore": "Enable 15-min-score",
+    "disable15MinScore": "Disable 15-min-score",
+    "customizeFlower": "Customize your personal Flower",
+    "openPois": "Available Point of Interests",
+    "openBaseMap": "Base maps",
+    "openLayers": "Available layers",
+    "openInformation": "Useful information",
+    "openLegends": "Map Legends",
+    "changeLanguage": "Change the Language"
+  },
+  "shareModal": {
+    "title": "Share your flower",
+    "close": "Close",
+    "share": "Share",
+    "subTitle": "Use below options to share your flower with others",
+    "backHome": "Go back home page"
   }
 }

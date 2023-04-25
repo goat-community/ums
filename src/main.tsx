@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
+import * as Sentry from "@sentry/react";
 import { Palette } from "@styles/theme";
 
 import { store } from "@context";
@@ -17,6 +18,12 @@ import router from "./Router";
 
 import "@styles/variables.scss";
 import "@styles/root.scss";
+
+Sentry.init({
+  dsn: "https://459691ddeea644a483881c17dd0262bf@o328034.ingest.sentry.io/4504932954996736",
+  integrations: [new Sentry.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 store.dispatch(get_pois_config());
 

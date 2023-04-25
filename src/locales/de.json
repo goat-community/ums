@@ -23,10 +23,10 @@
     "services": "Serviceeinrichtungen",
     "sport": "Sport",
     "nature": "Natur",
-    "tourism": "Freizeit und Tourismus",
+    "leisure": "Freizeit und Tourismus",
     "shop": "Einkaufen",
     "education": "Bildung",
-    "tourismandleisure": "Tourism and Leisure",
+    "tourismandleisure": "Freizeit und Tourismus",
     "foodanddrink": "Gastronomie",
     "other": "Andere"
   },
@@ -72,7 +72,13 @@
     "subway_entrance": "U-Bahn",
     "supermarket": "Supermarkt",
     "tram_stop": "Tram Haltestelle",
-    "yoga": "Yoga Studio"
+    "yoga": "Yoga Studio",
+    "underground_stop": "U-Bahn Haltestelle",
+    "railway_station": "Bahnhof",
+    "fuel_station": "Tankstelle",
+    "recycling_station": "Recycling Station",
+    "chemists": "Drogerie",
+    "nurseries": "Kitas"
   },
   "layers": {
     "noise_levels_day": "Lärm von Hauptverkehrsstraßen (Tag)",
@@ -86,15 +92,15 @@
   },
   "baseMaps": {
     "title": "Kartenstil",
-    "highFidelity": "High Fidelity",
-    "highFidelityDescription": "Ideal für öffentliche Präsentationen",
-    "sateliteStreets": "Satelliten-Straßen",
+    "highFidelity": "Viele Details",
+    "highFidelityDescription": "Gibt einen guten Überblick",
+    "sateliteStreets": "Satellitenbild",
     "sateliteStreetsDescription": "Aus dem Weltraum gesehen",
-    "light": "Licht",
-    "lightDescription": "Zum Hervorheben der Datenüberlagerungen",
+    "light": "Hell",
+    "lightDescription": "Hoher Kontrast für Datenvisualisierung",
     "dark": "Dunkel",
-    "darkDescription": "Zum Hervorheben der Datenüberlagerungen",
-    "traffic": "Verkehr",
+    "darkDescription": "Hoher Kontrast für Datenvisualisierung",
+    "traffic": "Straßenverkehr",
     "trafficDescription": "Live-Verkehrsdaten"
   },
   "bars": {
@@ -109,15 +115,19 @@
     "editPersonalData": "Möchten Sie Ihr persönliches Profil anpassen?",
     "back": "Zurück",
     "editFlower": "Profil bearbeiten",
-    "proximityFlowerDesc": "Die 'Proximity Flower' hilft dabei, die bevorzugten städtischen Einrichtungen im Verhältnis zur Entfernung zu ihrem Wohnort zu kartieren.",
+    "proximityFlowerDesc": "Die 'Proximity Flower' hilft dabei, die bevorzugten städtischen Einrichtungen im Verhältnis zur Entfernung zu Ihrem Wohnort zu kartieren.",
     "createFlower": "Blume erstellen",
     "howDoesYourFlowerLook": "Wie sieht Ihre Blume aus?",
-
     "wasDevelopedBy": "Die Anwendung wurde entwickelt von:",
-    "projectDescription": " Dieses Projekt wird von EIT Urban Mobility finanziert, einer Initiative des Europäischen Innovations- und Technologieinstituts (EIT), einer Einrichtung der Europäischen Union. EIT Urbane Mobilität setzt sich dafür ein, positive Veränderungen im Bereich der Mobilität zu beschleunigen, um städtische Räume lebenswerter zu machen. Mehr Informationen"
+    "projectDescription": " Dieses Projekt wird von EIT Urban Mobility finanziert, einer Initiative des Europäischen Innovations- und Technologieinstituts (EIT), einer Einrichtung der Europäischen Union. EIT Urbane Mobilität setzt sich dafür ein, positive Veränderungen im Bereich der Mobilität zu beschleunigen, um städtische Räume lebenswerter zu machen. Mehr Informationen",
+    "resetToStandard": "Zurücksetzen",
+    "resetToStandardConfirmation": "Sind Sie sicher, dass Sie alle Reisezeitpräferenzen Ihres persönlichen Profils auf 15 Minuten zurücksetzen wollen?",
+    "resetYes": "Ja",
+    "resetNo": "Nein",
+    "share": "Share"
   },
   "survey": {
-    "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (Erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhägig.",
+    "surveyDescription": "Wählen Sie aus, wie lange Sie maximal zu verschiedenen Einrichtungen unterwegs sein möchten (erstellen Sie Ihre ideale Stadt). Die Reisezeiten sind Verkehrsmittel-unabhängig.",
     "continue": "Weiter",
     "back": "Zurück",
     "notRelevant": "Nicht relevant"
@@ -125,7 +135,9 @@
   "isochrone": {
     "modes": {
       "standard": "Standard",
-      "personal": "Personalisiert"
+      "personal": "Personalisiert",
+      "total": "Insgesamt",
+      "15min": "15-Min-Score"
     },
     "modalityModes": {
       "walking": "Zu Fuß",
@@ -140,15 +152,20 @@
     "skip": "Überspringen",
     "continue": "Weiter",
     "letsGo": "Los geht's!",
+    "previous": "Zurück",
     "welcomeMap4Citizens": "Willkommen zu Map4Citizens!",
-    "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, den Bürger:innen detaillierte Informationen über ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
+    "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, Bürger:innen detaillierte Informationen über Ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
     "15-minCity": "Personalisierte 15-Minuten-Stadt",
     "15-minCityDesc": "Dies ist eng mit dem Konzept der 15-Minuten-Stadt verbunden. Um Ihnen dabei zu helfen, Ihren perfekten 15-Minuten-Stadt Standort zu finden, der all Ihre Bedürfnisse erfüllt, können Sie Ihre persönliches Mobilitätsprofil erstellen. Die Anwendung zeigt Ihnen dann, wie gut verschiedene Standorte in der Stadt Ihre Bedürfnisse erfüllen können.",
     "isochrones": "Isochronen",
     "isochronesDesc": "Durch die Berechnung von Isochronen bekommen Sie ein Gefühl dafür, wie weit Sie zu Fuß, mit dem Fahrrad oder mit öffentlichen Verkehrsmitteln kommen und welche Ziele Sie erreichen können. Darüber hinaus können Sie sich zusätzliche Layer wie Lärmpegel, Bevölkerungsdichte, Flächennutzung und ÖV-Güteklassen anzeigen lassen.",
     "readyToUse": "Los geht's!",
-    "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen.\r\n Viel Spaß!",
-    "developedBy": "Diese Anwendung wurde entwickelt von:"
+    "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, Ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen.\r\n Viel Spaß!",
+    "developedBy": "Diese Anwendung wurde entwickelt von:",
+    "giveUsFeedback": "Möchten Sie uns Feedback geben?",
+    "giveUsFeedbackDesc": "Wir freuen uns auf Ihre Kommentare und Verbesserungsvorschläge: ",
+    "giveUsFeedbackDescHelper": "(Betreff \"Feedback Map4Citizens\").",
+    "giveUsFeedbackLink": "https://plan4better.de/kontakt/"
   },
   "profile": {
     "reach": "Want to reach in",
@@ -165,5 +182,18 @@
     "titles": {
       "building": "Gebäude"
     }
+  },
+  "tooltips": {
+    "enableIsochrone": "Isochronen berechnen",
+    "disableIsochrone": "Isochronenberechnung beenden",
+    "enable15MinScore": "15-Min-Score aktivieren",
+    "disable15MinScore": "15-Min-Score deaktivieren",
+    "customizeFlower": "15-Min-Score individualisieren",
+    "openPois": "Points-of-Interest einblenden",
+    "openBaseMap": "Hintergrundkarten",
+    "openLayers": "Weitere Layer",
+    "openInformation": "Über Map4Citizens",
+    "openLegends": "Legende",
+    "changeLanguage": "Sprache ändern"
   }
 }

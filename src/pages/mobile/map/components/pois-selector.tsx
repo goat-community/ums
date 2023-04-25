@@ -30,7 +30,7 @@ export function PoisSelector() {
   const [selected, setSelected] = useState<number[]>([]);
 
   useEffect(() => {
-    if (active_poi_groups) {
+    if (active_poi_groups?.length > 0) {
       const index = [];
       active_poi_groups.forEach((group) => {
         if (items.findIndex((item) => item.value === group) !== -1) {

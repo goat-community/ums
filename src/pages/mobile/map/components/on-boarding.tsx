@@ -59,6 +59,31 @@ function About() {
   );
 }
 
+function Feedback() {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <img src={M4CLogoSmall} width="280px" />
+      <Container>
+        <Typography fontSize="15px" color="black" fontWeight="bold" textAlign="left">
+          {t("tutorial.giveUsFeedback")}
+        </Typography>
+        <Margin margin="10px 0" />
+        <Typography fontSize="15px" color="black">
+          {t("tutorial.giveUsFeedbackDesc")}{" "}
+          <BlueLink>
+            <a href={t("tutorial.giveUsFeedbackLink")} target="_blank" rel="noreferrer">
+              {t("tutorial.giveUsFeedbackLink")}
+            </a>{" "}
+          </BlueLink>{" "}
+          {t("tutorial.giveUsFeedbackDescHelper")}
+        </Typography>
+      </Container>
+    </>
+  );
+}
+
 export function Onboarding(props: OnboardingProps) {
   const [open, set_open] = useState<boolean>(false);
   const { t } = useTranslation();
@@ -107,6 +132,11 @@ export function Onboarding(props: OnboardingProps) {
       text: t("tutorial.readyToUseDesc"),
       component: <About />,
     },
+    {
+      title: t("tutorial.readyToUse"),
+      text: t("tutorial.readyToUseDesc"),
+      component: <Feedback />,
+    },
   ];
 
   function go_back() {
@@ -115,15 +145,15 @@ export function Onboarding(props: OnboardingProps) {
 
   return (
     <Box visible={open || props.force_open}>
-      {pages[page_index]?.image ? (
+      {pages[page_index]?.component ? (
+        <>{pages[page_index]?.component}</>
+      ) : (
         <img
           src={pages[page_index].image}
           alt={pages[page_index].title}
           width={pages[page_index].size}
           style={{ borderRadius: pages[page_index].radius || 0 }}
         />
-      ) : (
-        <>{pages[page_index]?.component}</>
       )}
       <Margin margin="140px 0" />
       <Section>
@@ -207,4 +237,8 @@ const Section = styled.section`
 const Container = styled.section`
   max-width: 100%;
   padding: 0 5px;
+`;
+
+const BlueLink = styled.a`
+  color: blue;
 `;

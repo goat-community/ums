@@ -11,13 +11,13 @@ export function useCalculateSingleScore() {
   const flower_survey_amenties = useAppSelector((state) => state.flower.amenities);
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const travel_time_surface = useAppSelector(
-    (state) => state.isochrones.travel_time_surface
+    (state) => state.isochrones.travel_time_surface?.accessibility.opportunities
   );
 
   const calculate_scores = useCallback(() => {
     let nr_amenities_reached = 0;
     AMENITIES_LIST.map((amenity) => {
-      const isochrone_amenity = travel_time_surface.accessibility?.[amenity] || null;
+      const isochrone_amenity = travel_time_surface?.[amenity] || null;
       if (!isochrone_amenity || isochrone_amenity.length < 1) {
         return false;
       }
@@ -36,7 +36,7 @@ export function useCalculateSingleScore() {
         nr_amenities_reached += 1;
       }
     });
-    setScore(Math.round((nr_amenities_reached / AMENITIES_LIST.length) * 10));
+    setScore(Math.floor((nr_amenities_reached / AMENITIES_LIST.length) * 10));
     // re-create function on these params change
   }, [
     travel_time_surface,
@@ -66,14 +66,14 @@ export function useCalculateStandardScore() {
     health: 0,
     services: 0,
     sport: 0,
-    tourism: 0,
+    leisure: 0,
     transport: 0,
     shop: 0,
     education: 0,
   });
   const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
   const travel_time_surface = useAppSelector(
-    (state) => state.isochrones.travel_time_surface
+    (state) => state.isochrones.travel_time_surface?.accessibility.opportunities
   );
 
   const calculate_scores = useCallback(() => {
@@ -82,7 +82,7 @@ export function useCalculateStandardScore() {
       let nr_category_amenity_reached = 0;
       if (AMENITIES_GROUP?.[category]) {
         AMENITIES_GROUP[category].map((field) => {
-          const isochrone_amenity = travel_time_surface.accessibility?.[field];
+          const isochrone_amenity = travel_time_surface?.[field];
           // check the amenity is available
           if (!isochrone_amenity || isochrone_amenity.length < 1) {
             return false;
@@ -116,4 +116,57 @@ export function useCalculateStandardScore() {
   }, [travel_time_surface, max_trip_duration_minutes, AMENITIES_GROUP]);
 
   return scores;
+}
+
+export function useCalculateSingleTotalScore() {
+  const [score, setScore] = useState<number>(0);
+  const flower_survey_amenties = useAppSelector((state) => state.flower.amenities);
+  const max_trip_duration_minutes = useAppSelector(select_max_trip_duration_minutes);
+  const travel_time_surface = useAppSelector(
+    (state) => state.isochrones.travel_time_surface?.accessibility.opportunities
+  );
+
+  const calculate_scores = useCallback(() => {
+    let nr_amenities_reached = 0;
+    AMENITIES_LIST.map((amenity) => {
+      const isochrone_amenity = travel_time_surface?.[amenity] || null;
+      if (!isochrone_amenity || isochrone_amenity.length < 1) {
+        return false;
+      }
+      /* get the number of amenity reached
+       *  based on the user personal flower maximum reach time or 15 as default
+       */
+      const user_ideal_time_to_this_amenity = max_trip_duration_minutes;
+
+      let amenity_reached: string;
+      if (user_ideal_time_to_this_amenity > 15) {
+        amenity_reached = isochrone_amenity[15 - 1];
+      } else {
+        amenity_reached = isochrone_amenity[user_ideal_time_to_this_amenity - 1];
+      }
+      if (parseInt(amenity_reached) >= 1) {
+        nr_amenities_reached += 1;
+      }
+    });
+    setScore(Math.round((nr_amenities_reached / AMENITIES_LIST.length) * 10));
+    // re-create function on these params change
+  }, [
+    travel_time_surface,
+    max_trip_duration_minutes,
+    flower_survey_amenties,
+    AMENITIES_LIST,
+  ]);
+
+  useEffect(() => {
+    if (travel_time_surface && max_trip_duration_minutes) {
+      calculate_scores();
+    }
+  }, [
+    travel_time_surface,
+    max_trip_duration_minutes,
+    flower_survey_amenties,
+    AMENITIES_LIST,
+  ]);
+
+  return score;
 }

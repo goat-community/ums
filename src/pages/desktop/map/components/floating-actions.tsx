@@ -1,8 +1,9 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Fab, Stack } from "@mui/material";
+import { Fab, Stack, Tooltip } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
@@ -15,7 +16,7 @@ import { LanguageSelector } from "@pages/desktop/map/components/language-selecto
 import { BaseMapSelector } from "./basemap-selector";
 import { EitLogo } from "./eit-logo";
 import { LayerSelector } from "./layer-selector";
-import { Legend } from "./legend";
+import { LegendSelector } from "./legend-selector";
 import { PoisSelector } from "./pois-selector";
 
 interface FloatingActionsProps {
@@ -23,6 +24,10 @@ interface FloatingActionsProps {
 }
 
 export function FloatingActions(props: FloatingActionsProps) {
+  const { t } = useTranslation();
+  // get showLogo from session storage and set to state
+  const [showLogo, setShowLogo] = useState<boolean>(true);
+
   const dispatch = useAppDispatch();
   const travel_time_surface = useAppSelector(
     (state) => state.isochrones.travel_time_surface
@@ -36,11 +41,19 @@ export function FloatingActions(props: FloatingActionsProps) {
     dispatch(get_amenities());
   }, []);
 
+  // Display logo at first 20 seconds and hide it until next refresh of the page
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowLogo(false);
+    }, 20000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <Fragment>
       <Container position="right">
         <Stack direction="column" spacing={2}>
-          <Legend />
+          <LegendSelector />
           <LayerSelector />
           <PoisSelector />
           <BaseMapSelector />
@@ -48,16 +61,18 @@ export function FloatingActions(props: FloatingActionsProps) {
       </Container>
       <Container position="left" extraPadding={drawer_is_open}>
         <Stack direction="column" spacing={2}>
-          <Fab
-            size="large"
-            sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
-            onClick={() => props.open_onboarding_force()}
-          >
-            <InfoOutlinedIcon />
-          </Fab>
+          <Tooltip title={t("tooltips.openInformation")} arrow placement="left">
+            <Fab
+              size="large"
+              sx={{ backgroundColor: D.WHITE_COLOR, color: D.BLACK_COLOR }}
+              onClick={() => props.open_onboarding_force()}
+            >
+              <InfoOutlinedIcon />
+            </Fab>
+          </Tooltip>
           <Stack direction="row" spacing={2}>
             <LanguageSelector />
-            <EitLogo />
+            {showLogo && <EitLogo />}
           </Stack>
         </Stack>
       </Container>

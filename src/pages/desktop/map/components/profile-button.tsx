@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Button, Typography } from "@mui/material";
+import { Button, Tooltip, Typography } from "@mui/material";
 
 import Icon from "@images/icon.png";
 
@@ -14,12 +14,14 @@ export function ProfileButton(props: ProfileButtonProps) {
 
   return (
     <Section>
-      <Button variant="contained" onClick={props.on_click} size="large">
-        <img src={Icon} width="22" height="22" alt="icon" style={{ marginBottom: 2 }} />
-        <Typography variant="h5" color="white" ml={1}>
-          {t("actions.flower")}
-        </Typography>
-      </Button>
+      <Tooltip title={t("tooltips.customizeFlower")} arrow>
+        <Button disableRipple variant="contained" onClick={props.on_click} size="large">
+          <img src={Icon} width="22" height="22" alt="icon" style={{ marginBottom: 2 }} />
+          <Typography variant="h5" color="white" ml={1}>
+            {t("actions.flower")}
+          </Typography>
+        </Button>
+      </Tooltip>
     </Section>
   );
 }

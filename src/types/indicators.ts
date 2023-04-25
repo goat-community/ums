@@ -3,3 +3,7 @@ export interface IndicatorConfig {
   url: string;
   requestMethod: string;
 }
+
+export interface TaskIDResponse {
+  task_id: string;
+}

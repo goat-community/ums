@@ -11,9 +11,7 @@ const initialState = {
   picked_point: null as LngLat | null,
   current_point_address: {} as ReverseAddress,
   view: {
-    bounds: [
-      11.327192290815145, 48.03915718648435, 11.756388821971976, 48.27059464660387,
-    ],
+    bounds: [10.97192290815145, 47.79915718648435, 12.1388821971976, 48.54059464660387],
     bearing: 0,
     pitch: 0,
   } as MapView,
@@ -22,12 +20,12 @@ const initialState = {
     noise_levels_day: {
       title: "noise_levels_day",
       legend:
-        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadlden&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
+        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadln2022&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
       visibility: "none",
       source: {
         type: "raster",
         tiles: [
-          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadlden&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
+          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadln2022&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
         ],
         tileSize: 256,
       },
@@ -43,12 +41,12 @@ const initialState = {
     noise_levels_night: {
       title: "noise_levels_night",
       legend:
-        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadln&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
+        "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?request=GetLegendGraphic&version=1.3.0&format=image/png&layer=aggroadln2022&SERVICE=WMS&SLD_VERSION=1.1.0&STYLE=&TRANSPARENT=true",
       visibility: "none",
       source: {
         type: "raster",
         tiles: [
-          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadln&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
+          "https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume?LAYERS=aggroadln2022&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&CRS=EPSG%3A3857&STYLES=&WIDTH=2264&HEIGHT=792&BBOX={bbox-epsg-3857}",
         ],
         tileSize: 256,
       },
@@ -67,15 +65,14 @@ const initialState = {
       visibility: "none",
       source: {
         type: "geojson",
-        data: "https://goat-dev.plan4better.de/api/v1/indicators/population?modus=default&return_type=geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
       },
       layers: [
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 0],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 0]],
           id: "NoPopulation",
           type: "fill",
           paint: {
@@ -85,11 +82,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 1],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 1]],
           id: "1to80Inhabitants",
           type: "fill",
           paint: {
@@ -99,11 +92,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 2],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 2]],
           id: "80to200Inhabitants",
           type: "fill",
           paint: {
@@ -113,11 +102,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 3],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 3]],
           id: "200to500Inhabitants",
           type: "fill",
           paint: {
@@ -127,11 +112,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 4],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 4]],
           id: "500to1000Inhabitants",
           type: "fill",
           paint: {
@@ -141,11 +122,7 @@ const initialState = {
           },
         },
         {
-          filter: [
-            "all",
-            ["!=", "modus", "comparison"],
-            ["==", "percentile_population", 5],
-          ],
+          filter: ["all", ["!=", "modus", "comparison"], ["==", "population_class", 5]],
           id: "More1000Inhabitants",
           type: "fill",
           paint: {
@@ -444,6 +421,20 @@ const initialState = {
       },
       requestMethod: "POST",
       url: "pt-oev-gueteklassen",
+    } as IndicatorConfig,
+    population_density: {
+      payload: {
+        mode: "walking",
+        study_area_ids: [91620000],
+        walking_profile: "standard",
+        scenario: { id: 0, modus: "default" },
+        analysis_unit: "hexagon",
+        resolution: 9,
+        heatmap_config: { source: "population" },
+        heatmap_type: "aggregated_data",
+      },
+      requestMethod: "POST",
+      url: "heatmap",
     } as IndicatorConfig,
   },
 };

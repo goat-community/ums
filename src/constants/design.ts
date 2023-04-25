@@ -21,8 +21,7 @@ export const DRAWER_WIDTH = 360;
 export const FLOWER_CATEGORIES_COLOR = {
   transport: "#33A8C7",
   sport: "#52E3E1",
-  leisure: "#FDF148",
-  tourism: "#FDF148",
+  leisure: "#A0E426",
   food: "#FFAB00",
   health: "#F77976",
   education: "#F050AE",
