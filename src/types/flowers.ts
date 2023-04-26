@@ -43,3 +43,11 @@ export interface Amenities {
   supermarket: FlowerMinutes;
   tram_stop: FlowerMinutes;
 }
+
+export type FlowerPetalsPositions = {
+  [key: string]: {
+    slope: number;
+    starting_point: number[];
+    ending_point: number[];
+  };
+};

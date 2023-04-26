@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import { Button, Typography } from "@mui/material";
 
+import { FlowerPetalsPositions } from "@types";
+
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_amenities, upload_flower } from "@context/flower";
@@ -115,6 +117,16 @@ export default function ShareableFlower() {
 
     img.src = svgUrl;
   }
+
+  const POSITIONS: FlowerPetalsPositions = {
+    leisure: {
+      slope: 1.1551724137931034,
+      starting_point: [160, 107],
+      ending_point: [102, 40],
+    },
+  };
+
+  console.log(POSITIONS);
 
   if (flower.survey_done_already) {
     return (
