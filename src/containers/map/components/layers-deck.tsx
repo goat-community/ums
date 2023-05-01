@@ -358,12 +358,6 @@ export default function LayersDeck() {
     getLineWidth: 0,
     pickable: true,
     onHover: (e) => {
-      // check if it's not district_munich then set hovered
-      // if (e.object) {
-      //   if (e.object?.properties?.layerName === "district_munich") {
-      //     return setHovered(false);
-      //   }
-      // }
       setHovered(!!e.object);
     },
     onClick: (e) => {
@@ -418,7 +412,10 @@ export default function LayersDeck() {
     minZoom: 13,
     maxZoom: 16,
     iconMapping: ICON_MAPPING,
-    getIcon: (d) => d.category,
+    getIcon: (d) => {
+      console.log(d);
+      return d.category;
+    },
     getPosition: (d) => d.coordinates,
     sizeScale: 40,
     pickable: true,

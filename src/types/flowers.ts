@@ -46,8 +46,6 @@ export interface Amenities {
 
 export type FlowerPetalsPositions = {
   [key: string]: {
-    slope: number;
-    starting_point: number[];
-    ending_point: number[];
+    lines: { startPoint: { x: number; y: number }; endPoint: { x: number; y: number } }[];
   };
 };

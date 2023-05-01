@@ -79,7 +79,6 @@ export const AMENITIES_GROUP = {
     "marketplace",
     "bakery",
     "butcher",
-    "chemists",
   ],
   education: [
     "nurseries",
@@ -91,7 +90,7 @@ export const AMENITIES_GROUP = {
   ],
 };
 
-export const POSITIONS: FlowerPetalsPositions = {
+export const FLOWER_POI_LINE_POSITIONS: FlowerPetalsPositions = {
   food: {
     lines: [
       { startPoint: { x: 43.2257, y: 89.5538 }, endPoint: { x: 130.226, y: 133.554 } },
