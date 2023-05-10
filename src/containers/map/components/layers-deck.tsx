@@ -312,6 +312,17 @@ export default function LayersDeck() {
   const [hovered, setHovered] = useState<boolean>(false);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
 
+  const [zoom, setZoom] = useState(mapRef.current.getZoom());
+
+  // Update the zoom state when the map is zoomed in or out
+  const handleZoomChange = () => {
+    setZoom(mapRef.current.getZoom());
+  };
+
+  // Add a listener for the 'zoomend' event on your map
+  // This might vary depending on the map library you are using
+  mapRef.current.on("zoomend", handleZoomChange);
+
   const allAmenities = useAppSelector((state) => state.flower.amenities);
   const poiFeatures = useAppSelector(get_poi_features);
   const studyAreaData = useAppSelector(study_area_selector);
@@ -458,11 +469,16 @@ export default function LayersDeck() {
     filled: false,
     getLineColor: [255, 255, 255],
     getLineWidth: () => {
+      console.log(mapRef.current.getZoom());
       const zoom = mapRef.current.getZoom();
-      if (zoom >= 14) {
+      if (zoom >= 13.7) {
         return 0;
       }
       return 30;
+    },
+    zoom: zoom,
+    updateTriggers: {
+      getLineWidth: [mapRef.current.getZoom()],
     },
   });
 
