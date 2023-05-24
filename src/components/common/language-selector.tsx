@@ -9,18 +9,21 @@ import * as D from "@constants/design";
 import { ArrowPopper } from "@components/common/arrow-popper";
 import { ListTile } from "@components/common/list-tile";
 
+import EnglishIcon from "@images/english.png";
+import GermanIcon from "@images/german.png";
+
 export function LanguageSelector() {
   const { t, i18n } = useTranslation();
   const items = [
     {
       value: "english",
       title: "English",
-      thumbnail: "https://i.imgur.com/GSmdPhLm.png",
+      thumbnail: EnglishIcon,
     },
     {
       value: "deutsch",
       title: "Deutsch",
-      thumbnail: "https://i.imgur.com/2fdveV0m.png",
+      thumbnail: GermanIcon,
     },
   ];
   const abbreviations = {

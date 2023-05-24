@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import CloseIcon from "@mui/icons-material/Close";
 import { Button, Stack, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
@@ -57,14 +58,14 @@ export default function Introduction(props: IntroductionProps) {
     return (
       <Box>
         <FloatingResetButton>
-          <Button variant="contained" color="error" onClick={() => set_reset_mode(true)}>
-            {t("introduction.resetToStandard")}
-          </Button>
+          <Link to="/">
+            <CloseIcon />
+          </Link>
         </FloatingResetButton>
         <Flower width={300} height={300} />
         <Margin margin="15px 0 0 0" />
         <Typography variant="h3" textAlign="center">
-          Do you want to edit your personal mobility flower?
+          {t("introduction.editPersonalData")}
         </Typography>
         <Margin margin="25px 0 0 0" />
         <Stack
@@ -74,8 +75,8 @@ export default function Introduction(props: IntroductionProps) {
           spacing={3}
         >
           <Link to="/">
-            <Button variant="outlined" onClick={props.onClickContinue}>
-              {t("introduction.back")}
+            <Button variant="outlined" onClick={() => set_reset_mode(true)}>
+              {t("introduction.resetToStandard")}
             </Button>
           </Link>
           <Button variant="contained" onClick={props.onClickContinue}>
