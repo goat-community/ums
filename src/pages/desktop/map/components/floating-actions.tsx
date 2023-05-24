@@ -11,7 +11,7 @@ import { get_amenities } from "@context/flower";
 
 import * as D from "@constants/design";
 
-import { LanguageSelector } from "@pages/desktop/map/components/language-selector";
+import { LanguageSelector } from "@components/common/language-selector";
 
 import { BaseMapSelector } from "./basemap-selector";
 import { EitLogo } from "./eit-logo";
