@@ -29,7 +29,8 @@ function MapComponent(props: MapProps) {
 
   // Fix map bounds when we have props.viewBounds
   function set_map_bounds() {
-    const map = mapRef?.current.getMap();
+    if (!mapRef?.current) return;
+    const map = mapRef.current.getMap();
     map.fitBounds(props.viewBounds, { padding: 20 });
   }
 
@@ -37,7 +38,7 @@ function MapComponent(props: MapProps) {
     if (props.viewBounds) {
       set_map_bounds();
     }
-  }, [props.viewBounds]);
+  }, [props.viewBounds, mapRef]);
 
   return (
     <Map

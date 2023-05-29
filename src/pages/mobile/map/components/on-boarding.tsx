@@ -228,7 +228,7 @@ const Section = styled.section`
   right: 0;
   left: 0;
   bottom: 0;
-  height: 300px;
+  height: 250px;
   background-color: ${D.PRIMARY_COLOR};
   padding: 60px 20px 0;
   border-radius: 28px 28px 0 0;

@@ -16,7 +16,7 @@ import { view_bounds_selector } from "@context/map/maps-selector";
 import { MAPBOX_TOKEN } from "@constants";
 import * as D from "@constants/design";
 
-import { LanguageSelector } from "@pages/desktop/map/components/language-selector";
+import { LanguageSelector } from "@components/common/language-selector";
 
 import Icon from "@images/icon.png";
 import Logo from "@images/logo-horizontal-black.png";
