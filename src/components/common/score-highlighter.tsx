@@ -15,6 +15,20 @@ const COLORS = {
   0: [168, 168, 168],
 };
 
+const TEXT_COLORS = {
+  10: "#000",
+  9: "#283648",
+  8: "#283648",
+  7: "#283648",
+  6: "#283648",
+  5: "#283648",
+  4: "#283648",
+  3: "#000",
+  2: "#fff",
+  1: "#fff",
+  0: "#283648",
+};
+
 interface ScoreHighLighterProps {
   isochrone_score: number;
   large?: boolean;
@@ -47,8 +61,8 @@ const ScoreHighlighter = styled.div<{
   margin-left: ${(props) => (props.score_type_hint ? "-45%" : "0")};
   background-color: ${(props) => `rgb(${COLORS[props.score].join(",")})`};
   font-size: ${(props) => (props.large ? "19px" : "12px")};
-  width: ${(props) => (props.large ? "65px" : "140px")};
+  width: ${(props) => (props.large ? "65px" : "90px")};
   height: ${(props) => (props.large ? "30px" : "30px")};
-  color: ${(props) => (props.score > 4 ? "black" : "white")};
+  color: ${(props) => TEXT_COLORS[props.score]};
   border-radius: 15px;
 `;
