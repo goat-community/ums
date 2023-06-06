@@ -10,7 +10,7 @@ export function InsightsSection() {
 
   return (
     <Stack padding="31px 23px 10px">
-      <Typography variant="h1" fontWeight="400" color="black">
+      <Typography variant="h2" fontWeight="400" color="black">
         {address?.display_name?.split(",").slice(0, 2) || ""}
       </Typography>
       <br />
