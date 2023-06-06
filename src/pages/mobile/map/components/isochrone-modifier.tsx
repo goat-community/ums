@@ -124,31 +124,4 @@ const SegementedButton = styled.button<{ active: boolean }>`
   }
 `;
 
-// const SegementedButtonTwo = styled.button<{ active: boolean }>`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 100%;
-//   border: 1px solid #73777f;
-//   text-decoration: none;
-//   height: 28px;
-//   font-size: 11px;
-//   color: ${(props) => (props.active ? D.WHITE_COLOR : D.BLACK_COLOR)};
-//   background-color: ${(props) => (props.active ? D.GREEN_PRIMARY : D.WHITE_COLOR)};
-
-//   &:nth-child(1) {
-//     border-radius: 50px 0 0 50px;
-//   }
-
-//   &:nth-child(2) {
-//     border-radius: 0 50px 50px 0;
-//     border-left: none;
-//   }
-// `;
-
-// const segmented_section_style = {
-//   overflowX: "scroll",
-//   paddingBottom: "30px",
-//   paddingRight: "30px",
-// };
 const typography_style = { fontSize: "11px" };
