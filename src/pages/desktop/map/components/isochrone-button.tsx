@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from "@hooks/context";
 
 import { get_amenities } from "@context/flower";
 import { set_picking_mode } from "@context/map/maps-action";
-import { temprorary_open } from "@context/openers";
 
 import * as D from "@constants/design";
 
@@ -18,17 +17,14 @@ export function IsochroneButton() {
   const dispatch = useAppDispatch();
   const is_picking = useAppSelector((state) => state.map.picking_mode);
   const is_loading = useAppSelector((state) => state.network.loading);
-  const is_done_survey = useAppSelector((state) => state.flower.survey_done_already);
+  // const is_done_survey = useAppSelector((state) => state.flower.survey_done_already);
   const travel_time_surface = useAppSelector(
     (state) => state.isochrones.travel_time_surface
   );
 
   const isochrone_shown = Boolean(!is_loading && travel_time_surface);
   // User should done the flower before picking isochrone
-  const button_action = () =>
-    is_done_survey
-      ? dispatch(set_picking_mode(!is_picking)) // Open the flower modal
-      : dispatch(temprorary_open("flower_open"));
+  const button_action = () => dispatch(set_picking_mode(!is_picking));
 
   // fetch survey from localstorage
   // to state the filling status
