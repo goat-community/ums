@@ -27,19 +27,15 @@ export function PoisSelector() {
       subtitle: "",
     };
   });
-  const [selected, setSelected] = useState<number[]>([]);
-
-  useEffect(() => {
-    if (active_poi_groups?.length > 0) {
-      const index = [];
-      active_poi_groups.forEach((group) => {
-        if (items.findIndex((item) => item.value === group) !== -1) {
-          index.push(group);
-        }
-      });
-      setSelected(index);
-    }
-  }, [active_poi_groups, items]);
+  const [selected, setSelected] = useState(() => {
+    const index = [];
+    active_poi_groups.forEach((group) => {
+      if (items.findIndex((item) => item.value === group) !== -1) {
+        index.push(group);
+      }
+    });
+    return index;
+  });
 
   const handleChange = (value) => {
     setSelected(value);
