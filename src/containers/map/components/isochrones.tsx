@@ -91,7 +91,7 @@ export default function Isochrones() {
   }, [isochrone, mapRef]);
 
   useEffect(() => {
-    if (mapRef.current && !mapRef.current.hasImage("marker-custom-1")) {
+    if (mapRef.current) {
       mapRef.current.loadImage(PinIcon, (error, image) => {
         if (error) throw error;
         mapRef.current.addImage("marker-custom-1", image);
