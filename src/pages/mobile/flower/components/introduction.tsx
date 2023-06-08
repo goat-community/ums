@@ -74,11 +74,9 @@ export default function Introduction(props: IntroductionProps) {
           direction="row"
           spacing={3}
         >
-          <Link to="/">
-            <Button variant="outlined" onClick={() => set_reset_mode(true)}>
-              {t("introduction.resetToStandard")}
-            </Button>
-          </Link>
+          <Button variant="outlined" onClick={() => set_reset_mode(true)}>
+            {t("introduction.resetToStandard")}
+          </Button>
           <Button variant="contained" onClick={props.onClickContinue}>
             {t("introduction.editFlower")}
           </Button>
