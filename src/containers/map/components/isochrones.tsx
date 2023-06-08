@@ -52,13 +52,13 @@ export default function Isochrones() {
       const [minLng, minLat, maxLng, maxLat] = bbox(isochrone);
       console.log(isochrone);
       // setMarkerCoordinates();
-      mapRef.current.fitBounds(
-        [
-          [minLng, minLat],
-          [maxLng, maxLat],
-        ],
-        { padding: flying_padding, duration: 1000 }
-      );
+      // mapRef.current.fitBounds(
+      //   [
+      //     [minLng, minLat],
+      //     [maxLng, maxLat],
+      //   ],
+      //   { padding: flying_padding, duration: 1000 }
+      // );
     }
   }, [travelTimeSurface]);
 
@@ -114,7 +114,7 @@ export default function Isochrones() {
                 coordinates: [picked_point.lng, picked_point.lat],
               },
               properties: {
-                iconNumber: "marker-custom-1",
+                iconNumber: "1",
               },
             }}
           >
