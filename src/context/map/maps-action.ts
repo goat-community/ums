@@ -18,6 +18,7 @@ import {
   setPickedPoint,
   setPickingMode,
   setStudyArea,
+  setStyle,
 } from "./maps-reducer";
 
 export function close_picking_mode() {
@@ -113,4 +114,12 @@ export function getIndicator(
         }
       })
     );
+}
+
+export function set_map_style(style: string) {
+  return (dispatch: CallableFunction) => {
+    // store to local storage
+    localStorage.setItem("map_style", style);
+    dispatch(setStyle(style));
+  };
 }

@@ -8,7 +8,7 @@ import Fab from "@mui/material/Fab";
 
 import { useAppDispatch, useAppSelector } from "@hooks/context";
 
-import { setStyle } from "@context/map";
+import { set_map_style } from "@context/map";
 
 import * as D from "@constants/design";
 
@@ -90,7 +90,7 @@ export function BaseMapSelector() {
               onChange={(value) => {
                 setSelected(value);
                 const selectedMapStyle = items[value[0]].value;
-                dispatch(setStyle(styles[selectedMapStyle]));
+                dispatch(set_map_style(styles[selectedMapStyle]));
               }}
             />
           </Paper>
