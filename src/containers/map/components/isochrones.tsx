@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { FillLayer, Layer, Marker, Source, useMap } from "react-map-gl";
 import { AnyLayer } from "react-map-gl/dist/esm/types";
 import { useSelector } from "react-redux";
@@ -46,24 +46,30 @@ export default function Isochrones() {
 
   const flying_padding = is_mobile ? 40 : 200;
 
-  // Zoom to the bounding box of the isochrone
-  useEffect(() => {
-    if (isochrone) {
-      const [minLng, minLat, maxLng, maxLat] = bbox(isochrone);
-      console.log(isochrone);
-      // setMarkerCoordinates();
-      // mapRef.current.fitBounds(
-      //   [
-      //     [minLng, minLat],
-      //     [maxLng, maxLat],
-      //   ],
-      //   { padding: flying_padding, duration: 1000 }
-      // );
+  const fitBounds = useCallback(() => {
+    if (isochrone && mapRef.current && travelTimeSurface) {
+      try {
+        const [minLng, minLat, maxLng, maxLat] = bbox(isochrone);
+        if (!minLng || !minLat || !maxLng || !maxLat) return;
+
+        mapRef.current.fitBounds(
+          [
+            [minLng, minLat],
+            [maxLng, maxLat],
+          ],
+          { padding: flying_padding, duration: 1000 }
+        );
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }, [travelTimeSurface]);
+  }, [travelTimeSurface, isochrone, mapRef, flying_padding]);
 
   useEffect(() => {
-    // check if layer bounds exeeds map bounds
+    fitBounds();
+  }, [fitBounds]);
+
+  useEffect(() => {
     if (isochrone) {
       const [minLng, minLat, maxLng, maxLat] = bbox(isochrone);
       const mapBounds = mapRef.current.getBounds();
@@ -82,16 +88,12 @@ export default function Isochrones() {
         );
       }
     }
-  }, [isochrone]);
+  }, [isochrone, mapRef]);
 
-  // listen to map and add a icon to it
   useEffect(() => {
-    if (mapRef.current) {
-      // check that we don't have the icon already
-      if (mapRef.current.hasImage("marker-custom-1")) return;
+    if (mapRef.current && !mapRef.current.hasImage("marker-custom-1")) {
       mapRef.current.loadImage(PinIcon, (error, image) => {
         if (error) throw error;
-        console.log("added");
         mapRef.current.addImage("marker-custom-1", image);
       });
     }
