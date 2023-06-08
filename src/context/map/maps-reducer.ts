@@ -5,7 +5,7 @@ import { IndicatorConfig, MapView, popupInfo, ReverseAddress } from "@types";
 
 /** Reducer */
 const initialState = {
-  style: "mapbox://styles/mapbox/dark-v11",
+  style: localStorage.getItem("map_style") || "mapbox://styles/mapbox/dark-v11",
   popupInfo: null as popupInfo,
   picking_mode: false as boolean,
   picked_point: null as LngLat | null,
