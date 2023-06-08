@@ -91,7 +91,7 @@ export default function Isochrones() {
   }, [isochrone, mapRef]);
 
   useEffect(() => {
-    if (mapRef.current && !mapRef.current.hasImage("marker-custom-1")) {
+    if (mapRef.current) {
       mapRef.current.loadImage(PinIcon, (error, image) => {
         if (error) throw error;
         mapRef.current.addImage("marker-custom-1", image);
@@ -129,7 +129,11 @@ export default function Isochrones() {
             anchor="bottom"
             offset={[60, -10]}
           >
-            <ScoreHighLighter isochrone_score={isochrone_score} score_type_hint />
+            <ScoreHighLighter
+              isochrone_score={isochrone_score}
+              score_type_hint
+              with_margin
+            />
           </Marker>
         </>
       )}
