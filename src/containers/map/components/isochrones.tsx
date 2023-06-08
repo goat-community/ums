@@ -129,7 +129,11 @@ export default function Isochrones() {
             anchor="bottom"
             offset={[60, -10]}
           >
-            <ScoreHighLighter isochrone_score={isochrone_score} score_type_hint />
+            <ScoreHighLighter
+              isochrone_score={isochrone_score}
+              score_type_hint
+              with_margin
+            />
           </Marker>
         </>
       )}
