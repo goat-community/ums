@@ -52,8 +52,6 @@ export default function Isochrones() {
       const [minLng, minLat, maxLng, maxLat] = bbox(isochrone);
       console.log(isochrone);
       // setMarkerCoordinates();
-      console.log(" Lng: " + (minLng + maxLng) / 2 + "Lat: " + (minLat + maxLat) / 2);
-      console.log(picked_point);
       mapRef.current.fitBounds(
         [
           [minLng, minLat],
@@ -93,6 +91,7 @@ export default function Isochrones() {
       if (mapRef.current.hasImage("marker-custom-1")) return;
       mapRef.current.loadImage(PinIcon, (error, image) => {
         if (error) throw error;
+        console.log("added");
         mapRef.current.addImage("marker-custom-1", image);
       });
     }
@@ -115,7 +114,7 @@ export default function Isochrones() {
                 coordinates: [picked_point.lng, picked_point.lat],
               },
               properties: {
-                iconNumber: "1",
+                iconNumber: "marker-custom-1",
               },
             }}
           >
@@ -129,7 +128,6 @@ export default function Isochrones() {
             offset={[60, -10]}
           >
             <ScoreHighLighter isochrone_score={isochrone_score} score_type_hint />
-            {/* <img src={PinIcon} width="16" height="20" alt="pin" /> */}
           </Marker>
         </>
       )}
