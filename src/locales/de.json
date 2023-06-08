@@ -78,7 +78,7 @@
     "fuel_station": "Tankstelle",
     "recycling_station": "Recycling Station",
     "chemists": "Drogerie",
-    "nurseries": "Kitas"
+    "nurseries": "Kita"
   },
   "layers": {
     "noise_levels_day": "Lärm von Hauptverkehrsstraßen (Tag)",
@@ -150,8 +150,8 @@
     "Map4CitizensminuteDesc": "Ziel dieser Anwendung ist es, Bürger:innen detaillierte Informationen über Ihre nachhaltigen Mobilitätsoptionen und die lokale Erreichbarkeit zur Verfügung zu stellen.",
     "15-minCity": "Personalisierte 15-Minuten-Stadt",
     "15-minCityDesc": "Dies ist eng mit dem Konzept der 15-Minuten-Stadt verbunden. Um Ihnen dabei zu helfen, Ihren perfekten 15-Minuten-Stadt Standort zu finden, der all Ihre Bedürfnisse erfüllt, können Sie Ihre persönliches Mobilitätsprofil erstellen. Die Anwendung zeigt Ihnen dann, wie gut verschiedene Standorte in der Stadt Ihre Bedürfnisse erfüllen können.",
-    "isochrones": "Isochronen",
-    "isochronesDesc": "Durch die Berechnung von Isochronen bekommen Sie ein Gefühl dafür, wie weit Sie zu Fuß, mit dem Fahrrad oder mit öffentlichen Verkehrsmitteln kommen und welche Ziele Sie erreichen können. Darüber hinaus können Sie sich zusätzliche Layer wie Lärmpegel, Bevölkerungsdichte, Flächennutzung und ÖV-Güteklassen anzeigen lassen.",
+    "isochrones": "Einzugsbereiche",
+    "isochronesDesc": "Durch die Berechnung von Einzugsbereichen bekommen Sie ein Gefühl dafür, wie weit Sie zu Fuß, mit dem Fahrrad oder mit öffentlichen Verkehrsmitteln kommen und welche Ziele Sie erreichen können. Darüber hinaus können Sie sich zusätzliche Layer wie Lärmpegel, Bevölkerungsdichte, Flächennutzung und ÖV-Güteklassen anzeigen lassen.",
     "readyToUse": "Los geht's!",
     "readyToUseDesc": "Mit dieser Anwendung wollen wir den Bürger:innen helfen, Ihre Stadt besser zu verstehen und nachhaltige Entscheidungen zu treffen.\r\n Viel Spaß!",
     "developedBy": "Diese Anwendung wurde entwickelt von:",
@@ -177,8 +177,8 @@
     }
   },
   "tooltips": {
-    "enableIsochrone": "Isochronen berechnen",
-    "disableIsochrone": "Isochronenberechnung beenden",
+    "enableIsochrone": "Einzugsbereiche berechnen",
+    "disableIsochrone": "Berechnung von Einzugsbereichen beenden",
     "enable15MinScore": "15-Min-Score aktivieren",
     "disable15MinScore": "15-Min-Score deaktivieren",
     "customizeFlower": "15-Min-Score individualisieren",
