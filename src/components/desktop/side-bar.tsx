@@ -6,5 +6,13 @@ interface SideBarProps {
 }
 
 export function SideBar(props: SideBarProps) {
-  return <Drawer open={props.open}>{props.children || <></>}</Drawer>;
+  const close_drawer = () => {
+    return;
+  };
+
+  return (
+    <Drawer open={props.open} on_close={close_drawer}>
+      {props.children || <></>}
+    </Drawer>
+  );
 }

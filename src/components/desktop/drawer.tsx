@@ -1,15 +1,29 @@
 import styled, { keyframes } from "styled-components";
 
+import { Close } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
+
 import * as D from "@constants/design";
 
 interface DrawerProps {
   open: boolean;
+
+  on_close: () => void;
   children: React.ReactNode;
 }
 
 export function Drawer(props: DrawerProps) {
   if (props.open) {
-    return <Section>{props.children}</Section>;
+    return (
+      <Section>
+        <FloatingClose>
+          <IconButton onClick={props.on_close}>
+            <Close />
+          </IconButton>
+        </FloatingClose>
+        {props.children}
+      </Section>
+    );
   }
 
   return <></>;
@@ -40,4 +54,11 @@ const Section = styled.section`
   overflow-x: hidden;
   animation: ${drawer_animation} 0.2s;
   border-radius: 0 20px 20px 0;
+`;
+
+const FloatingClose = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 4;
 `;
