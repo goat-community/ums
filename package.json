@@ -45,6 +45,7 @@
     "react-mui-mapbox-geocoder": "^2.1.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
+    "react-tagify": "^1.0.7",
     "sort-by": "^0.0.2",
     "styled-components": "^5"
   },

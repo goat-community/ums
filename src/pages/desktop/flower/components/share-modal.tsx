@@ -27,7 +27,7 @@ export function ShareModal(props: ShareModalProps) {
 
   async function copyLink() {
     // copy a link to users pasteboard
-    const link = `https://m4c-share.vercel.app/${props.signed_key}`;
+    const link = `https://myflower.plan4better.de/${props.signed_key}`;
     try {
       // Use the Clipboard API if available
       if (navigator.clipboard) {
@@ -50,7 +50,7 @@ export function ShareModal(props: ShareModalProps) {
 
   function shareOnLinkedIn() {
     const urlToShare = encodeURIComponent(
-      `https://m4c-share.vercel.app/${props.signed_key}`
+      `https://myflower.plan4better.de/${props.signed_key}`
     );
     const title = encodeURIComponent("Checkout my personal flower on Map4Citizens!");
     const summary = encodeURIComponent("Description");
@@ -61,7 +61,7 @@ export function ShareModal(props: ShareModalProps) {
 
   function shareOnTwitter() {
     const urlToShare = encodeURIComponent(
-      `https://m4c-share.vercel.app/${props.signed_key}`
+      `https://myflower.plan4better.de/${props.signed_key}`
     );
     const text = encodeURIComponent("Check my flower at map4citizens");
     const twitterShareUrl = `https://twitter.com/intent/tweet?url=${urlToShare}&text=${text}`;
@@ -108,7 +108,7 @@ export function ShareModal(props: ShareModalProps) {
 
   function shareOnFacebook() {
     const urlToShare = encodeURIComponent(
-      `https://m4c-share.vercel.app/${props.signed_key}`
+      `https://myflower.plan4better.de/${props.signed_key}`
     );
     const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${urlToShare}`;
     window.open(facebookShareUrl, "_blank");
@@ -117,7 +117,7 @@ export function ShareModal(props: ShareModalProps) {
   // function shareViaEmail() {
   //   const subject = encodeURIComponent("My flower");
   //   const body = encodeURIComponent(
-  //     `Checkout my flower: https://m4c-share.vercel.app/${props.signed_key}`
+  //     `Checkout my flower: https://myflower.plan4better.de/${props.signed_key}`
   //   );
   //   const emailLink = `mailto:?subject=${subject}&body=${body}`;
 
@@ -158,7 +158,7 @@ export function ShareModal(props: ShareModalProps) {
           {/** Input field to show the link to share */}
           <Margin margin="35px 0 0 0" />
           <Input
-            value={`https://m4c-share.vercel.app/${props.signed_key}`}
+            value={`https://myflower.plan4better.de/${props.signed_key}`}
             fullWidth
             readOnly
             disableUnderline

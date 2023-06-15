@@ -106,6 +106,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.4.2
     version: 6.6.2(react-dom@18.2.0)(react@18.2.0)
+  react-tagify:
+    specifier: ^1.0.7
+    version: 1.0.7(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.6)
   sort-by:
     specifier: ^0.0.2
     version: 0.0.2
@@ -10190,6 +10193,21 @@ packages:
     dependencies:
       "@remix-run/router": 1.2.1
       react: 18.2.0
+    dev: false
+
+  /react-tagify@1.0.7(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.6):
+    resolution:
+      {
+        integrity: sha512-lZrDn39llKftcUsK86oRQo6Bc8JZxRWSzY4VIq0GrONrA5i2+W595f9wImtibBOf60qAZQJrQ2uEAOPv+rb0BA==,
+      }
+    peerDependencies:
+      react: ^16.8.0 || 17.x
+      react-dom: ^16.8.0 || 17.x
+      styled-components: ^5.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      styled-components: 5.3.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
     dev: false
 
   /react-themeable@1.1.0:

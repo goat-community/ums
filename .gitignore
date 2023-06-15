@@ -132,3 +132,4 @@ dist
 /test-results/
 /playwright-report/
 /playwright/.cache/
+.vscode/settings.json
