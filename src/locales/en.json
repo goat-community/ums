@@ -161,8 +161,8 @@
     "Map4CitizensminuteDesc": "The aim of this application is to provide citizens with detailed information about their sustainable mobility options and local accessibility.",
     "15-minCity": "Customized 15-min-city",
     "15-minCityDesc": "This is strongly linked to the concept of the 15-min-city. To assist you in finding your perfect 15-min-city location, which fulfills all your needs, you can create your personal “flower-of-proximity”. The application then shows you how well different locations in the city can serve your needs.",
-    "isochrones": "Isochrones",
-    "isochronesDesc": "By calculating isochrones, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
+    "isochrones": "Catchment areas",
+    "isochronesDesc": "By calculating catchment areas, you can get a feeling how far you can travel by foot, bike and public transport, and which amenities you can reach. Furthermore, you can activate additional layers such as Noise Levels, Population Density, Land use and Public Transport Qualities.",
     "readyToUse": "Ready to use?",
     "readyToUseDesc": "With this application, we want assist citizens in getting a better understanding for their city and foster sustainable decisions. \r\n Have fun!",
     "developedBy": "The application was developed by:",
@@ -189,8 +189,8 @@
     }
   },
   "tooltips": {
-    "enableIsochrone": "Enable isochrone function",
-    "disableIsochrone": "Disable isochrone function",
+    "enableIsochrone": "Enable catchment area calculation",
+    "disableIsochrone": "Disable catchment area calculation",
     "enable15MinScore": "Enable 15-min-score",
     "disable15MinScore": "Disable 15-min-score",
     "customizeFlower": "Customize your personal Flower",
