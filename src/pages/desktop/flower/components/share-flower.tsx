@@ -28,16 +28,16 @@ export default function ShareableFlower() {
 
   function categorize_minutes(list_of_minutes: number[]): [number, number, number] {
     /** [5 mins, 10 mins, 15 mins] */
-    const categorized_minutes_list: [number, number, number] = [0, 0, 1];
+    const categorized_minutes_list: [number, number, number] = [0, 0, 0];
 
     list_of_minutes.forEach((minute: number) => {
       if (minute <= 5 && minute > 0) {
         categorized_minutes_list[0] = categorized_minutes_list[0] + 1;
       }
-      if (minute <= 15 && minute > 5) {
+      if (minute <= 10 && minute > 5) {
         categorized_minutes_list[1] = categorized_minutes_list[1] + 1;
       }
-      if (minute <= 20 && minute > 15) {
+      if (minute <= 15 && minute > 10) {
         categorized_minutes_list[2] = categorized_minutes_list[2] + 1;
       }
     });
@@ -76,8 +76,9 @@ export default function ShareableFlower() {
     }
 
     // Serialize the SVG element to a string
-    const serializer = new XMLSerializer();
-    const svgString = serializer.serializeToString(svgElement);
+    // const serializer = new XMLSerializer();
+    // const svgString = serializer.serializeToString(svgElement);
+    const svgString = svgElement.outerHTML;
 
     // Create a Blob from the SVG string
     const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
@@ -227,8 +228,8 @@ export default function ShareableFlower() {
             </div>
             <div>
               <svg
-                width="950"
-                height="950"
+                width="750"
+                height="750"
                 viewBox="0 0 376 323"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -262,7 +263,7 @@ export default function ShareableFlower() {
                 <path
                   d="M268.199 146.316C259.883 146.351 251.408 145.873 250.62 140.44C249.849 135.056 258.189 127.544 266.288 123.011C274.34 118.498 282.166 117.013 286.304 120.708C290.394 124.424 288.644 130.64 285.527 136.756C282.393 142.907 276.499 146.23 268.199 146.316Z"
                   fill={FLOWER_CATEGORIES_COLOR["transport"]}
-                  fillOpacity={`${petal_generator("transport")[2]}%`}
+                  fillOpacity={`${petal_generator("transport")[0]}%`}
                 />
 
                 <path
@@ -348,12 +349,12 @@ export default function ShareableFlower() {
                 <path
                   d="M97.5731 115.636C112.291 125.202 126.813 135.839 123.163 146.116C119.531 156.289 97.8347 159.582 79.3278 158.02C60.9242 156.478 45.7279 149.978 41.8492 138.817C38.0739 127.676 46.9296 118.987 58.1079 112.054C69.347 105.079 82.8373 106.174 97.5731 115.636Z"
                   fill={FLOWER_CATEGORIES_COLOR["food"]}
-                  fillOpacity={`${petal_generator("food")[0]}%`}
+                  fillOpacity={`${petal_generator("food")[2]}%`}
                 />
                 <path
                   d="M103.242 122.685C114.518 129.87 125.634 137.875 122.72 145.774C119.821 153.593 103.037 156.314 88.7599 155.29C74.5626 154.28 62.8881 149.447 59.9963 140.942C57.1841 132.45 64.103 125.719 72.7993 120.31C81.5429 114.868 91.9502 115.581 103.242 122.685Z"
                   fill={FLOWER_CATEGORIES_COLOR["food"]}
-                  fillOpacity={`${petal_generator("food")[0]}%`}
+                  fillOpacity={`${petal_generator("food")[1]}%`}
                 />
                 <path
                   d="M111.104 132.102C118.261 136.337 125.291 141.095 123.179 146.163C121.08 151.18 110.067 153.35 100.789 153.087C91.5626 152.83 84.0832 150.091 82.4269 144.796C80.8221 139.508 85.5126 135.07 91.3261 131.419C97.1712 127.747 103.935 127.917 111.104 132.102Z"
@@ -369,12 +370,12 @@ export default function ShareableFlower() {
                 <path
                   d="M214.853 236.606C212.732 228.753 211.078 220.636 216.252 218.695C221.381 216.779 230.9 223.008 237.414 229.664C243.895 236.28 247.326 243.35 244.711 248.076C242.063 252.761 235.479 252.477 228.651 250.878C221.784 249.272 217.02 244.433 214.853 236.606Z"
                   fill={FLOWER_CATEGORIES_COLOR["services"]}
-                  fillOpacity={`${petal_generator("services")[1]}%`}
+                  fillOpacity={`${petal_generator("services")[0]}%`}
                 />
                 <path
                   d="M213.753 248.445C210.779 235.727 208.511 222.568 216.303 219.278C224.027 216.032 238.112 225.919 247.69 236.58C257.221 247.175 262.175 258.586 258.141 266.339C254.06 274.027 244.215 273.732 234.037 271.306C223.802 268.868 216.796 261.119 213.753 248.445Z"
                   fill={FLOWER_CATEGORIES_COLOR["services"]}
-                  fillOpacity={`${petal_generator("services")[0]}%`}
+                  fillOpacity={`${petal_generator("services")[1]}%`}
                 />
 
                 <path
@@ -1335,8 +1336,14 @@ export default function ShareableFlower() {
                   <>
                     {Object.keys(AMENITIES_GROUP).map((group, index_group) => {
                       return AMENITIES_GROUP[group].map((amenity, index_amenity) => {
-                        const lines =
-                          Object.values(points)[index_group][index_amenity].reverse();
+                        const lines = Object.values(points)[index_group][index_amenity];
+                        const lines_reversed = [...lines].reverse();
+                        const groups_to_be_reversed = [
+                          "leisure",
+                          "food",
+                          "health",
+                          "education",
+                        ];
                         // get the amenity value from the flower
                         const amenityValue = flower.amenities[amenity];
                         if (lines === undefined) {
@@ -1348,12 +1355,21 @@ export default function ShareableFlower() {
                           );
                         }
                         const position =
-                          amenityValue < 7 ? amenityValue + 2 : amenityValue - 1;
+                          amenityValue < 7 ? amenityValue + 2 : amenityValue + 1;
+                        let cx = 0;
+                        let cy = 0;
+                        if (groups_to_be_reversed.includes(group)) {
+                          cx = lines_reversed[position].x;
+                          cy = lines_reversed[position].y;
+                        } else {
+                          cx = lines[position].x;
+                          cy = lines[position].y;
+                        }
                         return (
                           <circle
-                            key={lines[position].x}
-                            cx={lines[position].x}
-                            cy={lines[position].y}
+                            key={cx}
+                            cx={cx}
+                            cy={cy}
                             r="2"
                             stroke="black"
                             strokeWidth="1"
