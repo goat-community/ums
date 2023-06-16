@@ -59,6 +59,7 @@ export default function ShareableFlower() {
     // calculate opacities
     categorize_minutes(amenity_group_travel_times)?.forEach(
       (current_category_fallings_inside, index) => {
+        if (typeof current_category_fallings_inside !== "number") return;
         const nr_cats_falling_inside = current_category_fallings_inside;
         const nr_cats_in_percentage = nr_cats_falling_inside / MAX_CATEGORIES;
         opacities[index] = (90 / coefficients[index]) * nr_cats_in_percentage;
@@ -1358,24 +1359,28 @@ export default function ShareableFlower() {
                           amenityValue < 7 ? amenityValue + 2 : amenityValue + 1;
                         let cx = 0;
                         let cy = 0;
-                        if (groups_to_be_reversed.includes(group)) {
-                          cx = lines_reversed[position].x;
-                          cy = lines_reversed[position].y;
-                        } else {
-                          cx = lines[position].x;
-                          cy = lines[position].y;
+                        try {
+                          if (groups_to_be_reversed.includes(group)) {
+                            cx = lines_reversed[position]?.x;
+                            cy = lines_reversed[position]?.y;
+                          } else {
+                            cx = lines[position]?.x;
+                            cy = lines[position]?.y;
+                          }
+                          return (
+                            <circle
+                              key={cx}
+                              cx={cx}
+                              cy={cy}
+                              r="2"
+                              stroke="black"
+                              strokeWidth="1"
+                              fill={FLOWER_CATEGORIES_COLOR[group]}
+                            />
+                          );
+                        } catch (e) {
+                          return <></>;
                         }
-                        return (
-                          <circle
-                            key={cx}
-                            cx={cx}
-                            cy={cy}
-                            r="2"
-                            stroke="black"
-                            strokeWidth="1"
-                            fill={FLOWER_CATEGORIES_COLOR[group]}
-                          />
-                        );
                       });
                     })}
                   </>
