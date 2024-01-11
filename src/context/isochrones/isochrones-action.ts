@@ -1,4 +1,5 @@
 import { type LngLat } from "react-map-gl";
+import axios from "axios";
 
 import * as Api from "@api/indicators";
 
@@ -13,13 +14,47 @@ import { ISOCHRONE_REQUEST_DEFAULTS } from "@constants";
 
 import { setTravelTimeSurface } from "./isochrones-reducer";
 
+const MAX_TRIES = 20;
+
+let isochroneCancelToken = null;
+
+export function fetch_isochrone_result(
+  task_id: string,
+  currentTry,
+  dispatch: CallableFunction,
+  _cancelToken
+) {
+  if (currentTry < MAX_TRIES) {
+    Api.getIsochroneResult(task_id, _cancelToken).then((result) => {
+      if (result.status === 202) {
+        setTimeout(() => {
+          fetch_isochrone_result(task_id, currentTry + 1, dispatch, _cancelToken);
+        }, 1000);
+      } else {
+        if (!result) {
+          console.error("No result");
+        }
+        dispatch(setTravelTimeSurface(result.data));
+      }
+    });
+  }
+}
+
 export function fetch_isochrone(isochrone: IsochroneParams) {
+  if (isochroneCancelToken instanceof Function) {
+    isochroneCancelToken("cancelled");
+    isochroneCancelToken = null;
+  }
+  const CancelToken = axios.CancelToken;
+  const _cancelToken = new CancelToken((c) => {
+    isochroneCancelToken = c;
+  });
   return (dispatch: CallableFunction) =>
     dispatch(
       networkStateHandler(async () => {
-        const response = await Api.getIsochrone(isochrone);
-        if (response) {
-          dispatch(setTravelTimeSurface(response));
+        const response = await Api.calculateIsochrone(isochrone);
+        if (response && response.task_id) {
+          fetch_isochrone_result(response.task_id, 1, dispatch, _cancelToken);
         }
       })
     );
